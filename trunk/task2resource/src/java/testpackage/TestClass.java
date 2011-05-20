@@ -4,6 +4,7 @@
 
 package testpackage;
 
+import EmailSender.PropertyReader;
 /**
  *
  * @author Igor Petrov
@@ -12,6 +13,12 @@ package testpackage;
 
 public class TestClass {
     public static void main(String[] args) {
-     System.out.println("Hello World!");
+     System.out.println("Иду спать :)\nЗавтра оформлю остальную часть кода.Если кто-то еще тут - спокойной ночи)");
+     PropertyReader pr = new PropertyReader();
+     System.out.println(pr.getEmail() 
+             + " ; " + pr.getPassword() 
+             + " ; " + pr.getSMTPServer() 
+             + " ; " + pr.getPort() 
+             + " ; " + pr.getEncryption());
    }
 }
