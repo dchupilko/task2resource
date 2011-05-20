@@ -1,6 +1,7 @@
 /*
  * This is a class that parses ini-file cinfiguration.
  * Using Ini4j.
+ * http://ini4j.sourceforge.net/
  */
 package EmailSender;
 
@@ -13,12 +14,12 @@ import org.ini4j.Ini;
 import org.ini4j.IniPreferences;
 
 /**
- *
  * @author Igor Petrov
  */
+
 public class PropertyReader {
 
-    private static final String FILEPATH = "D:\\Uni\\NC\\EmailSenderConfig.ini";
+    private static final String FILEPATH = ".\\PropertyFiles\\EmailSenderConfig.ini";
 
     public PropertyReader() {
         try {
@@ -29,13 +30,16 @@ public class PropertyReader {
         getNewConfig();
     }
 
+    /*
+     * Trying to read [PROPERTIES] node
+     */
     private void getNewConfig() {
-        PROPERTIES = pref.node("PROPERTIES");
-        email = PROPERTIES.get("mail", null);
-        password = PROPERTIES.get("password", null);
+        PROPERTIES  = pref.node("PROPERTIES");
+        email       = PROPERTIES.get("email", null);
+        password    = PROPERTIES.get("password", null);
         smtp_server = PROPERTIES.get("smtp_server", null);
-        port = PROPERTIES.get("port", null);
-        encryption = PROPERTIES.get("encryption", null);
+        port        = PROPERTIES.get("port", null);
+        encryption  = PROPERTIES.get("encryption", null);
     }
     
     public String getEmail(){
@@ -58,11 +62,18 @@ public class PropertyReader {
         return encryption;
     }
     
-    private String email = null;
-    private String password = null;
-    private String smtp_server = null;
-    private String port = null;
-    private String encryption = null;
-    private Preferences pref = null;
+    /*
+     * Variables to read info from *.ini file
+     */
+    private String email           = null;
+    private String password        = null;
+    private String smtp_server     = null;
+    private String port            = null;
+    private String encryption      = null;
+    private Preferences pref       = null;
+    
+    /*
+     * ini file has [PROPERTIES] node
+     */
     private Preferences PROPERTIES = null;
 }
