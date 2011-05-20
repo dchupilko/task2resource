@@ -13,7 +13,9 @@ import EmailSender.PropertyReader;
 
 public class TestClass {
     public static void main(String[] args) {
-     System.out.println("Иду спать :)\nЗавтра оформлю остальную часть кода.Если кто-то еще тут - спокойной ночи)");
+     System.out.println("Иду спать :)"
+             + "\nЗавтра оформлю остальную часть кода. "
+             + "Если кто-то еще тут - спокойной ночи)");
      PropertyReader pr = new PropertyReader();
      System.out.println(pr.getEmail() 
              + " ; " + pr.getPassword() 
