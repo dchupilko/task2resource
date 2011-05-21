@@ -27,11 +27,9 @@ public class PropertyReader {
     /*
      * if somebody has Linux
      */
-    private static final String FILEPATH =    "." 
-                                            + File.separator 
-                                            + "PropertyFiles" 
-                                            + File.separator 
-                                            + "EmailSenderConfig.ini";
+    private static final String FILEPATH =  "." + File.separator 
+                                          + "PropertyFiles" + File.separator 
+                                          + "EmailSenderConfig.ini";
 
     public PropertyReader() {
         try {
@@ -82,6 +80,7 @@ public class PropertyReader {
     private String smtp_server     = null;
     private String port            = null;
     private String encryption      = null;
+    
     private Preferences pref       = null;
     
     /*
