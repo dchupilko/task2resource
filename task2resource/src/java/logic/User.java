@@ -27,4 +27,51 @@ public class User {
         // TODO: getId from job
     }
     
+    public String getFirstName () {
+        return this.firstName;
+    }
+    
+    public String getLastName () {
+        return this.lastName;
+    }
+    
+    public String getLogin () {
+        return this.login;
+    }
+    
+    public String getPassword () {
+        return this.password;
+    }
+    
+    public String getEmail () {
+        return this.email;
+    }
+    
+    public int getOid () {
+        return this.oid;
+    }
+    
+    public void setFirstName (String firstName) {
+        this.firstName = firstName;
+    }
+    
+    public void setLastName (String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setLogin (String login) {
+        this.login = login;
+    }
+
+    public void setPassword (String password) {
+        this.password = password;
+    }
+
+    public void setEmail (String email) {
+        this.email = email;
+    }
+    
+    public void setOid (int oid) {
+        this.oid = oid;
+    }
 }

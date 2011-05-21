@@ -24,6 +24,31 @@ public class Task {
         // TODO: add period
         this.name = name;
         this.capacity = capacity;
-        // TODO: calculateDates(startDate, finishDate)
+        
+        // TODO: calculateDates(startDate, finishDate, length)
+    }
+    
+    public String getName () {
+        return this.name;
+    }
+    
+    public int getCapacity () {
+        return this.capacity;
+    }
+    
+    public int getOid () {
+        return this.oid;
+    }
+    
+    public void setName (String name) {
+        this.name = name;
+    }
+    
+    public void setCapacity (int capacity) {
+        this.capacity = capacity;
+    }
+    
+    public void setOid (int oid) {
+        this.oid = oid;
     }
 }
