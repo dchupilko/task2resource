@@ -19,7 +19,15 @@ import org.ini4j.IniPreferences;
 
 public class PropertyReader {
 
-    private static final String FILEPATH = ".\\PropertyFiles\\EmailSenderConfig.ini";
+    //private static final String FILEPATH = ".\\PropertyFiles\\EmailSenderConfig.ini";
+    /*
+     * if somebody has Linux
+     */
+    private static final String FILEPATH =    "." 
+                                            + File.separator 
+                                            + "PropertyFiles" 
+                                            + File.separator 
+                                            + "EmailSenderConfig.ini";
 
     public PropertyReader() {
         try {
