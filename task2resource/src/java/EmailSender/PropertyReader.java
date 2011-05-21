@@ -5,6 +5,10 @@
  */
 package EmailSender;
 
+/*
+ * Если не видит Ini4J, его можно найти в
+ * \trunk\task2resource\build\web\WEB-INF\lib\
+ */
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
