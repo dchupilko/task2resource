@@ -13,9 +13,12 @@ import EmailSender.SendMailSSL;
 
 public class TestClass {
     public static void main(String[] args) {
+        /*
+         * New letter
+         */
         SendMailSSL send = new SendMailSSL("petrov.igor.od@gmail.com", 
                                            "Test message for you!", 
                                            "This is a test message\nBest regards!");
-        send.sendSSLEmail();
+        send.sendSSLEmail();//Try to send
    }
 }
