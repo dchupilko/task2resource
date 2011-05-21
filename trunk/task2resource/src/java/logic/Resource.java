@@ -4,7 +4,7 @@
  */
 package logic;
 
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Resource {
     protected String name;
     protected int capacity;
     protected Dates date;
-    protected Set<Dates> conflicts;
+    protected HashSet<Dates> conflicts;
     protected int oid;
     
     public Resource() {}

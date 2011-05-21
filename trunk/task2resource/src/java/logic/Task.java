@@ -5,7 +5,7 @@
 package logic;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  *
@@ -15,8 +15,8 @@ public class Task {
     protected String name;
     protected int capacity;
     protected int oid;
-    protected Set<Dates> dates;
-    protected Set<Resource> resources;
+    protected HashSet<Dates> dates;
+    protected HashSet<Resource> resources;
     
     public Task() {}
     
