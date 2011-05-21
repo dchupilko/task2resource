@@ -4,7 +4,7 @@
 
 package testpackage;
 
-import EmailSender.SendMailSSL;
+import EmailSender.SendNotification;
 /**
  *
  * @author Igor Petrov
@@ -16,9 +16,16 @@ public class TestClass {
         /*
          * New letter
          */
-        SendMailSSL send = new SendMailSSL("petrov.igor.od@gmail.com", 
+        String subj = "hello";
+        String message = "hi!";
+        String mail1 = "petrov.igor.od@gmail.com";
+        String[] mail2 = {"petrov.igor.od@gmail.com", "081krieger@gmail.com", "081krieger@xakep.ru"};
+        /*SendNotification send = new SendNotification("petrov.igor.od@gmail.com", 
                                            "Test message for you!", 
                                            "This is a test message\nBest regards!");
-        send.sendSSLEmail();//Try to send
+        send.sendSSLEmail();//Try to send*/
+        SendNotification send1 = new SendNotification(mail1, subj + "1", message + "1");
+        SendNotification send2 = new SendNotification(mail2, subj + "2", message + "2");
+        //send.debug();
    }
 }
