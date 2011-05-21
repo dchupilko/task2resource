@@ -38,9 +38,11 @@ public class SendMailSSL {
         password            = primaryReader.getPassword();
         smtp_server         = primaryReader.getSMTPServer();
         port                = primaryReader.getPort();
+        
         this.messageTo      = messageTo;
         this.messageSubject = messageSubject;
         this.messageBody    = messageBody;
+        
         prop                = new Properties();
     }
     
@@ -89,6 +91,8 @@ public class SendMailSSL {
     private String messageTo             = null;
     private String messageSubject        = null;
     private String messageBody           = null;
+    
     private PropertyReader primaryReader = null;
+    
     private Properties prop              = null;
 }
