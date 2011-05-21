@@ -4,7 +4,7 @@
  */
 package logic;
 
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  *
@@ -13,7 +13,7 @@ import java.util.Set;
 public class Group {
     protected String name;
     protected int oid;
-    protected Set<User> users;
+    protected HashSet<User> users;
     
     public Group() {}
 }
