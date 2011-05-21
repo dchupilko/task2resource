@@ -8,7 +8,7 @@ package EmailSender;
 
 /*
  * Если не видит импорта javax.mail
- * он находится в \trunk\task2resource\build\web\WEB-INF\lib\
+ * он находится в \trunk\task2resource\web\WEB-INF\lib\
  */
 import java.util.Properties;
 import javax.mail.Message;
