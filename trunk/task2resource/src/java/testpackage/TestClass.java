@@ -4,7 +4,7 @@
 
 package testpackage;
 
-import EmailSender.PropertyReader;
+import EmailSender.SendMailSSL;
 /**
  *
  * @author Igor Petrov
@@ -13,14 +13,9 @@ import EmailSender.PropertyReader;
 
 public class TestClass {
     public static void main(String[] args) {
-     System.out.println("Иду спать :)"
-             + "\nЗавтра оформлю остальную часть кода. "
-             + "Если кто-то еще тут - спокойной ночи)");
-     PropertyReader pr = new PropertyReader();
-     System.out.println(pr.getEmail() 
-             + " ; " + pr.getPassword() 
-             + " ; " + pr.getSMTPServer() 
-             + " ; " + pr.getPort() 
-             + " ; " + pr.getEncryption());
+        SendMailSSL send = new SendMailSSL("petrov.igor.od@gmail.com", 
+                                           "Test message for you!", 
+                                           "This is a test message\nBest regards!");
+        send.sendSSLEmail();
    }
 }
