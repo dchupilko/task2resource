@@ -33,15 +33,15 @@ public class SendMailSSL {
      */
     
     public SendMailSSL(String messageTo, String messageSubject, String messageBody){
-        primaryReader = new PropertyReader();
-        email = primaryReader.getEmail();
-        password = primaryReader.getPassword();
-        smtp_server = primaryReader.getSMTPServer();
-        port = primaryReader.getPort();
-        this.messageTo = messageTo;
+        primaryReader       = new PropertyReader();
+        email               = primaryReader.getEmail();
+        password            = primaryReader.getPassword();
+        smtp_server         = primaryReader.getSMTPServer();
+        port                = primaryReader.getPort();
+        this.messageTo      = messageTo;
         this.messageSubject = messageSubject;
-        this.messageBody = messageBody;
-        prop = new Properties();
+        this.messageBody    = messageBody;
+        prop                = new Properties();
     }
     
     public void sendSSLEmail(){
@@ -82,13 +82,13 @@ public class SendMailSSL {
         }
     }
     
-    private String email = null;
-    private String password = null;
-    private String smtp_server = null;
-    private String port = null;
-    private String messageTo = null;
-    private String messageSubject = null;
-    private String messageBody = null;
-    private PropertyReader primaryReader = null;;
-    private Properties prop = null;
+    private String email                 = null;
+    private String password              = null;
+    private String smtp_server           = null;
+    private String port                  = null;
+    private String messageTo             = null;
+    private String messageSubject        = null;
+    private String messageBody           = null;
+    private PropertyReader primaryReader = null;
+    private Properties prop              = null;
 }
