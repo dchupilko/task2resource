@@ -3,9 +3,9 @@
  * TODO. Синхронизировать работу класса с Аней.
  * Tested in such way:
  * int[][] tmpMass = {
-                     {1,11,00}//Monday, 11-00
-                     {2,16,15}//Tuesday, 16-15
-                     {5,13,00}//Friday, 13-00
+                     {1,11,00}//Sunday, 11-00
+                     {2,16,15}//Monday, 16-15
+                     {3,13,00}//Tuesday, 13-00
         };
         GregorianCalendar fromDate = new GregorianCalendar(2011, 1, 1);//2011-feb-1
         GregorianCalendar toDate = new GregorianCalendar(2011, 1, 19);//2011-feb-19

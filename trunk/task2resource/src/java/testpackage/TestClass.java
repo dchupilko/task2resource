@@ -30,7 +30,7 @@ public class TestClass {
         int[][] tmpMass = {
                      {1,11,00},
                      {2,16,15},
-                     {5,13,00}
+                     {3,13,00}
         };
         GregorianCalendar fromDate = new GregorianCalendar(2011, 1, 1);
         GregorianCalendar toDate = new GregorianCalendar(2011, 1, 19);
