@@ -1,55 +1,101 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Class that flags all event date and time
+ * TODO. Синхронизировать работу класса с Аней.
+ * Tested in such way:
+ * int[][] tmpMass = {
+                     {1,11,00}//Monday, 11-00
+                     {2,16,15}//Tuesday, 16-15
+                     {5,13,00}//Friday, 13-00
+        };
+        GregorianCalendar fromDate = new GregorianCalendar(2011, 1, 1);//2011-feb-1
+        GregorianCalendar toDate = new GregorianCalendar(2011, 1, 19);//2011-feb-19
+        int lengthInMinutes = 63;
+        
+        UIDates uid = new UIDates(fromDate, toDate, lengthInMinutes, tmpMass);
+        uid.debug();
  */
 package UIClasses;
 
-import java.util.Date;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
- *
- * @author Катюша
+ * @author Igor Petrov
  */
 public class UIDates {
-    protected Date fromDate;
-    protected Date toDate;
-    int length;
-    HashSet <UIPeriod> period;
 
-    public UIDates(Date fromDate, Date toDate, int length) {
-        this.fromDate = fromDate;
-        this.toDate = toDate;
-        this.length = length;
-        period = new HashSet<UIPeriod>();        
+    /**
+     * 
+     * @param fromDate - ensure start date
+     * @param toDate - ensure finish date
+     * @param lengthInMinutes - ensure length of event in minutes
+     * @param period - week calendar, e.g.
+     * {1,17,13} - event starts on Monday, at 17-13
+     * Look above for more details
+     */
+    
+    public UIDates(GregorianCalendar fromDate, GregorianCalendar toDate, int lengthInMinutes, int[][] period) {
+        this.fromDate        = fromDate;
+        this.toDate          = toDate;
+        this.lengthInMinutes = lengthInMinutes;
+        this.period          = period;
+        dateInitilizer();
+    }
+
+    /*
+     * Inserting into the ArrayLists(start and end) date (year, month, day)
+     * and time (hours and minutes).
+     */
+    private void dateInitilizer() {
+        GregorianCalendar tmpDate               = fromDate;
+        GregorianCalendar templateDateForStart  = null;
+        GregorianCalendar templateDateForFinish = null;
+
+        while (!tmpDate.equals(toDate)) {
+            for (int i = 0; i < period.length; i++) {
+                if (tmpDate.get(Calendar.DAY_OF_WEEK) == period[i][0]) {
+                    templateDateForStart = new GregorianCalendar(tmpDate.get(Calendar.YEAR), 
+                                                                 tmpDate.get(Calendar.MONTH), 
+                                                                 tmpDate.get(Calendar.DAY_OF_MONTH), 
+                                                                 period[i][1], 
+                                                                 period[i][2]);
+                    startEvent.add(templateDateForStart);
+                    if(lengthInMinutes != 0)
+                    {
+                        templateDateForFinish = new GregorianCalendar(tmpDate.get(Calendar.YEAR), 
+                                                                  tmpDate.get(Calendar.MONTH), 
+                                                                  tmpDate.get(Calendar.DAY_OF_MONTH), 
+                                                                  period[i][1] + lengthInMinutes/60, 
+                                                                  period[i][2] + lengthInMinutes%60);
+                        endEvent.add(templateDateForFinish);
+                    } else{
+                        endEvent.add(templateDateForStart);
+                    }                     
+                }
+            }
+            tmpDate.add(Calendar.DATE, 1);
+        }
+    }
+
+    /*
+     * Debug methods that prints information about our flaged time
+     */
+    public void debug() {
+        for(int i = 0; i < startEvent.size();i++){
+            System.out.println(startEvent.get(i).getTime() 
+                    + " - " 
+                    + endEvent.get(i).getTime());
+        }
     }
     
-    public void addPeriod(UIPeriod period) {
-        this.period.add(period);
-    }
-
-    public Date getFromDate() {
-        return fromDate;
-    }
-
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public Date getToDate() {
-        return toDate;
-    }
-
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
-    }
+    private GregorianCalendar fromDate      = null;
+    private GregorianCalendar toDate        = null;
     
+    private int lengthInMinutes             = 0;
+    
+    private int[][] period                  = null;
+    
+    ArrayList<GregorianCalendar> startEvent = new ArrayList<GregorianCalendar>();
+    ArrayList<Calendar> endEvent            = new ArrayList<Calendar>();
 }
