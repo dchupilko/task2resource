@@ -1,6 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * Class UIPeriod 
+ * User flags the day of the week and time to start an event
+ * TODO. Согласовать с Аней в каком формате будет инициализировано время
+ * 
  */
 package UIClasses;
 
@@ -8,7 +11,7 @@ import java.util.Date;
 
 /**
  *
- * @author Катюша
+ * @author Igor Petrov
  * 
  */
 
