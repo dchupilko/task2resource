@@ -11,6 +11,13 @@ import java.util.GregorianCalendar;
  */
 public class UIDates {
 
+    /**
+     * 
+     * @param fromDate event starts at
+     * @param toDate event ends at
+     * @param length event lasts (in minutes)
+     * @param period event repeats again
+     */
     public UIDates(GregorianCalendar fromDate, GregorianCalendar toDate, int length, int[][] period) {
         this.fromDate        = fromDate;
         this.toDate          = toDate;
@@ -18,6 +25,9 @@ public class UIDates {
         this.period          = period;
     }
 
+    /*
+     * All field accessors
+     */
     public GregorianCalendar getFromDate(){
         return fromDate;
     }
@@ -34,6 +44,9 @@ public class UIDates {
         return period;
     }
     
+    /*
+     * All field mutators
+     */
     public void setFromDate(GregorianCalendar fromDate){
         this.fromDate = fromDate;
     }
@@ -49,6 +62,7 @@ public class UIDates {
     public void setPeriod(int[][]period){
         this.period = period;
     }
+    
     
     private GregorianCalendar fromDate = null;
     private GregorianCalendar toDate   = null;
