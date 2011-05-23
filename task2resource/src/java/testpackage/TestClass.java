@@ -27,7 +27,7 @@ public class TestClass {
         SendNotification send2 = new SendNotification(mail2, subj + "2", message + "2");
         //send.debug();*/
         
-        int[][] tmpMass = {
+        /*int[][] tmpMass = {
                      {1,11,00},
                      {2,16,15},
                      {3,13,00}
@@ -37,6 +37,6 @@ public class TestClass {
         int lengthInMinutes = 1;
         
         UIDates uid = new UIDates(fromDate, toDate, lengthInMinutes, tmpMass);
-        uid.debug();
+        uid.debug();*/
    }
 }
