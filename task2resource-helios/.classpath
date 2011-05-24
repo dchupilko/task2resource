@@ -39,7 +39,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Uni/NC/JavaLibs/ini4j-0.5.1.jar"/>
-	<classpathentry kind="lib" path="D:/Uni/NC/JavaLibs/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Workspace/Libs/ini4j-0.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Workspace/Libs/mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
