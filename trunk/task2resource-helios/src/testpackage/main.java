@@ -20,6 +20,7 @@ public class main {
         SendNotification send1 = new SendNotification(mail1, subj + "1", message + "1");
         SendNotification send2 = new SendNotification(mail2, subj + "2", message + "2");
 	    */
+		System.out.println("Hello world!");
 	}
 
 }
