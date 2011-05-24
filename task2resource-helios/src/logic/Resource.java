@@ -1,5 +1,19 @@
 package logic;
 
-public class Resource {
+import java.util.HashSet;
 
+public class Resource {
+    protected String name;
+    protected int capacity;
+    protected Dates date;
+    protected HashSet<Dates> conflicts;
+    protected int oid;
+    
+    public Resource() {}
+    
+    public Resource(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+        // TODO: ACL
+    }
 }
