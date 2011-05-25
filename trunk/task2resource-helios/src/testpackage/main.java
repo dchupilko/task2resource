@@ -21,6 +21,7 @@ public class main {
         SendNotification send2 = new SendNotification(mail2, subj + "2", message + "2");
 	    */
 		System.out.println("Hello world!");
+		System.out.println("Baturynskyi Test SVN");
 	}
 
 }
