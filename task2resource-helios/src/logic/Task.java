@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import uiclasses.UIDates;
 
 public class Task {
     protected String name;
@@ -11,6 +12,8 @@ public class Task {
     protected ArrayList<Dates> dates;
     protected ArrayList<Resource> resources;
     
+    private UIDates uidates = null;
+    
     /*
      * тут будем хранить коллекцию начала и конца события включая
      * дату и время. Коллекции синхронны
@@ -18,53 +21,33 @@ public class Task {
     private ArrayList<GregorianCalendar> eventStarts = null;
     private ArrayList<GregorianCalendar> eventEnds = null;
     
-    /*
-     * Тут будем хранить диапазон периодичности события (только дата)
-     * Если событие единоразовое, то поля совпадают
-     */
-    private GregorianCalendar fromDate = null;
-    private GregorianCalendar toDate = null;
-    
-    private int lengthInMinutes = 0;
-    private int[][] period = null;//Переменная задает время и день события
     
     public Task() {}
     
-    /**
-     * 
+    /** 
      * @param name
      * @param capacity
-     * Любое событие обязано иметь:
-     * @param fromDate - дату начала
-     * @param toDate - дату конца (если событие повторяется)
-     * @param length - длительность в минутах
-     * @param period - периодичность в виде день-часы-минуты
-     * Иными словами, иметь такой вид
-     *   {1,11,00}//Воскресенье, 11-00
-     *   {2,16,15}//Понедельник, 16-15
-     *   {3,13,00}//Вторник, 13-00
-     * Для единичного события массив будет иметь одну строку.
      */
-    public Task(String name, int capacity, GregorianCalendar fromDate, GregorianCalendar toDate, int length, int[][]period) {
+    public Task(String name, int capacity, UIDates uidates) {
         
         this.name = name;
         this.capacity = capacity;
+        this.uidates = uidates;
         
-        this.fromDate = fromDate;
-        this.toDate = toDate;
-        this.lengthInMinutes = length;
-        this.period = period;
-        
-        
-        calculateDates(this.fromDate, this.toDate, this.lengthInMinutes, this.period);
+        calculateDates(this.uidates);
         
     }
     
     /*
      * Программа сделает хотя бы один проход (если событие единоразовое)
      */
-    private void calculateDates(GregorianCalendar fromDate, GregorianCalendar toDate, int length, int[][] period){
-        GregorianCalendar tmpDate               = fromDate;
+    private void calculateDates(UIDates uidates){
+        GregorianCalendar fromDate = uidates.getFromDate();
+        GregorianCalendar toDate   = uidates.getToDate();
+        int lengthInMinutes        = uidates.getLengthInMinutes();
+        int[][]period              = uidates.getPeriod();
+        
+    	GregorianCalendar tmpDate               = fromDate;
         GregorianCalendar templateDateForStart  = null;
         GregorianCalendar templateDateForFinish = null;
         do {
@@ -80,8 +63,8 @@ public class Task {
                     templateDateForFinish = new GregorianCalendar(tmpDate.get(Calendar.YEAR), 
                                                                   tmpDate.get(Calendar.MONTH), 
                                                                   tmpDate.get(Calendar.DAY_OF_MONTH), 
-                                                                  period[i][1] + length/60, 
-                                                                  period[i][1] + length%60);
+                                                                  period[i][1] + lengthInMinutes/60, 
+                                                                  period[i][1] + lengthInMinutes%60);
                     eventEnds.add(templateDateForFinish); 
                 }
             }
