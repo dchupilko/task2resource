@@ -3,6 +3,7 @@ package logic;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
+import uiclasses.*;
 
 public class Dates {
     protected GregorianCalendar startDate;
@@ -16,4 +17,26 @@ public class Dates {
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
+    
+    public void assignResource(Resource resource) {
+    	resources.add(resource);
+    }
+
+	public GregorianCalendar getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(GregorianCalendar startDate) {
+		this.startDate = startDate;
+	}
+
+	public GregorianCalendar getFinishDate() {
+		return finishDate;
+	}
+
+	public void setFinishDate(GregorianCalendar finishDate) {
+		this.finishDate = finishDate;
+	}
+    
+    
 }
