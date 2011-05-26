@@ -1,13 +1,28 @@
 package logic;
 
+import java.util.HashSet;
+import java.util.Set;
+import uiclasses.*;
+
 public class User {
 	protected int oid;
 	protected String firstName;
     protected String lastName;
     protected String email;
+    protected Task currentTask;
+    protected Set<Task> tasks = new HashSet<Task>();
     
     public User() {}
 
+    public Set<UIResource> createTask(UITask task) {
+    	this.currentTask = new Task(task);
+    	return currentTask.getAllResources();
+    }
+    
+    public Set<UIDates> chooseResources(Set<UIResource> resources) {
+    	return currentTask.chooseResources(resources);
+    }
+    
 	public int getOid() {
 		return oid;
 	}

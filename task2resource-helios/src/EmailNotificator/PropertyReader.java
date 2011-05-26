@@ -6,10 +6,6 @@
 package EmailNotificator;
 
 
-/*
- * Если не видит Ini4J, его можно найти в
- * \trunk\task2resource\build\web\WEB-INF\lib\
- */
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -19,18 +15,9 @@ import org.ini4j.Ini;
 import org.ini4j.IniPreferences;
 
 
-/**
- * @author Igor Petrov
- */
-
-
 public class PropertyReader {
 
 
-    //private static final String FILEPATH = ".\\PropertyFiles\\EmailSenderConfig.ini";
-    /*
-     * if somebody has Linux
-     */
     private static final String FILEPATH =  "." + File.separator 
                                           + "PropertyFiles" + File.separator 
                                           + "EmailSenderConfig.ini";

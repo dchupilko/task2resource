@@ -4,8 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
-
-import uiclasses.UITask;
+import uiclasses.*;
 
 public class Task {
 	protected int oid;
@@ -13,6 +12,7 @@ public class Task {
     protected int capacity;
     
     protected Set<Dates> dates = new HashSet<Dates>();
+    protected Set<Resource> allResources = new HashSet<Resource>();
     
     public Task() {}
     
@@ -21,6 +21,7 @@ public class Task {
         this.capacity = task.getCapacity();
         
         calculateDates(task);
+        //TODO: load all possible resources for calculated dates
     }
     
     /*
@@ -56,6 +57,34 @@ public class Task {
             }
             tmpDate.add(Calendar.DATE, 1);
         } while (!tmpDate.equals(toDate));
+    }
+    
+    public Set<UIDates> chooseResources(Set<UIResource> resources) {
+    	Set<UIDates> conflictDates = new HashSet<UIDates> ();
+    	for (Dates d : dates) {
+    		for (Resource r : allResources) {
+    			for (UIResource uir: resources)
+    				if(r.equals(uir))
+    				{
+    					if (r.assertDate(d)) {
+    						d.assignResource(r);
+    					}
+    					else 
+    					{
+    						conflictDates.add(new UIDates(d.getStartDate(), d.getFinishDate()));
+    					}
+    				}
+    		}
+    	}
+    	return conflictDates;
+    }
+    
+    public Set<UIResource> getAllResources() {
+    	Set<UIResource> allUIResources = new HashSet<UIResource>();
+    	for (Resource r : allResources) {
+    		allUIResources.add(r.getUIResource());
+    	}
+    	return allUIResources;
     }
 }
 

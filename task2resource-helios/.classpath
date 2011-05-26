@@ -39,7 +39,5 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Workspace/task2resource/Libs/ini4j-0.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Workspace/task2resource/Libs/mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
