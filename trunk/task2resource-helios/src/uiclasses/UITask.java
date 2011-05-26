@@ -2,6 +2,13 @@ package uiclasses;
 
 import java.util.GregorianCalendar;
 
+/*
+ * UI->BL
+ * Use case: create new task
+ * BL->UI
+ * Use case: edit task
+ * Use case: show all tasks
+ */
 public class UITask {
 	protected String name;
 	protected int capacity;
