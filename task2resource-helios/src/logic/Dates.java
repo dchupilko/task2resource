@@ -1,14 +1,18 @@
 package logic;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Dates {
-    protected Date startDate;
-    protected Date finishDate;
+    protected GregorianCalendar startDate;
+    protected GregorianCalendar finishDate;
+    
+    protected Set<Resource> resources = new HashSet<Resource>();
     
     public Dates() {}
     
-    public Dates(Date startDate, Date finishDate) {
+    public Dates(GregorianCalendar startDate, GregorianCalendar finishDate) {
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
