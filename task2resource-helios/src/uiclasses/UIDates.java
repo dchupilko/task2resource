@@ -2,6 +2,12 @@ package uiclasses;
 
 import java.util.GregorianCalendar;
 
+/*
+ * BL->UI
+ * Use case: create new task
+ * Use case: show task
+ * Use case: edit task
+ */
 public class UIDates {
 	protected GregorianCalendar startDate;
 	protected GregorianCalendar finishDate;

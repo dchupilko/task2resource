@@ -1,5 +1,9 @@
 package uiclasses;
 
+/*
+ * UI->BL class for creating request for registration
+ * Use case: create new user
+ */
 public class UIRequest {
 	protected String firstName;
 	protected String lastName;
