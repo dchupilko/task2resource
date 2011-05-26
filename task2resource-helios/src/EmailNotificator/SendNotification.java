@@ -156,4 +156,5 @@ public class SendNotification {
     private InternetAddress[] multipleInternetAddress = null;
     
     private Properties prop              = null;
+    
 }
