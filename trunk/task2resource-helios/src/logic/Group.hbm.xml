@@ -13,7 +13,7 @@
         </property>
         <set name="users" table="USER" inverse="false" lazy="true" access="field">
             <key>
-                <column name="IDUSER" />
+                <column name="IDGROUP" />
             </key>
             <one-to-many class="logic.User" />
         </set>

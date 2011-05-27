@@ -14,11 +14,11 @@
         <property name="capacity" type="int" access="field">
             <column name="CAPACITY" />
         </property>
-        <set name="dates" table="DATES" inverse="false" lazy="true" access="field">
+        <set name="dates" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field">
             <key>
-                <column name="IDASSIGNMENT" />
+                <column name="IDRESOURCE" />
             </key>
-            <many-to-many class="logic.Dates" />
+            <many-to-many class="logic.Dates" column="IDASSIGNMENT"/>
         </set>        
     </class>
 </hibernate-mapping>

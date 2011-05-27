@@ -16,7 +16,7 @@
         </property>
         <set name="dates" table="ASSIGNMENTS" inverse="false" lazy="true" access="field">
             <key>
-                <column name="IDASSIGNMENT" />
+                <column name="IDTASK" />
             </key>
             <one-to-many class="logic.Dates" />
         </set>
