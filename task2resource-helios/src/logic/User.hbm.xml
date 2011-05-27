@@ -19,7 +19,7 @@
         </property>
         <set name="tasks" table="TASKS" inverse="false" lazy="true" access="field">
             <key>
-                <column name="IDASSIGNMENT" />
+                <column name="IDUSER" />
             </key>
             <one-to-many class="logic.Task" />
         </set>
