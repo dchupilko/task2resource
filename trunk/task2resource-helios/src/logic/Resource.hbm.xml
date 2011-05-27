@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25.05.2011 17:30:37 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="logic.Resource" table="RESOURCES">
+        <id name="oid" type="int" access="field">
+            <column name="IDRESOURCE" />
+            <generator class="sequence" />
+        </id>
+        <property name="name" type="java.lang.String" access="field">
+            <column name="NAME" />
+        </property>
+        <property name="capacity" type="int" access="field">
+            <column name="CAPACITY" />
+        </property>
+        <set name="dates" table="DATES" inverse="false" lazy="true" access="field">
+            <key>
+                <column name="IDASSIGNMENT" />
+            </key>
+            <many-to-many class="logic.Dates" />
+        </set>        
+    </class>
+</hibernate-mapping>

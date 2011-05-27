@@ -11,7 +11,7 @@ public class User {
     protected String email;
     protected Task currentTask;
     protected Set<Task> tasks = new HashSet<Task>();
-    
+   
     public User() {}
 
     public Set<UIResource> createTask(UITask task) {
@@ -54,4 +54,5 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 }

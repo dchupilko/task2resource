@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25.05.2011 17:30:37 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="logic.Dates" table="ASSIGNMENTS">
+    	<id name="oid" type="int" access="field">
+            <column name="IDASSIGNMENT" />
+            <generator class="sequence" />
+        </id>
+        <property name="startDate" type="java.util.Date" access="field">
+            <column name="STARTDATE" />
+        </property>
+        <property name="finishDate" type="java.util.Date" access="field">
+            <column name="FINISHDATE" />
+        </property>
+        <set name="resources" table="RESOURCES" inverse="false" lazy="true" access="field">
+            <key>
+                <column name="IDRESOURCE" />
+            </key>
+            <many-to-many class="logic.Resource" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -8,12 +8,18 @@ public class Resource {
 	protected int oid;
 	protected String name;
     protected int capacity;
-    
+
 	protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Dates> conflicts = new HashSet<Dates>();
-    
-    public Resource() {}
-    
+
+	public Resource() {}
+
+	public Resource(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+        // TODO: ACL
+	}
+
     public UIResource getUIResource() {
     	int status = 0;
     	//TODO: add check status
@@ -22,20 +28,8 @@ public class Resource {
     	temp.setStatus(status);
     	return temp;
     }
-    
-    /*
-     * returns true if no conflict
-     */
-    public boolean assertDate(Dates date) {
-    	for (Dates d : conflicts) {
-    		if (date.equals(d)) {
-    			return false;
-    		}
-    	}
-    	return true;
-    }
-     
-    @Override
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -49,7 +43,7 @@ public class Resource {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Resource))
 			return false;
 		Resource other = (Resource) obj;
 		if (name == null) {
@@ -59,7 +53,20 @@ public class Resource {
 			return false;
 		return true;
 	}
-
+    
+    
+    /*
+     * returns true if no conflict
+     */
+    public boolean assertDate(Dates date) {
+    	for (Dates d : conflicts) {
+    		if (date.equals(d)) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+     
 	public int getOid() {
 		return oid;
 	}
