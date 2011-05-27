@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25.05.2011 17:30:37 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="logic.Group" table="GROUPS">
+        <id name="oid" type="int" access="field">
+            <column name="IDGROUP" />
+            <generator class="sequence" />
+        </id>
+        <property name="name" type="java.lang.String" access="field">
+            <column name="NAME" />
+        </property>
+        <set name="users" table="USER" inverse="false" lazy="true" access="field">
+            <key>
+                <column name="IDUSER" />
+            </key>
+            <one-to-many class="logic.User" />
+        </set>
+    </class>
+</hibernate-mapping>
