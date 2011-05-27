@@ -7,10 +7,6 @@
 package EmailNotificator;
 
 
-/*
- * Если не видит импорта javax.mail
- * он находится в \trunk\task2resource\web\WEB-INF\lib\
- */
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -21,11 +17,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
-/**
- *
- * @author Igor Petrov
- */
 public class SendNotification {
     
     /**
