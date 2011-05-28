@@ -8,6 +8,7 @@
             <column name="IDASSIGNMENT" />
             <generator class="sequence" />
         </id>
+        <version name="version" /> 
         <property name="startDate" type="java.util.Date" access="field">
             <column name="STARTDATE" />
         </property>
@@ -20,5 +21,6 @@
             </key>
             <many-to-many class="logic.Resource" column="IDRESOURCE"/>
         </set>
+    	                                                                   
     </class>
 </hibernate-mapping>

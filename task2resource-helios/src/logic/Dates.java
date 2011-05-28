@@ -14,6 +14,30 @@ public class Dates {
     protected int version;
     protected Set <Resource> resources = new HashSet<Resource>();
     
+    public int getOid() {
+		return oid;
+	}
+
+	public void setOid(int oid) {
+		this.oid = oid;
+	}
+
+	public Set<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(Set<Resource> resources) {
+		this.resources = resources;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+    
     public Dates() {}
     
     public Dates(GregorianCalendar startDate, GregorianCalendar finishDate) {
