@@ -29,4 +29,13 @@ public class RequestMapper extends AbstractMapper{
 			throw he;
 		}
 	}
+	
+	public void deleteRequest(Request request){
+		try{
+			this.deleteObject(request);
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
 }
