@@ -38,7 +38,10 @@ public class User {
 	}
 
 	protected Task currentTask;
+	//all tasks in which user takes part
     protected Set<Task> tasks = new HashSet<Task>();
+    //all tasks created by user
+    protected Set<Task> userTasks = new HashSet<Task>();
     protected int version;
    
     public Set<Task> getTasks() {
@@ -62,12 +65,33 @@ public class User {
     public Set<UIResource> createTask(UITask task) {
     	this.currentTask = new Task(task);
     	return currentTask.getAllResources();
+    	//TODO: don't forget to add current task to userTasks when saving a task
     }
-    
+        
     public Set<UIDates> chooseResources(Set<UIResource> resources) {
     	return currentTask.chooseResources(resources);
     }
     
+    public Set<UIGroup> getAllGroups () {
+    	return currentTask.getAllGroups();
+    }
+    
+    public Set<Task> getUserTasks() {
+		return userTasks;
+	}
+
+	public void setUserTasks(Set<Task> userTasks) {
+		this.userTasks = userTasks;
+	}
+
+	public Set<UIUser> getAllUsers(UIGroup uigroup) {
+    	return currentTask.getAllUsers(uigroup);
+    }
+    
+	public UIUser getUIUser() {
+    	return new UIUser(this.firstName, this.lastName);
+    }
+	
 	public int getOid() {
 		return oid;
 	}
