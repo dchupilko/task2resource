@@ -95,6 +95,6 @@ public class Dates {
 	}
 	
     public void assignResource(Resource resource) {
-    	resources.add(resource);
+    	resource.setStatus(true);
     }
 }

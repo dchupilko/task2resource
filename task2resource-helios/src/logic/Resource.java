@@ -8,6 +8,7 @@ public class Resource {
 	protected int oid;
 	protected String name;
     protected int capacity;
+    protected boolean status; //isAssigned
     protected int version;
     
     protected Set<Dates> dates = new HashSet<Dates>();
@@ -21,6 +22,14 @@ public class Resource {
 		this.version = version;
 	}
 
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
+	public boolean isAssigned() {
+		return this.status;
+	}
+	
 	public Resource() {}
 
 	public Resource(String name, int capacity) {
