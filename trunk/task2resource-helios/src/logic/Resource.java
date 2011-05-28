@@ -20,15 +20,6 @@ public class Resource {
         // TODO: ACL
 	}
 
-    public UIResource getUIResource() {
-    	int status = 0;
-    	//TODO: add check status
-    	//status = checkStatus();
-    	UIResource temp = new UIResource(this.name, this.capacity);
-    	temp.setStatus(status);
-    	return temp;
-    }
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,19 +45,6 @@ public class Resource {
 		return true;
 	}
     
-    
-    /*
-     * returns true if no conflict
-     */
-    public boolean assertDate(Dates date) {
-    	for (Dates d : conflicts) {
-    		if (date.equals(d)) {
-    			return false;
-    		}
-    	}
-    	return true;
-    }
-     
 	public int getOid() {
 		return oid;
 	}
@@ -98,4 +76,28 @@ public class Resource {
 	public void setDates(Set<Dates> dates) {
 		this.dates = dates;
 	}
+	
+	
+	
+    public UIResource getUIResource() {
+    	int status = 0;
+    	//TODO: add check status
+    	//status = checkStatus();
+    	UIResource temp = new UIResource(this.name, this.capacity);
+    	temp.setStatus(status);
+    	return temp;
+    }
+    
+    
+    /*
+     * returns true if no conflict
+     */
+    public boolean assertDate(Dates date) {
+    	for (Dates d : conflicts) {
+    		if (date.equals(d)) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
 }
