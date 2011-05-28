@@ -8,6 +8,7 @@
             <column name="IDTASK" />
             <generator class="sequence" />
         </id>
+        <version name="version" /> 
         <property name="name" type="java.lang.String">
             <column name="NAME" />
         </property>

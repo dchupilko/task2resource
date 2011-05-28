@@ -8,6 +8,7 @@
             <column name="IDUSER" />
             <generator class="sequence" />
         </id>
+        <version name="version" /> 
         <property name="firstName" type="java.lang.String">
             <column name="FIRSTNAME" />
         </property>
@@ -17,12 +18,17 @@
         <property name="email" type="java.lang.String">
             <column name="EMAIL" />
         </property>
+        <property name="login" type="java.lang.String">
+            <column name="LOGIN" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
         <set name="tasks" table="TASKS" inverse="false" lazy="true" access="field">
             <key>
                 <column name="IDUSER" />
             </key>
             <one-to-many class="logic.Task" />
         </set>
-        <!--<version        	column="VERSION"      name="version" type="int" />-->
     </class>
 </hibernate-mapping>

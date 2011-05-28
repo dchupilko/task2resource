@@ -9,10 +9,46 @@ public class User {
 	protected String firstName;
     protected String lastName;
     protected String email;
-    protected Task currentTask;
+    protected String login;
+    protected String password;
+    
+    public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	protected Task currentTask;
     protected Set<Task> tasks = new HashSet<Task>();
+    protected int version;
    
-    public User() {}
+    public Set<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public User() {}
 
     public Set<UIResource> createTask(UITask task) {
     	this.currentTask = new Task(task);

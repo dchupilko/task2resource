@@ -4,7 +4,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
+
 import uiclasses.*;
+import ORM.TaskMapper;
 
 public class Task {
 	protected int oid;
@@ -12,11 +14,21 @@ public class Task {
     protected int capacity;
     private GregorianCalendar fromDate = null;
     private GregorianCalendar toDate = null;
+    protected int version;
+	private int lengthInMinutes = 0;
     
-    private int lengthInMinutes = 0;
-    
+	private TaskMapper mapper = new TaskMapper (); 
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Resource> allResources = new HashSet<Resource>();
+
+    
+    public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
     public Set<Dates> getDates() {
 		return dates;
@@ -77,6 +89,8 @@ public class Task {
     public Task() {}
     
     public Task(UITask task) {
+    	
+    	
         this.name = task.getName();
         this.capacity = task.getCapacity();
         
@@ -140,6 +154,7 @@ public class Task {
     }
     
     public Set<UIResource> getAllResources() {
+    	//allResources = mapper.get
     	Set<UIResource> allUIResources = new HashSet<UIResource>();
     	for (Resource r : allResources) {
     		allUIResources.add(r.getUIResource());

@@ -8,6 +8,7 @@
             <column name="OID" />
             <generator class="sequence" />
         </id>
+        <version name="version" /> 
         <property name="firstName" type="java.lang.String">
             <column name="FIRSTNAME" />
         </property>

@@ -11,6 +11,15 @@ public class Request {
 	protected String password;
 	protected String email;
 	protected String job;
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	protected int version;
 	
 	public Request() {}
 	

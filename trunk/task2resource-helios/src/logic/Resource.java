@@ -8,9 +8,18 @@ public class Resource {
 	protected int oid;
 	protected String name;
     protected int capacity;
-
-	protected Set<Dates> dates = new HashSet<Dates>();
+    protected int version;
+    
+    protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Dates> conflicts = new HashSet<Dates>();
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	public Resource() {}
 
