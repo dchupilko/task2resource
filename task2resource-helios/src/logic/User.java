@@ -11,6 +11,7 @@ public class User {
     protected String email;
     protected String login;
     protected String password;
+    protected Group group = null;
     
     public String getLogin() {
 		return login;
@@ -26,6 +27,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Group getGroup(){
+		return group;
+	}
+	
+	public void setGroup(Group gr){
+		this.group = gr;
 	}
 
 	protected Task currentTask;
