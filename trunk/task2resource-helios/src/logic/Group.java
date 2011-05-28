@@ -3,6 +3,8 @@ package logic;
 import java.util.HashSet;
 import java.util.Set;
 
+import uiclasses.*;
+
 public class Group {
 	protected int oid;
 	protected String name;
@@ -59,5 +61,9 @@ public class Group {
 	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
+
+    public UIGroup getUIGroup() {
+    	return new UIGroup(this.name);
+    }
 
 }

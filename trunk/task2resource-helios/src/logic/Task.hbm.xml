@@ -27,5 +27,11 @@
         <property name="toDate" type="java.util.GregorianCalendar" access="field">
             <column name="TODATE" />
         </property>
+        <set name="participants" table="PARTICIPATIONS" inverse="false" lazy="true" access="field">
+            <key>
+                <column name="IDTASK" />
+            </key>
+            <many-to-many class="logic.User" column="IDUSER"/>
+        </set>
     </class>
 </hibernate-mapping>

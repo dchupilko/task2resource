@@ -36,7 +36,7 @@ public class TaskMapper extends AbstractMapper{
 		}
 	}
 	
-	public Set<Resource> getResourcesByTask(Task task)
+	/*public Set<Resource> getResourcesByTask(Task task)
 	{
 		try{
 			String query=String.format("select r.* from Task t, Resources r, Assignments a, Resources_Assignments r_a " +
@@ -47,7 +47,7 @@ public class TaskMapper extends AbstractMapper{
 		catch(HibernateException he){
 			throw he;
 		}
-	}
+	}*/
 	
 	public void getResourcesByDate(Set <Dates> dates)
 	{
@@ -77,6 +77,31 @@ public class TaskMapper extends AbstractMapper{
 					"where t.IdTask=a.IdTask and a.IdAssignment=r_a.IdAssignment and t.IdTask=%d", task.getOid());
 			Set<Dates> dates = new HashSet (this.readObject(query));	
 			task.setDates(dates);
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public Set<Group> getGroups()
+	{
+		try{
+			String query=String.format("from Groups");
+			Set<Group> groups = new HashSet (this.readObject(query));	
+			return groups;
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public void getUsersByGroup(Group group)
+	{
+		try{
+			String query=String.format("select u.* from Users u, Groups g " +
+					"where g.IdGroup=u.IdGroupand g.IdGroup=%d", group.getOid());
+			Set<User> users = new HashSet (this.readObject(query));	
+			group.setUsers(users);
 		}
 		catch(HibernateException he){
 			throw he;

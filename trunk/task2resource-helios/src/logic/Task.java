@@ -10,17 +10,20 @@ import ORM.TaskMapper;
 
 public class Task {
 	protected int oid;
+    protected int version;
+    
 	protected String name;
     protected int capacity;
-    private GregorianCalendar fromDate = null;
-    private GregorianCalendar toDate = null;
-    protected int version;
-	private int lengthInMinutes = 0;
+    protected GregorianCalendar fromDate = null;
+    protected GregorianCalendar toDate = null;
+    protected int lengthInMinutes = 0;
     
-	private TaskMapper mapper = new TaskMapper (); 
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Resource> allResources = new HashSet<Resource>();
-
+    protected Set<User> participants = new HashSet<User>();
+    protected Set<Group> groups = new HashSet<Group>();
+    
+    protected TaskMapper mapper = new TaskMapper (); 
     
     public int getVersion() {
 		return version;
@@ -88,10 +91,8 @@ public class Task {
     
     public Task() {}
     
-    public Task(UITask task) {
-    	
-    	
-        this.name = task.getName();
+    public Task(UITask task) {   	
+    	this.name = task.getName();
         this.capacity = task.getCapacity();
         
         calculateDates(task);
@@ -154,13 +155,52 @@ public class Task {
     }
     
     public Set<UIResource> getAllResources() {
-    	//allResources = mapper.get
+    	mapper.getResourcesByDate(dates);
+    	//if resource has already been added into collection it won't be added again
+    	for(Dates d: dates)
+    	{
+    		for(Resource r: d.resources)
+    		{
+    			allResources.add(r);
+    		}
+    	}
+    	//TODO: add status if resource has a conflict
     	Set<UIResource> allUIResources = new HashSet<UIResource>();
     	for (Resource r : allResources) {
     		allUIResources.add(r.getUIResource());
     	}
     	return allUIResources;
     }
+    
+    public Set<UIGroup> getAllGroups () {
+    	groups=mapper.getGroups();
+    	Set<UIGroup> allUIgroups = new HashSet<UIGroup>();
+    	for (Group g: groups) {
+    		allUIgroups.add(g.getUIGroup());
+    	}
+    	return allUIgroups;
+    }
+
+    public Set<UIUser> getAllUsers(UIGroup uigroup) {
+    	Set<UIUser> allUIusers = new HashSet<UIUser>();
+    	for (Group g : groups) {
+    		if (g.equals(uigroup)) {
+    			mapper.getUsersByGroup(g);
+    			for (User u : g.users) {
+    				allUIusers.add(u.getUIUser());
+    			}
+    		}
+    	}
+    	return allUIusers;
+    }
+    
+    public Set<User> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(Set<User> participants) {
+		this.participants = participants;
+	}
 
 	@Override
 	public int hashCode() {
@@ -199,7 +239,6 @@ public class Task {
 			return false;
 		return true;
 	}
-    
     
 }
 
