@@ -70,6 +70,23 @@ public class User {
         
     public Set<UIDates> chooseResources(Set<UIResource> resources) {
     	return currentTask.chooseResources(resources);
+    	//TODO: resolve conflicts
+    }
+    
+    public Set<UIResource> resolveConflict(UIDates date) {
+    	return currentTask.getResourcesForDate(date);
+    }
+    
+    public void chooseResourcesForDate(Set<UIResource> resources, UIDates date) {
+    	currentTask.chooseResourcesForDate(resources, date);
+    }
+    
+    public void assignUsers(Set<UIUser> users) {
+    	currentTask.assignUsers(users);
+    }
+    
+    public void acceptTask() {
+    	//TODO: save task
     }
     
     public Set<UIGroup> getAllGroups () {

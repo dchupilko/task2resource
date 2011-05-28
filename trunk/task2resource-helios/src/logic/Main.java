@@ -34,12 +34,7 @@ public class Main {
 				user.setPassword(tmpReq.getPassword());
 				user.setGroup(reqMap.getGroupByJob(tmpReq.getJob()));
 				//user.setOid(tmpReq.getOid());
-				/*
-				 * If does not working
-				 * use
-				 * userMapper.setUser(user);
-				 */
-				
+				//userMapper.setUser(user);
 			} else{
 				reqMap.deleteRequest(tmpReq);
 			}

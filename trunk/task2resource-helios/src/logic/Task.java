@@ -137,7 +137,7 @@ public class Task {
     public Set<UIDates> chooseResources(Set<UIResource> resources) {
     	Set<UIDates> conflictDates = new HashSet<UIDates> ();
     	for (Dates d : dates) {
-    		for (Resource r : allResources) {
+    		for (Resource r : d.resources) {
     			for (UIResource uir: resources)
     				if(r.equals(uir))
     				{
@@ -202,6 +202,45 @@ public class Task {
 		this.participants = participants;
 	}
 
+    public void assignUsers(Set<UIUser> uiusers) {
+    	for (Group g : groups) {
+    		for (User u : g.users) {
+    			for (UIUser ui : uiusers) {
+	    			if (u.equals(ui)) {
+	    				participants.add(u);
+	    			}
+    			}
+    		}
+    	}
+    }
+    
+    public Set<UIResource> getResourcesForDate(UIDates date) {
+    	Set<UIResource> uiresources = new HashSet<UIResource>();
+    	for (Dates d : dates) {
+    		if (d.equals(date)) {
+    			for (Resource r : d.resources) {
+    				uiresources.add(r.getUIResource());
+    			}
+    		}
+    	}
+    	return uiresources;
+    }
+    
+    public void chooseResourcesForDate(Set<UIResource> resources, UIDates date) {
+    	for (Dates d : dates) {
+    		if (d.equals(date)) {
+	    		for (Resource r : d.resources) {
+	    			for (UIResource uir: resources) {
+	    				if(r.equals(uir))
+	    				{
+    						d.assignResource(r);
+	    				}
+	    			}
+	    		}
+    		}
+    	}
+    }
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
