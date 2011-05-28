@@ -30,8 +30,16 @@ public class Main {
 				user.setFirstName(tmpReq.getFirstName());
 				user.setLastName(tmpReq.getLastName());
 				user.setEmail(tmpReq.getEmail());
+				user.setLogin(tmpReq.getLogin());
+				user.setPassword(tmpReq.getPassword());
+				user.setGroup(reqMap.getGroupByJob(tmpReq.getJob()));
 				//user.setOid(tmpReq.getOid());
-				userMapper.setUser(user);
+				/*
+				 * If does not working
+				 * use
+				 * userMapper.setUser(user);
+				 */
+				
 			} else{
 				reqMap.deleteRequest(tmpReq);
 			}
