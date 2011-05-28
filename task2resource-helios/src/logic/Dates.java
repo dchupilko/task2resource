@@ -21,10 +21,6 @@ public class Dates {
         this.finishDate = finishDate;
     }
 
-    public void assignResource(Resource resource) {
-    	resources.add(resource);
-    }
-    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,4 +69,8 @@ public class Dates {
 	public void setFinishDate(GregorianCalendar finishDate) {
 		this.finishDate = finishDate;
 	}
+	
+    public void assignResource(Resource resource) {
+    	resources.add(resource);
+    }
 }
