@@ -16,7 +16,6 @@ public class Task {
     protected int capacity;
     protected GregorianCalendar fromDate = null;
     protected GregorianCalendar toDate = null;
-    protected int lengthInMinutes = 0;
     
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Resource> allResources = new HashSet<Resource>();
@@ -61,14 +60,6 @@ public class Task {
 		this.capacity = capacity;
 	}
 
-	public int getLengthInMinutes() {
-		return lengthInMinutes;
-	}
-
-	public void setLengthInMinutes(int lengthInMinutes) {
-		this.lengthInMinutes = lengthInMinutes;
-	}
-
 	public void setDates(Set<Dates> dates) {
 		this.dates = dates;
 	}
@@ -94,6 +85,8 @@ public class Task {
     public Task(UITask task) {   	
     	this.name = task.getName();
         this.capacity = task.getCapacity();
+        this.fromDate=task.getFromDate();
+        this.toDate=task.getToDate();
         
         calculateDates(task);
         //TODO: load all possible resources for calculated dates
