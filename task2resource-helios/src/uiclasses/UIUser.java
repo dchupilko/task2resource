@@ -1,5 +1,7 @@
 package uiclasses;
 
+import logic.Group;
+
 /*
  * BL->UI class for creating list of users for participation
  * Use case: create new task
@@ -12,6 +14,7 @@ package uiclasses;
 public class UIUser {
 	protected String firstName;
 	protected String lastName;
+
 	
 	public UIUser() {}
 	
@@ -35,4 +38,7 @@ public class UIUser {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	
+	
 }

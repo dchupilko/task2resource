@@ -12,4 +12,14 @@ public class UserMapper extends AbstractMapper{
 			throw he;
 		}
 	}
+	
+	
+	public void deleteUserById (User usr){
+		try{
+			this.deleteObject(usr);
+		}catch(HibernateException he){
+			throw he;
+		}
+	}
+	
 }

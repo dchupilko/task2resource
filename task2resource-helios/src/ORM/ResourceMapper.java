@@ -33,5 +33,22 @@ public class ResourceMapper extends AbstractMapper{
 			throw he;
 		}
 	}
+	
+	
+	
+	public Set<Resource> getAllResources(){
+		try{
+			/*
+			 * Supposed "select * from resources;"
+			 */
+			String query = "from Resources";
+			Set<Resource> resources = new HashSet(this.readObject(query)); 
+			return resources;
+		} catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	
 
 }

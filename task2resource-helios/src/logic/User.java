@@ -61,6 +61,8 @@ public class User {
 	}
 
 	public User() {}
+	
+
 
     public Set<UIResource> createTask(UITask task) {
     	this.currentTask = new Task(task);
