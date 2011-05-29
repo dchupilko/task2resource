@@ -1,19 +1,12 @@
 package ORM;
 
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.List;
 
-import logic.*;
-
+import logic.Resource;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 
 public class ResourceMapper extends AbstractMapper{
-	
-	
 	
 	public void deleteResourceById(Resource res)
 	{
@@ -33,9 +26,7 @@ public class ResourceMapper extends AbstractMapper{
 			throw he;
 		}
 	}
-	
-	
-	
+
 	public Set<Resource> getAllResources(){
 		try{
 			/*

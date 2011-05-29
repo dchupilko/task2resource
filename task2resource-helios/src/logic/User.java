@@ -12,6 +12,13 @@ public class User {
     protected String login;
     protected String password;
     protected Group group = null;
+
+	protected Task currentTask;
+	//all tasks in which user takes part
+    protected Set<Task> tasks = new HashSet<Task>();
+    //all tasks created by user
+    protected Set<Task> userTasks = new HashSet<Task>();
+    protected int version;
     
     public String getLogin() {
 		return login;
@@ -37,12 +44,6 @@ public class User {
 		this.group = gr;
 	}
 
-	protected Task currentTask;
-	//all tasks in which user takes part
-    protected Set<Task> tasks = new HashSet<Task>();
-    //all tasks created by user
-    protected Set<Task> userTasks = new HashSet<Task>();
-    protected int version;
    
     public Set<Task> getTasks() {
 		return tasks;
@@ -61,8 +62,6 @@ public class User {
 	}
 
 	public User() {}
-	
-
 
     public Set<UIResource> createTask(UITask task) {
     	this.currentTask = new Task(task);
