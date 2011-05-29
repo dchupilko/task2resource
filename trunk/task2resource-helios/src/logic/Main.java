@@ -15,14 +15,22 @@ public class Main {
 	
 	public void createUser(UIRequest uirequest) {
 		Request request = new Request(uirequest);
-		
 		reqMap.setRequest(request);
+	}
+	
+	public void deleteUser(User user) {
+		userMapper.deleteUserById(user);
 	}
 	
 	
 	public void createResource(UIResource uiresource) {
 		Resource res = new Resource(uiresource);
 		resMapper.setResource(res);
+	}
+	
+	public void deleteResource(UIResource uiresource) {
+		Resource res = new Resource(uiresource);
+		resMapper.deleteResourceById(res);	
 	}
 	
 	
