@@ -3,6 +3,7 @@ package ORM;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.List;
 
@@ -55,11 +56,11 @@ public class TaskMapper extends AbstractMapper{
 		try{
 			for (Dates d: dates)
 			{	
-				String query=String.format("select * from Resources where Resources.IdResource not in " +
+				String query=String.format("from Resources where Resources.IdResource not in " +
 												"(select r.IdResource " +
 												"from Resources r, Assignments a, Resources_Assignments r_a " +
 												"where a.IdAssignment=r_a.IdAssignment and r.IdResource=r_a.IdResource and " +
-												"(%t between a.StartDate and a.FinishDate or %t between a.StartDate and a.FinishDate))",
+												"(%tD between a.StartDate and a.FinishDate or %tD between a.StartDate and a.FinishDate))",
 												d.getStartDate(), d.getFinishDate());
 				Set<Resource> resources = new HashSet (this.readObject(query));
 				d.setResources(resources);

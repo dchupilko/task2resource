@@ -21,14 +21,22 @@ public class Group {
 		return result;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Group))
-			return false;
+		//if (!(obj instanceof Group))
+			//return false;
 		Group other = (Group) obj;
 		if (name == null) {
 			if (other.name != null)

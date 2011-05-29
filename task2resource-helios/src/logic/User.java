@@ -13,7 +13,7 @@ public class User {
     protected String password;
     protected Group group = null;
 
-	protected Task currentTask;
+	protected Task currentTask = null;
 	//all tasks in which user takes part
     protected Set<Task> tasks = new HashSet<Task>();
     //all tasks created by user

@@ -17,6 +17,17 @@ public class UITask {
 	protected int lengthInMinutes;
 	protected int[][] period;
 	
+	public UITask(String name, int capacity, GregorianCalendar fromDate,
+			GregorianCalendar toDate, int lengthInMinutes, int[][] period) {
+		super();
+		this.name = name;
+		this.capacity = capacity;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.lengthInMinutes = lengthInMinutes;
+		this.period = period;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -52,5 +63,9 @@ public class UITask {
 	}
 	public void setPeriod(int[][] period) {
 		this.period = period;
+	}
+	
+	public String toString() {
+		return this.name + "; " + this.capacity;
 	}
 }
