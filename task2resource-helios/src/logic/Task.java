@@ -131,7 +131,10 @@ public class Task {
                 }
             }
             tmpDate.add(Calendar.DATE, 1);
-        } while (!tmpDate.equals(toDate));
+        //} while (!tmpDate.equals(toDate));
+        } while ((tmpDate.get(Calendar.YEAR) != toDate.get(Calendar.YEAR)) && 
+        		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) && 
+        		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
     }
     
     public Set<UIDates> chooseResources(Set<UIResource> resources) {
