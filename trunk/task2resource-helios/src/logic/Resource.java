@@ -37,6 +37,12 @@ public class Resource {
         this.capacity = capacity;
         // TODO: ACL
 	}
+	
+	public Resource(UIResource uires) {
+        this.name = uires.getName();
+        this.capacity = uires.getCapacity();
+        // TODO: ACL
+	}
 
 	@Override
 	public int hashCode() {
