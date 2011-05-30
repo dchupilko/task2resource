@@ -57,7 +57,5 @@ public class Main {
 				reqMap.deleteRequest(tmpReq);
 			}
 		}
-	}
-	
-	
+	}	
 }

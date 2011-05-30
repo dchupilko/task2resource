@@ -80,7 +80,7 @@ public class Task {
 		this.toDate = toDate;
 	}
     
-    public Task() {}
+    public Task() {System.out.println("We are here");}
     
     public Task(UITask task) {   	
     	this.name = task.getName();
@@ -125,9 +125,10 @@ public class Task {
             }
             tmpDate.add(Calendar.DATE, 1);
         //} while (!tmpDate.equals(toDate));
-        } while ((tmpDate.get(Calendar.YEAR) != toDate.get(Calendar.YEAR)) && 
-        		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) && 
-        		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
+        }
+        while ((tmpDate.get(Calendar.YEAR) != toDate.get(Calendar.YEAR)) && 
+       		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) && 
+       		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
     }
     
     public Set<UIDates> chooseResources(Set<UIResource> resources) {

@@ -16,7 +16,7 @@ public class UIUser {
 	protected String lastName;
 
 	
-	public UIUser() {}
+	public UIUser() {System.out.println("sfsdf");}
 	
 	public UIUser(String firstName, String lastName) {
 		this.firstName = firstName;
