@@ -101,6 +101,8 @@ public class User {
      * Complete creating task
      */
 	public void acceptTask() {
+		currentTask.prepareResources();
+		userTasks.add(currentTask);
     	//TODO: check dependencies while saving
 		mapper.setTask(currentTask);
     }
@@ -148,6 +150,11 @@ public class User {
 	
 	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
 		currentTask.modifyUsers(addedUsers, removedUsers);
+	}
+	
+	public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources) 
+	{
+		return currentTask.modifyResources(addedResources, removedResources);
 	}
 		
 	public Set<UIDates> getTaskDates ()

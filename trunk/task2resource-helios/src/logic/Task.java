@@ -228,6 +228,33 @@ public class Task {
     	return uiusers;
     }
     
+    public void prepareResources () 
+    {
+    	for (Dates d : dates) {
+    		for (Resource r : d.resources) {
+    				if(r.isAssigned()==false)
+    				{
+    					d.resources.remove(r);
+    				}
+    		}
+    	}
+    }
+    public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources)
+    {    
+    	Set<UIDates> conflictDates = new HashSet<UIDates> ();
+    	for (Dates d : dates) {
+    		for (Resource r : d.resources) {
+    			for (UIResource uir: removedResources)
+    				if(r.equals(uir))
+    				{
+    					if (r.assertDate(d)) {
+    						d.unassignResource(r);
+    					}
+    				}
+    		}
+    	}
+    	return this.chooseResources(addedResources);    	
+    }
 	@Override
 	public int hashCode() {
 		final int prime = 31;

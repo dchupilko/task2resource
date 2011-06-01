@@ -37,6 +37,9 @@ public class Dates {
     public void assignResource(Resource resource) {
     	resource.setStatus(true);
     }
+    public void unassignResource(Resource resource) {
+    	resource.setStatus(false);
+    }
         
     public UIDates getUIDates ()
     {
