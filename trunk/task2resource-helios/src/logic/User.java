@@ -130,25 +130,40 @@ public class User {
 		return uitasks;
 	}
 	
-	public void modifyTask(UITask uitask)
+	
+	/**
+	 * @return	 true in case current user is the owner of selected task
+	 */
+	public boolean modifyTask (UITask uitask)
 	{
 		for(Task t: userTasks) {
 			if(t.equals(uitask)) {
-				this.currentTask = t;
-				return;
-			}
-			else {
-				//TODO: throw exception to user : task wasn't found or this task does not belong to user
+				this.currentTask=t;
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
-		
 		currentTask.modifyUsers(addedUsers, removedUsers);
 	}
+		
+	public Set<UIDates> getTaskDates ()
+	{
+		return currentTask.getTaskDates();
+	}
 	
+	public Set<UIResource> getTaskResources ()
+	{
+		return currentTask.getTaskResources();
+	}
 	
+	public Set<UIUser> getTaskUsers()
+	{
+		return currentTask.getTaskUsers();
+	}
+
 	// A C C E S S O R S
 	
 	public int getOid() {

@@ -38,6 +38,10 @@ public class Dates {
     	resource.setStatus(true);
     }
         
+    public UIDates getUIDates ()
+    {
+    	return new UIDates(startDate, finishDate);
+    }
 	
 	// A C C E S S O R S
 	

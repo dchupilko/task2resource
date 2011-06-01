@@ -5,6 +5,8 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.mail.imap.protocol.UID;
+
 import uiclasses.*;
 import ORM.TaskMapper;
 
@@ -189,6 +191,43 @@ public class Task {
     {
     	return new UITask(name, capacity, fromDate, toDate);
     }
+    
+    public Set<UIDates> getTaskDates ()
+    {
+    	Set<UIDates> uidates = new HashSet <UIDates> ();
+    	taskMapper.getDatesByTask(this);
+    	for(Dates d: dates)
+    	{
+    		uidates.add(d.getUIDates());
+    	}
+    	return uidates;
+    }
+    
+    public Set<UIResource> getTaskResources ()
+    {
+    	Set<UIResource> uiresources = new HashSet<UIResource> ();
+    	taskMapper.getResourcesByTask(this);
+    	for(Dates d: dates)
+    	{
+    		for(Resource r: d.getResources())
+    		{
+    			uiresources.add(r.getUIResource());
+    		}
+    	}
+    	return uiresources;
+    }
+    
+    public Set<UIUser> getTaskUsers()
+    {
+    	Set<UIUser> uiusers = new HashSet<UIUser> ();
+    	taskMapper.getUsersByTask(this);
+    	for(User u: participants)
+    	{
+    		uiusers.add(u.getUIUser());
+    	}
+    	return uiusers;
+    }
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
