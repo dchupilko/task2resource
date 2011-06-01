@@ -3,40 +3,17 @@ package logic;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
+
 import uiclasses.*;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Dates {
-    protected GregorianCalendar startDate;
-    protected GregorianCalendar finishDate;
     protected int oid;
     protected int version;
-    protected Set <Resource> resources = new HashSet<Resource>();
     
-    public int getOid() {
-		return oid;
-	}
-
-	public void setOid(int oid) {
-		this.oid = oid;
-	}
-
-	public Set<Resource> getResources() {
-		return resources;
-	}
-
-	public void setResources(Set<Resource> resources) {
-		this.resources = resources;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
+    protected GregorianCalendar startDate;
+    protected GregorianCalendar finishDate;
+    
+    protected Set<Resource> resources = new HashSet<Resource>();
     
     public Dates() {}
     
@@ -45,7 +22,24 @@ public class Dates {
         this.finishDate = finishDate;
     }
 
-	@Override
+    
+    // M E T H O D S
+    
+    /**
+     * Check specified resource as assigned to task
+     * 
+     * @param resource	Specified resource
+     */
+    public void assignResource(Resource resource) {
+    	resource.setStatus(true);
+    }
+    
+
+    
+	
+	// A C C E S S O R S
+	
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -62,7 +56,7 @@ public class Dates {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Dates))
+		if (getClass() != obj.getClass())
 			return false;
 		Dates other = (Dates) obj;
 		if (finishDate == null) {
@@ -77,7 +71,23 @@ public class Dates {
 			return false;
 		return true;
 	}
-    
+
+	public int getOid() {
+		return oid;
+	}
+
+	public void setOid(int oid) {
+		this.oid = oid;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	public GregorianCalendar getStartDate() {
 		return startDate;
 	}
@@ -93,8 +103,12 @@ public class Dates {
 	public void setFinishDate(GregorianCalendar finishDate) {
 		this.finishDate = finishDate;
 	}
-	
-    public void assignResource(Resource resource) {
-    	resource.setStatus(true);
-    }
+		
+	public Set<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(Set<Resource> resources) {
+		this.resources = resources;
+	}
 }

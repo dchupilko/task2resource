@@ -12,6 +12,16 @@ public class UIRequest {
 	protected String email;
 	protected String job;
 	
+	public UIRequest(String firstName, String lastName, String login,
+			String password, String email, String job) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.login = login;
+		this.password = password;
+		this.email = email;
+		this.job = job;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

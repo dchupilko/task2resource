@@ -83,29 +83,4 @@ public class TaskMapper extends AbstractMapper{
 			throw he;
 		}
 	}
-	
-	public Set<Group> getGroups()
-	{
-		try{
-			String query=String.format("from Groups");
-			Set<Group> groups = new HashSet (this.readObject(query));	
-			return groups;
-		}
-		catch(HibernateException he){
-			throw he;
-		}
-	}
-	
-	public void getUsersByGroup(Group group)
-	{
-		try{
-			String query=String.format("select u.* from Users u, Groups g " +
-					"where g.IdGroup=u.IdGroupand g.IdGroup=%d", group.getOid());
-			Set<User> users = new HashSet (this.readObject(query));	
-			group.setUsers(users);
-		}
-		catch(HibernateException he){
-			throw he;
-		}
-	}
 }
