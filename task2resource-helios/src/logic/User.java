@@ -130,11 +130,11 @@ public class User {
 		return uitasks;
 	}
 	
-	public void modifyTask (UITask uitask)
+	public void modifyTask(UITask uitask)
 	{
 		for(Task t: userTasks) {
 			if(t.equals(uitask)) {
-				this.currentTask=t;
+				this.currentTask = t;
 				return;
 			}
 			else {
@@ -143,7 +143,11 @@ public class User {
 		}
 	}
 	
-
+	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
+		currentTask.modifyUsers(addedUsers, removedUsers);
+	}
+	
+	
 	// A C C E S S O R S
 	
 	public int getOid() {

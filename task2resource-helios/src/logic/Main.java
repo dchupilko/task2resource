@@ -139,6 +139,28 @@ public class Main {
     	currentUser.assignUsers(users);
     }
     
+	public void modifyUsers(Set<UIUser> uiAddedUsers, Set<UIUser> uiRemovedUsers) {
+		Set<User> addedUsers = new HashSet<User>();
+		Set<User> removedUsers = new HashSet<User>();
+    	for (Group g : groups) {
+    		for (User u : g.users) {
+    			for (UIUser ui : uiAddedUsers) {
+	    			if (u.equals(ui)) {
+	    				addedUsers.add(u);
+	    			}
+    			}
+    			for (UIUser ui : uiRemovedUsers) {
+	    			if (u.equals(ui)) {
+	    				removedUsers.add(u);
+	    			}
+    			}
+    		}
+    	}
+    	currentUser.modifyUsers(addedUsers, removedUsers);
+	}
+	
+    // A C C E S S O R S
+    
 	public Set<Group> getGroups() {
 		return groups;
 	}
