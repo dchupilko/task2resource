@@ -11,9 +11,6 @@ public class RequestMapper extends AbstractMapper{
 	
 	public Set<Request> getAllRequests(){
 		try{
-			/*
-			 * Supposed "select * from requests;"
-			 */
 			String query = "from Requests";
 			Set<Request> requests = new HashSet(this.readObject(query)); 
 			return requests;
@@ -30,9 +27,11 @@ public class RequestMapper extends AbstractMapper{
 		}
 	}
 	
-	public void deleteRequest(Request request){
+	public void deleteRequests(Set<Request> requests){
 		try{
-			this.deleteObject(request);
+			for (Request r : requests) {
+				this.deleteObject(r);
+			}
 		}
 		catch(HibernateException he){
 			throw he;

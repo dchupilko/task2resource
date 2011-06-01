@@ -20,80 +20,28 @@ public class Task {
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Resource> allResources = new HashSet<Resource>();
     protected Set<User> participants = new HashSet<User>();
-    protected Set<Group> groups = new HashSet<Group>();
     
-    protected TaskMapper mapper = new TaskMapper (); 
+    protected TaskMapper taskMapper = new TaskMapper(); 
     
-    public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-    public Set<Dates> getDates() {
-		return dates;
-	}
-
-	public int getOid() {
-		return oid;
-	}
-
-	public void setOid(int oid) {
-		this.oid = oid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-
-	public void setDates(Set<Dates> dates) {
-		this.dates = dates;
-	}
-
-	public GregorianCalendar getFromDate() {
-		return fromDate;
-	}
-
-	public void setFromDate(GregorianCalendar fromDate) {
-		this.fromDate = fromDate;
-	}
-
-	public GregorianCalendar getToDate() {
-		return toDate;
-	}
-
-	public void setToDate(GregorianCalendar toDate) {
-		this.toDate = toDate;
-	}
-    
-    public Task() {System.out.println("We are here");}
+    public Task() {}
     
     public Task(UITask task) {   	
     	this.name = task.getName();
         this.capacity = task.getCapacity();
-        this.fromDate=task.getFromDate();
-        this.toDate=task.getToDate();
+        this.fromDate = task.getFromDate();
+        this.toDate = task.getToDate();
         
         calculateDates(task);
         //TODO: load all possible resources for calculated dates
     }
     
-    /*
-     * Программа сделает хотя бы один проход (если событие единоразовое)
+    
+    // M E T H O D S
+
+    /**
+     * Calculate dates for a period with specified interval
+     * 
+     * @param task	Info about task
      */
     private void calculateDates(UITask task){
         GregorianCalendar fromDate = task.getFromDate();
@@ -101,9 +49,9 @@ public class Task {
         int lengthInMinutes        = task.getLengthInMinutes();
         int[][]period              = task.getPeriod();
         
-    	GregorianCalendar tmpDate               = fromDate;
-        GregorianCalendar templateDateForStart  = null;
-        GregorianCalendar templateDateForFinish = null;
+    	GregorianCalendar tmpDate = fromDate;
+        GregorianCalendar templateDateForStart;
+        GregorianCalendar templateDateForFinish;
         
         do {
             for (int i = 0; i < period.length; i++) {
@@ -131,6 +79,35 @@ public class Task {
        		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
     }
     
+    /**
+     * Get all available resources
+     * 
+     * @return	List of resources
+     */
+    public Set<UIResource> getAllResources() {
+    	taskMapper.getResourcesByDate(dates);
+    	//if resource has already been added into collection it won't be added again
+    	for(Dates d : dates)
+    	{
+    		for(Resource r : d.resources)
+    		{
+    			allResources.add(r);
+    		}
+    	}
+    	//TODO: add status if resource has a conflict
+    	Set<UIResource> uiResources = new HashSet<UIResource>();
+    	for (Resource r : allResources) {
+    		uiResources.add(r.getUIResource());
+    	}
+    	return uiResources;
+    }
+    
+    /**
+     * Assign selected resources to dates.
+     * 
+     * @param resources	List of selected resources
+     * @return			Dates of conflicts
+     */
     public Set<UIDates> chooseResources(Set<UIResource> resources) {
     	Set<UIDates> conflictDates = new HashSet<UIDates> ();
     	for (Dates d : dates) {
@@ -150,67 +127,22 @@ public class Task {
     	}
     	return conflictDates;
     }
-    
-    public Set<UIResource> getAllResources() {
-    	mapper.getResourcesByDate(dates);
-    	//if resource has already been added into collection it won't be added again
-    	for(Dates d: dates)
-    	{
-    		for(Resource r: d.resources)
-    		{
-    			allResources.add(r);
-    		}
-    	}
-    	//TODO: add status if resource has a conflict
-    	Set<UIResource> allUIResources = new HashSet<UIResource>();
-    	for (Resource r : allResources) {
-    		allUIResources.add(r.getUIResource());
-    	}
-    	return allUIResources;
-    }
-    
-    public Set<UIGroup> getAllGroups () {
-    	groups=mapper.getGroups();
-    	Set<UIGroup> allUIgroups = new HashSet<UIGroup>();
-    	for (Group g: groups) {
-    		allUIgroups.add(g.getUIGroup());
-    	}
-    	return allUIgroups;
-    }
 
-    public Set<UIUser> getAllUsers(UIGroup uigroup) {
-    	Set<UIUser> allUIusers = new HashSet<UIUser>();
-    	for (Group g : groups) {
-    		if (g.equals(uigroup)) {
-    			mapper.getUsersByGroup(g);
-    			for (User u : g.users) {
-    				allUIusers.add(u.getUIUser());
-    			}
-    		}
-    	}
-    	return allUIusers;
+    /**
+     * Assign users to current task
+     * 
+     * @param uiusers	List of selected users
+     */
+    public void assignUsers(Set<User> users) {
+    	participants.addAll(users);
     }
     
-    public Set<User> getParticipants() {
-		return participants;
-	}
-
-	public void setParticipants(Set<User> participants) {
-		this.participants = participants;
-	}
-
-    public void assignUsers(Set<UIUser> uiusers) {
-    	for (Group g : groups) {
-    		for (User u : g.users) {
-    			for (UIUser ui : uiusers) {
-	    			if (u.equals(ui)) {
-	    				participants.add(u);
-	    			}
-    			}
-    		}
-    	}
-    }
-    
+    /**
+     * Get all available resources for a specified date
+     * 
+     * @param date	Date
+     * @return		List of resources
+     */
     public Set<UIResource> getResourcesForDate(UIDates date) {
     	Set<UIResource> uiresources = new HashSet<UIResource>();
     	for (Dates d : dates) {
@@ -223,6 +155,12 @@ public class Task {
     	return uiresources;
     }
     
+    /**
+     * Assign selected resources to a specified date
+     * 
+     * @param resources	List of resources
+     * @param date		Date
+     */
     public void chooseResourcesForDate(Set<UIResource> resources, UIDates date) {
     	for (Dates d : dates) {
     		if (d.equals(date)) {
@@ -276,5 +214,79 @@ public class Task {
 		return true;
 	}
     
+	
+	// A C C E S S O R S
+	
+	public int getOid() {
+		return oid;
+	}
+
+	public void setOid(int oid) {
+		this.oid = oid;
+	}
+
+    public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public GregorianCalendar getFromDate() {
+		return fromDate;
+	}
+
+	public void setFromDate(GregorianCalendar fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public GregorianCalendar getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(GregorianCalendar toDate) {
+		this.toDate = toDate;
+	}
+
+	public Set<Dates> getDates() {
+		return dates;
+	}
+
+	public void setDates(Set<Dates> dates) {
+		this.dates = dates;
+	}
+
+	public Set<Resource> getResources() {
+		return allResources;
+	}
+
+	public void setResources(Set<Resource> resources) {
+		this.allResources = resources;
+	}
+
+	public Set<User> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(Set<User> participants) {
+		this.participants = participants;
+	}
 }
 

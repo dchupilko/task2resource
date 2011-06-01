@@ -1,9 +1,10 @@
 package logic;
 
-import uiclasses.UIRequest;
+import uiclasses.*;
 
 public class Request {
 	protected int oid;
+	protected int version;
 	
 	protected String firstName;
 	protected String lastName;
@@ -11,15 +12,6 @@ public class Request {
 	protected String password;
 	protected String email;
 	protected String job;
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	protected int version;
 	
 	public Request() {}
 	
@@ -31,6 +23,47 @@ public class Request {
 		this.email = request.getEmail();
 		this.job = request.getJob();
 	}
+
+	
+	// M E T H O D S
+	
+	public UIRequest getUIRequest() {
+		return new UIRequest(firstName, lastName, login, password, email, job);
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Request))
+			return false;
+		Request other = (Request) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		return true;
+	}
+	
+	
+	// A C C E S S O R S
 	
 	public int getOid() {
 		return oid;
@@ -38,6 +71,14 @@ public class Request {
 	
 	public void setOid(int oid) {
 		this.oid = oid;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 	
 	public String getFirstName() {

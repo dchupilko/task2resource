@@ -11,7 +11,12 @@ import java.util.GregorianCalendar;
 public class UIDates {
 	protected GregorianCalendar startDate;
 	protected GregorianCalendar finishDate;
-	
+
+	public UIDates(GregorianCalendar startDate, GregorianCalendar finishDate) {
+		this.startDate = startDate;
+		this.finishDate = finishDate;
+	}
+
 	public GregorianCalendar getStartDate() {
 		return startDate;
 	}
@@ -24,10 +29,4 @@ public class UIDates {
 	public void setFinishDate(GregorianCalendar finishDate) {
 		this.finishDate = finishDate;
 	}
-	public UIDates(GregorianCalendar startDate, GregorianCalendar finishDate) {
-		super();
-		this.startDate = startDate;
-		this.finishDate = finishDate;
-	}
-	
 }

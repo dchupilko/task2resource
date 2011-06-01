@@ -7,26 +7,32 @@ import uiclasses.*;
 
 public class Group {
 	protected int oid;
+	protected int version;
+	
 	protected String name;
-    protected Set<User> users = new HashSet<User>();
-    protected int version;
+    
+	protected Set<User> users = new HashSet<User>();
     
     public Group() {}
 
+    
+    // M E T H O D S
+    
+    public UIGroup getUIGroup() {
+    	return new UIGroup(this.name);
+    }
+    
+    public void addUser(UIRequest uirequest) {
+    	users.add(new User(uirequest));
+    	
+    }
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
 	}
 
 	@Override
@@ -46,12 +52,23 @@ public class Group {
 		return true;
 	}
 
+	
+	// A C C E S S O R S
+	
 	public int getOid() {
 		return oid;
 	}
 
 	public void setOid(int oid) {
 		this.oid = oid;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getName() {
@@ -69,9 +86,4 @@ public class Group {
 	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
-
-    public UIGroup getUIGroup() {
-    	return new UIGroup(this.name);
-    }
-
 }

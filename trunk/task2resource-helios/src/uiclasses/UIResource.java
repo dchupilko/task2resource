@@ -13,19 +13,25 @@ public class UIResource {
 	//protected int acl;
 	
 	public UIResource(String name, int capacity) {
-		super();
 		this.name = name;
 		this.capacity = capacity;
 	}
 	
-	public String getName(){
-		return this.name;
+	public String getName() {
+		return name;
 	}
-	
-	public int getCapacity(){
-		return this.capacity;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
 
 	public int getStatus() {
 		return status;

@@ -2,34 +2,20 @@ package logic;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import uiclasses.*;
 
 public class Resource {
 	protected int oid;
+	protected int version;
+	
 	protected String name;
     protected int capacity;
-    protected boolean status; //isAssigned
-    protected int version;
+    protected boolean status;	// assigned or not
     
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Dates> conflicts = new HashSet<Dates>();
 
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-	
-	public boolean isAssigned() {
-		return this.status;
-	}
-	
 	public Resource() {}
 
 	public Resource(String name, int capacity) {
@@ -44,6 +30,38 @@ public class Resource {
         // TODO: ACL
 	}
 
+	
+	// M E T H O D S
+	
+	/**
+	 * Check specified date in conflict list
+	 * 
+	 * @param date	Date
+	 * @return		True if no conflict
+	 */
+    public boolean assertDate(Dates date) {
+    	for (Dates d : conflicts) {
+    		if (date.equals(d)) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    
+	/**
+	 * Resource info to pass to UI.
+	 * 
+	 * @return	UIResource class instance
+	 */
+    public UIResource getUIResource() {
+    	int status = 0;
+    	//TODO: add check status
+    	//status = checkStatus();
+    	UIResource temp = new UIResource(this.name, this.capacity);
+    	temp.setStatus(status);
+    	return temp;
+    }
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,6 +87,9 @@ public class Resource {
 		return true;
 	}
     
+	
+	// A C C E S S O R S
+	
 	public int getOid() {
 		return oid;
 	}
@@ -77,6 +98,14 @@ public class Resource {
 		this.oid = oid;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -93,35 +122,19 @@ public class Resource {
 		this.capacity = capacity;
 	}
 
+	public boolean isAssigned() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 	public Set<Dates> getDates() {
 		return dates;
 	}
 
 	public void setDates(Set<Dates> dates) {
 		this.dates = dates;
-	}
-	
-	
-	
-    public UIResource getUIResource() {
-    	int status = 0;
-    	//TODO: add check status
-    	//status = checkStatus();
-    	UIResource temp = new UIResource(this.name, this.capacity);
-    	temp.setStatus(status);
-    	return temp;
-    }
-    
-    
-    /*
-     * returns true if no conflict
-     */
-    public boolean assertDate(Dates date) {
-    	for (Dates d : conflicts) {
-    		if (date.equals(d)) {
-    			return false;
-    		}
-    	}
-    	return true;
-    }
+	}    
 }
