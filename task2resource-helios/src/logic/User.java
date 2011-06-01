@@ -144,6 +144,7 @@ public class User {
 	}
 	
 	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
+		
 		currentTask.modifyUsers(addedUsers, removedUsers);
 	}
 	
