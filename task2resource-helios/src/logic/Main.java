@@ -156,7 +156,7 @@ public class Main {
     			}
     		}
     	}
-    	currentUser.modifyUsers(addedUsers, removedUsers);
+    	//currentUser.modifyUsers(addedUsers, removedUsers);
 	}
 	
     // A C C E S S O R S

@@ -87,7 +87,7 @@ public class TaskMapper extends AbstractMapper{
 	
 	public Set<Task> getAllTasks()
 	{
-		try{
+		try {
 			String query = "select t.* from Tasks t, Assignments a where a.startDate>=sysdate " +
 					"and t.IdTask=a.IdTask";
 			Set<Task> tasks = new HashSet(this.readObject(query)); 
@@ -99,7 +99,8 @@ public class TaskMapper extends AbstractMapper{
 	
 	public Set<Task> getAllTasksForDates(Dates date)
 	{
-		try{
+		//TODO: perhaps we'll need to extend dates' bounds
+		try {
 			String query = String.format("select t.* from Tasks t, Assignments a " +
 					"where a.startDate>=%tD and a.finishDate<=%tD and t.IdTask=a.IdTask",
 					date.getStartDate(), date.getFinishDate());
@@ -112,12 +113,46 @@ public class TaskMapper extends AbstractMapper{
 	
 	public void getAllTasksById(User user)
 	{
-		try{
+		try {
 			String query = String.format("select t.* from Tasks t" +
 					"wheret.IdUser=%d", user.getOid());
 			Set <Task> tasks = new HashSet(this.readObject(query)); 
 			user.setUserTasks(tasks);
 		} catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public void getResourcesByTask(Task task)
+	{
+		Set<Dates> dates = task.getDates();
+		try{
+			for (Dates d: dates)
+			{	
+				String query=String.format("select r.* " +
+												"from Resources r, Assignments a, Resources_Assignments r_a " +
+												"where a.IdAssignment=r_a.IdAssignment and r.IdResource=r_a.IdResource " +
+												"and a.idAssignment=%d", d.getOid());
+				Set<Resource> resources = new HashSet (this.readObject(query));
+				d.setResources(resources);
+			}
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public void getUsersByTask(Task task)
+	{
+		try{
+			String query=String.format("select u.* " +
+											"from Tasks t, Users u, Participations p " +
+											"where t.IdTask=p.IdTask and u.IdUser=p.IdUser " +
+											"and t.idTask=%d", task.getOid());
+			Set<User> users = new HashSet (this.readObject(query));
+			task.setParticipants(users);
+		}
+		catch(HibernateException he){
 			throw he;
 		}
 	}
