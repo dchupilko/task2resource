@@ -156,4 +156,13 @@ public class TaskMapper extends AbstractMapper{
 			throw he;
 		}
 	}
+	
+	public void setTask(Task task){
+		//TODO: check dependencies while saving task
+		try{
+			this.insertObject(task);
+		}catch(HibernateException he){
+			throw he;
+		}
+	}
 }
