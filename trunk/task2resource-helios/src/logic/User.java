@@ -101,7 +101,8 @@ public class User {
      * Complete creating task
      */
 	public void acceptTask() {
-    	//TODO: save task
+    	//TODO: check dependencies while saving
+		mapper.setTask(currentTask);
     }
     
 	public Set<UITask> getAllTasks()
