@@ -30,9 +30,13 @@ public class main {
                 {2,16,15}, // Ïí., 16-15
                 {3,13,00} // Âò. 13-00
                 };
-		UITask uitask=new UITask ("task1", 10, new GregorianCalendar(2011,5,10,13,10), new GregorianCalendar(2011,5,30,13,10), 30, tmpMass);
+
+		UITask uitask=new UITask ("task1", 10, new GregorianCalendar(2011,5,10,8,00), new GregorianCalendar(2011,5,30,22,00), 30, tmpMass);
 		User user = new User();
 		Set<UIResource> resources = user.createTask(uitask);
-		System.out.println(resources);
+		System.out.println(resources.toString());
+		//Task task = new Task(uitask);
+		//Set<UIResource> resources = task.getAllResources();
+		//System.out.println(resources);	
 	}
 }

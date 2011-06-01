@@ -22,6 +22,10 @@ public class Dates {
         this.finishDate = finishDate;
     }
 
+    public Dates(UIDates date) {
+        this.startDate = date.getStartDate();
+        this.finishDate = date.getFinishDate();
+    }
     
     // M E T H O D S
     
@@ -33,9 +37,7 @@ public class Dates {
     public void assignResource(Resource resource) {
     	resource.setStatus(true);
     }
-    
-
-    
+        
 	
 	// A C C E S S O R S
 	
@@ -110,5 +112,11 @@ public class Dates {
 
 	public void setResources(Set<Resource> resources) {
 		this.resources = resources;
+	}
+
+	@Override
+	public String toString() {
+		return "Dates [startDate=" + startDate + ", finishDate=" + finishDate
+				+ "]";
 	}
 }

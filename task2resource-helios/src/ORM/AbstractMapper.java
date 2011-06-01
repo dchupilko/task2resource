@@ -2,6 +2,7 @@ package ORM;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -17,6 +18,27 @@ public class AbstractMapper {
         try {
             tx = session.beginTransaction();
             session.save(obj);
+            tx.commit();
+        }
+        catch (HibernateException he) {
+            if (tx!=null) tx.rollback();
+            throw he;
+        }
+        finally {
+            session.close();
+        }
+	}
+	
+	public void insertObjects (Set<Object> objects)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            for(Object obj: objects)
+            {            
+            	session.save(obj);
+            }
             tx.commit();
         }
         catch (HibernateException he) {
@@ -46,6 +68,27 @@ public class AbstractMapper {
         }
 	}
 	
+	public void updateObjects (Set<Object> objects)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            for(Object obj: objects)
+            {
+            	session.saveOrUpdate(obj);
+            }            
+            tx.commit();
+        }
+        catch (HibernateException he) {
+            if (tx!=null) tx.rollback();
+            throw he;
+        }
+        finally {
+            session.close();
+        }
+	}
+	
 	public void deleteObject (Object obj)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -53,6 +96,27 @@ public class AbstractMapper {
         try {
             tx = session.beginTransaction();
             session.delete(obj);
+            tx.commit();
+        }
+        catch (HibernateException he) {
+            if (tx!=null) tx.rollback();
+            throw he;
+        }
+        finally {
+            session.close();
+        }
+	}
+	
+	public void deleteObjects (Set <Object> objects)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            for(Object obj: objects)
+            {
+            	session.delete(obj);
+            }
             tx.commit();
         }
         catch (HibernateException he) {
