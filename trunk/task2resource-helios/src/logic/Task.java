@@ -141,6 +141,11 @@ public class Task {
     	participants.addAll(users);
     }
     
+	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
+		participants.addAll(addedUsers);
+		participants.removeAll(removedUsers);
+	}
+	
     /**
      * Get all available resources for a specified date
      * 
