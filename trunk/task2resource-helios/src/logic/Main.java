@@ -7,15 +7,15 @@ import uiclasses.*;
 import ORM.*;
 
 public class Main {
-	protected Set<Request> requests = new HashSet<Request>();
     protected Set<Group> groups = new HashSet<Group>();
+	protected Set<Request> requests = new HashSet<Request>();
     protected Set<Resource> resources = new HashSet<Resource>();
     
-	protected RequestMapper requestMapper = new RequestMapper();
 	protected UserMapper userMapper = new UserMapper();
-	protected ResourceMapper resMapper = new ResourceMapper();
+	protected RequestMapper requestMapper = new RequestMapper();
+	protected ResourceMapper resourceMapper = new ResourceMapper();
 	
-	User currentUser = new User();
+	protected User currentUser = new User();
 	
 	public void createUser(UIRequest uirequest) {
 		Request request = new Request(uirequest);
@@ -23,11 +23,13 @@ public class Main {
 	}
 	
 	public void deleteUsers(Set<UIUser> uiusers) {
+		//Set<Group> updatedGroups = new HashSet <Group> ();
 		for (Group g : groups) {
 			for (User u : g.users) {
 				for (UIUser ui : uiusers) {
 					if (u.equals(ui)) {
 						//TODO: delete cascade
+						//TODO: do this in one transaction
 						userMapper.deleteUserById(u);
 					}
 				}
@@ -37,14 +39,14 @@ public class Main {
 		
 	public void createResource(UIResource uiresource) {
 		Resource res = new Resource(uiresource);
-		resMapper.setResource(res);
+		resourceMapper.setResource(res);
 	}
 	
 	/*public void deleteResources(Set<UIResource> uiresources) {
 		for (Resource r : resources) {
 			for (UIResource uir : uiresources) {
 				if (r.equals(uir)) {
-					resMapper.deleteResourceById(r);
+					resourceMapper.deleteResourceById(r);
 				}
 			}
 		}
@@ -125,7 +127,6 @@ public class Main {
      */
     public void assignUsers(Set<UIUser> uiusers) {
     	Set<User> users = new HashSet<User>();
-    	
     	for (Group g : groups) {
     		for (User u : g.users) {
     			for (UIUser ui : uiusers) {
@@ -135,7 +136,6 @@ public class Main {
     			}
     		}
     	}
-    	
     	currentUser.assignUsers(users);
     }
     
@@ -145,5 +145,21 @@ public class Main {
 
 	public void setGroups(Set<Group> groups) {
 		this.groups = groups;
+	}
+
+	public Set<Request> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(Set<Request> requests) {
+		this.requests = requests;
+	}
+
+	public Set<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(Set<Resource> resources) {
+		this.resources = resources;
 	}
 }

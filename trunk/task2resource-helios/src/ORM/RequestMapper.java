@@ -28,10 +28,9 @@ public class RequestMapper extends AbstractMapper{
 	}
 	
 	public void deleteRequests(Set<Request> requests){
-		try{
-			for (Request r : requests) {
-				this.deleteObject(r);
-			}
+		try{		
+			//TODO: try it
+			this.deleteObjects(new HashSet<Object>(requests));
 		}
 		catch(HibernateException he){
 			throw he;

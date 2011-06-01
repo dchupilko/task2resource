@@ -28,6 +28,12 @@ public class UITask {
 		this.period = period;
 	}
 	
+	public UITask (String name, int capacity, GregorianCalendar fromDate, GregorianCalendar toDate)
+	{
+		//TODO: come to agreement with UI
+		this(name, capacity, fromDate, toDate, 0, null);
+	}
+	
 	public String getName() {
 		return name;
 	}

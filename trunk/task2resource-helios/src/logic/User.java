@@ -3,6 +3,8 @@ package logic;
 import java.util.HashSet;
 import java.util.Set;
 
+import ORM.TaskMapper;
+
 import uiclasses.*;
 
 public class User {
@@ -16,6 +18,8 @@ public class User {
     protected String password;
 
 	protected Task currentTask;
+	protected TaskMapper mapper = new TaskMapper ();
+	
     protected Set<Task> tasks = new HashSet<Task>();		// all tasks in which user takes part
     protected Set<Task> userTasks = new HashSet<Task>();    // all tasks created by user
     protected Set<Task> allTasks = new HashSet<Task>();		// list of all existing tasks
@@ -100,7 +104,46 @@ public class User {
     	//TODO: save task
     }
     
+	public Set<UITask> getAllTasks()
+	{
+		allTasks = mapper.getAllTasks();
+		mapper.getAllTasksById(this);
+		Set<UITask> uitasks = new HashSet <UITask> ();
+		for(Task t: allTasks)
+		{
+			uitasks.add(t.getUITask());
+		}
+		return uitasks;
+	}
 	
+	public Set<UITask> getAllTasksForDates(UIDates uidate)
+	{
+		//TODO: add some flag for UI for tasks, created by user
+		Dates date = new Dates (uidate);
+		allTasks = mapper.getAllTasksForDates(date);
+		mapper.getAllTasksById(this);
+		Set<UITask> uitasks = new HashSet <UITask> ();
+		for(Task t: allTasks)
+		{
+			uitasks.add(t.getUITask());
+		}
+		return uitasks;
+	}
+	
+	public void modifyTask (UITask uitask)
+	{
+		for(Task t: userTasks) {
+			if(t.equals(uitask)) {
+				this.currentTask=t;
+				return;
+			}
+			else {
+				//TODO: throw exception to user : task wasn't found or this task does not belong to user
+			}
+		}
+	}
+	
+
 	// A C C E S S O R S
 	
 	public int getOid() {

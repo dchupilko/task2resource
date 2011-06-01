@@ -53,6 +53,7 @@ public class TaskMapper extends AbstractMapper{
 	public void getResourcesByDate(Set <Dates> dates)
 	{
 		//TODO: get all possible resources by date
+		//TODO: perhaps it's better to do this in the only transaction
 		try{
 			for (Dates d: dates)
 			{	
@@ -80,6 +81,43 @@ public class TaskMapper extends AbstractMapper{
 			task.setDates(dates);
 		}
 		catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public Set<Task> getAllTasks()
+	{
+		try{
+			String query = "select t.* from Tasks t, Assignments a where a.startDate>=sysdate " +
+					"and t.IdTask=a.IdTask";
+			Set<Task> tasks = new HashSet(this.readObject(query)); 
+			return tasks;
+		} catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public Set<Task> getAllTasksForDates(Dates date)
+	{
+		try{
+			String query = String.format("select t.* from Tasks t, Assignments a " +
+					"where a.startDate>=%tD and a.finishDate<=%tD and t.IdTask=a.IdTask",
+					date.getStartDate(), date.getFinishDate());
+			Set <Task> tasks = new HashSet(this.readObject(query)); 
+			return tasks;
+		} catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public void getAllTasksById(User user)
+	{
+		try{
+			String query = String.format("select t.* from Tasks t" +
+					"wheret.IdUser=%d", user.getOid());
+			Set <Task> tasks = new HashSet(this.readObject(query)); 
+			user.setUserTasks(tasks);
+		} catch(HibernateException he){
 			throw he;
 		}
 	}
