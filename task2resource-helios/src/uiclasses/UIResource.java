@@ -40,4 +40,8 @@ public class UIResource {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
+	public String toString() {
+		return this.name + "; " + this.capacity;
+	}
 }

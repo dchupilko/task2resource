@@ -159,6 +159,11 @@ public class Main {
     	currentUser.modifyUsers(addedUsers, removedUsers);
 	}
 	
+	public void modifyDates(UITask uitask) {
+		currentUser.modifyDates(uitask);
+	}
+	
+	
     // A C C E S S O R S
     
 	public Set<Group> getGroups() {

@@ -25,18 +25,19 @@ public class main {
         SendNotification send1 = new SendNotification(mail1, subj + "1", message + "1");
         SendNotification send2 = new SendNotification(mail2, subj + "2", message + "2");
 	    */
-		int [][] tmpMass = {
+		
+		// Testing use case "Creating new task"
+		int [][] period = {
                 {1,11,00}, //Âñ., 11-00
                 {2,16,15}, // Ïí., 16-15
                 {3,13,00} // Âò. 13-00
                 };
-
-		UITask uitask=new UITask ("task1", 10, new GregorianCalendar(2011,5,10,8,00), new GregorianCalendar(2011,5,30,22,00), 30, tmpMass);
+		
 		User user = new User();
+		UITask uitask = new UITask("task1", 10, new GregorianCalendar(2011,5,10,8,00), new GregorianCalendar(2011,5,30,8,00), 30, period);
 		Set<UIResource> resources = user.createTask(uitask);
-		System.out.println(resources.toString());
-		//Task task = new Task(uitask);
-		//Set<UIResource> resources = task.getAllResources();
-		//System.out.println(resources);	
+		for (UIResource uir : resources) {
+			System.out.println(uir.toString());
+		}
 	}
 }
