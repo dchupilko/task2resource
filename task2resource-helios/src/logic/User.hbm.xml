@@ -24,13 +24,13 @@
         <property name="password" type="java.lang.String">
             <column name="PASSWORD" />
         </property>
-        <set name="userTasks" table="TASKS" inverse="false" lazy="true" access="field">
+        <set name="userTasks" table="TASKS" inverse="false" lazy="true" access="field" cascade="save-update">
             <key>
                 <column name="IDUSER" />
             </key>
             <one-to-many class="logic.Task" />
         </set>
-        <set name="tasks" table="PARTICIPATIONS" inverse="false" lazy="true" access="field">
+        <set name="tasks" table="PARTICIPATIONS" inverse="false" lazy="true" access="field" cascade="save-update">
             <key>
                 <column name="IDUSER" />
             </key>

@@ -15,7 +15,7 @@
         <property name="capacity" type="int" access="field">
             <column name="CAPACITY" />
         </property>
-        <set name="dates" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field">
+        <set name="dates" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="all">
             <key>
                 <column name="IDRESOURCE" />
             </key>

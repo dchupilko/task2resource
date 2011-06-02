@@ -15,11 +15,11 @@
         <property name="capacity" type="int">
             <column name="CAPACITY" />
         </property>
-        <set name="dates" table="ASSIGNMENTS" inverse="false" lazy="true" access="field">
+        <set name="dates" table="ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="all">
             <key>
                 <column name="IDTASK" />
             </key>
-            <one-to-many class="logic.Dates" />
+            <one-to-many class="logic.Dates"/>
         </set>
         <property name="fromDate" type="java.util.GregorianCalendar" access="field">
             <column name="FROMDATE" />
@@ -27,7 +27,7 @@
         <property name="toDate" type="java.util.GregorianCalendar" access="field">
             <column name="TODATE" />
         </property>
-        <set name="participants" table="PARTICIPATIONS" inverse="false" lazy="true" access="field">
+        <set name="participants" table="PARTICIPATIONS" inverse="false" lazy="true" access="field" cascade="save-update">
             <key>
                 <column name="IDTASK" />
             </key>
