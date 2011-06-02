@@ -44,23 +44,77 @@ public class RegistrateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		//form parameters
-		/* String login = request.getParameter("user_name");
-	     int password = Integer.parseInt(request.getParameter("password"));
-	     int confirm_password = Integer.parseInt(request.getParameter("confirm_password"));
-	     String name = request.getParameter("name");
-	     boolean sex =new Boolean(request.getParameter("radio_1")).booleanValue(); */
-	  //   String birthday= request.getParameter("datepicker");
-	    // String email = request.getParameter("email");
-	    // String job= request.getParameter("job");
+		 
+		 
+		 String login = request.getParameter("user_name");
+	     String password = request.getParameter("password");
+	     String confirmPassword = request.getParameter("confirm_password");
+	     String firstName = request.getParameter("firstName");
+	     String lastName = request.getParameter("lastName");
+	     boolean sex =new Boolean(request.getParameter("radio_1")).booleanValue(); 
+	     String birthday= request.getParameter("datepicker3");
+	     String email = request.getParameter("email");
+	     String job= request.getParameter("job");
+	     boolean sendFlag=isToSendAvaliable(login,password,confirmPassword,firstName,lastName,email,job);    
+		 if(sendFlag){
+			 
+		 }
 		
 	     //UIRequest uirequest = new UIRequest(firstName, lastName, login, password, email, job);
 	     //Main main = new Main();
 	    // main.createUser(uirequest);
 	     
-		/*
-	     System.out.println(login+"| "+password+"|"+confirm_password+"| "+name+"| "+sex+"| "+birthday+"| "+email+"| "+job);
-	    
-	     System.out.println("| "+password);*/
+	     System.out.println(sendFlag);
+	   
 	}
-
+	boolean isToSendAvaliable(String login,String password,String confirmPassword,
+			String firstName,String lastName,String email,String job){
+		 int counter=0;
+		 if((login.equals(""))){
+	    	 
+	     }
+		 else{
+			 if(login.length()>=3){
+		    	 counter++;
+		    	System.out.println("login++");
+		    	 }
+		 }
+	     if(password.equals(confirmPassword)){
+	    	 counter++;
+	    	 System.out.println("pass++");
+	     }
+	     if(firstName.equals("")){
+	    	 
+	     }
+	     else{
+	    	 counter++;
+	    	 System.out.println("FN");
+	     }
+	     if(lastName.equals("")){
+	    	 
+	     }
+	     else{
+	    	 counter++;
+	    	 System.out.println("LN++");
+	     }
+	     if(email.equals("")){
+	    	 
+	     }
+	     else{
+	    	 System.out.println("em++");
+	    	 counter++;
+	     }
+	     if(job.equals("")){
+	    	
+	     }
+	     else{
+	    	 counter++;
+	     }
+	     if(counter==6){
+	    	 return true;
+	     }
+	     else{
+	    	 return false;
+	     }
+	}
 }
