@@ -25,6 +25,7 @@
                 <td>
           
                     <form method="post" action="LoginServlet">
+                    <span>test:  user | pass</span>
                         <input type="text" id="login" name="login"/>
                         <input type="text" id="password" name="password"/>
                         <input type="submit" id="id_submit_avtorization" value="login"/>
