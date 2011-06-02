@@ -46,8 +46,6 @@ public class Request {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Request))
-			return false;
 		Request other = (Request) obj;
 		if (email == null) {
 			if (other.email != null)

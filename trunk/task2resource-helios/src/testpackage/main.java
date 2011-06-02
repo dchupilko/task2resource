@@ -37,16 +37,19 @@ public class main {
                 };
 		
 		UITask uitask = new UITask("task1", 10, new GregorianCalendar(2011,5,10,8,00), new GregorianCalendar(2011,5,30,8,00), 30, period);
-		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Programming");
-		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Programming");
-		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Programming");
+		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
+		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
+		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Cleaner");
+		UIResource lobby = new UIResource("Lobby", 55);
+		UIResource gym = new UIResource("Gym", 10);
 		
-		/*
+		
 		// Testing use case "Creating new task"
 		Set<UIResource> resources = user.createTask(uitask);
 		for (UIResource uir : resources) {
 			System.out.println(uir.toString());
-		}*/
+		}
+		
 		
 		/*
 		// Testing use case "Registration"
@@ -57,6 +60,7 @@ public class main {
 		
 		/*
 		// Testing use case "Accept Request"
+		Set<UIRequest> allRequests = main.getAllRequests();
 		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
 		acceptedRequests.add(ivanov);
 		acceptedRequests.add(petrov);
@@ -65,6 +69,7 @@ public class main {
 		
 		/*
 		// Testing use case "Deny Request"
+		Set<UIRequest> allRequests = main.getAllRequests();
 		Set<UIRequest> deniedRequests = new HashSet<UIRequest>();
 		deniedRequests.add(sidorov);
 		main.denyRequests(deniedRequests);
@@ -72,9 +77,7 @@ public class main {
 		
 		/*
 		// Testing use case "Create resources"
-		UIResource lobby = new UIResource("Lobby", 55);
 		main.createResource(lobby);
-		UIResource gym = new UIResource("Gym", 10);
 		main.createResource(gym);
 		*/
 		
