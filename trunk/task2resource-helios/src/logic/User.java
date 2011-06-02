@@ -156,7 +156,18 @@ public class User {
 	{
 		return currentTask.modifyResources(addedResources, removedResources);
 	}
+	
+	public void modifyDates(UITask uitask) {
+		//call method in case user changes lengthInMinutes, period or dates
+		//deletes everything except name and capacity and starts use case "create task"
+		currentTask.modifyDates(uitask);
+	}
 		
+	public void modifyInfo(UITask uitask) {
+		currentTask.setName(uitask.getName());
+		currentTask.setCapacity(uitask.getCapacity());
+	}
+	
 	public Set<UIDates> getTaskDates ()
 	{
 		return currentTask.getTaskDates();
@@ -172,6 +183,7 @@ public class User {
 		return currentTask.getTaskUsers();
 	}
 
+	
 	// A C C E S S O R S
 	
 	public int getOid() {

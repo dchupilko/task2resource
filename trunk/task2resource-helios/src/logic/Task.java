@@ -74,11 +74,11 @@ public class Task {
                 }
             }
             tmpDate.add(Calendar.DATE, 1);
-        //} while (!tmpDate.equals(toDate));
-        }
-        while ((tmpDate.get(Calendar.YEAR) != toDate.get(Calendar.YEAR)) && 
+        } while (!tmpDate.equals(toDate));
+        //}
+        /*while ((tmpDate.get(Calendar.YEAR)!=toDate.get(Calendar.YEAR)) && 
        		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) && 
-       		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
+       		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));*/
         
         for (Dates d : dates) {
         	System.out.println(d.toString());
@@ -146,6 +146,11 @@ public class Task {
 	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
 		participants.addAll(addedUsers);
 		participants.removeAll(removedUsers);
+	}
+	
+	public void modifyDates(UITask uitask) {
+		dates.clear();
+		this.calculateDates(uitask);
 	}
 	
     /**
