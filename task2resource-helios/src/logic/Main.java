@@ -125,7 +125,7 @@ public class Main {
     public Set<UIUser> getAllUsersFromGroup(UIGroup uigroup) {
     	Set<UIUser> uiUsers = new HashSet<UIUser>();
     	for (Group g : groups) {
-    		if (g.equals(uigroup)) {
+    		if (g.getName().equals(uigroup.getName())) {
     			userMapper.getUsersByGroup(g);
     			for (User u : g.users) {
     				uiUsers.add(u.getUIUser());

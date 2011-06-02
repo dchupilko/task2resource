@@ -79,13 +79,16 @@ public class TaskMapper extends AbstractMapper{
 		//TODO: perhaps it's better to do this in the only transaction
 		try{
 			for (Dates d: dates)
-			{	
+			{		    
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String startDate=sdf.format(d.getStartDate().getTime());
+				String finishDate=sdf.format(d.getFinishDate().getTime());
 				String query=String.format("Select * from Resources where Resources.IdResource not in " +
 												"(select r.IdResource " +
 												"from Resources r, Assignments a, Resources_Assignments r_a " +
 												"where a.IdAssignment=r_a.IdAssignment and r.IdResource=r_a.IdResource and " +
-												"(to_date(%tD) between a.StartDate and a.FinishDate or to_date(%tD) between a.StartDate and a.FinishDate))",
-												d.getStartDate(), d.getFinishDate());
+												"(to_date('%s', 'YYYY-MM-dd') between a.StartDate and a.FinishDate or to_date('%s', 'YYYY-MM-dd') between a.StartDate and a.FinishDate))",
+												startDate, finishDate);
 			    List<Object[]> tempList = this.readObject(query);
 			    Set<Resource> resources = new HashSet<Resource>();
 			    for(Object[] o: tempList)
