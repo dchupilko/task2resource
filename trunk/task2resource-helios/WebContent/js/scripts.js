@@ -19,8 +19,8 @@ $(document).ready(function(){
 	
 	
 	//--------------
-	//календарь
-	$( "#datepicker,#datepicker2" ).datepicker(
+	//datepicker
+	$( "#datepicker,#datepicker2,#datepicker3" ).datepicker(
 				{
 				changeMonth: true,
 				changeYear: true,
