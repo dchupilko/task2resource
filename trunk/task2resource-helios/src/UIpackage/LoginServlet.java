@@ -18,10 +18,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	  private static final Cookie cookie = new Cookie( "hello" , "world" );
-	  private static final String paramName = "foo";
-	  private static final String successURI = "start.jsp";
-	  private static final String failureURI = "registrate.jsp";
+	 
 
     /**
      * @see HttpServlet#HttpServlet()
