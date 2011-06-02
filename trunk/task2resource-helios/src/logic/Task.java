@@ -115,7 +115,7 @@ public class Task {
     	for (Dates d : dates) {
     		for (Resource r : d.resources) {
     			for (UIResource uir: resources)
-    				if(r.equals(uir))
+    				if(r.getName().equals(uir.getName()))
     				{
     					if (r.assertDate(d)) {
     						d.assignResource(r);
@@ -232,14 +232,17 @@ public class Task {
     public void prepareResources () 
     {
     	for (Dates d : dates) {
+        	Set<Resource> tmpResources = new HashSet<Resource>();
     		for (Resource r : d.resources) {
     				if(r.isAssigned()==false)
     				{
-    					d.resources.remove(r);
+    					tmpResources.add(r);
     				}
     		}
+    		d.resources.removeAll(tmpResources);
     	}
     }
+    
     public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources)
     {    
     	Set<UIDates> conflictDates = new HashSet<UIDates> ();

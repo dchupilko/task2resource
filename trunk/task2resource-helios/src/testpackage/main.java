@@ -31,25 +31,31 @@ public class main {
 		User user = new User();
 		
 		int [][] period = {
-                {1,11,00}, //Âñ., 11-00
-                {2,16,15}, // Ïí., 16-15
-                {3,13,00} // Âò. 13-00
+                {1,23,00}, //Âñ., 11-00
+                {2,23,00}, // Ïí., 16-15
+                {3,23,00}, // Âò. 13-00
+                {4,23,00}, //Ñð., 11-00
+                {5,23,00}, //×ò., 11-00
+                {6,23,00}, //Ïò., 11-00
+                {7,23,00}, //Ñá., 11-00
                 };
 		
-		UITask uitask = new UITask("task1", 10, new GregorianCalendar(2011,5,10,8,00), new GregorianCalendar(2011,5,30,8,00), 30, period);
+		UITask uitask = new UITask("task1", 10, new GregorianCalendar(2011,5,1,8,00), new GregorianCalendar(2011,5,4,8,00), 60, period);
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
 		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
 		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Cleaner");
 		UIResource lobby = new UIResource("Lobby", 55);
 		UIResource gym = new UIResource("Gym", 10);
+		UIResource mr1 = new UIResource("Meeting Room1", 30);
+		UIResource cl1 = new UIResource("Class1", 20);
 		
-		
+		/*
 		// Testing use case "Creating new task"
 		Set<UIResource> resources = user.createTask(uitask);
 		for (UIResource uir : resources) {
 			System.out.println(uir.toString());
 		}
-		
+		*/
 		
 		/*
 		// Testing use case "Registration"
@@ -91,12 +97,23 @@ public class main {
 		
 		/*
 		// Testing use case "Choose resources"
+		Set<UIResource> resources = main.createTask(uitask);
 		Set<UIResource> choose = new HashSet<UIResource>();
-		choose.add(lobby);
-		choose.add(gym);
+		choose.add(cl1);
+		choose.add(mr1);
 		Set<UIDates> conflicts = new HashSet<UIDates>();
-		conflicts = user.chooseResources(choose);
+		conflicts = main.chooseResources(choose);
 		System.out.println(conflicts.toString());
+		Set<UIGroup> groups = main.getAllGroups();
+		for (UIGroup g : groups) {
+			System.out.println(g);
+		}
+		Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("Programming"));
+		for (UIUser u : users) {
+			System.out.println(u);
+		}
+		main.assignUsers(users);
+		main.acceptTask();
 		*/
 	}
 }
