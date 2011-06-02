@@ -55,14 +55,18 @@ public class RegistrateServlet extends HttpServlet {
 	     String birthday= request.getParameter("datepicker3");
 	     String email = request.getParameter("email");
 	     String job= request.getParameter("job");
+	     
+	     
 	     boolean sendFlag=isToSendAvaliable(login,password,confirmPassword,firstName,lastName,email,job);    
+	     
+	     //create user
 		 if(sendFlag){
-			 
+			 UIRequest uirequest = new UIRequest(firstName, lastName, login, password, email, job);
+			 Main main = new Main();
+			 main.createUser(uirequest);
 		 }
 		
-	     //UIRequest uirequest = new UIRequest(firstName, lastName, login, password, email, job);
-	     //Main main = new Main();
-	    // main.createUser(uirequest);
+	    
 	     
 	     System.out.println(sendFlag);
 	   
