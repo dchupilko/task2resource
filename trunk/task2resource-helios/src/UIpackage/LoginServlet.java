@@ -1,10 +1,12 @@
 package UIpackage;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +18,11 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	  private static final Cookie cookie = new Cookie( "hello" , "world" );
+	  private static final String paramName = "foo";
+	  private static final String successURI = "start.jsp";
+	  private static final String failureURI = "registrate.jsp";
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -42,20 +48,31 @@ public class LoginServlet extends HttpServlet {
 	       if ((login != null) && (password != null)) {
 	           // here is auth process
 	           if ((login.equals("user")) && (password.equals("pass"))) {
+	        	   response.sendRedirect(( request.getCookies().length == 0 ) ? failureURI : successURI);
+
 	               //here is success auth
+	        	   //String sessionId="123";
+	        	  
+	        	   /*Cookie sessionCookie = new Cookie("TOKEN",sessionId);
+	        	   sessionCookie.setPath("/");
+	        	   response.addCookie(sessionCookie);*/
+	        	   
 	               HttpSession session = request.getSession(true);
 	               session.setAttribute("auth",request.getParameter("login"));
 	               request.setAttribute("message", null);
-	               outputPage("index.jsp", request, response);
+	               //outputPage("start.jsp", request, response);
 	           } else {
 	               //here is failed auth
 	               request.setAttribute("message", "login or pass is not valid");
-	               outputPage("start.jsp", request, response);
+	               outputPage("login.jsp", request, response);
 	           }
 	       } else {
 	           //here is no data to auth
-	           request.setAttribute("message", "Login and pass cant be empty, confirm input");
-	           outputPage("login.jsp", request, response);
+	    	   response.addCookie( cookie );
+	    	   response.sendRedirect(request.getRequestURI() +"?"+ paramName +"=bar" );
+
+	         //  request.setAttribute("message", "Login and pass cant be empty, confirm input");
+	          // outputPage("login.jsp", request, response);
 	      }
 	}
 	public void outputPage(String aJSPName, HttpServletRequest request,
