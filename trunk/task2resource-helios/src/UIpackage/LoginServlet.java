@@ -46,33 +46,26 @@ public class LoginServlet extends HttpServlet {
 		   String login = request.getParameter("login");
 	       String password = request.getParameter("password");
 	       if ((login != null) && (password != null)) {
-	           // here is auth process
+	           
+	    	   
 	           if ((login.equals("user")) && (password.equals("pass"))) {
-	        	   response.sendRedirect(( request.getCookies().length == 0 ) ? failureURI : successURI);
-
-	               //here is success auth
-	        	   //String sessionId="123";
 	        	  
-	        	   /*Cookie sessionCookie = new Cookie("TOKEN",sessionId);
-	        	   sessionCookie.setPath("/");
-	        	   response.addCookie(sessionCookie);*/
-	        	   
+	        	   //TO DO	
+	        	  
+	        		                     	  
 	               HttpSession session = request.getSession(true);
 	               session.setAttribute("auth",request.getParameter("login"));
 	               request.setAttribute("message", null);
-	               //outputPage("start.jsp", request, response);
+	               outputPage("start.jsp", request, response);
 	           } else {
 	               //here is failed auth
 	               request.setAttribute("message", "login or pass is not valid");
 	               outputPage("login.jsp", request, response);
 	           }
 	       } else {
-	           //here is no data to auth
-	    	   response.addCookie( cookie );
-	    	   response.sendRedirect(request.getRequestURI() +"?"+ paramName +"=bar" );
-
-	         //  request.setAttribute("message", "Login and pass cant be empty, confirm input");
-	          // outputPage("login.jsp", request, response);
+	           //here is no data to auth 	   
+	          request.setAttribute("message", "Login and pass cant be empty, confirm input");
+	          outputPage("login.jsp", request, response);
 	      }
 	}
 	public void outputPage(String aJSPName, HttpServletRequest request,
