@@ -1,9 +1,14 @@
 package ORM;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import logic.Group;
+import logic.Resource;
+import logic.Task;
 import logic.User;
 
 import org.hibernate.HibernateException;
@@ -29,7 +34,16 @@ public class UserMapper extends AbstractMapper{
 	{
 		try{
 			String query=String.format("Select * from Groups");
-			Set<Group> groups = new HashSet (this.readObject(query));	
+			List<Object[]> tempList = this.readObject(query);
+		    Set<Group> groups = new HashSet<Group>();
+		    for(Object[] o: tempList)
+		    {
+		    	Group g = new Group();
+		    	g.setOid((new Integer(o[0].toString()).intValue()));
+		    	g.setVersion((new Integer(o[1].toString()).intValue()));
+		    	g.setName(o[2].toString());
+	    		groups.add(g);
+		    }	
 			return groups;
 		}
 		catch(HibernateException he){
@@ -53,7 +67,20 @@ public class UserMapper extends AbstractMapper{
 		try{
 			String query=String.format("select u.* from Users u, Groups g " +
 					"where g.IdGroup=u.IdGroup and g.IdGroup=%d", group.getOid());
-			Set<User> users = new HashSet (this.readObject(query));	
+			List<Object[]> tempList = this.readObject(query);
+		    Set<User> users = new HashSet<User>();
+		    for(Object[] o: tempList)
+		    {
+		    	User u = new User();
+		    	u.setOid((new Integer(o[0].toString()).intValue()));
+		    	u.setVersion((new Integer(o[1].toString()).intValue()));
+		    	u.setFirstName(o[2].toString());
+		    	u.setLastName(o[3].toString());
+		    	u.setEmail(o[4].toString());
+		    	u.setLogin(o[5].toString());
+		    	u.setPassword(o[6].toString());
+	    		users.add(u);
+		    }	
 			group.setUsers(users);
 		}
 		catch(HibernateException he){
