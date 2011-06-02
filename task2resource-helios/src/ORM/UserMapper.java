@@ -51,6 +51,24 @@ public class UserMapper extends AbstractMapper{
 		}
 	}
 	
+	public Group getGroupByJob(String job)
+	{
+		try{
+			String query=String.format("Select g.* from Groups g, Jobs j where j.IdGroup=g.IdGroup and j.Name='%s'", job);
+			List<Object[]> tempList = this.readObject(query);
+			Group g = new Group();
+		    for(Object[] o: tempList)
+		    {
+		    	g.setOid((new Integer(o[0].toString()).intValue()));
+		    	g.setVersion((new Integer(o[1].toString()).intValue()));
+		    	g.setName(o[2].toString());
+		    }
+		    return g;
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
 	public void setGroups(Set<Group> groups) {
 		try {
 			for (Group g : groups) {
