@@ -11,7 +11,7 @@ public class RequestMapper extends AbstractMapper{
 	
 	public Set<Request> getAllRequests(){
 		try{
-			String query = "from Requests";
+			String query = "Select * from Requests";
 			Set<Request> requests = new HashSet(this.readObject(query)); 
 			return requests;
 		} catch(HibernateException he){
@@ -37,7 +37,7 @@ public class RequestMapper extends AbstractMapper{
 		}
 	}
 	
-	public Group getGroupByJob(String jobName)
+	/*public Group getGroupByJob(String jobName)
 	{
 		try{
 			String query=String.format("select g.* from Groups g, Jobs j " +
@@ -47,5 +47,5 @@ public class RequestMapper extends AbstractMapper{
 		catch(HibernateException he){
 			throw he;
 		}
-	}
+	}*/
 }

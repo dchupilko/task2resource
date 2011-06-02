@@ -11,6 +11,7 @@ public class UIRequest {
 	protected String password;
 	protected String email;
 	protected String job;
+	//TODO: birthday and sex
 	
 	public UIRequest(String firstName, String lastName, String login,
 			String password, String email, String job) {

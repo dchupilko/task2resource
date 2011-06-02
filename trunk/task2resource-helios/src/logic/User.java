@@ -47,6 +47,7 @@ public class User {
     	this.currentTask = new Task(task);
     	return currentTask.getAllResources();
     	//TODO: don't forget to add current task to userTasks when saving a task
+    	//TODO: add task creator
     }
 
     /**

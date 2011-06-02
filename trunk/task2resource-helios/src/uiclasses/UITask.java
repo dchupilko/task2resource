@@ -16,6 +16,7 @@ public class UITask {
 	protected GregorianCalendar toDate;
 	protected int lengthInMinutes;
 	protected int[][] period;
+	//TODO: description
 	
 	public UITask(String name, int capacity, GregorianCalendar fromDate,
 			GregorianCalendar toDate, int lengthInMinutes, int[][] period) {

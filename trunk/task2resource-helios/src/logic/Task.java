@@ -79,10 +79,6 @@ public class Task {
         /*while ((tmpDate.get(Calendar.YEAR)!=toDate.get(Calendar.YEAR)) && 
        		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) && 
        		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));*/
-        
-        for (Dates d : dates) {
-        	System.out.println(d.toString());
-        }
     }
     
     /**

@@ -128,14 +128,14 @@ public class AbstractMapper {
         }
 	}
 	
-	public List<Object> readObject (String statement)
+	public List<Object []> readObject (String statement)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
-	    List<Object> objects = new ArrayList<Object>();
+	    List<Object []> objects = new ArrayList<Object []>();
 	    try 
 	    {
-	    	Query query=session.createQuery(statement);
-	    	objects = (List<Object>)query.list();
+	    	Query query=session.createSQLQuery(statement);
+	    	objects = (List<Object []>)query.list();
 	    } 
 	    catch (HibernateException he) 
 	    {

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import uiclasses.*;
+import logic.*;
+
 /**
  * Servlet implementation class RegistrationServlet
  */
@@ -49,6 +52,10 @@ public class RegistrateServlet extends HttpServlet {
 	  //   String birthday= request.getParameter("datepicker");
 	    // String email = request.getParameter("email");
 	    // String job= request.getParameter("job");
+		
+	     //UIRequest uirequest = new UIRequest(firstName, lastName, login, password, email, job);
+	     //Main main = new Main();
+	    // main.createUser(uirequest);
 	     
 		/*
 	     System.out.println(login+"| "+password+"|"+confirm_password+"| "+name+"| "+sex+"| "+birthday+"| "+email+"| "+job);

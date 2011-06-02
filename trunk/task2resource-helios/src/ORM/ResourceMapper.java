@@ -29,7 +29,7 @@ public class ResourceMapper extends AbstractMapper{
 
 	public Set<Resource> getAllResources(){
 		try{
-			String query = "from Resources";
+			String query = "Select * from Resources";
 			Set<Resource> resources = new HashSet(this.readObject(query)); 
 			return resources;
 		} catch(HibernateException he){
