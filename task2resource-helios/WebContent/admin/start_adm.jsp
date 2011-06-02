@@ -28,7 +28,11 @@
 										 <td width="63%" id='child_table_center'>
 										 		<span> To view</span>	
 					                			<table id='table_news'>
-					                			<%for(int i=0;i<10;i++){%>
+					                			<%
+					                			//logic.Main main = new logic.Main();
+					                			//java.util.Set <uiclasses.UIRequest> requests =  main.getAllRequests();
+					                			//requests.size();
+					                			for(int i=0;i<10;i++){%>
 					                				<tr>
 					                					<td>
 					                						

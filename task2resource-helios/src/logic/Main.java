@@ -159,10 +159,36 @@ public class Main {
     	currentUser.modifyUsers(addedUsers, removedUsers);
 	}
 	
+
+	public boolean Authorize (String login, String password)
+	{
+		//TODO: make authorization
+		return true;
+	}
+	
+	public void acceptTask() {
+		currentUser.acceptTask();
+	}
+	
+	public Set<UIResource> createTask(UITask task) {
+		return currentUser.createTask(task);
+	}
+	
+	public Set<UIDates> chooseResources(Set<UIResource> resources) {
+		return currentUser.chooseResources(resources);
+	}
+	
+	public Set<UIResource> resolveConflict(UIDates date) {
+    	return currentUser.resolveConflict(date);
+    }
+	
+	public void chooseResourcesForDate(Set<UIResource> resources, UIDates date) {
+    	currentUser.chooseResourcesForDate(resources, date);
+    }
+
 	public void modifyDates(UITask uitask) {
 		currentUser.modifyDates(uitask);
 	}
-	
 	
     // A C C E S S O R S
     
@@ -188,5 +214,15 @@ public class Main {
 
 	public void setResources(Set<Resource> resources) {
 		this.resources = resources;
+	}
+	
+	public Set<UITask> getAllTasks()
+	{
+		return currentUser.getAllTasks();
+	}
+	
+	public boolean modifyTask (UITask uitask)
+	{
+		return currentUser.modifyTask(uitask);
 	}
 }

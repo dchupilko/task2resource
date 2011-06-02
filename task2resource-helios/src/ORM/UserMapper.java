@@ -28,7 +28,7 @@ public class UserMapper extends AbstractMapper{
 	public Set<Group> getGroups()
 	{
 		try{
-			String query=String.format("from Groups");
+			String query=String.format("Select * from Groups");
 			Set<Group> groups = new HashSet (this.readObject(query));	
 			return groups;
 		}
@@ -52,7 +52,7 @@ public class UserMapper extends AbstractMapper{
 	{
 		try{
 			String query=String.format("select u.* from Users u, Groups g " +
-					"where g.IdGroup=u.IdGroupand g.IdGroup=%d", group.getOid());
+					"where g.IdGroup=u.IdGroup and g.IdGroup=%d", group.getOid());
 			Set<User> users = new HashSet (this.readObject(query));	
 			group.setUsers(users);
 		}

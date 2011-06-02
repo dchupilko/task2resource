@@ -11,12 +11,10 @@ public class Resource {
 	
 	protected String name;
     protected int capacity;
-    protected boolean status;	// assigned or not
+    protected boolean status = false;	// assigned or not
     
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Dates> conflicts = new HashSet<Dates>();
-
-	public Resource() {}
 
 	public Resource(String name, int capacity) {
         this.name = name;
@@ -24,6 +22,18 @@ public class Resource {
         // TODO: ACL
 	}
 	
+	
+	
+	public Resource(int oid, int version, String name, int capacity) {
+		super();
+		this.oid = oid;
+		this.version = version;
+		this.name = name;
+		this.capacity = capacity;
+	}
+
+
+
 	public Resource(UIResource uires) {
         this.name = uires.getName();
         this.capacity = uires.getCapacity();
@@ -75,8 +85,6 @@ public class Resource {
 		if (this == obj)
 			return true;
 		if (obj == null)
-			return false;
-		if (!(obj instanceof Resource))
 			return false;
 		Resource other = (Resource) obj;
 		if (name == null) {
