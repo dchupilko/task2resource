@@ -15,11 +15,11 @@
         <property name="finishDate" type="java.util.Date" access="field">
             <column name="FINISHDATE" />
         </property>
-        <set name="resources" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field">
+        <set name="resources" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="save-update">
             <key>
                 <column name="IDASSIGNMENT" />
             </key>
-            <many-to-many class="logic.Resource" column="IDRESOURCE"/>
+            <many-to-many class="logic.Resource" column="IDRESOURCE" />
         </set>
     	                                                                   
     </class>
