@@ -6,10 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import logic.Group;
-import logic.Resource;
-import logic.Task;
-import logic.User;
+import logic.*;
 
 import org.hibernate.HibernateException;
 
@@ -17,6 +14,14 @@ public class UserMapper extends AbstractMapper{
 	public void setUser(User usr){
 		try{
 			this.insertObject(usr);
+		}catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public void deleteRequest (Request request){
+		try{
+			this.deleteObject(request);
 		}catch(HibernateException he){
 			throw he;
 		}
@@ -69,6 +74,7 @@ public class UserMapper extends AbstractMapper{
 			throw he;
 		}
 	}
+	
 	public void setGroups(Set<Group> groups) {
 		try {
 			for (Group g : groups) {

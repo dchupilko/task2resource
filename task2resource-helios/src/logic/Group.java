@@ -15,6 +15,10 @@ public class Group {
     
     public Group() {}
 
+    public Group(UIGroup uigroup) {
+    	this.name = uigroup.getName();
+    }
+    
     
     // M E T H O D S
     
@@ -22,8 +26,8 @@ public class Group {
     	return new UIGroup(this.name);
     }
     
-    public void addUser(UIRequest uirequest) {
-    	users.add(new User(uirequest));
+    public void addUser(User user) {
+    	users.add(user);
     	
     }
     
@@ -41,8 +45,6 @@ public class Group {
 			return true;
 		if (obj == null)
 			return false;
-		//if (!(obj instanceof Group))
-			//return false;
 		Group other = (Group) obj;
 		if (name == null) {
 			if (other.name != null)

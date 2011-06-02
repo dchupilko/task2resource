@@ -64,12 +64,27 @@ public class Main {
 	}
 			
 	public void acceptRequests(Set<UIRequest> uirequests){
-		while(uirequests.iterator().hasNext()) {
-			UIRequest uiRequest = uirequests.iterator().next();
+		groups = userMapper.getGroups();
+		for (Group g : groups) {
+			userMapper.getUsersByGroup(g);
+		}
+		Group group;
+		for (UIRequest uirequest : uirequests) {
 			//TODO: Make some user checking
 			if(true){
-				//Group group = userMapper.getGroupByJob(uiRequest.getJob());
-				//groups.add(group);
+				group = userMapper.getGroupByJob(uirequest.getJob());
+				for (Group g : groups) {
+					if (g.equals(group)) {
+						User user = new User(uirequest);
+						g.addUser(user);
+						userMapper.setUser(user);
+						for (Request r : requests) {
+							if (r.getLogin().equals(uirequest.getLogin())) {
+								userMapper.deleteRequest(r);
+							}
+						}
+					}
+				}
 			}
 		}
 		userMapper.setGroups(groups);
@@ -79,7 +94,7 @@ public class Main {
 		Set<Request> deniedRequests = new HashSet<Request>();
 		for (Request r : requests) {
 			for (UIRequest uir : uirequests) {
-				if (r.equals(uir)) {
+				if (r.getLogin().equals(uir.getLogin())) {
 					deniedRequests.add(r);
 				}
 			}

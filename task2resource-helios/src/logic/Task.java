@@ -273,8 +273,6 @@ public class Task {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Task))
-			return false;
 		Task other = (Task) obj;
 		if (fromDate == null) {
 			if (other.fromDate != null)
