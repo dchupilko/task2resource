@@ -42,7 +42,7 @@ public class Main {
 		resourceMapper.setResource(res);
 	}
 	
-	/*public void deleteResources(Set<UIResource> uiresources) {
+	public void deleteResources(Set<UIResource> uiresources) {
 		for (Resource r : resources) {
 			for (UIResource uir : uiresources) {
 				if (r.equals(uir)) {
@@ -50,7 +50,7 @@ public class Main {
 				}
 			}
 		}
-	}*/
+	}
 	
 	public Set<UIRequest> getAllRequests() {
 		Set<UIRequest> uirequests = new HashSet<UIRequest>();
