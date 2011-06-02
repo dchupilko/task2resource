@@ -11,7 +11,7 @@
         <script language="javascript" src="js/jquery.js"></script>
         <script language="javascript" src="js/scripts.js"></script>
         <script language="javascript" src="js/jqueryui.js"></script>
-<title>start</title>
+<title>My tasks</title>
 </head>
 <body>
 	<table id="id_main_table">
@@ -56,8 +56,7 @@
 									      	 </div></td>
        
 										 <td width="63%" id='child_table_center'>
-										 		<span> latest tasks ( test - 10)</span>	
-					                			<table id='table_news'>
+										 		<table id='table_news'>
 					                			<%for(int i=0;i<10;i++){%>
 					                				<tr>
 					                					<td>
@@ -86,7 +85,7 @@
 					                				<tr>
 					                					<td>
 					                					<% if(flag==true){%>
-					                					<a href="">View task</a>
+					                					<a href="">Edit task</a>
 					                					<%}%>
 					                					<div align="right">author: <%out.print("author#"+i); %></div></td>
 					                				</tr>
@@ -102,8 +101,7 @@
 					      	   			 	 <% if(flag==true){%>
 					      	   			 	 <div  id="div_create_task_id">
 					      	   			 	 	<a href="create_task.jsp" ><span>>></span>Create task</a>
-					      	   			 	 	<br>
-					      	   			 	 	<a href="my_tasks.jsp" ><span>>></span>My tasks</a>
+					      	   			 	 						      	   			 	 	
 					      	   			 	</div>
 					      	   			 	 <%} %>
 					      	   			 </p>
