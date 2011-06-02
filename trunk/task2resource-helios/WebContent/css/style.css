@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* CSS Document */
+    #id_main_table{
+        border:1px solid #666;
+        width:100%;
+        height:100%
+    }
+    #img_main_top{
+        width:100%;
+        height:150px;
+    }
+    #img_main_footer{
+        width:100%;
+    }
+    .main_td_span span{
+        color:#F00;
+        font-size:12px;
+    }
+    .table_reg tr td{
+        border-top:dashed 1px #999;
+    }
+    .table_reg{
+        border-bottom: dashed 1px #999;
+        width:100%;
+    }
+    .reg_for_div div{
+        font-size:0px;
+        margin-top: 6px;
+    }
+    .reg_for_div{
+        width: 40%; 
+    }
+    #div__reg_email,#div__reg_us{
+	font-size:11px;
+	color:#F00;
+	margin-bottom: 2px;
+	margin-top: 1px;
+	display:none;	
+    }
+    #id_table2_registrtion{
+        width: 100%;
+        border: 0px;
+    }
+    #table_reg_1td{
+        width:25%;
+        valign: "top";        
+    }
+  
+   .td_class_for_color{
+   background: aqua;
+   }
+   #div01{
+   position: absolute;
+   }
+   
+   .child_table_left a{
+	margin-top: 10px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-weight:bold;
+	color:#669;
+	font-size: 12px;
+	text-decoration: none;
+	line-height: 15px;
+	
+	
+		}
+.child_table_left span{
+	font-size:8px;
+	
+	}
+  p,a{
+	margin-left: 9px;
+	margin-right:5px;
+	}
+   
+   	
+#table_news{
+	border: 2px solid   #999;
+	width: 98%;
+	margin-left: 4px;
+	} 
+#category_td{
+	border:0px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#669;
+	vertical-align:bottom;
+	}
+   #title_td{
+	border: 0px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size: 15px;
+	color:#C30;
+	font-weight:bold;
+	}
+ 
+ .brbr{
+	 border-bottom:dashed #CCC 1px;
+	 border-top:dashed #CCC 1px;
+	} 
+  
+   #table_create_task {
+     border: 2px solid #CCC;
+     height: 500px;
+   }
+  .table_create_task_elem td{
+  border-bottom: dashed 1px #CCC;
+  margin-right: 20px;
+  }
+  .table_create_task_elem td span{
+  	margin-left: 20px;
+  	margin-right: 10px;
+  }
+   .table_create_task_elem_td{
+   border-bottom: dashed 1px #CCC;
+   margin-right: 20px;
+   }
+   
+  .table_create_task_elem_td div{
+  margin-bottom: 10px;
+  }
+  .create_task_span_date1{
+   margin-right: 20px;
+   margin-left: 20px;
+  }
+   #create_task_span_date2{
+   margin-right: 23px;
+   margin-left: 20px;
+  }
+   .create_task_span_3{
+   margin-left: 20px;
+  }
+  .table_create_task_elem_td2 span{
+  
+  margin-right: 2.1px; 
+  }
+  .table_create_task_elem_td2{
+  	border-bottom: dashed 1px #CCC;
+  }
+  .list1{
+  width: 200px;
+  height: 195px;
+  margin-left: 20px;
+  }
+   #list2{
+  width: 150px;
+  height: 100px;
+  margin-left: 50px;
+  }
+  .span_title_task{
+  margin-left: 55px;
+  margin-bottom: 10px;
+  }
+#create_task_submit_div{
+	margin-left: 80px;
+}
+.span_margin{
+	margin-left: 110px;
+	margin-bottom: 20px;
+}
