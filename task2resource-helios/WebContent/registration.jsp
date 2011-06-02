@@ -3,9 +3,12 @@
 	<head>
 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title></title>
-	    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-
+		<title>Registrate</title>
+		<link rel="stylesheet" type="text/css"  href="css/jqueryui.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <script language="javascript" src="js/jquery.js"></script>
+        <script language="javascript" src="js/scripts.js"></script>
+        <script language="javascript" src="js/jqueryui.js"></script>
 	</head>
 
 <body>
@@ -34,7 +37,7 @@
                                     <td  class="reg_for_div">
                                     	<div><input type="text"  size="45%" name="user_name" id="input_reg_user"></div>
                                         <input type="hidden" name="name_hidden" id="name_hid">
-                                         <p id="div__reg_us"><snap>Polzovatel s takim imenem uge sushestvuet</snap></p>
+                                         <p id="div__reg_us"><snap>User with this login is already exists</snap></p>
                                         <div><img  /></div>
                                         <div><input type="text" size="7%" name="code_img"></div>
                                     </td>
@@ -58,14 +61,16 @@
                                 </tr>
                                 	<tr>
                                 	<td>
-                                    	<div>Name <span>*</span></div>
-                                        <div>sex <span>*</span></div>
-                                        <div>Birthday <span>*</span></div>
+                                    	<div>FirstName <span>*</span></div>
+                                    	<div>LastName <span>*</span></div>
+                                        <div>sex <span></span></div>
+                                        <div>Birthday <span></span></div>
                                     </td>
                                     <td>	
-                                    	<div><input type="text" name="name" value=""></div>
+                                    	<div><input type="text" name="firstName" value=""></div>
+                                    	<div><input type="text" name="lastName" value=""></div>
                                         <div>m<input type="radio"  name="radio_1" value="false">f<input type="radio"   name="radio_1" value="true"></div>
-                                        <div><input type="text" id="datepicker" name="datepicker" value=""></div>
+                                        <div class="demo"><input type="text" id="datepicker" name="datepicker3" value=""/></div>
                                     </td>
                                     <td></td>
                                 </tr>
