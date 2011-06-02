@@ -4,7 +4,7 @@
 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title></title>
-	    <link rel="stylesheet" type="text/css" href="style.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
 	</head>
 
