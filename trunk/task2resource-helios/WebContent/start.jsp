@@ -35,10 +35,10 @@
                         <%}%>
                         <a href="registration.jsp">Register</a></div><img id="img_main_top" src="img/top.jpg"/></td>
                        <% if(flag==false){%>
-                    	   <span>BTBTBTBT</span>
+                    	   <span>no session</span>
                       <% }%>
                        <% if(flag==true){%>
-                    	   <span>URAAAAA SESSIYA!!!</span>
+                    	   <span>session open</span>
                       <% }%>
            		    </tr>            
            			 <tr>
