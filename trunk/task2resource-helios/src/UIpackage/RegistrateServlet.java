@@ -73,6 +73,7 @@ public class RegistrateServlet extends HttpServlet {
 	}
 	boolean isToSendAvaliable(String login,String password,String confirmPassword,
 			String firstName,String lastName,String email,String job){
+		//dead code)
 		 int counter=0;
 		 if((login.equals(""))){
 	    	 

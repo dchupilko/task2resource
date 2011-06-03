@@ -27,6 +27,7 @@
        
 										 <td width="63%" id='child_table_center'>
 										 		<span> To view</span>	
+										 		<form method="post" action="AdminAsseptServlet">
 					                			<table id='table_news'>
 					                			<%
 					                			//logic.Main main = new logic.Main();
@@ -34,7 +35,7 @@
 					                			//requests.size();
 					                			for(int i=0;i<10;i++){%>
 					                				<tr>
-					                					<td>
+					                					<td width="60%">
 					                						
 					                						<table id="table_news_element">
 					                							<tr>
@@ -51,15 +52,25 @@
 					                						</table>
 					                						
 					                					</td>
+					                					<td></td>
 					                				</tr>
 					                				<tr>
 					                					<td  class='brbr' >
 					                						<%for(int j=0; j<20; j++){out.print("text");}%>
 					                					</td>
+					                					
 					                				</tr>
 					                				
 					                				<%}%>
+					                				<tr>
+					                					<td>
+					                						<div>
+					                							<input type="submit" value="save" name="admin_submit" />
+					                						</div>
+					                					</td>
+					                				</tr>
 					                			</table>
+					                			</form>
 					                			<br/>
 					                			<br/>
 							                   			
