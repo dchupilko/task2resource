@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25.05.2011 17:30:37 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="logic.Task" table="TASKS">
+        <id name="oid" type="int">
+            <column name="IDTASK" />
+            <generator class="sequence" />
+        </id>
+        <version name="version" /> 
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="capacity" type="int">
+            <column name="CAPACITY" />
+        </property>
+        <set name="dates" table="ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="all">
+            <key>
+                <column name="IDTASK" />
+            </key>
+            <one-to-many class="logic.Dates"/>
+        </set>
+        <property name="fromDate" type="java.util.GregorianCalendar" access="field">
+            <column name="FROMDATE" />
+        </property>
+        <property name="toDate" type="java.util.GregorianCalendar" access="field">
+            <column name="TODATE" />
+        </property>
+        <set name="participants" table="PARTICIPATIONS" inverse="false" lazy="true" access="field" cascade="save-update">
+            <key>
+                <column name="IDTASK" />
+            </key>
+            <many-to-many class="logic.User" column="IDUSER"/>
+        </set>
+    </class>
+</hibernate-mapping>
