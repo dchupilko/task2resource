@@ -34,6 +34,9 @@ public class AdminAsseptServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String check_accept=request.getParameter("check_time_accept1");
+		System.out.println(check_accept);
 	}
 
 }
