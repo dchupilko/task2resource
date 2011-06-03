@@ -35,7 +35,7 @@
 					                			//requests.size();
 					                			for(int i=0;i<10;i++){%>
 					                				<tr>
-					                					<td width="60%">
+					                					<td width="80%">
 					                						
 					                						<table id="table_news_element">
 					                							<tr>
@@ -58,13 +58,18 @@
 					                					<td  class='brbr' >
 					                						<%for(int j=0; j<20; j++){out.print("text");}%>
 					                					</td>
-					                					
+					                					<td>
+					                						<INPUT TYPE=CHECKBOX  NAME="check_time_accept<%=i%>" VALUE="1">
+					                					</td>
+					                					<td>
+					                						<INPUT TYPE=CHECKBOX  NAME="check_time_den<%=i%>" VALUE="1">
+					                					</td>
 					                				</tr>
 					                				
 					                				<%}%>
 					                				<tr>
 					                					<td>
-					                						<div>
+					                						<div style="margin-left: 500px">
 					                							<input type="submit" value="save" name="admin_submit" />
 					                						</div>
 					                					</td>
@@ -76,6 +81,7 @@
 							                   			
 								
 					      	   			 </td>
+					      	   			 
 					      	   			       		   			             
           			 		       </tr>
           			 		       

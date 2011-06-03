@@ -31,17 +31,21 @@ $(document).ready(function(){
 				);
 	
 	
-	$("#start_find_task").click(function(){
-		alert("click test");
+	$("#create_task_img").click(function(){
+		//alert("test_img");
+		var selectId=$("#mySelectId").val();
+		alert("id"+selectId);
 	});
-	
-	
-	$("#td_res").click(function(){
-		alert("test_click");
+	$("#create_task_button").click(function(){
+		alert("test_button");
+		var selectGroup=$("#groupSelectId").val();
+		alert("group"+selectGroup);
+		var select=$("#userSelectId").val();
+		alert("users:"+select);
 	});
+
 	
 	
-	$('#div_for_select').css('color','#f0f');
 //	$("#list_1").dropdownchecklist({ width: 150 });
 	//$('#list_1').toChecklist({});
 	
