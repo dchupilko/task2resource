@@ -1,3 +1,6 @@
+<%@page import="uiclasses.*"%>
+<%@page import="logic.*"%>
+<%@page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
   
@@ -58,6 +61,16 @@
 										 <td width="63%" id='child_table_center'>
 										 		<span> latest tasks ( test - 10)</span>	
 					                			<table id='table_news'>
+					                			
+					                			 <%Main main1 = new logic.Main();
+					                			  // java.util.Set <uiclasses.UITask> tasks = main1.getAllTasks();
+																	                			   
+					                			
+					                				//UITask: name, capacity, fromDate, toDate
+					                				//boolean flag = main.modifyTask(uitask);
+					                			//true - user is the owner of the task
+					                			%>
+					                			
 					                			<%for(int i=0;i<10;i++){%>
 					                				<tr>
 					                					<td>
@@ -65,7 +78,7 @@
 					                						<table id="table_news_element">
 					                							<tr>
 					                								<td id='title_td'>
-					                								<%out.print("title"+i);%>
+					                								<%out.print("title");%>
 					                								</td>
 					                								<td id='category_td'>
 					                								<%out.print("categor"+i);%>
