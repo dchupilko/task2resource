@@ -38,7 +38,16 @@ public class User {
 	// M E T H O D S
 	
 	/**
-	 * Use case: creating new task.
+	 * User info to pass to UI
+	 * 
+	 * @return	UIUser class instance
+	 */
+    public UIUser getUIUser() {
+    	return new UIUser(this.firstName, this.lastName);
+    }
+    
+	/**
+	 * Initialize creating new task process
 	 * 
 	 * @param task	Info about task
 	 * @return		List of all resources
@@ -88,15 +97,6 @@ public class User {
     public void assignUsers(Set<User> users) {
     	currentTask.assignUsers(users);
     }
-
-	/**
-	 * User name to pass to UI.
-	 * 
-	 * @return	UIUser class instance
-	 */
-    public UIUser getUIUser() {
-    	return new UIUser(this.firstName, this.lastName);
-    }
 	
     /**
      * Complete creating task
@@ -108,34 +108,44 @@ public class User {
 		mapper.setTask(currentTask);
     }
     
+	/**
+	 * Get list of all tasks
+	 * 
+	 * @return	List of all tasks
+	 */
 	public Set<UITask> getAllTasks()
 	{
 		allTasks = mapper.getAllTasks();
 		mapper.getAllTasksById(this);
-		Set<UITask> uitasks = new HashSet <UITask> ();
-		for(Task t: allTasks)
-		{
+		Set<UITask> uitasks = new HashSet<UITask>();
+		for(Task t: allTasks) {
 			uitasks.add(t.getUITask());
 		}
 		return uitasks;
 	}
 	
+	/**
+	 * Get list of tasks for specified dates
+	 * 
+	 * @param uidate	Dates
+	 * @return			List of tasks
+	 */
 	public Set<UITask> getAllTasksForDates(UIDates uidate)
 	{
 		//TODO: add some flag for UI for tasks, created by user
 		Dates date = new Dates (uidate);
 		allTasks = mapper.getAllTasksForDates(date);
 		mapper.getAllTasksById(this);
-		Set<UITask> uitasks = new HashSet <UITask> ();
-		for(Task t: allTasks)
-		{
+		Set<UITask> uitasks = new HashSet<UITask>();
+		for(Task t: allTasks) {
 			uitasks.add(t.getUITask());
 		}
 		return uitasks;
 	}
 	
-	
 	/**
+	 * Initialize modifying a task process
+	 * 
 	 * @return	 true in case current user is the owner of selected task
 	 */
 	public boolean modifyTask (UITask uitask)
@@ -149,36 +159,73 @@ public class User {
 		return false;
 	}
 	
-	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
-		currentTask.modifyUsers(addedUsers, removedUsers);
-	}
-	
+	/**
+	 * Edit task to resources assignment
+	 * 
+	 * @param addedResources	List of added resources
+	 * @param removedResources	List of removed resources
+	 * @return					Conflict dates
+	 */
 	public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources) 
 	{
 		return currentTask.modifyResources(addedResources, removedResources);
 	}
 	
+	/**
+	 * Edit task participants
+	 * 
+	 * @param addedUsers	List of added users
+	 * @param removedUsers	List of removed users
+	 */
+	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
+		currentTask.modifyUsers(addedUsers, removedUsers);
+	}
+	
+	/**
+	 * Edit task dates, period or length in minutes
+	 * Deletes everything except name and capacity and starts use case "create task"
+	 * 
+	 * @param uitask	Task info
+	 */
 	public void modifyDates(UITask uitask) {
-		//call method in case user changes lengthInMinutes, period or dates
-		//deletes everything except name and capacity and starts use case "create task"
 		currentTask.modifyDates(uitask);
 	}
-		
+	
+	/**
+	 * Edit task name and capacity
+	 * 
+	 * @param uitask	Task info
+	 */
 	public void modifyInfo(UITask uitask) {
 		currentTask.setName(uitask.getName());
 		currentTask.setCapacity(uitask.getCapacity());
 	}
 	
-	public Set<UIDates> getTaskDates ()
+	/**
+	 * Get task info: dates
+	 * 
+	 * @return	List of dates
+	 */
+	public Set<UIDates> getTaskDates()
 	{
 		return currentTask.getTaskDates();
 	}
 	
-	public Set<UIResource> getTaskResources ()
+	/**
+	 * Get task info: resources
+	 * 
+	 * @return	List of resources
+	 */
+	public Set<UIResource> getTaskResources()
 	{
 		return currentTask.getTaskResources();
 	}
 	
+	/**
+	 * Get task info: users
+	 * 
+	 * @return	List of users
+	 */
 	public Set<UIUser> getTaskUsers()
 	{
 		return currentTask.getTaskUsers();

@@ -22,13 +22,22 @@ public class Group {
     
     // M E T H O D S
     
+    /**
+	 * Group info to pass to UI
+	 * 
+	 * @return	UIGroup class instance
+	 */
     public UIGroup getUIGroup() {
     	return new UIGroup(this.name);
     }
-    
+
+    /**
+     * Add user to group
+     * 
+     * @param user	User
+     */
     public void addUser(User user) {
     	users.add(user);
-    	
     }
     
 	@Override

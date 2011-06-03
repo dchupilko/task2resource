@@ -17,12 +17,23 @@ public class Main {
 	
 	protected User currentUser = new User();
 	
+	
+	// M E T H O D S
+	
+	/**
+	 * Create new request for registration
+	 */
 	public void createUser(UIRequest uirequest) {
 		Request request = new Request(uirequest);
 		requestMapper.setRequest(request);
 	}
 	
-	public void deleteUsers(Set<UIUser> uiusers) {
+	/**
+	 * Delete several users
+	 * 
+	 * @param uiusers	List of users
+	 */
+	/*public void deleteUsers(Set<UIUser> uiusers) {
 		//Set<Group> updatedGroups = new HashSet <Group> ();
 		for (Group g : groups) {
 			for (User u : g.users) {
@@ -35,13 +46,34 @@ public class Main {
 				}
 			}
 		}
+	}*/
+	
+	/**
+	 * Check username and password
+	 * 
+	 * @return	true if access granted
+	 */
+	public boolean Authorize (String login, String password)
+	{
+		//TODO: make authorization
+		return true;
 	}
-		
+	
+	/**
+	 * Create new resource
+	 * 
+	 * @param uiresource	Resource info
+	 */
 	public void createResource(UIResource uiresource) {
 		Resource res = new Resource(uiresource);
 		resourceMapper.setResource(res);
 	}
 	
+	/**
+	 * Delete several resources
+	 * 
+	 * @param uiresources	List of resources
+	 */
 	public void deleteResources(Set<UIResource> uiresources) {
 		for (Resource r : resources) {
 			for (UIResource uir : uiresources) {
@@ -52,6 +84,11 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * Get list of all requests for registration
+	 * 
+	 * @return	List of requests
+	 */
 	public Set<UIRequest> getAllRequests() {
 		Set<UIRequest> uirequests = new HashSet<UIRequest>();
 		requests = requestMapper.getAllRequests();
@@ -62,7 +99,12 @@ public class Main {
 		
 		return uirequests;
 	}
-			
+	
+	/**
+	 * Accept several registration requests (add users)
+	 * 
+	 * @param uirequests	List of requests
+	 */
 	public void acceptRequests(Set<UIRequest> uirequests){
 		groups = userMapper.getGroups();
 		for (Group g : groups) {
@@ -90,6 +132,11 @@ public class Main {
 		userMapper.setGroups(groups);
 	}
 
+	/**
+	 * Dismiss several registration requests (delete requests)
+	 * 
+	 * @param uirequests	List of requests
+	 */
 	public void denyRequests(Set<UIRequest> uirequests){
 		Set<Request> deniedRequests = new HashSet<Request>();
 		for (Request r : requests) {
@@ -134,7 +181,47 @@ public class Main {
     	}
     	return uiUsers;
     }
-    
+	
+	/**
+	 * Initialize creating new task process
+	 * 
+	 * @param task	Info about task
+	 * @return		List of all resources
+	 */
+	public Set<UIResource> createTask(UITask task) {
+		return currentUser.createTask(task);
+	}
+	
+    /**
+     * Assign selected resources to dates.
+     * 
+     * @param resources	List of selected resources
+     * @return			Dates of conflicts
+     */
+	public Set<UIDates> chooseResources(Set<UIResource> resources) {
+		return currentUser.chooseResources(resources);
+	}
+	
+    /**
+     * Find replacement for a conflict
+     * 
+     * @param date	Conflict date
+     * @return		List of available resources
+     */
+	public Set<UIResource> resolveConflict(UIDates date) {
+    	return currentUser.resolveConflict(date);
+    }
+	
+    /**
+     * Assign selected resources to specified date
+     * 
+     * @param resources	List of selected resources
+     * @param date		Date of assignment
+     */
+	public void chooseResourcesForDate(Set<UIResource> resources, UIDates date) {
+    	currentUser.chooseResourcesForDate(resources, date);
+    }
+	    
     /**
      * Assign users to current task
      * 
@@ -154,6 +241,61 @@ public class Main {
     	currentUser.assignUsers(users);
     }
     
+    /**
+     * Complete creating task
+     */
+	public void acceptTask() {
+		currentUser.acceptTask();
+	}
+		
+	/**
+	 * Get list of all tasks
+	 * 
+	 * @return	List of all tasks
+	 */
+	public Set<UITask> getAllTasks() 
+	{
+		return currentUser.getAllTasks();
+	}
+	
+	/**
+	 * Get list of tasks for specified dates
+	 * 
+	 * @param uidate	Dates
+	 * @return			List of tasks
+	 */
+	public Set<UITask> getAllTasksForDates(UIDates uidate) {
+		return currentUser.getAllTasksForDates(uidate);
+	}
+	
+	/**
+	 * Initialize modifying a task process
+	 * 
+	 * @return	 true in case current user is the owner of selected task
+	 */
+	public boolean modifyTask (UITask uitask)
+	{
+		return currentUser.modifyTask(uitask);
+	}
+	
+	/**
+	 * Edit task to resources assignment
+	 * 
+	 * @param addedResources	List of added resources
+	 * @param removedResources	List of removed resources
+	 * @return					Conflict dates
+	 */
+	public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources) 
+	{
+		return currentUser.modifyResources(addedResources, removedResources);
+	}
+	
+	/**
+	 * Edit task participants
+	 * 
+	 * @param addedUsers	List of added users
+	 * @param removedUsers	List of removed users
+	 */
 	public void modifyUsers(Set<UIUser> uiAddedUsers, Set<UIUser> uiRemovedUsers) {
 		Set<User> addedUsers = new HashSet<User>();
 		Set<User> removedUsers = new HashSet<User>();
@@ -174,36 +316,55 @@ public class Main {
     	currentUser.modifyUsers(addedUsers, removedUsers);
 	}
 	
-
-	public boolean Authorize (String login, String password)
-	{
-		//TODO: make authorization
-		return true;
-	}
-	
-	public void acceptTask() {
-		currentUser.acceptTask();
-	}
-	
-	public Set<UIResource> createTask(UITask task) {
-		return currentUser.createTask(task);
-	}
-	
-	public Set<UIDates> chooseResources(Set<UIResource> resources) {
-		return currentUser.chooseResources(resources);
-	}
-	
-	public Set<UIResource> resolveConflict(UIDates date) {
-    	return currentUser.resolveConflict(date);
-    }
-	
-	public void chooseResourcesForDate(Set<UIResource> resources, UIDates date) {
-    	currentUser.chooseResourcesForDate(resources, date);
-    }
-
+	/**
+	 * Edit task dates, period or length in minutes
+	 * Deletes everything except name and capacity and starts use case "create task"
+	 * 
+	 * @param uitask	Task info
+	 */
 	public void modifyDates(UITask uitask) {
 		currentUser.modifyDates(uitask);
 	}
+	
+	/**
+	 * Edit task name and capacity
+	 * 
+	 * @param uitask	Task info
+	 */
+	public void modifyInfo(UITask uitask) {
+		currentUser.modifyInfo(uitask);
+	}
+	
+	/**
+	 * Get task info: dates
+	 * 
+	 * @return	List of dates
+	 */
+	public Set<UIDates> getTaskDates()
+	{
+		return currentUser.getTaskDates();
+	}
+	
+	/**
+	 * Get task info: resources
+	 * 
+	 * @return	List of resources
+	 */
+	public Set<UIResource> getTaskResources()
+	{
+		return currentUser.getTaskResources();
+	}
+	
+	/**
+	 * Get task info: users
+	 * 
+	 * @return	List of users
+	 */
+	public Set<UIUser> getTaskUsers()
+	{
+		return currentUser.getTaskUsers();
+	}
+	
 	
     // A C C E S S O R S
     
@@ -229,15 +390,5 @@ public class Main {
 
 	public void setResources(Set<Resource> resources) {
 		this.resources = resources;
-	}
-	
-	public Set<UITask> getAllTasks()
-	{
-		return currentUser.getAllTasks();
-	}
-	
-	public boolean modifyTask (UITask uitask)
-	{
-		return currentUser.modifyTask(uitask);
 	}
 }

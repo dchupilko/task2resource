@@ -93,11 +93,11 @@ public class TaskMapper extends AbstractMapper{
 			    Set<Resource> resources = new HashSet<Resource>();
 			    for(Object[] o: tempList)
 			    {
-			    	Integer oid = new Integer(o[0].toString());
-			    	Integer version = new Integer(o[1].toString());
-			    	String name = o[2].toString();
-			    	Integer capacity = new Integer(o[3].toString());
-			    	Resource r = new Resource(oid.intValue(), version.intValue(), name, capacity.intValue());
+			    	Resource r = new Resource();
+			    	r.setOid((new Integer(o[0].toString()).intValue()));
+			    	r.setVersion((new Integer(o[1].toString()).intValue()));
+			    	r.setName(o[2].toString());
+			    	r.setCapacity((new Integer(o[3].toString()).intValue()));
 			    	resources.add(r);
 			    }
 			    d.setResources(resources);
