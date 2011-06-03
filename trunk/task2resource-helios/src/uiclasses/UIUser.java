@@ -15,8 +15,7 @@ public class UIUser {
 	protected String firstName;
 	protected String lastName;
 
-	
-	public UIUser() {System.out.println("sfsdf");}
+	public UIUser() {}
 	
 	public UIUser(String firstName, String lastName) {
 		this.firstName = firstName;
@@ -44,7 +43,4 @@ public class UIUser {
 		return "UIUser [firstName=" + firstName + ", lastName=" + lastName
 				+ "]";
 	}
-	
-	
-	
 }

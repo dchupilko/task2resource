@@ -59,4 +59,11 @@ public class UIRequest {
 	public void setJob(String job) {
 		this.job = job;
 	}
+
+	@Override
+	public String toString() {
+		return "UIRequest [firstName=" + firstName + ", lastName=" + lastName
+				+ ", login=" + login + ", password=" + password + ", email="
+				+ email + ", job=" + job + "]";
+	}
 }

@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -78,18 +79,15 @@ public class Task {
                                                                   tmpDate.get(Calendar.MONTH), 
                                                                   tmpDate.get(Calendar.DAY_OF_MONTH), 
                                                                   period[i][1] + lengthInMinutes/60, 
-                                                                  period[i][1] + lengthInMinutes%60);
+                                                                  period[i][2] + lengthInMinutes%60);
 
                     dates.add(new Dates(templateDateForStart, templateDateForFinish));
                 }
             }
             tmpDate.add(Calendar.DATE, 1);
-        } while (!tmpDate.equals(toDate));
-        /*
-        } while ((tmpDate.get(Calendar.YEAR)!=toDate.get(Calendar.YEAR)) && 
-       		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) && 
+        } while ((tmpDate.get(Calendar.YEAR) != toDate.get(Calendar.YEAR)) ||
+       		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) || 
        		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
-        */
     }
     
     /**
@@ -148,6 +146,23 @@ public class Task {
      */
     public void assignUsers(Set<User> users) {
     	participants.addAll(users);
+    }
+    
+    /**
+     * Remove resources that are not assigned for resource list
+     */
+    public void prepareResources () 
+    {
+    	for (Dates d : dates) {
+        	Set<Resource> tmpResources = new HashSet<Resource>();
+    		for (Resource r : d.resources) {
+    				if(r.isAssigned()==false)
+    				{
+    					tmpResources.add(r);
+    				}
+    		}
+    		d.resources.removeAll(tmpResources);
+    	}
     }
     
 	/**
@@ -284,23 +299,6 @@ public class Task {
     		uiusers.add(u.getUIUser());
     	}
     	return uiusers;
-    }
-    
-    /**
-     * Remove resources that are not assigned for resource list
-     */
-    public void prepareResources () 
-    {
-    	for (Dates d : dates) {
-        	Set<Resource> tmpResources = new HashSet<Resource>();
-    		for (Resource r : d.resources) {
-    				if(r.isAssigned()==false)
-    				{
-    					tmpResources.add(r);
-    				}
-    		}
-    		d.resources.removeAll(tmpResources);
-    	}
     }
     
 	@Override
