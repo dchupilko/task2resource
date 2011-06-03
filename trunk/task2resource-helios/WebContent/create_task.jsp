@@ -33,7 +33,7 @@
 									      	 </div></td>
        								
 											 <td width="63%" id='child_table_center'>
-										 		 <form method="post" action="CreareTaskServlet">
+										 		 <form method="post" action="CreareTaskServlet" name="Form1">
 					                			<table id="table_create_task" width="100%">
 					                			
 					                				<tr  height="10%" class="table_create_task_elem" >
@@ -90,12 +90,12 @@
 						                				<td></td>
 					                				</tr>
 					                				<tr >
-					                					<td>
+					                					<td id="td_res">
 					                					   
 					                						<div  class="span_title_task">Resources avaliable</div>
 					                						
 					                						    
-															<div id="div_li">
+															<div id="div_for_select">
 																<select class="list1" multiple="multiple" name="resurces_select">
 																<%for(int i=0;i<10;i++){ %>
 																	<option>Value 1</option>
@@ -107,8 +107,8 @@
 					                					</td>
 					                					<td>
 					                							<span style=" margin-left: 90px;" >Groups</span>
-					                						<div id="div_li2">
-																<select id="list2" multiple="multiple">
+					                						<div >
+																<select id="resources_select1"  multiple="multiple" name="resources_select" >
 																<%for(int i=0;i<1;i++){ %>
 																	<option>Value 1</option>
 																	<option>Value 2</option>
