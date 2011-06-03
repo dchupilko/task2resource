@@ -90,25 +90,23 @@
 						                				<td></td>
 					                				</tr>
 					                				<tr >
-					                					<td id="td_res">
-					                					   
-					                						<div  class="span_title_task">Resources avaliable</div>
-					                						
-					                						    
-															<div id="div_for_select">
-																<select class="list1" multiple="multiple" name="resurces_select">
-																<%for(int i=0;i<10;i++){ %>
-																	<option>Value 1</option>
-																	<option>Value 2</option>
-																	<option>Value 3</option>
-																	<%} %>
-																</select>
+					                					<td>
+					                						<div style="margin-left: 50px">Resources avaliable</div>
+					                						<div id="">
+					                						<select multiple="multiple" class="list1">
+					                						<%for(int i=0;i<10;i++){ %>
+					                							<option>value1</option>
+					                							<option>value2</option>
+					                							<%} %>
+					                						</select>
 					                						</div>
 					                					</td>
+					                					
+					                								                			
 					                					<td>
-					                							<span style=" margin-left: 90px;" >Groups</span>
-					                						<div >
-																<select id="resources_select1"  multiple="multiple" name="resources_select" >
+					                							<span style="margin-left: 75px"> Groups</span>
+					                						<div  style="margin-left: 60px;">
+																<select id="resources_select1"  multiple="multiple" name="resources_select" style="width: 100px" >
 																<%for(int i=0;i<1;i++){ %>
 																	<option>Value 1</option>
 																	<option>Value 2</option>
