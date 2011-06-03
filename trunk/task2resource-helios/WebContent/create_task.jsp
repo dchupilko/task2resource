@@ -33,7 +33,7 @@
 									      	 </div></td>
        								
 											 <td width="63%" id='child_table_center'>
-										 		 <form method="post" action="">
+										 		 <form method="post" action="CreareTaskServlet">
 					                			<table id="table_create_task" width="100%">
 					                			
 					                				<tr  height="10%" class="table_create_task_elem" >
@@ -77,13 +77,13 @@
 						                					<span>Sn</span>
 						                					<br>
 						                					<span class="create_task_span_date1"></span>
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time1" VALUE="yes"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time2" VALUE="yes"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time3" VALUE="yes"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time4" VALUE="yes"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time5" VALUE="yes"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time6" VALUE="yes"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time7" VALUE="yes"> 
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time1" VALUE="1"> 
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time2" VALUE="1"> 
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time3" VALUE="1"> 
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time4" VALUE="1"> 
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time5" VALUE="1"> 
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time6" VALUE="1"> 
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time7" VALUE="1"> 
 						                					
 						                					<span class="create_task_span_3"><img src="img/b_update.png"/></span>
 						                				</td>
