@@ -39,7 +39,17 @@ public class Task {
     
     
     // M E T H O D S
-
+    
+	/**
+	 * Task info to pass to UI
+	 * 
+	 * @return	UITask class instance
+	 */
+    public UITask getUITask()
+    {
+    	return new UITask(name, capacity, fromDate, toDate);
+    }
+    
     /**
      * Calculate dates for a period with specified interval
      * 
@@ -75,10 +85,11 @@ public class Task {
             }
             tmpDate.add(Calendar.DATE, 1);
         } while (!tmpDate.equals(toDate));
-        //}
-        /*while ((tmpDate.get(Calendar.YEAR)!=toDate.get(Calendar.YEAR)) && 
+        /*
+        } while ((tmpDate.get(Calendar.YEAR)!=toDate.get(Calendar.YEAR)) && 
        		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) && 
-       		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));*/
+       		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
+        */
     }
     
     /**
@@ -139,11 +150,47 @@ public class Task {
     	participants.addAll(users);
     }
     
+	/**
+	 * Edit task to resources assignment
+	 * 
+	 * @param addedResources	List of added resources
+	 * @param removedResources	List of removed resources
+	 * @return					Conflict dates
+	 */
+    public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources)
+    {    
+    	Set<UIDates> conflictDates = new HashSet<UIDates> ();
+    	for (Dates d : dates) {
+    		for (Resource r : d.resources) {
+    			for (UIResource uir: removedResources)
+    				if(r.equals(uir))
+    				{
+    					if (r.assertDate(d)) {
+    						d.unassignResource(r);
+    					}
+    				}
+    		}
+    	}
+    	return this.chooseResources(addedResources);    	
+    }
+    
+	/**
+	 * Edit task participants
+	 * 
+	 * @param addedUsers	List of added users
+	 * @param removedUsers	List of removed users
+	 */
 	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
 		participants.addAll(addedUsers);
 		participants.removeAll(removedUsers);
 	}
 	
+	/**
+	 * Edit task dates, period or length in minutes
+	 * Deletes everything except name and capacity and starts use case "create task"
+	 * 
+	 * @param uitask	Task info
+	 */
 	public void modifyDates(UITask uitask) {
 		dates.clear();
 		this.calculateDates(uitask);
@@ -188,11 +235,11 @@ public class Task {
     	}
     }
     
-    public UITask getUITask()
-    {
-    	return new UITask(name, capacity, fromDate, toDate);
-    }
-    
+	/**
+	 * Get task info: dates
+	 * 
+	 * @return	List of dates
+	 */
     public Set<UIDates> getTaskDates ()
     {
     	Set<UIDates> uidates = new HashSet <UIDates> ();
@@ -204,6 +251,11 @@ public class Task {
     	return uidates;
     }
     
+	/**
+	 * Get task info: resources
+	 * 
+	 * @return	List of resources
+	 */
     public Set<UIResource> getTaskResources ()
     {
     	Set<UIResource> uiresources = new HashSet<UIResource> ();
@@ -218,6 +270,11 @@ public class Task {
     	return uiresources;
     }
     
+	/**
+	 * Get task info: users
+	 * 
+	 * @return	List of users
+	 */
     public Set<UIUser> getTaskUsers()
     {
     	Set<UIUser> uiusers = new HashSet<UIUser> ();
@@ -229,6 +286,9 @@ public class Task {
     	return uiusers;
     }
     
+    /**
+     * Remove resources that are not assigned for resource list
+     */
     public void prepareResources () 
     {
     	for (Dates d : dates) {
@@ -243,22 +303,6 @@ public class Task {
     	}
     }
     
-    public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources)
-    {    
-    	Set<UIDates> conflictDates = new HashSet<UIDates> ();
-    	for (Dates d : dates) {
-    		for (Resource r : d.resources) {
-    			for (UIResource uir: removedResources)
-    				if(r.equals(uir))
-    				{
-    					if (r.assertDate(d)) {
-    						d.unassignResource(r);
-    					}
-    				}
-    		}
-    	}
-    	return this.chooseResources(addedResources);    	
-    }
 	@Override
 	public int hashCode() {
 		final int prime = 31;

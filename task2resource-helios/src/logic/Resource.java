@@ -16,33 +16,42 @@ public class Resource {
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Dates> conflicts = new HashSet<Dates>();
 
+    public Resource() {}
+    
 	public Resource(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
-        // TODO: ACL
 	}
 	
-	
-	
 	public Resource(int oid, int version, String name, int capacity) {
-		super();
 		this.oid = oid;
 		this.version = version;
 		this.name = name;
 		this.capacity = capacity;
 	}
 
-
-
-	public Resource(UIResource uires) {
-        this.name = uires.getName();
-        this.capacity = uires.getCapacity();
-        // TODO: ACL
+	public Resource(UIResource uiresource) {
+        this.name = uiresource.getName();
+        this.capacity = uiresource.getCapacity();
 	}
 
 	
 	// M E T H O D S
-	
+
+    /**
+	 * Resource info to pass to UI
+	 * 
+	 * @return	UIResource class instance
+	 */
+    public UIResource getUIResource() {
+    	int status = 0;
+    	//TODO: add check status
+    	//status = checkStatus();
+    	UIResource temp = new UIResource(this.name, this.capacity);
+    	temp.setStatus(status);
+    	return temp;
+    }
+    
 	/**
 	 * Check specified date in conflict list
 	 * 
@@ -56,20 +65,6 @@ public class Resource {
     		}
     	}
     	return true;
-    }
-    
-	/**
-	 * Resource info to pass to UI.
-	 * 
-	 * @return	UIResource class instance
-	 */
-    public UIResource getUIResource() {
-    	int status = 0;
-    	//TODO: add check status
-    	//status = checkStatus();
-    	UIResource temp = new UIResource(this.name, this.capacity);
-    	temp.setStatus(status);
-    	return temp;
     }
     
 	@Override

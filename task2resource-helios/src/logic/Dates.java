@@ -1,5 +1,6 @@
 package logic;
 
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,26 +28,36 @@ public class Dates {
         this.finishDate = date.getFinishDate();
     }
     
+    
     // M E T H O D S
     
     /**
-     * Check specified resource as assigned to task
+	 * Dates info to pass to UI
+	 * 
+	 * @return	UIDates class instance
+	 */
+    public UIDates getUIDates ()
+    {
+    	return new UIDates(startDate, finishDate);
+    }
+    
+    /**
+     * Set status of specified resource as assigned
      * 
      * @param resource	Specified resource
      */
     public void assignResource(Resource resource) {
     	resource.setStatus(true);
     }
+    
+    /**
+     * Set status of specified resource as unassigned
+     * 
+     * @param resource	Specified resource
+     */
     public void unassignResource(Resource resource) {
     	resource.setStatus(false);
     }
-        
-    public UIDates getUIDates ()
-    {
-    	return new UIDates(startDate, finishDate);
-    }
-	
-	// A C C E S S O R S
 	
     @Override
 	public int hashCode() {
@@ -81,6 +92,19 @@ public class Dates {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	    String strStartDate=sdf.format(startDate.getTime());
+	    String strFinishDate=sdf.format(startDate.getTime());
+	    
+		return "Dates [startDate=" + strStartDate + ", finishDate=" + strFinishDate
+				+ "]";
+	}
+	
+	
+	// A C C E S S O R S
+	
 	public int getOid() {
 		return oid;
 	}
@@ -119,11 +143,5 @@ public class Dates {
 
 	public void setResources(Set<Resource> resources) {
 		this.resources = resources;
-	}
-
-	@Override
-	public String toString() {
-		return "Dates [startDate=" + startDate + ", finishDate=" + finishDate
-				+ "]";
 	}
 }

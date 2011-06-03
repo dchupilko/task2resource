@@ -27,6 +27,11 @@ public class Request {
 	
 	// M E T H O D S
 	
+    /**
+	 * Request info to pass to UI.
+	 * 
+	 * @return	UIRequest class instance
+	 */
 	public UIRequest getUIRequest() {
 		return new UIRequest(firstName, lastName, login, password, email, job);
 	}
