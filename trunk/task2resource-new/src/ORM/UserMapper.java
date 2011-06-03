@@ -19,6 +19,14 @@ public class UserMapper extends AbstractMapper{
 		}
 	}
 	
+	public void updateUser(User usr){
+		try{
+			this.updateObject(usr);
+		}catch(HibernateException he){
+			throw he;
+		}
+	}
+	
 	public void deleteRequest (Request request){
 		try{
 			this.deleteObject(request);
@@ -106,6 +114,30 @@ public class UserMapper extends AbstractMapper{
 	    		users.add(u);
 		    }	
 			group.setUsers(users);
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public User getUser(String login, String password)
+	{
+		try{
+			String query=String.format("select * from Users " +
+					"where Login='%s' and Password='%s'", login, password);
+			List<Object[]> tempList = this.readObject(query);
+		    User u = new User();
+		    for(Object[] o: tempList)
+		    {
+		    	u.setOid((new Integer(o[0].toString()).intValue()));
+		    	u.setVersion((new Integer(o[1].toString()).intValue()));
+		    	u.setFirstName(o[2].toString());
+		    	u.setLastName(o[3].toString());
+		    	u.setEmail(o[4].toString());
+		    	u.setLogin(o[5].toString());
+		    	u.setPassword(o[6].toString());
+		    }	
+		    return u;
 		}
 		catch(HibernateException he){
 			throw he;

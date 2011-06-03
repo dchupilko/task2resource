@@ -60,7 +60,7 @@ public class Resource {
 	 */
     public boolean assertDate(Dates date) {
     	for (Dates d : conflicts) {
-    		if (date.equals(d)) {
+    		if (date.getStartDate().equals(d.getStartDate()) && date.getFinishDate().equals(d.getFinishDate())) {
     			return false;
     		}
     	}

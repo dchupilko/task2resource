@@ -9,10 +9,10 @@
             <generator class="sequence" />
         </id>
         <version name="version" /> 
-        <property name="startDate" type="java.util.Date" access="field">
+        <property name="startDate" type="java.util.GregorianCalendar" access="field">
             <column name="STARTDATE" />
         </property>
-        <property name="finishDate" type="java.util.Date" access="field">
+        <property name="finishDate" type="java.util.GregorianCalendar" access="field">
             <column name="FINISHDATE" />
         </property>
         <set name="resources" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="save-update">

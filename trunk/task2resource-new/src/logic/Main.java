@@ -33,12 +33,12 @@ public class Main {
 	 * 
 	 * @param uiusers	List of users
 	 */
-	/*public void deleteUsers(Set<UIUser> uiusers) {
+	public void deleteUsers(Set<UIUser> uiusers) {
 		//Set<Group> updatedGroups = new HashSet <Group> ();
 		for (Group g : groups) {
 			for (User u : g.users) {
 				for (UIUser ui : uiusers) {
-					if (u.equals(ui)) {
+					if (u.getFirstName().equals(ui.getFirstName()) && u.getLastName().equals(ui.getLastName())) {
 						//TODO: delete cascade
 						//TODO: do this in one transaction
 						userMapper.deleteUserById(u);
@@ -46,7 +46,7 @@ public class Main {
 				}
 			}
 		}
-	}*/
+	}
 	
 	/**
 	 * Check username and password
@@ -55,7 +55,11 @@ public class Main {
 	 */
 	public boolean Authorize (String login, String password)
 	{
-		//TODO: make authorization
+		currentUser = userMapper.getUser(login, password);
+		if(currentUser.getLogin()==null && currentUser.getPassword()==null)
+		{
+			return false;
+		}
 		return true;
 	}
 	
@@ -67,6 +71,17 @@ public class Main {
 	public void createResource(UIResource uiresource) {
 		Resource res = new Resource(uiresource);
 		resourceMapper.setResource(res);
+	}
+	
+	public Set <UIResource> getAllResources()
+	{
+		Set<UIResource> uiResources = new HashSet<UIResource>();
+		Set<Resource> allResources = resourceMapper.getAllResources();
+		for(Resource r: allResources)
+		{
+			uiResources.add(r.getUIResource());
+		}
+		return uiResources;
 	}
 	
 	/**
@@ -232,7 +247,7 @@ public class Main {
     	for (Group g : groups) {
     		for (User u : g.users) {
     			for (UIUser ui : uiusers) {
-	    			if (u.equals(ui)) {
+	    			if (u.getFirstName().equals(ui.getFirstName())&&u.getLastName().equals(ui.getLastName())) {
 	    				users.add(u);
 	    			}
     			}
@@ -365,7 +380,7 @@ public class Main {
 		return currentUser.getTaskUsers();
 	}
 	
-	
+
     // A C C E S S O R S
     
 	public Set<Group> getGroups() {

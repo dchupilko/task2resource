@@ -42,7 +42,7 @@ public class main {
 		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
 		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Cleaner");
 		
-		UIResource conf = new UIResource("Conference room", 100);
+		UIResource conf = new UIResource("bbb", 100);
 		UIResource cl1 = new UIResource("Class1", 20);
 		UIResource cl2 = new UIResource("Class2", 10);
 		UIResource mr1 = new UIResource("Meeting Room1", 30);
@@ -71,6 +71,7 @@ public class main {
 		main.acceptRequests(acceptedRequests);
 		*/
 		
+		
 		/*
 		// Testing use case "Deny Request"
 		Set<UIRequest> allRequests = main.getAllRequests();
@@ -94,12 +95,13 @@ public class main {
 		
 		/*
 		// Testing use case "Delete resources"
+		Set<UIResource> allResources = main.getAllResources();
 		Set<UIResource> uiresources = new HashSet<UIResource>();
 		uiresources.add(lobby);
 		uiresources.add(gym);
-		main.deleteResources(uiresources);
+		main.deleteResources(uiresources);		
 		*/
-		
+	
 		/*
 		// Testing use case "Creating new task"
 		Set<UIResource> resources = main.createTask(uitask);
@@ -107,9 +109,10 @@ public class main {
 			System.out.println(uir.toString());
 		}
 		*/
-		
+
 		/*
 		// Testing use case "Choose resources"
+		//main.Authorize("ivanivanov", "123456");
 		Set<UIResource> resources = main.createTask(uitask);
 		Set<UIResource> choose = new HashSet<UIResource>();
 		choose.add(conf);
@@ -128,6 +131,19 @@ public class main {
 		}
 		main.assignUsers(users);
 		main.acceptTask();
+		*/
+		
+		/*
+		//Testing use case "Delete users"
+		Set<UIGroup> groups = main.getAllGroups();
+		Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("Engineering"));
+		main.deleteUsers(users);
+		*/
+		
+		/*
+		//Testing use case "Authorization"
+		System.out.println(main.Authorize("ivanivanov", "123456"));
+		System.out.println(main.Authorize("sdf", "123456"));
 		*/
 	}
 }
