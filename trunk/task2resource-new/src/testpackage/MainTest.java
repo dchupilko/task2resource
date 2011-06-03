@@ -41,13 +41,13 @@ public class MainTest {
 
 	@Test
 	public void testCreateUser() {
-		/*
+		
 		Main main = new Main();
 	
 		UIRequest ivanov = new UIRequest("ivan", "Ivanov", "TLogin1", "T123456", "ivanov@gmail.com", "Senior Programmer");
 		UIRequest petrov = new UIRequest("Petr", "Petrov", "TLogin2", "TestPass", "petrov@gmail.com", "Analytic");
 		UIRequest sidorov = new UIRequest("TName3", "Сидоров", "TLogin3", "@T_-$%^&*", "sidorov@gmail.com", "Cleaner");
-		
+		/*
 		main.createUser(ivanov);
 		main.createUser(petrov);
 		main.createUser(sidorov);
