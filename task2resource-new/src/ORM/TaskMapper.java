@@ -89,6 +89,7 @@ public class TaskMapper extends AbstractMapper{
 												"where a.IdAssignment=r_a.IdAssignment and r.IdResource=r_a.IdResource and " +
 												"(to_date('%s', 'YYYY-MM-dd') between a.StartDate and a.FinishDate or to_date('%s', 'YYYY-MM-dd') between a.StartDate and a.FinishDate))",
 												startDate, finishDate);
+				System.out.println(query);
 			    List<Object[]> tempList = this.readObject(query);
 			    Set<Resource> resources = new HashSet<Resource>();
 			    for(Object[] o: tempList)
@@ -286,7 +287,7 @@ public class TaskMapper extends AbstractMapper{
 	public void setTask(Task task){
 		//TODO: check dependencies while saving task
 		try{
-			this.insertObject(task);
+			insertObject(task);
 		}catch(HibernateException he){
 			throw he;
 		}

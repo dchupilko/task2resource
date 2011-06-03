@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import ORM.TaskMapper;
+import ORM.UserMapper;
 
 import uiclasses.*;
 
@@ -106,6 +107,8 @@ public class User {
 		userTasks.add(currentTask);
     	//TODO: check dependencies while saving
 		mapper.setTask(currentTask);
+		(new UserMapper ()).updateUser(this);
+		
     }
     
 	/**
@@ -262,6 +265,12 @@ public class User {
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		return "User [firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", login=" + login + ", password="
+				+ password + "]";
+	}
 	
 	// A C C E S S O R S
 	
