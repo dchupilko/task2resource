@@ -96,7 +96,7 @@
 					                						
 					                						    
 															<div id="div_li">
-																<select class="list1" multiple="multiple" >
+																<select class="list1" multiple="multiple" name="resurces_select">
 																<%for(int i=0;i<10;i++){ %>
 																	<option>Value 1</option>
 																	<option>Value 2</option>
