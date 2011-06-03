@@ -41,14 +41,14 @@ public class CreareTaskServlet extends HttpServlet {
 	     String datepicker2 = request.getParameter("datepicker2");
 	     String time = request.getParameter("time");
 	     
-	     int check_day[]=new int[7];
+	    /* int check_day[]=new int[7];
 	     for(int i=0;i<7;i++){
 	     String toGetParam="check_time"+i;
 	     check_day[i] = Integer.parseInt(request.getParameter(toGetParam));
 	     System.out.println(check_day[i]);
-	     }	   
-	   //  String resources=request.getParameter("resurces_select");
-		 //System.out.print(resources);
+	     }	*/   
+	     String resources=request.getParameter("resources_select");
+		 System.out.print(resources);
 	     //TO DO
 	}
 

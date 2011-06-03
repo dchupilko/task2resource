@@ -30,11 +30,14 @@ $(document).ready(function(){
 				}
 				);
 	
-	//$(function () {
-		//$( "#datepicker" ).datepicker();
-	//});
+	
 	$("#start_find_task").click(function(){
 		alert("click test");
+	});
+	
+	
+	$("#td_res").click(function(){
+		alert("test_click");
 	});
 	
 //	$("#list_1").dropdownchecklist({ width: 150 });
