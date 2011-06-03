@@ -21,10 +21,10 @@
             </key>
             <one-to-many class="logic.Dates"/>
         </set>
-        <property name="fromDate" type="java.util.GregorianCalendar" access="field">
+        <property name="fromDate" type="java.util.Date" access="field">
             <column name="FROMDATE" />
         </property>
-        <property name="toDate" type="java.util.GregorianCalendar" access="field">
+        <property name="toDate" type="java.util.Date" access="field">
             <column name="TODATE" />
         </property>
         <set name="participants" table="PARTICIPATIONS" inverse="false" lazy="true" access="field" cascade="save-update">
