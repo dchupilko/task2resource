@@ -1,5 +1,6 @@
 package uiclasses;
 
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 /*
@@ -28,5 +29,15 @@ public class UIDates {
 	}
 	public void setFinishDate(GregorianCalendar finishDate) {
 		this.finishDate = finishDate;
+	}
+
+	@Override
+	public String toString() {
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	    String strStartDate=sdf.format(startDate.getTime());
+	    String strFinishDate=sdf.format(startDate.getTime());
+	    
+		return "Dates [startDate=" + strStartDate + ", finishDate=" + strFinishDate
+				+ "]";
 	}
 }

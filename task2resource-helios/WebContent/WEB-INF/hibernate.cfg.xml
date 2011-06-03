@@ -9,7 +9,7 @@
   <property name="hibernate.connection.username">denis</property>
   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
   <property name="hibernate.show_sql">true</property>
-  <property name="hbm2ddl.auto">update</property>
+  <!--<property name="hbm2ddl.auto">create</property>-->
   
   <!-- Mapping files -->
 	    <mapping resource="logic/Task.hbm.xml"/>

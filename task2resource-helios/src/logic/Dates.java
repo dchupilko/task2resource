@@ -96,7 +96,7 @@ public class Dates {
 	public String toString() {
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 	    String strStartDate=sdf.format(startDate.getTime());
-	    String strFinishDate=sdf.format(startDate.getTime());
+	    String strFinishDate=sdf.format(finishDate.getTime());
 	    
 		return "Dates [startDate=" + strStartDate + ", finishDate=" + strFinishDate
 				+ "]";
