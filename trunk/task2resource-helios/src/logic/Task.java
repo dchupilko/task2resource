@@ -6,6 +6,8 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.ejb.criteria.expression.function.AggregationFunction.GREATEST;
+
 import com.sun.mail.imap.protocol.UID;
 
 import uiclasses.*;
@@ -17,8 +19,8 @@ public class Task {
     
 	protected String name;
     protected int capacity;
-    protected GregorianCalendar fromDate = null;
-    protected GregorianCalendar toDate = null;
+    protected Date fromDate;
+    protected Date toDate;
     
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Resource> allResources = new HashSet<Resource>();
@@ -57,37 +59,34 @@ public class Task {
      * @param task	Info about task
      */
     private void calculateDates(UITask task){
-        GregorianCalendar fromDate = task.getFromDate();
-        GregorianCalendar toDate   = task.getToDate();
+        Date fromDate = task.getFromDate();
+        Date toDate   = task.getToDate();
         int lengthInMinutes        = task.getLengthInMinutes();
         int[][]period              = task.getPeriod();
         
-    	GregorianCalendar tmpDate = fromDate;
-        GregorianCalendar templateDateForStart;
-        GregorianCalendar templateDateForFinish;
+    	Date tmpDate = fromDate;
+        Date templateDateForStart;
+        Date templateDateForFinish;
         
         do {
             for (int i = 0; i < period.length; i++) {
-                if (tmpDate.get(Calendar.DAY_OF_WEEK) == period[i][0]) {
-                    templateDateForStart = new GregorianCalendar(tmpDate.get(Calendar.YEAR), 
-                                                                 tmpDate.get(Calendar.MONTH), 
-                                                                 tmpDate.get(Calendar.DAY_OF_MONTH), 
-                                                                 period[i][1], 
-                                                                 period[i][2]);
-                    
-                    templateDateForFinish = new GregorianCalendar(tmpDate.get(Calendar.YEAR), 
-                                                                  tmpDate.get(Calendar.MONTH), 
-                                                                  tmpDate.get(Calendar.DAY_OF_MONTH), 
-                                                                  period[i][1] + lengthInMinutes/60, 
-                                                                  period[i][2] + lengthInMinutes%60);
-
+                if (tmpDate.getDay() == period[i][0]) {
+                    templateDateForStart = new Date(tmpDate.getYear(), tmpDate.getMonth(), tmpDate.getDate(), period[i][1], period[i][2]);
+                    templateDateForFinish = new Date(tmpDate.getYear(), tmpDate.getMonth(), tmpDate.getDate(), period[i][1] + lengthInMinutes/60, period[i][2] + lengthInMinutes%60);
                     dates.add(new Dates(templateDateForStart, templateDateForFinish));
                 }
             }
-            tmpDate.add(Calendar.DATE, 1);
-        } while ((tmpDate.get(Calendar.YEAR) != toDate.get(Calendar.YEAR)) ||
-       		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) || 
-       		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
+            GregorianCalendar gc = new GregorianCalendar();
+            gc.setTime(tmpDate); 
+            gc.add(Calendar.DATE, 1);
+            tmpDate = gc.getTime();
+        } while ((tmpDate.getYear() != toDate.getYear()) ||
+       		 (tmpDate.getMonth() != toDate.getMonth()) || 
+       		 (tmpDate.getDate() != toDate.getDate()));
+        
+        for (Dates d : dates) {
+        	System.out.println(d);
+        }
     }
     
     /**
@@ -372,19 +371,19 @@ public class Task {
 		this.capacity = capacity;
 	}
 
-	public GregorianCalendar getFromDate() {
+	public Date getFromDate() {
 		return fromDate;
 	}
 
-	public void setFromDate(GregorianCalendar fromDate) {
+	public void setFromDate(Date fromDate) {
 		this.fromDate = fromDate;
 	}
 
-	public GregorianCalendar getToDate() {
+	public Date getToDate() {
 		return toDate;
 	}
 
-	public void setToDate(GregorianCalendar toDate) {
+	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}
 

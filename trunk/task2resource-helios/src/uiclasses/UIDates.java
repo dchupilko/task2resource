@@ -1,6 +1,7 @@
 package uiclasses;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /*
@@ -10,32 +11,32 @@ import java.util.GregorianCalendar;
  * Use case: edit task
  */
 public class UIDates {
-	protected GregorianCalendar startDate;
-	protected GregorianCalendar finishDate;
+	protected Date startDate;
+	protected Date finishDate;
 
-	public UIDates(GregorianCalendar startDate, GregorianCalendar finishDate) {
+	public UIDates(Date startDate, Date finishDate) {
 		this.startDate = startDate;
 		this.finishDate = finishDate;
 	}
 
-	public GregorianCalendar getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(GregorianCalendar startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public GregorianCalendar getFinishDate() {
+	public Date getFinishDate() {
 		return finishDate;
 	}
-	public void setFinishDate(GregorianCalendar finishDate) {
+	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
 
 	@Override
 	public String toString() {
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-	    String strStartDate=sdf.format(startDate.getTime());
-	    String strFinishDate=sdf.format(startDate.getTime());
+	    String strStartDate=sdf.format(startDate);
+	    String strFinishDate=sdf.format(finishDate);
 	    
 		return "Dates [startDate=" + strStartDate + ", finishDate=" + strFinishDate
 				+ "]";

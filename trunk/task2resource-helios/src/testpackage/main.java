@@ -1,5 +1,6 @@
 package testpackage;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,7 +37,7 @@ public class main {
                 {6,17,00}, //Ïò.
                 };
 		
-		UITask uitask = new UITask("task1", 10, new GregorianCalendar(2011,5,1,8,00), new GregorianCalendar(2011,5,8,23,00), 120, period);
+		UITask uitask = new UITask("task1", 10, new Date(111,5,1,8,00), new Date(111,5,8,23,00), 120, period);
 		
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
 		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");

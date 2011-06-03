@@ -1,6 +1,7 @@
 package logic;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,14 +12,14 @@ public class Dates {
     protected int oid;
     protected int version;
     
-    protected GregorianCalendar startDate;
-    protected GregorianCalendar finishDate;
+    protected Date startDate;
+    protected Date finishDate;
     
     protected Set<Resource> resources = new HashSet<Resource>();
     
     public Dates() {}
     
-    public Dates(GregorianCalendar startDate, GregorianCalendar finishDate) {
+    public Dates(Date startDate, Date finishDate) {
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
@@ -121,19 +122,19 @@ public class Dates {
 		this.version = version;
 	}
 
-	public GregorianCalendar getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(GregorianCalendar startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public GregorianCalendar getFinishDate() {
+	public Date getFinishDate() {
 		return finishDate;
 	}
 
-	public void setFinishDate(GregorianCalendar finishDate) {
+	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
 		

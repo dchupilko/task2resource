@@ -30,17 +30,15 @@ public class TaskMapper extends AbstractMapper{
 		    for(Object[] o: tempList)
 		    {
 		    	Task t = new Task();
+		    	Date d = new Date();
 		    	t.setOid((new Integer(o[0].toString()).intValue()));
 		    	t.setVersion((new Integer(o[1].toString()).intValue()));
 		    	t.setName(o[2].toString());
 		    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-		    	Date d = new Date(o[4].toString());
-		    	GregorianCalendar cal = new GregorianCalendar();
-		    	cal.setTime(d);
-		    	t.setFromDate(cal);
+		    	d = new Date(o[4].toString());
+		    	t.setFromDate(d);
 		    	d = new Date(o[5].toString());
-		    	cal.setTime(d);
-		    	t.setToDate(cal);
+		    	t.setToDate(d);
 	    		tasks.add(t);
 		    }
 			return tasks;
@@ -119,15 +117,13 @@ public class TaskMapper extends AbstractMapper{
 		    for(Object[] o: tempList)
 		    {
 		    	Dates date = new Dates();
+		    	Date d = new Date();
 		    	date.setOid((new Integer(o[0].toString()).intValue()));
 		    	date.setVersion((new Integer(o[1].toString()).intValue()));
-		    	Date d = new Date(o[2].toString());
-		    	GregorianCalendar cal = new GregorianCalendar();
-		    	cal.setTime(d);
-		    	date.setStartDate(cal);
+		    	d = new Date(o[2].toString());
+		    	date.setStartDate(d);
 		    	d = new Date(o[3].toString());
-		    	cal.setTime(d);
-		    	date.setFinishDate(cal);
+		    	date.setFinishDate(d);
 	    		dates.add(date);
 		    }
 			task.setDates(dates);
@@ -147,17 +143,15 @@ public class TaskMapper extends AbstractMapper{
 		    for(Object[] o: tempList)
 		    {
 		    	Task t = new Task();
+		    	Date d = new Date();
 		    	t.setOid((new Integer(o[0].toString()).intValue()));
 		    	t.setVersion((new Integer(o[1].toString()).intValue()));
 		    	t.setName(o[2].toString());
 		    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-		    	Date d = new Date(o[4].toString());
-		    	GregorianCalendar cal = new GregorianCalendar();
-		    	cal.setTime(d);
-		    	t.setFromDate(cal);
+		    	d = new Date(o[4].toString());
+		    	t.setFromDate(d);
 		    	d = new Date(o[5].toString());
-		    	cal.setTime(d);
-		    	t.setToDate(cal);
+		    	t.setToDate(d);
 	    		tasks.add(t);
 		    }
 			return tasks;
@@ -178,17 +172,15 @@ public class TaskMapper extends AbstractMapper{
 		    for(Object[] o: tempList)
 		    {
 		    	Task t = new Task();
+		    	Date d = new Date();
 		    	t.setOid((new Integer(o[0].toString()).intValue()));
 		    	t.setVersion((new Integer(o[1].toString()).intValue()));
 		    	t.setName(o[2].toString());
 		    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-		    	Date d = new Date(o[4].toString());
-		    	GregorianCalendar cal = new GregorianCalendar();
-		    	cal.setTime(d);
-		    	t.setFromDate(cal);
+		    	d = new Date(o[4].toString());
+		    	t.setFromDate(d);
 		    	d = new Date(o[5].toString());
-		    	cal.setTime(d);
-		    	t.setToDate(cal);
+		    	t.setToDate(d);
 	    		tasks.add(t);
 		    }
 			return tasks;
@@ -207,17 +199,15 @@ public class TaskMapper extends AbstractMapper{
 			    for(Object[] o: tempList)
 			    {
 			    	Task t = new Task();
+			    	Date d = new Date();
 			    	t.setOid((new Integer(o[0].toString()).intValue()));
 			    	t.setVersion((new Integer(o[1].toString()).intValue()));
 			    	t.setName(o[2].toString());
 			    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-			    	Date date = new Date(o[4].toString());
-			    	GregorianCalendar cal = new GregorianCalendar();
-			    	cal.setTime(date);
-			    	t.setFromDate(cal);
-			    	date = new Date(o[5].toString());
-			    	cal.setTime(date);
-			    	t.setToDate(cal);
+			    	d = new Date(o[4].toString());
+			    	t.setFromDate(d);
+			    	d = new Date(o[5].toString());
+			    	t.setToDate(d);
 		    		tasks.add(t);
 			    }
 			user.setUserTasks(tasks);
