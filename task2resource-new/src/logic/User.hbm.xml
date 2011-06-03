@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25.05.2011 17:30:37 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="logic.User" table="USERS">
+        <id name="oid" type="int">
+            <column name="IDUSER" />
+            <generator class="sequence" />
+        </id>
+        <version name="version" /> 
+        <property name="firstName" type="java.lang.String">
+            <column name="FIRSTNAME" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="LASTNAME" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="login" type="java.lang.String">
+            <column name="LOGIN" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <set name="userTasks" table="TASKS" inverse="false" lazy="true" access="field" cascade="save-update">
+            <key>
+                <column name="IDUSER" />
+            </key>
+            <one-to-many class="logic.Task" />
+        </set>
+        <set name="tasks" table="PARTICIPATIONS" inverse="false" lazy="true" access="field" cascade="save-update">
+            <key>
+                <column name="IDUSER" />
+            </key>
+            <many-to-many class="logic.Task" column="IDTASK"/>
+        </set>
+    </class>
+</hibernate-mapping>
