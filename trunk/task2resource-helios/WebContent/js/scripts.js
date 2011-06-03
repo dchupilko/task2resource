@@ -40,6 +40,8 @@ $(document).ready(function(){
 		alert("test_click");
 	});
 	
+	
+	$('#div_for_select').css('color','#f0f');
 //	$("#list_1").dropdownchecklist({ width: 150 });
 	//$('#list_1').toChecklist({});
 	
