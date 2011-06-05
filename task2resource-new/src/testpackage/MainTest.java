@@ -35,29 +35,36 @@ public class MainTest {
 
 	@Before
 	public void setUp() throws Exception {
+		System.out.println("Start Test");
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		System.out.println("End Test");
 	}
 
 	@Test
 	public void testCreateUser() {
-		
+
 		Main main = new Main();
+		
 		Set<UIRequest> setBefore=main.getAllRequests();
+	
+		main.denyRequests(setBefore);//Clear all requests
 		
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
 		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
 		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Cleaner");
+		UIRequest sidorovEvilCopy = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "Evil@Hell.com", "Devil");
 		
 		main.createUser(ivanov);
 		main.createUser(petrov);
 		main.createUser(sidorov);
+		main.createUser(sidorovEvilCopy);
 		
 		Set<UIRequest> setAfter=main.getAllRequests();
 		
-		assertTrue(setBefore.size()+3==setAfter.size());
+		assertTrue(setBefore.size()+4==setAfter.size());
 	}
 
 	@Test
@@ -92,31 +99,7 @@ public class MainTest {
 
 	@Test
 	public void testAcceptRequests() {
-		// Testing use case "Accept Request"
-		Main main = new Main();
-		
-		Set<UIRequest> setBefore=main.getAllRequests();
-		
-		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
-		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
-		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Cleaner");
-		
-		Set<UIRequest> allRequests = main.getAllRequests();
-		for (UIRequest uir : allRequests) {
-			System.out.println(uir);
-		}
-		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
-		acceptedRequests.add(ivanov);
-		acceptedRequests.add(petrov);
-		acceptedRequests.add(sidorov);
-		
-		main.acceptRequests(acceptedRequests);
-		
-		Set<UIRequest> setAfter=main.getAllRequests();
-		assertTrue(setBefore.size()-3==setAfter.size());
-		
-		
-		
+		fail("Not yet implemented");	
 	}
 
 	@Test
@@ -226,7 +209,13 @@ public class MainTest {
 
 	@Test
 	public void testGetRequests() {
-		fail("Not yet implemented");
+		//Get all requests
+		Main main = new Main();
+		Set<UIRequest> setBefore=main.getAllRequests();
+		
+		for(UIRequest uir : setBefore){
+			System.out.println(uir.getLogin());
+		}
 	}
 
 	@Test
