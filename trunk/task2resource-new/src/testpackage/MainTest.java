@@ -3,6 +3,7 @@ package testpackage;
 import static org.junit.Assert.*;
 
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -26,7 +27,6 @@ public class MainTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-
 	}
 
 	@AfterClass
@@ -45,12 +45,11 @@ public class MainTest {
 	public void testCreateUser() {
 		
 		Main main = new Main();
-
 		Set<UIRequest> setBefore=main.getAllRequests();
 		
-		UIRequest ivanov = new UIRequest("ivan", "Ivanov", "TLogin1", "T123456", "ivanov@gmail.com", "Senior Programmer");
-		UIRequest petrov = new UIRequest("Petr", "Petrov", "TLogin2", "TestPass", "petrov@gmail.com", "Analytic");
-		UIRequest sidorov = new UIRequest("TName3", "Сидоров", "TLogin3", "@T_-$%^&*", "sidorov@gmail.com", "Cleaner");
+		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
+		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
+		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Cleaner");
 		
 		main.createUser(ivanov);
 		main.createUser(petrov);
@@ -59,7 +58,6 @@ public class MainTest {
 		Set<UIRequest> setAfter=main.getAllRequests();
 		
 		assertTrue(setBefore.size()+3==setAfter.size());
-			
 	}
 
 	@Test
@@ -94,7 +92,31 @@ public class MainTest {
 
 	@Test
 	public void testAcceptRequests() {
-		fail("Not yet implemented");
+		// Testing use case "Accept Request"
+		Main main = new Main();
+		
+		Set<UIRequest> setBefore=main.getAllRequests();
+		
+		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
+		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
+		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Cleaner");
+		
+		Set<UIRequest> allRequests = main.getAllRequests();
+		for (UIRequest uir : allRequests) {
+			System.out.println(uir);
+		}
+		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
+		acceptedRequests.add(ivanov);
+		acceptedRequests.add(petrov);
+		acceptedRequests.add(sidorov);
+		
+		main.acceptRequests(acceptedRequests);
+		
+		Set<UIRequest> setAfter=main.getAllRequests();
+		assertTrue(setBefore.size()-3==setAfter.size());
+		
+		
+		
 	}
 
 	@Test
