@@ -35,22 +35,32 @@ public class MainTest {
 
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("Start Test");
+		//System.out.println("Start Test");
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("End Test");
+		//System.out.println("End Test");
 	}
 
+	
+	@Test
+	public void testGetRequests() {
+		//Get all requests
+		Main main = new Main();
+		Set<UIRequest> setBefore=main.getAllRequests();
+	}
+	
+	
 	@Test
 	public void testCreateUser() {
 
 		Main main = new Main();
 		
 		Set<UIRequest> setBefore=main.getAllRequests();
-	
 		main.denyRequests(setBefore);//Clear all requests
+		
+		setBefore=main.getAllRequests();
 		
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
 		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
@@ -67,6 +77,41 @@ public class MainTest {
 		assertTrue(setBefore.size()+4==setAfter.size());
 	}
 
+	
+	@Test
+	public void testAcceptRequests() {
+		
+		Main main = new Main();
+		
+		// Testing use case "Accept Request"
+		Set<UIRequest> allRequests = main.getAllRequests();
+		main.denyRequests(allRequests);//Clear all requests
+		
+		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
+		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
+		main.createUser(ivanov);
+		main.createUser(petrov);
+		
+		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
+		int countRequestsBefore = acceptedRequests.size();
+		
+		allRequests = main.getAllRequests();
+		
+		for(UIRequest uiq : allRequests){
+			acceptedRequests.add(uiq);
+		}
+		
+		main.acceptRequests(acceptedRequests);
+		
+		allRequests = main.getAllRequests();
+		int countRequestsAfter = acceptedRequests.size();
+		
+		assertTrue(countRequestsBefore-2==countRequestsAfter);
+		
+	}
+	
+	
+	
 	@Test
 	public void testDeleteUsers() {
 		fail("Not yet implemented");
@@ -97,10 +142,7 @@ public class MainTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testAcceptRequests() {
-		fail("Not yet implemented");	
-	}
+	
 
 	@Test
 	public void testDenyRequests() {
@@ -207,16 +249,7 @@ public class MainTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testGetRequests() {
-		//Get all requests
-		Main main = new Main();
-		Set<UIRequest> setBefore=main.getAllRequests();
-		
-		for(UIRequest uir : setBefore){
-			System.out.println(uir.getLogin());
-		}
-	}
+	
 
 	@Test
 	public void testSetRequests() {

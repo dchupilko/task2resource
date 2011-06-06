@@ -1,5 +1,6 @@
 package ORM;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -9,6 +10,8 @@ import java.util.Set;
 import logic.*;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class UserMapper extends AbstractMapper{
 	public void setUser(User usr){
@@ -143,4 +146,5 @@ public class UserMapper extends AbstractMapper{
 			throw he;
 		}
 	}
+	
 }
