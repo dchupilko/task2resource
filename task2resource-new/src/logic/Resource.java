@@ -14,7 +14,7 @@ public class Resource {
     protected boolean status = false;	// assigned or not
     
     protected Set<Dates> dates = new HashSet<Dates>();
-    protected Set<Dates> conflicts = new HashSet<Dates>();
+    //protected Set<Dates> conflicts = new HashSet<Dates>();
 
     public Resource() {}
     
@@ -58,14 +58,14 @@ public class Resource {
 	 * @param date	Date
 	 * @return		True if no conflict
 	 */
-    public boolean assertDate(Dates date) {
+    /*public boolean assertDate(Dates date) {
     	for (Dates d : conflicts) {
     		if (date.getStartDate().equals(d.getStartDate()) && date.getFinishDate().equals(d.getFinishDate())) {
     			return false;
     		}
     	}
     	return true;
-    }
+    }*/
     
 	@Override
 	public int hashCode() {
@@ -90,9 +90,12 @@ public class Resource {
 		return true;
 	}
     
-	
-	// A C C E S S O R S
-	
+	@Override
+	public String toString() {
+		return "Resource [oid=" + oid + ", name=" + name + ", capacity="
+				+ capacity + ", status=" + status + "]";
+	}
+
 	public int getOid() {
 		return oid;
 	}
@@ -100,6 +103,8 @@ public class Resource {
 	public void setOid(int oid) {
 		this.oid = oid;
 	}
+	
+	// A C C E S S O R S
 
 	public int getVersion() {
 		return version;

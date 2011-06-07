@@ -68,6 +68,8 @@ public class AbstractMapper {
         }
 	}
 	
+
+	
 	public void updateObjects (Set<Object> objects)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -146,6 +148,26 @@ public class AbstractMapper {
 	    	session.close();
 	    }	   
 	    return objects;
+	}
+	
+	public Object refreshObject (int OID, Class cls)
+	{
+		Object object = new Object();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+	    try 
+	    {
+	    	object = session.get(cls, OID);
+	    	
+	    } 
+	    catch (HibernateException he) 
+	    {
+	    	throw he;
+	    } 
+	    finally 
+	    { 
+	    	session.close();
+	    }	   
+	    return object;
 	}
 }
 

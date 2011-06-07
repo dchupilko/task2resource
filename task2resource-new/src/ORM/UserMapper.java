@@ -1,8 +1,5 @@
 package ORM;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,8 +7,6 @@ import java.util.Set;
 import logic.*;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 public class UserMapper extends AbstractMapper{
 	public void setUser(User usr){
@@ -97,11 +92,11 @@ public class UserMapper extends AbstractMapper{
 		}
 	}
 	
-	public void getUsersByGroup(Group group)
+	public void getUsersByGroup(Group group, User currentUser)
 	{
 		try{
 			String query=String.format("select u.* from Users u, Groups g " +
-					"where g.IdGroup=u.IdGroup and g.IdGroup=%d", group.getOid());
+					"where g.IdGroup=u.IdGroup and g.IdGroup=%d and u.IdUser<>%d", group.getOid(), currentUser.getOid());
 			List<Object[]> tempList = this.readObject(query);
 		    Set<User> users = new HashSet<User>();
 		    for(Object[] o: tempList)

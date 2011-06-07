@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory name="session">
+ <session-factory>
   <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
   <property name="hibernate.connection.password">473511niv</property>
   <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
@@ -10,6 +10,7 @@
   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
   <property name="hibernate.show_sql">true</property>
   <!-- property name="hbm2ddl.auto">create</property-->
+  
   <mapping resource="logic/Group.hbm.xml"/>
   <mapping resource="logic/Request.hbm.xml"/>
   <mapping resource="logic/Resource.hbm.xml"/>

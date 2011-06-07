@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 25.05.2011 17:30:37 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="logic.Task" table="TASKS">
+    <class name="logic.Task" table="TASKS" select-before-update="true">
         <id name="oid" type="int">
             <column name="IDTASK" />
             <generator class="sequence" />
@@ -27,7 +27,7 @@
         <property name="toDate" type="java.util.GregorianCalendar" access="field">
             <column name="TODATE" />
         </property>
-        <set name="participants" table="PARTICIPATIONS" inverse="false" lazy="true" access="field" cascade="save-update">
+        <set name="participants" table="PARTICIPATIONS" inverse="false" lazy="true" access="field" cascade="none">
             <key>
                 <column name="IDTASK" />
             </key>

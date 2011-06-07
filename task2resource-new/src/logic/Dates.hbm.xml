@@ -15,7 +15,7 @@
         <property name="finishDate" type="java.util.GregorianCalendar" access="field">
             <column name="FINISHDATE" />
         </property>
-        <set name="resources" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="save-update">
+        <set name="resources" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="persist">
             <key>
                 <column name="IDASSIGNMENT" />
             </key>

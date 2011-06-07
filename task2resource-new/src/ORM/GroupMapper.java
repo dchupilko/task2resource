@@ -15,7 +15,6 @@ public class GroupMapper extends AbstractMapper{
 		}
 	}
 	
-	
 	public void setGroup(Group grp){
 		try{
 			this.insertObject(grp);
@@ -23,5 +22,4 @@ public class GroupMapper extends AbstractMapper{
 			throw he;
 		}
 	}
-	
 }
