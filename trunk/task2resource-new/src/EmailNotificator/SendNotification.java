@@ -1,6 +1,4 @@
-/**
- * TODO log4j !!!
- */
+
 /*
  * This is a class that provides
  * to send an email.
@@ -20,8 +18,12 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
+
 public class SendNotification {
     
+	private static final Logger logSendNotification = Logger.getLogger(SendNotification.class);
+	
     /**
      * Constructor for single mail with template
      * @param messageTo - "whom?" (String).  Who will recieve a message
@@ -50,7 +52,7 @@ public class SendNotification {
         try {
             singleInternetAddress = new InternetAddress(this.messageToUser);
         } catch (AddressException ex) {
-            System.out.println("Someting wrong in an email address");
+            logSendNotification.error("Someting wrong with sendnotification", ex);
         }
         
         sendSSLEmail();
@@ -88,7 +90,7 @@ public class SendNotification {
             try {
                 multipleInternetAddress[i] = new InternetAddress(this.messageToUsers[i]);
             } catch (AddressException ex) {
-                System.out.println("Someting went wrong!!!");
+            	logSendNotification.error("Someting wrong with sendnotification", ex);
             }
         }
         
@@ -119,7 +121,7 @@ public class SendNotification {
         try {
             singleInternetAddress = new InternetAddress(this.messageToUser);
         } catch (AddressException ex) {
-            System.out.println("Someting wrong in an email address");
+        	logSendNotification.error("Someting wrong with sendnotification", ex);
         }
         
         sendSSLEmail();
@@ -152,7 +154,7 @@ public class SendNotification {
             try {
                 multipleInternetAddress[i] = new InternetAddress(this.messageToUsers[i]);
             } catch (AddressException ex) {
-                System.out.println("Someting went wrong!!!");
+            	logSendNotification.error("Someting wrong with sending notification", ex);
             }
         }
         
@@ -197,11 +199,11 @@ public class SendNotification {
             message.setSubject(messageSubject);
             message.setText(messageBody);
             Transport.send(message);
-            System.out.println("All OK!");
+            logSendNotification.info("Some message have to be sent");
         } catch(MessagingException e){
-            System.out.println("Cant transport message");
+        	logSendNotification.error("Error transporting message", e);
         } finally{
-            System.out.println("Complete");
+        	logSendNotification.info("Transaction complete and finished");
         }
     }
     

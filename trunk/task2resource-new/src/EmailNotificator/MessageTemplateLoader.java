@@ -1,6 +1,3 @@
-/**
- * TODO log4j!!!
- */
 /*
  * Class that loads email message templates
  */
@@ -12,7 +9,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
+
 public class MessageTemplateLoader {
+	/*
+	 * Trying to enable log4j
+	 */
+	private static final Logger logMessageTemplateLoader = Logger.getLogger(MessageTemplateLoader.class);
 	/*
 	 * Path to folder with templates
 	 * For Windows %PROJECT_FOLDER%/EmailTemplates/
@@ -41,7 +45,7 @@ public class MessageTemplateLoader {
 		
 		} catch (IOException e) {
 			readTemplateMessage = "O_o\n";
-			e.printStackTrace();
+			logMessageTemplateLoader.error("Something crashed", e);
 		} 
 	}
 	
