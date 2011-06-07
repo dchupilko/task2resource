@@ -141,7 +141,7 @@ public class main {
 		}
 		*/
 
-		
+		/*
 		// Testing use case "Create task"
 		main.Authorize("ivanivanov", "123456");
 		Set<UIResource> resources = main.createTask(uitask2);
@@ -162,7 +162,7 @@ public class main {
 		}
 		main.assignUsers(users);
 		main.acceptTask();
-		
+		*/
 				
 		/*
 		//Testing use case "Get task info"
