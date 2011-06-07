@@ -1,3 +1,6 @@
+/**
+ * TODO log4j!!!
+ */
 /*
  * This is a class that parses ini-file cinfiguration.
  * Using Ini4j.
