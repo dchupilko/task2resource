@@ -21,25 +21,29 @@ public class SendNotification {
     
     /**
      * Constructor for single mail
-     * @param messageTo - "whom?" (String).  Кому отправляем письмо?
-     * @param messageSubject - Subject (String). Тема письма
-     * @param messageBody  - text in letter. Собственно, само сообщение
+     * @param messageTo - "whom?" (String).  Who will recieve a message
+     * @param messageSubject - Subject (String). What is our subject (topic)
+     * @param messageCode - What template should be sent
      */
     
-    public SendNotification(String messageTo, String messageSubject, String messageBody){
+    public SendNotification(String messageTo, String messageSubject, int messageCode){    
         primaryReader             = new PropertyReader();
-        email                     = primaryReader.getEmail();
+        prop                      = new Properties();
+         
+    	email                     = primaryReader.getEmail();
         password                  = primaryReader.getPassword();
         smtp_server               = primaryReader.getSMTPServer();
         port                      = primaryReader.getPort();
         
         this.messageToUser        = messageTo;
         this.messageSubject       = messageSubject;
-        this.messageBody          = messageBody;
-        
-        prop                      = new Properties();
-        
+        this.messageCode          = messageCode;
+                
         isSingleMessage           = true;
+       
+        tempLoader                = new MessageTemplateLoader(this.messageCode);
+        
+        this.messageBody = tempLoader.getTemplateMessage();
         
         try {
             singleInternetAddress = new InternetAddress(this.messageToUser);
@@ -50,8 +54,11 @@ public class SendNotification {
         sendSSLEmail();
     }
     
-    public SendNotification(String[] messageTo, String messageSubject, String messageBody){
+    public SendNotification(String[] messageTo, String messageSubject, int messageCode){
         primaryReader           = new PropertyReader();
+        prop                    = new Properties();
+        
+        
         email                   = primaryReader.getEmail();
         password                = primaryReader.getPassword();
         smtp_server             = primaryReader.getSMTPServer();
@@ -59,11 +66,13 @@ public class SendNotification {
         
         this.messageToUsers     = messageTo;
         this.messageSubject     = messageSubject;
-        this.messageBody        = messageBody;
-        
-        prop                    = new Properties();
+        this.messageCode        = messageCode;
         
         isSingleMessage         = false;
+        
+        tempLoader              = new MessageTemplateLoader(this.messageCode);
+        
+        this.messageBody = tempLoader.getTemplateMessage();
         
         multipleInternetAddress = new InternetAddress[messageToUsers.length];
         
@@ -139,6 +148,8 @@ public class SendNotification {
     private String messageBody           = null;
     private String[] messageToUsers      = null;
     
+    private int messageCode = 0;
+    
     private boolean isSingleMessage      = true;
         
     private PropertyReader primaryReader = null;
@@ -146,6 +157,7 @@ public class SendNotification {
     private InternetAddress singleInternetAddress     = null;
     private InternetAddress[] multipleInternetAddress = null;
     
-    private Properties prop              = null;
+    private Properties prop                  = null;
+    private MessageTemplateLoader tempLoader = null;
     
 }
