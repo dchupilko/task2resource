@@ -1,3 +1,6 @@
+/**
+ * TODO log4j!!!
+ */
 /*
  * Class that loads email message templates
  */

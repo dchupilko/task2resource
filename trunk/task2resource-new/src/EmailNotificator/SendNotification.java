@@ -1,3 +1,6 @@
+/**
+ * TODO log4j !!!
+ */
 /*
  * This is a class that provides
  * to send an email.
@@ -20,12 +23,11 @@ import javax.mail.internet.MimeMessage;
 public class SendNotification {
     
     /**
-     * Constructor for single mail
+     * Constructor for single mail with template
      * @param messageTo - "whom?" (String).  Who will recieve a message
      * @param messageSubject - Subject (String). What is our subject (topic)
      * @param messageCode - What template should be sent
      */
-    
     public SendNotification(String messageTo, String messageSubject, int messageCode){    
         primaryReader             = new PropertyReader();
         prop                      = new Properties();
@@ -54,6 +56,12 @@ public class SendNotification {
         sendSSLEmail();
     }
     
+    /**
+     * Constructor of multiple mail sender with template
+     * @param messageTo - Who will recieve a message
+     * @param messageSubject - What is our subject (topic)
+     * @param messageCode - What template should be sent
+     */
     public SendNotification(String[] messageTo, String messageSubject, int messageCode){
         primaryReader           = new PropertyReader();
         prop                    = new Properties();
@@ -87,6 +95,74 @@ public class SendNotification {
         sendSSLEmail();
     }
     
+    /**
+     * Constructor for single mail without template
+     * @param messageTo - "whom?" (String).  Who will recieve a message
+     * @param messageSubject - Subject (String). What is our subject (topic)
+     * @param messageCode - What template should be sent
+     */
+    public SendNotification(String messageTo, String messageSubject, String messageBody){
+    	primaryReader             = new PropertyReader();
+        email                     = primaryReader.getEmail();
+        password                  = primaryReader.getPassword();
+        smtp_server               = primaryReader.getSMTPServer();
+        port                      = primaryReader.getPort();
+        
+        this.messageToUser        = messageTo;
+        this.messageSubject       = messageSubject;
+        this.messageBody          = messageBody;
+        
+        prop                      = new Properties();
+        
+        isSingleMessage           = true;
+        
+        try {
+            singleInternetAddress = new InternetAddress(this.messageToUser);
+        } catch (AddressException ex) {
+            System.out.println("Someting wrong in an email address");
+        }
+        
+        sendSSLEmail();
+    }
+    
+    /**
+     * Constructor of multiple mail sender without template
+     * @param messageTo - Who will recieve a message
+     * @param messageSubject - What is our subject (topic)
+     * @param messageCode - What template should be sent
+     */
+    public SendNotification(String[] messageTo, String messageSubject, String messageBody){
+    	primaryReader           = new PropertyReader();
+        email                   = primaryReader.getEmail();
+        password                = primaryReader.getPassword();
+        smtp_server             = primaryReader.getSMTPServer();
+        port                    = primaryReader.getPort();
+        
+        this.messageToUsers     = messageTo;
+        this.messageSubject     = messageSubject;
+        this.messageBody        = messageBody;
+        
+        prop                    = new Properties();
+        
+        isSingleMessage         = false;
+        
+        multipleInternetAddress = new InternetAddress[messageToUsers.length];
+        
+        for(int i = 0;i< messageToUsers.length;i++){
+            try {
+                multipleInternetAddress[i] = new InternetAddress(this.messageToUsers[i]);
+            } catch (AddressException ex) {
+                System.out.println("Someting went wrong!!!");
+            }
+        }
+        
+        sendSSLEmail();
+    }
+    
+    /**
+     * XXX :)
+     * Method that sends an email through SSL encryption
+     */
     private void sendSSLEmail(){
         /*
          * Initilizing connection properties

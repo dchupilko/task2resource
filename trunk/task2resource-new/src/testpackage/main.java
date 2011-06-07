@@ -27,7 +27,14 @@ public class main {
 		int msgCode = 1;
         String mail1 = "081krieger@gmail.com";
         String[] mail2 = {"petrov.igor.od@gmail.com", "081krieger@gmail.com", "081krieger@xakep.ru"};
+        
+        SendNotification send1 = new SendNotification(mail1, subj, msgCode);
         SendNotification send2 = new SendNotification(mail2, subj, msgCode);
+        
+        SendNotification send3 = new SendNotification(mail1, subj, "blablabla");
+        SendNotification send4 = new SendNotification(mail1, subj, "ololo!!!111");
+        
+        send1 = null; send2 = null; send3 = null; send4 = null;
 		*/
 		
 		/*Main main = new Main();
