@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CreareTaskServlet
+ * Servlet implementation class registrationAjaxServlet
  */
-@WebServlet("/CreareTaskServlet")
-public class CreareTaskServlet extends HttpServlet {
+@WebServlet("/registrationAjaxServlet")
+public class registrationAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreareTaskServlet() {
+    public registrationAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,6 +27,17 @@ public class CreareTaskServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String targetId = request.getParameter("user_name");
+
+        if (targetId != null) {
+            response.setContentType("text/xml");
+          //  response.setHeader("Cache-Control", "no-cache");
+            response.getWriter().write("<message>valid</message>"); 
+        } else {
+            response.setContentType("text/xml");
+            //response.setHeader("Cache-Control", "no-cache");
+            response.getWriter().write("<message>invalid</message>"); 
+        }
 	}
 
 	/**
@@ -34,23 +45,6 @@ public class CreareTaskServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 String task_name = request.getParameter("task_name");
-	     String task_count = request.getParameter("task_count");
-	     String task_time = request.getParameter("task_time");
-	     String datepicker = request.getParameter("datepicker");
-	     String datepicker2 = request.getParameter("datepicker2");
-	     String time = request.getParameter("time");
-	     
-	     String check_day[]=new String[7];
-	     int const7=7;
-	     for(int i=0;i<const7;i++){
-	     String toGetParam="check_time"+i;
-	     check_day[i] = request.getParameter(toGetParam);
-	     System.out.println(check_day[i]);
-	     }	  
-	     String resources=request.getParameter("resources_select");
-		 System.out.print(resources);
-	     //TO DO
 	}
 
 }
