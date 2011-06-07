@@ -37,6 +37,14 @@ public class main {
         send1 = null; send2 = null; send3 = null; send4 = null;
 		*/
 		
+		/*
+		 * Tested LOG4J 
+		String subj = "Hello my friends";
+		int msgCode = 19999;
+        String mail1 = "081krieger@gmail.com";
+        SendNotification send1 = new SendNotification(mail1, subj, msgCode);
+        */
+		
 		/*Main main = new Main();
 		User user = new User();
 		

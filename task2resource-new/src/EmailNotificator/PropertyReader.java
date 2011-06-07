@@ -1,6 +1,3 @@
-/**
- * TODO log4j!!!
- */
 /*
  * This is a class that parses ini-file cinfiguration.
  * Using Ini4j.
@@ -11,26 +8,23 @@ package EmailNotificator;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+
+import org.apache.log4j.Logger;
 import org.ini4j.Ini;
 import org.ini4j.IniPreferences;
 
-
 public class PropertyReader {
-
-
+	
     private static final String FILEPATH =  "." + File.separator 
                                           + "PropertyFiles" + File.separator 
                                           + "EmailSenderConfig.ini";
-
-
+    private static final Logger logPropertyReader = Logger.getLogger(MessageTemplateLoader.class);
     public PropertyReader() {
         try {
             pref = new IniPreferences(new Ini(new File(FILEPATH)));
         } catch (IOException ex) {
-            Logger.getLogger(PropertyReader.class.getName()).log(Level.SEVERE, null, ex);
+            logPropertyReader.error("Something wrong with properties", ex);
         }
         getNewConfig();
     }
