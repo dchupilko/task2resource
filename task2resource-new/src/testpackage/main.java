@@ -14,20 +14,23 @@ public class main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*
-		 * Testing email sender
-		 
-		System.out.println("Hello world!");
-		String subj = "hello";
-        String message = "hi!";
-        String mail1 = "petrov.igor.od@gmail.com";
-        String[] mail2 = {"petrov.igor.od@gmail.com", "081krieger@gmail.com", "081krieger@xakep.ru"};
-        
-        SendNotification send1 = new SendNotification(mail1, subj + "1", message + "1");
-        SendNotification send2 = new SendNotification(mail2, subj + "2", message + "2");
-	    */ 
 		
-		Main main = new Main();
+		/*
+		 * Another eail testing
+		 * And now with templates
+		 * You have to enter a template code
+		 * Currently fom 0 to 5
+		 * For more info contact me or see comments
+		 * at EmailNotificator package 
+		 *
+		String subj = "Hello my friends";
+		int msgCode = 1;
+        String mail1 = "081krieger@gmail.com";
+        String[] mail2 = {"petrov.igor.od@gmail.com", "081krieger@gmail.com", "081krieger@xakep.ru"};
+        SendNotification send2 = new SendNotification(mail2, subj, msgCode);
+		*/
+		
+		/*Main main = new Main();
 		User user = new User();
 		
 		int [][] period = {
@@ -50,7 +53,7 @@ public class main {
 		UIResource mr3 = new UIResource("Meeting Room3", 50);
 		UIResource lobby = new UIResource("Lobby", 50);
 		UIResource gym = new UIResource("Gym", 10);
-		UIResource kitchen = new UIResource("Kitchen", 5);
+		UIResource kitchen = new UIResource("Kitchen", 5);*/
 		
 		/*
 		// Testing use case "Registration"
