@@ -129,15 +129,6 @@ public class SendNotification {
         }
     }
     
-    /* 
-     * public void debug(){
-     *   for(int i = 0; i < messageToUsers.length;i++){
-     *       System.out.println(multipleInternetAddress[i].toString());
-     *   }
-     *   System.out.println("#######\n"+singleInternetAddress);
-     * }
-     */
-
 
     private String email                 = null;
     private String password              = null;
