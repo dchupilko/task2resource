@@ -21,6 +21,7 @@ public class Task {
     protected Set<Dates> dates = new HashSet<Dates>();
     protected Set<Resource> allResources = new HashSet<Resource>();
     protected Set<User> participants = new HashSet<User>();
+    protected Set<Resource> assignedResources = new HashSet<Resource>();
     
     protected TaskMapper taskMapper = new TaskMapper(); 
     
@@ -57,12 +58,13 @@ public class Task {
     private void calculateDates(UITask task){
         GregorianCalendar fromDate = task.getFromDate();
         GregorianCalendar toDate   = task.getToDate();
-        int lengthInMinutes        = task.getLengthInMinutes();
+        int lengthInMinutes        = task.getLengthInMinutes() - 1;
         int[][]period              = task.getPeriod();
         
-    	GregorianCalendar tmpDate = fromDate;
-        GregorianCalendar templateDateForStart;
-        GregorianCalendar templateDateForFinish;
+    	GregorianCalendar tmpDate = new GregorianCalendar();
+    	tmpDate.setTime(fromDate.getTime());
+        GregorianCalendar templateDateForStart = null;
+        GregorianCalendar templateDateForFinish = null;
         
         do {
             for (int i = 0; i < period.length; i++) {
@@ -98,12 +100,23 @@ public class Task {
     	//if resource has already been added into collection it won't be added again
     	for(Dates d : dates)
     	{
-    		for(Resource r : d.resources)
-    		{
-    			allResources.add(r);
-    		}
+    		allResources.addAll(d.resources);
     	}
-    	//TODO: add status if resource has a conflict
+    	/*
+    	for(Dates d : dates)
+    	{
+    		if(d.resources.containsAll(allResources))
+    		{
+    			continue;
+    		}
+    		for(Resource r : allResources)
+    		{ 			
+    			if(!d.resources.contains(r))
+    			{
+    				r.conflicts.add(d);
+    			}    				
+    		}
+    	}*/
     	Set<UIResource> uiResources = new HashSet<UIResource>();
     	for (Resource r : allResources) {
     		uiResources.add(r.getUIResource());
@@ -119,21 +132,32 @@ public class Task {
      */
     public Set<UIDates> chooseResources(Set<UIResource> resources) {
     	Set<UIDates> conflictDates = new HashSet<UIDates> ();
-    	for (Dates d : dates) {
-    		for (Resource r : d.resources) {
-    			for (UIResource uir: resources)
-    				if(r.getName().equals(uir.getName()))
-    				{
-    					if (r.assertDate(d)) {
-    						d.assignResource(r);
-    					}
-    					else 
-    					{
-    						conflictDates.add(new UIDates(d.getStartDate(), d.getFinishDate()));
-    					}
-    				}
-    		}
-    	}
+		for (Resource r : allResources) 
+		{
+			for (UIResource uir: resources)
+			{
+				if(r.getName().equals(uir.getName()))
+				{
+					for (Dates d : dates) 
+					{
+						if(d.resources.contains(r))
+						{
+							for(Resource res : d.resources)
+							{
+								if(r.equals(res))
+								{
+									d.assignResource(res);
+								}
+							}							
+						}
+						else
+						{
+							conflictDates.add(new UIDates(d.getStartDate(), d.getFinishDate()));
+						}
+					}   				
+				}					
+			}
+		}    	
     	return conflictDates;
     }
 
@@ -172,17 +196,26 @@ public class Task {
 	 */
     public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources)
     {    
-    	Set<UIDates> conflictDates = new HashSet<UIDates> ();
+    	allResources.retainAll(assignedResources);
     	for (Dates d : dates) {
-    		for (Resource r : d.resources) {
+    		for (Resource r : d.resources) 
+    		{
     			for (UIResource uir: removedResources)
-    				if(r.equals(uir))
+    			{
+    				if(r.getName().equals(uir.getName()))
     				{
-    					if (r.assertDate(d)) {
-    						d.unassignResource(r);
-    					}
+    					d.unassignResource(r);
     				}
+    			}
     		}
+    	}
+    	if(version!=0)
+    	{
+    		taskMapper.getResourcesByDate(dates);
+    	}
+    	for(Dates d : dates)
+    	{
+    		allResources.addAll(d.resources);
     	}
     	return this.chooseResources(addedResources);    	
     }
@@ -205,7 +238,11 @@ public class Task {
 	 * @param uitask	Task info
 	 */
 	public void modifyDates(UITask uitask) {
+		allResources.clear();
+		allResources.addAll(assignedResources);
 		dates.clear();
+		this.fromDate = uitask.getFromDate();
+        this.toDate = uitask.getToDate();
 		this.calculateDates(uitask);
 	}
 	
@@ -275,6 +312,7 @@ public class Task {
     	taskMapper.getResourcesByTask(this);
     	for(Dates d: dates)
     	{
+    		assignedResources.addAll(d.getResources());
     		for(Resource r: d.getResources())
     		{
     			uiresources.add(r.getUIResource());
@@ -300,12 +338,25 @@ public class Task {
     }
     
 	@Override
+	public String toString() {
+		return "Task [oid=" + oid + ", name=" + name + "]";
+	}
+	
+	
+
+	
+	// A C C E S S O R S
+	
+	
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
 				+ ((fromDate == null) ? 0 : fromDate.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + oid;
 		result = prime * result + ((toDate == null) ? 0 : toDate.hashCode());
 		return result;
 	}
@@ -327,6 +378,8 @@ public class Task {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (oid != other.oid)
+			return false;
 		if (toDate == null) {
 			if (other.toDate != null)
 				return false;
@@ -334,10 +387,7 @@ public class Task {
 			return false;
 		return true;
 	}
-    
-	
-	// A C C E S S O R S
-	
+
 	public int getOid() {
 		return oid;
 	}

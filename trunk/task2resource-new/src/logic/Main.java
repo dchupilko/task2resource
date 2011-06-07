@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import uiclasses.*;
@@ -123,7 +124,7 @@ public class Main {
 	public void acceptRequests(Set<UIRequest> uirequests){
 		groups = userMapper.getGroups();
 		for (Group g : groups) {
-			userMapper.getUsersByGroup(g);
+			userMapper.getUsersByGroup(g, currentUser);
 		}
 		Group group;
 		for (UIRequest uirequest : uirequests) {
@@ -188,7 +189,7 @@ public class Main {
     	Set<UIUser> uiUsers = new HashSet<UIUser>();
     	for (Group g : groups) {
     		if (g.getName().equals(uigroup.getName())) {
-    			userMapper.getUsersByGroup(g);
+    			userMapper.getUsersByGroup(g, currentUser);
     			for (User u : g.users) {
     				uiUsers.add(u.getUIUser());
     			}
@@ -268,7 +269,7 @@ public class Main {
 	 * 
 	 * @return	List of all tasks
 	 */
-	public Set<UITask> getAllTasks() 
+	public List<UITask> getAllTasks() 
 	{
 		return currentUser.getAllTasks();
 	}
@@ -337,8 +338,9 @@ public class Main {
 	 * 
 	 * @param uitask	Task info
 	 */
-	public void modifyDates(UITask uitask) {
-		currentUser.modifyDates(uitask);
+	public Set<UIResource> modifyDates(UITask uitask)
+	{
+		return currentUser.modifyDates(uitask);
 	}
 	
 	/**

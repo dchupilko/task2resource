@@ -1,6 +1,8 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import ORM.TaskMapper;
@@ -104,11 +106,10 @@ public class User {
      */
 	public void acceptTask() {
 		currentTask.prepareResources();
+		mapper.getAllTasksById(this);
 		userTasks.add(currentTask);
-    	//TODO: check dependencies while saving
-		mapper.setTask(currentTask);
-		(new UserMapper ()).updateUser(this);
-		
+		mapper.setTask(currentTask);	
+		(new UserMapper()).updateUser(this);
     }
     
 	/**
@@ -116,11 +117,11 @@ public class User {
 	 * 
 	 * @return	List of all tasks
 	 */
-	public Set<UITask> getAllTasks()
+	public List<UITask> getAllTasks()
 	{
 		allTasks = mapper.getAllTasks();
 		mapper.getAllTasksById(this);
-		Set<UITask> uitasks = new HashSet<UITask>();
+		List<UITask> uitasks = new ArrayList<UITask>();
 		for(Task t: allTasks) {
 			uitasks.add(t.getUITask());
 		}
@@ -154,7 +155,10 @@ public class User {
 	public boolean modifyTask (UITask uitask)
 	{
 		for(Task t: userTasks) {
-			if(t.equals(uitask)) {
+			if(t.getName().equals(uitask.getName())
+					&&t.getFromDate().equals(uitask.getFromDate())
+					&&t.getToDate().equals(uitask.getToDate())) 
+			{
 				this.currentTask=t;
 				return true;
 			}
@@ -190,8 +194,10 @@ public class User {
 	 * 
 	 * @param uitask	Task info
 	 */
-	public void modifyDates(UITask uitask) {
+	public Set<UIResource> modifyDates(UITask uitask) 
+	{
 		currentTask.modifyDates(uitask);
+		return currentTask.getAllResources();
 	}
 	
 	/**
