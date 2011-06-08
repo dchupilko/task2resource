@@ -27,6 +27,17 @@ public class refreshAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String targetId = request.getParameter("selectRes");
+
+        if (targetId != null) {
+            response.setContentType("text/xml");
+          //  response.setHeader("Cache-Control", "no-cache");
+            response.getWriter().write("<message>"+targetId+"</message>"); 
+        } else {
+            response.setContentType("text/xml");
+            //response.setHeader("Cache-Control", "no-cache");
+            response.getWriter().write("<message>invalid</message>"); 
+        }
 	}
 
 	/**
