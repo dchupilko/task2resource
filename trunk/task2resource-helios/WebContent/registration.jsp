@@ -27,7 +27,7 @@
             <td  class="main_td_span">
                	<form method="post" action="RegistrateServlet">
                    <div class="zagolovok">Registration</div></br>
-                   <div> <span>*</span></div>
+                   <div>fields marked with <span>*</span> have to be filled</div>
                    <table class="table_reg">
                             <tr>
                               	<td id="table_reg_1td">

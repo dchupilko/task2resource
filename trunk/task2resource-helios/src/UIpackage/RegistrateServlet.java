@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,7 +46,7 @@ public class RegistrateServlet extends HttpServlet {
 		
 		//form parameters
 		 
-		 
+		
 		 String login = request.getParameter("user_name");
 	     String password = request.getParameter("password");
 	     String confirmPassword = request.getParameter("confirm_password");
@@ -54,25 +55,29 @@ public class RegistrateServlet extends HttpServlet {
 	     boolean sex =new Boolean(request.getParameter("radio_1")).booleanValue(); 
 	     String birthday= request.getParameter("datepicker3");
 	     String email = request.getParameter("email");
+	     String email_hid=request.getParameter("email_hid");
 	     String job= request.getParameter("job");
 	     
 	     
-	     boolean sendFlag=isToSendAvaliable(login,password,confirmPassword,firstName,lastName,email,job);    
+	     boolean sendFlag=isToSendAvaliable(login,password,confirmPassword,firstName,lastName,email, email_hid, job);    
 	     
 	     //create user
 		 if(sendFlag){
-			 UIRequest uirequest = new UIRequest(firstName, lastName, login, password, email, job);
+			/* UIRequest uirequest = new UIRequest(firstName, lastName, login, password, email,job);
 			 Main main = new Main();
-			 main.createUser(uirequest);
+			 main.createUser(uirequest);*/
+			 outputPage("start.jsp", request, response);
 		 }
-		
+		 else{
+			 outputPage("registration.jsp", request, response);
+		 }
 	    
 	     
 	     System.out.println(sendFlag);
 	   
 	}
 	boolean isToSendAvaliable(String login,String password,String confirmPassword,
-			String firstName,String lastName,String email,String job){
+			String firstName,String lastName,String email, String email_hid, String job){
 		//dead code)
 		 int counter=0;
 		 if((login.equals(""))){
@@ -106,8 +111,13 @@ public class RegistrateServlet extends HttpServlet {
 	    	 
 	     }
 	     else{
-	    	 System.out.println("em++");
-	    	 counter++;
+	    	 if(email_hid.equals("1")){
+		    	 System.out.println("em++");
+		    	 counter++;
+	    	 }
+	    	 else{
+	    		 System.out.print("not_correct email");
+	    	 }
 	     }
 	     if(job.equals("")){
 	    	
@@ -122,4 +132,11 @@ public class RegistrateServlet extends HttpServlet {
 	    	 return false;
 	     }
 	}
+	public void outputPage(String aJSPName, HttpServletRequest request,
+			HttpServletResponse response) throws IOException, ServletException
+			{
+			RequestDispatcher dispatcher = request.getRequestDispatcher(""+ aJSPName);
+			dispatcher.forward(request, response);
+			}
+	
 }
