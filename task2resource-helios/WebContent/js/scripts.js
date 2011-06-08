@@ -73,7 +73,7 @@ $(document).ready(function(){
 			{
 				
 				var user_reg = $('#input_reg_user').val();
-				alert("in function");
+			//	alert("in function");
 				getUser(user_reg);
 			}
 		
@@ -88,7 +88,7 @@ $(document).ready(function(){
                req.onreadystatechange = function() {
                        if (req.readyState == 4) {
                     	       if(req.status == 200) {
-                            	   alert("in get user200");
+                            	  // alert("in get user200");
 								      //alert(req.responseText)
                             	   var message = req.responseXML.getElementsByTagName("message")[0];
                             	   setMessage(message.childNodes[0].nodeValue);
@@ -125,8 +125,34 @@ $(document).ready(function(){
 	    	    	$("#div__reg_us").css('display', 'inherit');
 	    	      // mdiv.innerHTML = "<div style=\"color:green\">Valid User Id</ div>";
 	    	    }
-	    	}
-//	$("#list_1").dropdownchecklist({ width: 150 });
-	//$('#list_1').toChecklist({});
-	
+
+	      }
+	      
+	      //is valid email
+	      function isValidEmail (email)
+	      {
+	        return (/^([a-z0-9_\-]+\.)*[a-z0-9_\-]+@([a-z0-9][a-z0-9\-]*[a-z0-9]\.)+[a-z]{2,4}$/i).test(email);
+	      }
+	      
+	      $('#input_email').blur(function() {
+	  		
+	  		if($('#input_email').val()){
+	  			var em_val=$('#input_email').val();
+	  			var flag_em_val= isValidEmail(em_val);
+	  			
+	  			if(flag_em_val==false){
+	  				//alert("email is not valid");
+	  				$("#div__reg_email").css('display', 'inherit');
+	  				$("#email_hidden").attr('value', '0');
+	  				
+	  			}
+	  			else{
+	  				$("#div__reg_email").css('display', 'none');
+	  				$("#email_hidden").attr('value', '1');
+	  				}
+	  			
+	  		}
+	  			
+	  	});
+
 });
