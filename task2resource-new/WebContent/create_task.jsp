@@ -33,7 +33,7 @@
 									      	 </div></td>
        								
 											 <td width="63%" id='child_table_center'>
-										 		 <form method="post" action="CreareTaskServlet">
+										 		 <form method="post" action="CreareTaskServlet" name="Form1">
 					                			<table id="table_create_task" width="100%">
 					                			
 					                				<tr  height="10%" class="table_create_task_elem" >
@@ -85,30 +85,28 @@
 						                					<INPUT TYPE=CHECKBOX  NAME="check_time6" VALUE="1"> 
 						                					<INPUT TYPE=CHECKBOX  NAME="check_time7" VALUE="1"> 
 						                					
-						                					<span class="create_task_span_3"><img src="img/b_update.png"/></span>
+						                					<span class="create_task_span_3"><img id="create_task_img" src="img/b_update.png"/></span>
 						                				</td>
 						                				<td></td>
 					                				</tr>
 					                				<tr >
 					                					<td>
-					                					   
-					                						<div  class="span_title_task">Resources avaliable</div>
-					                						
-					                						    
-															<div id="div_li">
-																<select class="list1" multiple="multiple" name="resurces_select">
-																<%for(int i=0;i<10;i++){ %>
-																	<option>Value 1</option>
-																	<option>Value 2</option>
-																	<option>Value 3</option>
-																	<%} %>
-																</select>
+					                						<div style="margin-left: 50px">Resources avaliable</div>
+					                						<div id="">
+					                						<select multiple="multiple" class="list1" id="mySelectId" name="mySelect">
+					                						<%for(int i=0;i<10;i++){ %>
+					                							<option>value1</option>
+					                							<option>value2</option>
+					                							<%} %>
+					                						</select>
 					                						</div>
 					                					</td>
+					                					
+					                								                			
 					                					<td>
-					                							<span style=" margin-left: 90px;" >Groups</span>
-					                						<div id="div_li2">
-																<select id="list2" multiple="multiple">
+					                							<span style="margin-left: 75px"> Groups</span>
+					                						<div  style="margin-left: 60px;">
+																<select id="groupSelectId" name="groupSelect"  multiple="multiple"  style="width: 100px" >
 																<%for(int i=0;i<1;i++){ %>
 																	<option>Value 1</option>
 																	<option>Value 2</option>
@@ -121,7 +119,7 @@
 					                					<td>
 					                						<span class="span_margin">Users</span>
 					                							<div class="list1">
-																<select class="list1" multiple="multiple">
+																<select class="list1" multiple="multiple"  id="userSelectId" name="userSelectName">
 																<%for(int i=0;i<10;i++){ %>
 																	<option>Value 1</option>
 																	<option>Value 2</option>
@@ -129,14 +127,14 @@
 																	<%} %>
 																</select>
 																</div>
-																<input type="button" value="+"/>
+																<input type="button" value="+" id="create_task_button"/>
 					                					</td>
 					                				</tr>
 					                				<tr>
 					                					<td>				                						
 					                					</td>
 					                					<td>
-					                						<span id="create_task_submit_div"><input type="submit" value="Create task"/></span>
+					                						<span id="create_task_submit_div"><input type="submit" value="Create task" /></span>
 					                					</td>
 					                				</tr>
 					                			

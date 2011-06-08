@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AdminAsseptServlet
  */
-@WebServlet("/AdminAsseptServlet")
+@WebServlet("/admin/AdminAsseptServlet")
 public class AdminAsseptServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,6 +34,21 @@ public class AdminAsseptServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
+		String [] checkAccept =new String [10];
+		for(int i=0; i<10; i++){
+			String strName="check_time_accept"+i;
+			checkAccept[i]=request.getParameter(strName);
+			System.out.print(checkAccept[i]+"|");
+		}
+		System.out.print("-------");
+		String [] checkDenied =new String [10];
+		for(int i=0; i<10; i++){
+			String strName="check_time_den"+i;
+			checkDenied[i]=request.getParameter(strName);
+			System.out.print(checkDenied[i]+"|");
+		}
 	}
 
 }
