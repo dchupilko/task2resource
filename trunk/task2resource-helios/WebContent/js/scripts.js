@@ -32,10 +32,31 @@ $(document).ready(function(){
 	
 	
 	$("#create_task_img").click(function(){
-		//alert("test_img");
+		
 		var selectId=$("#mySelectId").val();
 		alert("id"+selectId);
+		refreshResources(selectId);
+		
 	});
+	function refreshResources(selectId){
+		  alert("in func");
+		  var req = getXmlHttp();
+		  req.open('GET', 'http://localhost:8084/task2resource/refreshAjaxServlet?selectResources='+select_Id, true);
+          req.send(null);
+          req.onreadystatechange = function() {
+                  if (req.readyState == 4) {
+                	  alert("in get user4");
+               	       if(req.status == 200) {
+                       	   alert("in get user200");
+							      //alert(req.responseText)
+                       	 
+                          }
+                  }
+          	}
+	}
+	
+	
+	
 	$("#create_task_button").click(function(){
 		alert("test_button");
 		var selectGroup=$("#groupSelectId").val();
@@ -66,7 +87,7 @@ $(document).ready(function(){
                return xmlhttp;
        }
 	  
-	//существует ли введенный логин в базе
+	//is this user already exist
 		$('#input_reg_user').blur(function(){
 			
 			if($('#input_reg_user').val())
@@ -154,5 +175,9 @@ $(document).ready(function(){
 	  		}
 	  			
 	  	});
+	      
+	      
+	  
+	    
 
 });
