@@ -164,19 +164,33 @@ $(document).ready(function(){
 		function refreshResources(selectId){
 			  alert("in func");
 			  var req = getXmlHttp();
-			  req.open('GET', 'http://localhost:8084/task2resource/refreshAjaxServlet?selectResources='+select_Id, true);
+			  req.open('GET', 'http://localhost:8084/task2resource/refreshAjaxServlet?selectRes='+selectId, true);
 	          req.send(null);
 	          req.onreadystatechange = function() {
-	                  if (req.readyState == 4) {
-	                	  alert("in get user4");
+	        	     if (req.readyState == 4) {
 	               	       if(req.status == 200) {
 	                       	   alert("in get user200");
 								      //alert(req.responseText)
+	                       	 var message = req.responseXML.getElementsByTagName("message")[0];
+	                       	 setMessage2(message.childNodes[0].nodeValue);
 	                       	 
 	                          }
 	                  }
 	          	}
 		}
+		
+		 function setMessage2(message) {
+	    	 // var mdiv = document.getElementById("name_hid");
+	    	    if (message == "invalid") {
+	    	    	alert("invalid");
+	    	    	
+	    	     
+	    	    } else {
+	    	    	alert("valid |"+message);
+	    	    	
+	    	    }
+
+	      }
 		
 	    
 
