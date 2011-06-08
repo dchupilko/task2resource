@@ -31,30 +31,7 @@ $(document).ready(function(){
 				);
 	
 	
-	$("#create_task_img").click(function(){
-		
-		var selectId=$("#mySelectId").val();
-		alert("id"+selectId);
-		refreshResources(selectId);
-		
-	});
-	function refreshResources(selectId){
-		  alert("in func");
-		  var req = getXmlHttp();
-		  req.open('GET', 'http://localhost:8084/task2resource/refreshAjaxServlet?selectResources='+select_Id, true);
-          req.send(null);
-          req.onreadystatechange = function() {
-                  if (req.readyState == 4) {
-                	  alert("in get user4");
-               	       if(req.status == 200) {
-                       	   alert("in get user200");
-							      //alert(req.responseText)
-                       	 
-                          }
-                  }
-          	}
-	}
-	
+
 	
 	
 	$("#create_task_button").click(function(){
@@ -176,8 +153,31 @@ $(document).ready(function(){
 	  			
 	  	});
 	      
-	      
-	  
+	    //img refresh  
+	  	$("#create_task_img").click(function(){
+			
+			var selectId=$("#mySelectId").val();
+			alert("id"+selectId);
+			refreshResources(selectId);
+			
+		});
+		function refreshResources(selectId){
+			  alert("in func");
+			  var req = getXmlHttp();
+			  req.open('GET', 'http://localhost:8084/task2resource/refreshAjaxServlet?selectResources='+select_Id, true);
+	          req.send(null);
+	          req.onreadystatechange = function() {
+	                  if (req.readyState == 4) {
+	                	  alert("in get user4");
+	               	       if(req.status == 200) {
+	                       	   alert("in get user200");
+								      //alert(req.responseText)
+	                       	 
+	                          }
+	                  }
+	          	}
+		}
+		
 	    
 
 });
