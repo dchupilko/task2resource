@@ -60,7 +60,7 @@ public class main {
                 };
 		
 		UITask uitask = new UITask("task1", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1);
-		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,5,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2);
+		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,5,21,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2);
 		UITask uitask3 = new UITask("task3", 10, new GregorianCalendar(2011,2,1,8,00), new GregorianCalendar(2011,2,8,23,00), 120, period1);
 
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
@@ -136,7 +136,7 @@ public class main {
 		/*
 		// Testing use case "Create task"
 		main.Authorize("ivanivanov", "123456");
-		Set<UIResource> resources = main.createTask(uitask2);
+		Set<UIResource> resources = main.createTask(uitask);
 		Set<UIResource> choose = new HashSet<UIResource>();
 		choose.add(conf);
 		choose.add(gym);
@@ -157,7 +157,7 @@ public class main {
 		main.acceptTask();
 		*/
 				
-		
+		/*
 		//Testing use case "Get task info"
 		main.Authorize("ivanivanov", "123456");
 		List<UITask> tasks = main.getAllTasks();
@@ -193,7 +193,6 @@ public class main {
 		}
 		Set<UIResource> choose = new HashSet<UIResource>();
 		choose.add(conf);
-		choose.add(gym);
 		Set<UIDates> conflicts = new HashSet<UIDates>();
 		conflicts = main.chooseResources(choose);
 		for (UIDates uid : conflicts) {
@@ -208,7 +207,7 @@ public class main {
 			System.out.println(u);
 		}
 		main.assignUsers(users);
-		main.acceptTask();
+		main.acceptTask();*/
 		
 		
 		/*
