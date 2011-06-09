@@ -11,21 +11,21 @@ public class Dates {
     protected int oid;
     protected int version;
     
-    protected GregorianCalendar startDate;
-    protected GregorianCalendar finishDate;
+    protected GregorianCalendar startDate = new GregorianCalendar();
+    protected GregorianCalendar finishDate = new GregorianCalendar();
     
     protected Set<Resource> resources = new HashSet<Resource>();
     
     public Dates() {}
     
     public Dates(GregorianCalendar startDate, GregorianCalendar finishDate) {
-        this.startDate = startDate;
-        this.finishDate = finishDate;
+    	this.startDate.setTime(startDate.getTime());
+        this.finishDate.setTime(finishDate.getTime());
     }
 
     public Dates(UIDates date) {
-        this.startDate = date.getStartDate();
-        this.finishDate = date.getFinishDate();
+        this.startDate.setTime(date.getStartDate().getTime());
+        this.finishDate.setTime(date.getFinishDate().getTime());
     }
     
     
@@ -126,7 +126,7 @@ public class Dates {
 	}
 
 	public void setStartDate(GregorianCalendar startDate) {
-		this.startDate = startDate;
+		this.startDate.setTime(startDate.getTime());
 	}
 
 	public GregorianCalendar getFinishDate() {
@@ -134,7 +134,7 @@ public class Dates {
 	}
 
 	public void setFinishDate(GregorianCalendar finishDate) {
-		this.finishDate = finishDate;
+		this.finishDate.setTime(finishDate.getTime());
 	}
 		
 	public Set<Resource> getResources() {

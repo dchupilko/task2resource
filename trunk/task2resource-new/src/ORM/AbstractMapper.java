@@ -150,6 +150,7 @@ public class AbstractMapper {
 	    return objects;
 	}
 	
+	/*
 	public Object refreshObject (int OID, Class cls)
 	{
 		Object object = new Object();
@@ -169,6 +170,7 @@ public class AbstractMapper {
 	    }	   
 	    return object;
 	}
+	*/
 }
 
 
