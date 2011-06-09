@@ -280,6 +280,7 @@ $(document).ready(function(){
 									
 									$( "#dialog-form" ).dialog( "open" );
 								}
+								
 							}
 						},
 						//Cancel: function() {
