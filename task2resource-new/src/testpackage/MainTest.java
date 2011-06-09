@@ -18,6 +18,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import com.sun.net.httpserver.Authenticator.Success;
 
+import uiclasses.UIGroup;
 import uiclasses.UIRequest;
 import uiclasses.UIResource;
 import uiclasses.UITask;
@@ -53,8 +54,33 @@ public class MainTest {
 	
 	
 	@Test
-	public void testCreateUser() {
+	public void testCreateGroup(){
+		Main main = new Main();
+		UIGroup uigrp1 = new UIGroup("Management");
+		UIGroup uigrp2 = new UIGroup("Programming");
+		UIGroup uigrp3 = new UIGroup("QA");
+		UIGroup uigrp4 = new UIGroup("English");
+		UIGroup uigrp5 = new UIGroup("Programming");
+		UIGroup uigrp6 = new UIGroup("Designing");
+		UIGroup uigrp7 = new UIGroup("Others");
+		UIGroup uigrp8 = new UIGroup("Admin");
+		
+		main.createGroup(uigrp1);
+		main.createGroup(uigrp2);
+		main.createGroup(uigrp3);
+		main.createGroup(uigrp4);
+		main.createGroup(uigrp5);
+		main.createGroup(uigrp6);
+		main.createGroup(uigrp7);
+		main.createGroup(uigrp8);
 
+	}
+	
+	
+	
+	@Test
+	public void testCreateUser() {
+		fail("Not yet implemented");
 		Main main = new Main();
 		
 		Set<UIRequest> setBefore=main.getAllRequests();
@@ -80,7 +106,7 @@ public class MainTest {
 	
 	@Test
 	public void testAcceptRequests() {
-		
+		fail("Not yet implemented");
 		Main main = new Main();
 		
 		// Testing use case "Accept Request"
