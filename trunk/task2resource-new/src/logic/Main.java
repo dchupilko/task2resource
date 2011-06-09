@@ -15,6 +15,9 @@ public class Main {
 	protected UserMapper userMapper = new UserMapper();
 	protected RequestMapper requestMapper = new RequestMapper();
 	protected ResourceMapper resourceMapper = new ResourceMapper();
+	protected GroupMapper groupMapper = new GroupMapper();
+	
+	
 	
 	protected User currentUser = new User();
 	
@@ -64,6 +67,19 @@ public class Main {
 		return true;
 	}
 	
+	
+	
+	/**
+	 * Create new group
+	 * 
+	 * @param uigroup	Group info
+	 */
+	public void createGroup(UIGroup uigrp) {
+		Group grp = new Group(uigrp);
+		groupMapper.setGroup(grp);
+	}
+	
+
 	/**
 	 * Create new resource
 	 * 

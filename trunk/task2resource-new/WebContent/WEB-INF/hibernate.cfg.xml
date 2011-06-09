@@ -4,9 +4,9 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-  <property name="hibernate.connection.password">111</property>
+  <property name="hibernate.connection.password">473511niv</property>
   <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
-  <property name="hibernate.connection.username">denis</property>
+  <property name="hibernate.connection.username">system</property>
   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
   <property name="hibernate.show_sql">true</property>
   <!-- property name="hbm2ddl.auto">create</property-->
