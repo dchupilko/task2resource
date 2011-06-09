@@ -62,8 +62,11 @@
 										 		<span> latest tasks ( test - 10)</span>	
 					                			<table id='table_news'>
 					                			
-					                			 <%Main main1 = new logic.Main();
-					                			  // java.util.Set <uiclasses.UITask> tasks = main1.getAllTasks();
+					                			 <%
+					                			 Main main = new Main();
+					                		
+					                			 
+					                			  //Set <UITask> tasks = main.getAllTasks();
 																	                			   
 					                			
 					                				//UITask: name, capacity, fromDate, toDate
@@ -78,10 +81,10 @@
 					                						<table id="table_news_element">
 					                							<tr>
 					                								<td id='title_td'>
-					                								<%out.print("title");%>
+					                								<%out.print("title");%>		
 					                								</td>
 					                								<td id='category_td'>
-					                								<%out.print("categor"+i);%>
+					                								<%out.print("categor");%>
 					                								</td>
 					                								<td>
 					                							
@@ -101,7 +104,7 @@
 					                					<% if(flag==true){%>
 					                					<a href="">View task</a>
 					                					<%}%>
-					                					<div align="right">author: <%out.print("author#"+i); %></div></td>
+					                					<div align="right">author: <%out.print("author#"); %></div></td>
 					                				</tr>
 					                				<%}%>
 					                			</table>
