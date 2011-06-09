@@ -5,11 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css"  href="css/jqueryui.css"/>
+		<link rel="stylesheet" type="text/css"  href="css/jqueryui2.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <script language="javascript" src="js/jquery.js"></script>
         <script language="javascript" src="js/scripts.js"></script>
         <script language="javascript" src="js/jqueryui.js"></script>
-       
+        <script language="javascript" src="js/jqueryui2.js"></script>
        
 <title>start</title>
 </head>
@@ -86,6 +87,7 @@
 						                					<INPUT TYPE=CHECKBOX  NAME="check_time7" VALUE="1"> 
 						                					
 						                					<span class="create_task_span_3"><img id="create_task_img" src="img/b_update.png"/></span>
+						                					
 						                				</td>
 						                				<td></td>
 					                				</tr>
@@ -99,7 +101,16 @@
 					                							<option>value2</option>
 					                							<%} %>
 					                						</select>
+					                						
+					                						
+					                						
 					                						</div>
+					                						
+					                						
+
+
+
+
 					                					</td>
 					                					
 					                								                			
@@ -135,15 +146,54 @@
 					                					</td>
 					                					<td>
 					                						<span id="create_task_submit_div"><input type="submit" value="Create task" /></span>
+					                						
+					                					
+					                						
 					                					</td>
 					                				</tr>
 					                			
 					                			</table>
-					                			</form>
 					                			
-							                   			
+					                			</form>
+					                			<button id="create-user">+</button>
+					                			
+							                   	<div class="demo">
+							                   	<%// for(int j=0; j<3;j++){%>
+												<div id="dialog-form" title="Dataconflicts">
+													<p class="validateTips"></p>
+													<form>
+													<fieldset>
+														<div id="divDateModal">
+														<label >Date: <%//get date%></label>
+														<input type="text" value="0" id="input_modal"/>
+														</div>
+														<div style="margin-left: 50px">Resources avaliable</div>
+					                						<div>
+					                						<select multiple="multiple" class="list1" id="mySelectId" name="mySelect">
+					                						<%//for date
+					                						for(int i=0;i<10;i++){ %>
+					                							<option>value1</option>
+					                							<option>value2</option>
+					                							<%} %>
+					                						</select>
+					                									                						
+					                         			</div>
+																																										
+													</fieldset>
+													</form>
+													
+												</div>
+												
+												<div id="users-contain" class="ui-widget">
+												<%//} %>
+												</div>
+												
+												</div>		
+					                			
+					                			
 					                			
 					                				
+												
 					                				
 					                									                   			
 								
