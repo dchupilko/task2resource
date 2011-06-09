@@ -170,6 +170,7 @@ $(document).ready(function(){
 	        	     if (req.readyState == 4) {
 	               	       if(req.status == 200) {
 	                       	   alert("in get user200");
+	                       	   modalOpen("create_task.jsp","title",200,200);
 								      //alert(req.responseText)
 	                       	 var message = req.responseXML.getElementsByTagName("message")[0];
 	                       	 setMessage2(message.childNodes[0].nodeValue);
@@ -192,6 +193,23 @@ $(document).ready(function(){
 
 	      }
 		
+		 
+		 //----------
+		/* var modalDialog=null;
+
+		 function modalOpen(pageNumber,windowTitle,windowWidth,windowHeight){
+		  var newURL = window.location.protocol + "//" + window.location.host + "/apex/f?p=" +$v('pFlowId')+":"+pageNumber+":"+$v('pInstance')+":::::";
+
+		   modalDialog=apex.jQuery('<div></div>').html('<iframe src="' + newURL + '" height="100%" width="100%" style="border:0" frameborder="0">').dialog({autoOpen: false,modal: true,height: windowHeight,width: windowWidth,title: windowTitle});
+		   modalDialog.dialog('open');
+		 }
+
+		 function modalClose(){
+		   if (modalDialog!=null){
+		     modalDialog.dialog('close');
+		     modalDialog=null;
+		   }
+		 }*/
 	    
 
 });
