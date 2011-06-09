@@ -214,7 +214,7 @@ $(document).ready(function(){
 
 		 
 		 $(function() {
-			 var flag=0;
+			 var flag;
 			 	//alert("in button");
 				// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
 				$( "#dialog:ui-dialog" ).dialog( "destroy" );
@@ -254,7 +254,7 @@ $(document).ready(function(){
 						return true;
 					}
 				}
-				for(var count=0; count<3; count++){}
+				//for(var count=0; count<3; count++){}
 				$( "#dialog-form" ).dialog({
 					autoOpen: false,
 					height: 300,
@@ -267,7 +267,7 @@ $(document).ready(function(){
 							
 
 							if ( bValid ) {
-								alert("valid");
+								//alert("valid");
 								$( "#users tbody" ).append( "<tr>" +
 									"<td>" + name.val() + "</td>" + 
 									"<td>" + email.val() + "</td>" + 
@@ -277,13 +277,14 @@ $(document).ready(function(){
 								flag++;
 								if(flag<3){
 									$("#input_modal").attr('value', flag);
+									
 									$( "#dialog-form" ).dialog( "open" );
 								}
 							}
 						},
-						Cancel: function() {
-							$( this ).dialog( "close" );
-						}
+						//Cancel: function() {
+							//$( this ).dialog( "close" );
+						//}
 					},
 					close: function() {
 						allFields.val( "" ).removeClass( "ui-state-error" );
@@ -296,7 +297,7 @@ $(document).ready(function(){
 					.button()
 					.click(function() {
 						
-							
+						flag=0;	
 						$( "#dialog-form" ).dialog( "open" );
 						
 					});
