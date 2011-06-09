@@ -142,6 +142,6 @@ public class Dates {
 	}
 
 	public void setResources(Set<Resource> resources) {
-		this.resources = resources;
+		this.resources.addAll(resources);
 	}
 }
