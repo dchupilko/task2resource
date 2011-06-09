@@ -15,6 +15,7 @@ import logic.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.jboss.cache.config.parsing.ParsedAttributes;
 
 import uiclasses.UIResource;
@@ -351,13 +352,28 @@ public class TaskMapper extends AbstractMapper{
 	
 	
 	public void setTask(Task task){
-		//TODO: check dependencies while saving task
-		try{
-			updateObject(task);
-			//insertObjects(new HashSet<Object>(task.getParticipants()));
-		}catch(HibernateException he){
-			throw he;
-		}
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            if(task.getRemovedDates()!=null)
+            {
+            	for(Dates d: task.getRemovedDates())
+                {
+                	d.getResources().clear();
+                	session.delete(d);
+                }
+            }            
+            session.saveOrUpdate(task);
+            tx.commit();
+        }
+        catch (HibernateException he) {
+            if (tx!=null) tx.rollback();
+            throw he;
+        }
+        finally {
+            session.close();
+        }
 	}
 	
 }

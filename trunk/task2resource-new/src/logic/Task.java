@@ -19,6 +19,7 @@ public class Task {
     protected GregorianCalendar toDate = null;
     
     protected Set<Dates> dates = new HashSet<Dates>();
+    protected Set<Dates> removedDates = new HashSet<Dates>();
     protected Set<Resource> allResources = new HashSet<Resource>();
     protected Set<User> participants = new HashSet<User>();
     protected Set<Resource> assignedResources = new HashSet<Resource>();
@@ -157,7 +158,7 @@ public class Task {
 							conflictDates.add(new UIDates(d.getStartDate(), d.getFinishDate()));
 						}
 					}   				
-				}					
+				}				
 			}
 		}    	
     	return conflictDates;
@@ -242,12 +243,29 @@ public class Task {
 	 * @param uitask	Task info
 	 */
 	public void modifyDates(UITask uitask) {
+		removedDates.addAll(dates);
 		allResources.clear();
 		allResources.addAll(assignedResources);
+		assignedResources.clear();
 		dates.clear();
 		this.fromDate = uitask.getFromDate();
         this.toDate = uitask.getToDate();
 		this.calculateDates(uitask);
+		for(Dates d : dates)
+		{
+			for(Dates remd: removedDates)
+			{
+				if((d.getStartDate().compareTo(remd.getStartDate())>=0 ||
+						d.getStartDate().compareTo(remd.getFinishDate())<=0) && 
+					(d.getFinishDate().compareTo(remd.getStartDate())>=0 ||
+						d.getFinishDate().compareTo(remd.getFinishDate())<=0))
+				{
+					d.getResources().addAll(remd.getResources());
+					assignedResources.addAll(remd.getResources());
+				}
+			}
+		}
+		allResources.addAll(assignedResources);
 	}
 	
     /**
@@ -467,6 +485,14 @@ public class Task {
 		this.participants = participants;
 	}
 	
+	public Set<Dates> getRemovedDates() {
+		return removedDates;
+	}
+
+	public void setRemovedDates(Set<Dates> removedDates) {
+		this.removedDates = removedDates;
+	}
+
 	public void setStatus() {
 		this.status=true;
 	}
