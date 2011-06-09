@@ -313,17 +313,19 @@ public class Main {
 	 * @param removedUsers	List of removed users
 	 */
 	public void modifyUsers(Set<UIUser> uiAddedUsers, Set<UIUser> uiRemovedUsers) {
+		groups = userMapper.getGroups();
 		Set<User> addedUsers = new HashSet<User>();
-		Set<User> removedUsers = new HashSet<User>();
+		Set<User> removedUsers = new HashSet<User>();		
     	for (Group g : groups) {
+    		userMapper.getUsersByGroup(g, currentUser);
     		for (User u : g.users) {
     			for (UIUser ui : uiAddedUsers) {
-	    			if (u.equals(ui)) {
+	    			if (u.getFirstName().equals(ui.getFirstName()) && u.getLastName().equals(ui.getLastName())) {
 	    				addedUsers.add(u);
 	    			}
     			}
     			for (UIUser ui : uiRemovedUsers) {
-	    			if (u.equals(ui)) {
+    				if (u.getFirstName().equals(ui.getFirstName()) && u.getLastName().equals(ui.getLastName())) {
 	    				removedUsers.add(u);
 	    			}
     			}
@@ -357,9 +359,9 @@ public class Main {
 	 * 
 	 * @return	List of dates
 	 */
-	public Set<UIDates> getTaskDates()
+	public Set<UIDates> getTaskDates(UITask uitask)
 	{
-		return currentUser.getTaskDates();
+		return currentUser.getTaskDates(uitask);
 	}
 	
 	/**
@@ -367,9 +369,9 @@ public class Main {
 	 * 
 	 * @return	List of resources
 	 */
-	public Set<UIResource> getTaskResources()
+	public Set<UIResource> getTaskResources(UITask uitask)
 	{
-		return currentUser.getTaskResources();
+		return currentUser.getTaskResources(uitask);
 	}
 	
 	/**
@@ -377,12 +379,15 @@ public class Main {
 	 * 
 	 * @return	List of users
 	 */
-	public Set<UIUser> getTaskUsers()
+	public Set<UIUser> getTaskUsers(UITask uitask)
 	{
-		return currentUser.getTaskUsers();
+		return currentUser.getTaskUsers(uitask);
 	}
 	
-
+	public void deleteTask(UITask uitask) {
+		currentUser.deleteTask(uitask);
+	}
+	
     // A C C E S S O R S
     
 	public Set<Group> getGroups() {

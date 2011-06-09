@@ -160,6 +160,7 @@ public class User {
 					&&t.getToDate().equals(uitask.getToDate())) 
 			{
 				this.currentTask=t;
+				this.currentTask.setStatus();
 				return true;
 			}
 		}
@@ -215,9 +216,23 @@ public class User {
 	 * 
 	 * @return	List of dates
 	 */
-	public Set<UIDates> getTaskDates()
+	public Set<UIDates> getTaskDates(UITask uitask)
 	{
-		return currentTask.getTaskDates();
+		if(currentTask == null) 
+		{
+			for(Task t : allTasks)
+			{
+				if(t.getName().equals(uitask.getName()))
+				{
+					return t.getTaskDates();
+				}
+			}
+		}
+		else
+		{
+			return currentTask.getTaskDates();
+		}
+		return null;		
 	}
 	
 	/**
@@ -225,9 +240,23 @@ public class User {
 	 * 
 	 * @return	List of resources
 	 */
-	public Set<UIResource> getTaskResources()
+	public Set<UIResource> getTaskResources(UITask uitask)
 	{
-		return currentTask.getTaskResources();
+		if(currentTask == null)
+		{
+			for(Task t : allTasks)
+			{
+				if(t.getName().equals(uitask.getName()))
+				{
+					return t.getTaskResources();
+				}
+			}
+		}
+		else
+		{
+			return currentTask.getTaskResources();
+		}		
+		return null;		
 	}
 	
 	/**
@@ -235,9 +264,35 @@ public class User {
 	 * 
 	 * @return	List of users
 	 */
-	public Set<UIUser> getTaskUsers()
+	public Set<UIUser> getTaskUsers(UITask uitask)
 	{
-		return currentTask.getTaskUsers();
+		if(currentTask == null)
+		{
+			for(Task t : allTasks)
+			{
+				if(t.getName().equals(uitask.getName()))
+				{
+					return t.getTaskUsers();
+				}
+			}
+		}
+		else
+		{
+			return currentTask.getTaskUsers();
+		}
+		return null;		
+	}
+	
+	public void deleteTask(UITask uitask) {
+		this.mapper.deleteTaskById(currentTask);
+		this.currentTask = null;
+		for (Task t : allTasks) {
+			if (t.getName().equals(uitask.getName())) {
+				System.out.println("not null");
+				return;
+			}
+		}
+		System.out.println("null");
 	}
 
 	@Override
@@ -270,13 +325,13 @@ public class User {
 			return false;
 		return true;
 	}
-	
+	/*
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", login=" + login + ", password="
 				+ password + "]";
-	}
+	}*/
 	
 	// A C C E S S O R S
 	

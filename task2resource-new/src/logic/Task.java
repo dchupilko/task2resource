@@ -23,7 +23,9 @@ public class Task {
     protected Set<User> participants = new HashSet<User>();
     protected Set<Resource> assignedResources = new HashSet<Resource>();
     
-    protected TaskMapper taskMapper = new TaskMapper(); 
+    protected TaskMapper taskMapper = new TaskMapper();
+    
+    protected boolean status= false;
     
     public Task() {}
     
@@ -195,8 +197,16 @@ public class Task {
 	 * @return					Conflict dates
 	 */
     public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources)
-    {    
-    	allResources.retainAll(assignedResources);
+    {   
+    	if(status)
+    	{
+    		allResources.addAll(assignedResources);
+    		taskMapper.getResourcesByDate(dates);
+    		for(Dates d : dates)
+        	{
+        		allResources.addAll(d.resources);
+        	}
+    	}    	
     	for (Dates d : dates) {
     		for (Resource r : d.resources) 
     		{
@@ -208,15 +218,7 @@ public class Task {
     				}
     			}
     		}
-    	}
-    	if(version!=0)
-    	{
-    		taskMapper.getResourcesByDate(dates);
-    	}
-    	for(Dates d : dates)
-    	{
-    		allResources.addAll(d.resources);
-    	}
+    	}    	
     	return this.chooseResources(addedResources);    	
     }
     
@@ -315,6 +317,7 @@ public class Task {
     		assignedResources.addAll(d.getResources());
     		for(Resource r: d.getResources())
     		{
+    			d.assignResource(r);
     			uiresources.add(r.getUIResource());
     		}
     	}
@@ -458,6 +461,10 @@ public class Task {
 
 	public void setParticipants(Set<User> participants) {
 		this.participants = participants;
+	}
+	
+	public void setStatus() {
+		this.status=true;
 	}
 }
 
