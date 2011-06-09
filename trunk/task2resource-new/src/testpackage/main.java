@@ -60,7 +60,7 @@ public class main {
                 };
 		
 		UITask uitask = new UITask("task1", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1);
-		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2);
+		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,5,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2);
 		UITask uitask3 = new UITask("task3", 10, new GregorianCalendar(2011,2,1,8,00), new GregorianCalendar(2011,2,8,23,00), 120, period1);
 
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
@@ -115,12 +115,12 @@ public class main {
 		// Testing use case "Create resources"
 		main.createResource(conf);
 		main.createResource(cl1);
-		//main.createResource(cl2);
+		main.createResource(cl2);
 		main.createResource(mr1);
-		//main.createResource(mr2);
-		//main.createResource(mr3);		
+		main.createResource(mr2);
+		main.createResource(mr3);		
 		main.createResource(lobby);
-		//main.createResource(gym);
+		main.createResource(gym);
 		main.createResource(kitchen);
 		*/
 		
@@ -134,20 +134,12 @@ public class main {
 		*/
 		
 		/*
-		// Testing use case "Creating new task"
-		Set<UIResource> resources = main.createTask(uitask);
-		for (UIResource uir : resources) {
-			System.out.println(uir.toString());
-		}
-		*/
-
-		/*
 		// Testing use case "Create task"
 		main.Authorize("ivanivanov", "123456");
-		Set<UIResource> resources = main.createTask(uitask);
+		Set<UIResource> resources = main.createTask(uitask2);
 		Set<UIResource> choose = new HashSet<UIResource>();
-		choose.add(cl1);
-		choose.add(mr1);
+		choose.add(conf);
+		choose.add(gym);
 		Set<UIDates> conflicts = new HashSet<UIDates>();
 		conflicts = main.chooseResources(choose);
 		for (UIDates uid : conflicts) {
@@ -192,28 +184,48 @@ public class main {
 		}
 		
 		
-		/*
+		
 		//"Modify dates"
 		taskResources = main.modifyDates(uitask2);
 		for(UIResource uir : taskResources)
 		{
 			System.out.println(uir);
 		}
-		*/
+		Set<UIResource> choose = new HashSet<UIResource>();
+		choose.add(conf);
+		choose.add(gym);
+		Set<UIDates> conflicts = new HashSet<UIDates>();
+		conflicts = main.chooseResources(choose);
+		for (UIDates uid : conflicts) {
+			System.out.println(uid);
+		}
+		Set<UIGroup> groups = main.getAllGroups();
+		//for (UIGroup g : groups) {
+			//System.out.println(g);
+		//}
+		Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("Programming"));
+		for (UIUser u : users) {
+			System.out.println(u);
+		}
+		main.assignUsers(users);
+		main.acceptTask();
+		
 		
 		/*
 		//"Modify resources"
 		Set<UIResource> addedResources = new HashSet<UIResource>();
 		Set<UIResource> removedResources = new HashSet<UIResource>();
-		removedResources.add(cl1);
-		addedResources.add(mr1);		
-		addedResources.add(conf);
+		removedResources.add(conf);
+		addedResources.add(cl1);		
+		//addedResources.add(conf);
+		//addedResources.add(mr1);
 		Set<UIDates> conflicts = main.modifyResources(addedResources, removedResources);
 		for(UIDates uid : conflicts)
 		{
 			System.out.println(uid);
 		}
-		*/
+		main.acceptTask();*/
+		
 		
 		/*
 		//"Modify users"
@@ -230,10 +242,10 @@ public class main {
 		addedUsers.add(uiuser1);
 		addedUsers.add(uiuser2);
 		main.modifyUsers(addedUsers, removedUsers);
-		*/
+		main.acceptTask();*/
 		
 		//Testing use case "Delete task"
-		main.deleteTask(tempTask);
+		//main.deleteTask(tempTask);
 		
 		/*   
 		//Testing use case "Delete users"

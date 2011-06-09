@@ -285,6 +285,8 @@ public class User {
 	
 	public void deleteTask(UITask uitask) {
 		this.mapper.deleteTaskById(currentTask);
+		this.userTasks.remove(currentTask);
+		this.allTasks.remove(currentTask);
 		this.currentTask = null;
 		for (Task t : allTasks) {
 			if (t.getName().equals(uitask.getName())) {

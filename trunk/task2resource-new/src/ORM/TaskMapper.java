@@ -353,7 +353,7 @@ public class TaskMapper extends AbstractMapper{
 	public void setTask(Task task){
 		//TODO: check dependencies while saving task
 		try{
-			insertObject(task);
+			updateObject(task);
 			//insertObjects(new HashSet<Object>(task.getParticipants()));
 		}catch(HibernateException he){
 			throw he;

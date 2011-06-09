@@ -206,10 +206,12 @@ public class Task {
         	{
         		allResources.addAll(d.resources);
         	}
-    	}    	
+    	}    
+    	System.out.println("DEBUG: All possible resources:");
     	for (Dates d : dates) {
     		for (Resource r : d.resources) 
     		{
+    			System.out.println(r);
     			for (UIResource uir: removedResources)
     			{
     				if(r.getName().equals(uir.getName()))
@@ -312,14 +314,16 @@ public class Task {
     {
     	Set<UIResource> uiresources = new HashSet<UIResource> ();
     	taskMapper.getResourcesByTask(this);
+    	System.out.println("DEBUG: all task's resources:");
     	for(Dates d: dates)
     	{
-    		assignedResources.addAll(d.getResources());
     		for(Resource r: d.getResources())
     		{
     			d.assignResource(r);
+    			System.out.println(r);
     			uiresources.add(r.getUIResource());
     		}
+    		assignedResources.addAll(d.getResources());    		
     	}
     	return uiresources;
     }
