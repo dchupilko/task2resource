@@ -1,5 +1,6 @@
 package uiclasses;
 
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 
 /*
@@ -16,10 +17,11 @@ public class UITask {
 	protected GregorianCalendar toDate;
 	protected int lengthInMinutes;
 	protected int[][] period;
+	protected String description;
 	//TODO: description
 	
 	public UITask(String name, int capacity, GregorianCalendar fromDate,
-			GregorianCalendar toDate, int lengthInMinutes, int[][] period) {
+			GregorianCalendar toDate, int lengthInMinutes, int[][] period, String description) {
 		super();
 		this.name = name;
 		this.capacity = capacity;
@@ -27,12 +29,13 @@ public class UITask {
 		this.toDate = toDate;
 		this.lengthInMinutes = lengthInMinutes;
 		this.period = period;
+		this.description = description;
 	}
 	
-	public UITask (String name, int capacity, GregorianCalendar fromDate, GregorianCalendar toDate)
+	public UITask (String name, int capacity, GregorianCalendar fromDate, GregorianCalendar toDate, String description)
 	{
 		//TODO: come to agreement with UI
-		this(name, capacity, fromDate, toDate, 0, null);
+		this(name, capacity, fromDate, toDate, 0, null, description);
 	}
 	
 	public String getName() {
@@ -72,7 +75,21 @@ public class UITask {
 		this.period = period;
 	}
 	
-	public String toString() {
-		return this.name + "; " + this.capacity;
+	public String getDescription() {
+		return description;
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "UITask [name=" + name + ", capacity=" + capacity
+				+ ", fromDate=" + fromDate + ", toDate=" + toDate
+				+ ", lengthInMinutes=" + lengthInMinutes + ", period="
+				+ Arrays.toString(period) + ", description=" + description
+				+ "]";
+	}
+	
 }

@@ -6,7 +6,9 @@
     <class name="logic.User" table="USERS">
         <id name="oid" type="int">
             <column name="IDUSER" />
-            <generator class="sequence" />
+            <generator class="sequence">
+            	<param name="sequence">seq_users</param>
+            </generator >
         </id>
         <version name="version" /> 
         <property name="firstName" type="java.lang.String" not-null="true">

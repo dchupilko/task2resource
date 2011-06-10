@@ -6,7 +6,9 @@
     <class name="logic.Group" table="GROUPS">
         <id name="oid" type="int" access="field">
             <column name="IDGROUP" />
-            <generator class="sequence" />
+            <generator class="sequence">
+            	<param name="sequence">seq_groups</param>
+            </generator >
         </id>
         <version name="version" /> 
         <property name="name" type="java.lang.String" access="field" not-null="true" unique="true">

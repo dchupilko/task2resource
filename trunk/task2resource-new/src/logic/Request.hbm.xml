@@ -6,7 +6,9 @@
     <class name="logic.Request" table="REQUESTS">
         <id name="oid" type="int">
             <column name="OID" />
-            <generator class="sequence" />
+            <generator class="sequence">
+            	<param name="sequence">seq_requests</param>
+            </generator >
         </id>
         <version name="version" /> 
         <property name="firstName" type="java.lang.String" not-null="true">

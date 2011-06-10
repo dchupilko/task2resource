@@ -6,7 +6,9 @@
     <class name="logic.Dates" table="ASSIGNMENTS">
     	<id name="oid" type="int" access="field">
             <column name="IDASSIGNMENT" />
-            <generator class="sequence" />
+            <generator class="sequence">
+            	<param name="sequence">seq_assignments</param>
+            </generator >
         </id>
         <version name="version" /> 
         <property name="startDate" type="java.util.GregorianCalendar" access="field" not-null="true">

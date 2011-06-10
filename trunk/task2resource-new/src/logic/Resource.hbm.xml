@@ -6,7 +6,9 @@
     <class name="logic.Resource" table="RESOURCES" select-before-update="true">
         <id name="oid" type="int" access="field">
             <column name="IDRESOURCE" />
-            <generator class="sequence" />
+            <generator class="sequence">
+            	<param name="sequence">seq_resources</param>
+            </generator >
         </id>
         <version name="version" /> 
         <property name="name" type="java.lang.String" access="field" not-null="true" unique="true">

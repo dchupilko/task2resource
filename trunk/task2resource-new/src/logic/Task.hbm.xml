@@ -6,7 +6,9 @@
     <class name="logic.Task" table="TASKS" select-before-update="true">
         <id name="oid" type="int">
             <column name="IDTASK" />
-            <generator class="sequence" />
+            <generator class="sequence">
+            	<param name="sequence">seq_tasks</param>
+            </generator >
         </id>
         <natural-id mutable="true">
         	<property name="name" type="java.lang.String">
@@ -19,7 +21,10 @@
             	<column name="TODATE" />
         	</property>
         </natural-id>
-        <version name="version" />         
+        <version name="version" />
+        <property name="description" type="java.lang.String">
+            	<column name="DESCRIPTION" />
+        	</property>         
         <property name="capacity" type="int" >
             <column name="CAPACITY" />
         </property>

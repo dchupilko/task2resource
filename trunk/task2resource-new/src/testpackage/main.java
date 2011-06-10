@@ -59,9 +59,9 @@ public class main {
                 {6,11,00}, //Ïò.
                 };
 		
-		UITask uitask = new UITask("task1", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1);
-		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,5,21,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2);
-		UITask uitask3 = new UITask("task3", 10, new GregorianCalendar(2011,2,1,8,00), new GregorianCalendar(2011,2,8,23,00), 120, period1);
+		UITask uitask = new UITask("task2", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1, "task1 description");
+		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,5,21,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2, "task4 description");
+		UITask uitask3 = new UITask("task3", 10, new GregorianCalendar(2011,2,1,8,00), new GregorianCalendar(2011,2,8,23,00), 120, period1, "task3 description");
 
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
 		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
@@ -82,18 +82,18 @@ public class main {
 		UIResource kitchen = new UIResource("Kitchen", 5);
 		
 		
-		
+		/*
 		// Testing use case "Registration"
-		/*main.createUser(ivanov);
+		main.createUser(ivanov);
 		main.createUser(petrov);
 		main.createUser(sidorov);
 		main.createUser(egorov);
-		main.createUser(dmitriev);*/
+		main.createUser(dmitriev);
+		*/
 		
-		
-		
+		/*
 		// Testing use case "Accept Request"
-		/*Set<UIRequest> allRequests = main.getAllRequests();
+		Set<UIRequest> allRequests = main.getAllRequests();
 		for (UIRequest uir : allRequests) {
 			System.out.println(uir);
 		}
@@ -158,6 +158,7 @@ public class main {
 			System.out.println(u);
 		}
 		main.assignUsers(users);
+		
 		main.acceptTask();
 		*/
 				
