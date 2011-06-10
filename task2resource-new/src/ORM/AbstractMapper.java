@@ -1,14 +1,18 @@
 package ORM;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import org.apache.log4j.Logger;
 
 public class AbstractMapper {
 	public void insertObject (Object obj)
@@ -22,6 +26,7 @@ public class AbstractMapper {
         }
         catch (HibernateException he) {
             if (tx!=null) tx.rollback();
+            (Logger.getLogger(this.getClass())).error("Error while inserting an object " +he);
             throw he;
         }
         finally {
@@ -43,6 +48,7 @@ public class AbstractMapper {
         }
         catch (HibernateException he) {
             if (tx!=null) tx.rollback();
+            (Logger.getLogger(this.getClass())).error("Error while inserting collection of objects " + he);
             throw he;
         }
         finally {
@@ -61,6 +67,7 @@ public class AbstractMapper {
         }
         catch (HibernateException he) {
             if (tx!=null) tx.rollback();
+            (Logger.getLogger(this.getClass())).error("Error while updating an object " + he);
             throw he;
         }
         finally {
@@ -84,7 +91,8 @@ public class AbstractMapper {
         }
         catch (HibernateException he) {
             if (tx!=null) tx.rollback();
-            throw he;
+            (Logger.getLogger(this.getClass())).error("Error while updating collection of objects " + he);
+             throw he;
         }
         finally {
             session.close();
@@ -102,6 +110,7 @@ public class AbstractMapper {
         }
         catch (HibernateException he) {
             if (tx!=null) tx.rollback();
+            (Logger.getLogger(this.getClass())).error("Error while deleting an object " + he);
             throw he;
         }
         finally {
@@ -123,6 +132,7 @@ public class AbstractMapper {
         }
         catch (HibernateException he) {
             if (tx!=null) tx.rollback();
+            (Logger.getLogger(this.getClass())).error("Error while deleting collection of objects " + he);
             throw he;
         }
         finally {
@@ -141,6 +151,7 @@ public class AbstractMapper {
 	    } 
 	    catch (HibernateException he) 
 	    {
+	    	(Logger.getLogger(this.getClass())).error("Error while reading an object" + he);
 	    	throw he;
 	    } 
 	    finally 

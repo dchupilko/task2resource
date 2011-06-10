@@ -109,7 +109,7 @@ public class Main {
 	public void deleteResources(Set<UIResource> uiresources) {
 		for (Resource r : resources) {
 			for (UIResource uir : uiresources) {
-				if (r.equals(uir)) {
+				if (r.getName().equals(uir.getName())) {
 					resourceMapper.deleteResourceById(r);
 				}
 			}

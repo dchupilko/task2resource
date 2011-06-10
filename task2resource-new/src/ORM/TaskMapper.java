@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 import java.util.List;
 
@@ -16,9 +15,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.jboss.cache.config.parsing.ParsedAttributes;
 
-import uiclasses.UIResource;
+import org.apache.log4j.Logger;
 
 public class TaskMapper extends AbstractMapper{
 	public Set<Task> getTaskByDate(GregorianCalendar date)
@@ -31,28 +29,29 @@ public class TaskMapper extends AbstractMapper{
 		    Set<Task> tasks = new HashSet<Task>();
 		    for(Object[] o: tempList)
 		    {
+		    	sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 		    	Task t = new Task();
 		    	t.setOid((new Integer(o[0].toString()).intValue()));
 		    	t.setVersion((new Integer(o[1].toString()).intValue()));
 		    	t.setName(o[2].toString());
-		    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-		    	sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-		    	Date d = sdf.parse(o[4].toString());
+		    	Date d = sdf.parse(o[3].toString());
 		    	GregorianCalendar cal = new GregorianCalendar();
 		    	cal.setTime(d);
 		    	t.setFromDate(cal);
-		    	d = sdf.parse(o[5].toString());
+		    	d = sdf.parse(o[4].toString());
 		    	cal.setTime(d);
 		    	t.setToDate(cal);
+		    	t.setName(o[5].toString());
+		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 	    		tasks.add(t);
 		    }
 			return tasks;
 		}
 		catch(HibernateException he){
+			(Logger.getLogger(this.getClass())).error("getTaskByDate: " + he);
 			throw he;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			(Logger.getLogger(this.getClass())).error("getTaskByDate: " + e);
 		}
 		return null;
 	}
@@ -63,6 +62,7 @@ public class TaskMapper extends AbstractMapper{
 			this.deleteObject(task);
 		}
 		catch(HibernateException he){
+			(Logger.getLogger(this.getClass())).error("deleteTaskById: " + he);
 			throw he;
 		}
 	}
@@ -82,8 +82,6 @@ public class TaskMapper extends AbstractMapper{
 	
 	public void getResourcesByDate(Set <Dates> dates)
 	{
-		//TODO: get all possible resources by date
-		//TODO: perhaps it's better to do this in the only transaction
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	    List<Object []> tempList = new ArrayList<Object []>();
 		try{
@@ -111,8 +109,7 @@ public class TaskMapper extends AbstractMapper{
 			    	r.setCapacity((new Integer(o[3].toString()).intValue()));
 			    	resources.add(r);
 			    }
-			    d.setResources(resources);
-				
+			    d.setResources(resources);				
 			}
 		}
 		catch(HibernateException he){
@@ -151,8 +148,7 @@ public class TaskMapper extends AbstractMapper{
 		catch(HibernateException he){
 			throw he;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			(Logger.getLogger(this.getClass())).error(e.getMessage());
 		}
 	}
 	
@@ -165,34 +161,33 @@ public class TaskMapper extends AbstractMapper{
 		    Set<Task> tasks = new HashSet<Task>();
 		    for(Object[] o: tempList)
 		    {
+		    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 		    	Task t = new Task();
 		    	t.setOid((new Integer(o[0].toString()).intValue()));
 		    	t.setVersion((new Integer(o[1].toString()).intValue()));
 		    	t.setName(o[2].toString());
-		    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-		    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-		    	Date date = sdf.parse(o[4].toString());
+		    	Date d = sdf.parse(o[3].toString());
 		    	GregorianCalendar cal = new GregorianCalendar();
-		    	cal.setTime(date);
+		    	cal.setTime(d);
 		    	t.setFromDate(cal);
-		    	date = sdf.parse(o[5].toString());
-		    	cal.setTime(date);
+		    	d = sdf.parse(o[4].toString());
+		    	cal.setTime(d);
 		    	t.setToDate(cal);
+		    	t.setName(o[5].toString());
+		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 	    		tasks.add(t);
 		    }
 			return tasks;
 		} catch(HibernateException he){
 			throw he;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			(Logger.getLogger(this.getClass())).error(e.getMessage());
 		}
 		return null;
 	}
 	
 	public Set<Task> getAllTasksForDates(Dates date)
 	{
-		//TODO: perhaps we'll need to extend dates' bounds
 		try {
 			String query = String.format("select t.* from Tasks t, Assignments a " +
 					"where a.startDate>=to_date(%tD) and a.finishDate<=to_date(%tD) and t.IdTask=a.IdTask",
@@ -201,33 +196,34 @@ public class TaskMapper extends AbstractMapper{
 		    Set<Task> tasks = new HashSet<Task>();
 		    for(Object[] o: tempList)
 		    {
+		    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 		    	Task t = new Task();
 		    	t.setOid((new Integer(o[0].toString()).intValue()));
 		    	t.setVersion((new Integer(o[1].toString()).intValue()));
 		    	t.setName(o[2].toString());
-		    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-		    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-		    	Date d = sdf.parse(o[4].toString());
+		    	Date d = sdf.parse(o[3].toString());
 		    	GregorianCalendar cal = new GregorianCalendar();
 		    	cal.setTime(d);
 		    	t.setFromDate(cal);
-		    	d = sdf.parse(o[5].toString());
+		    	d = sdf.parse(o[4].toString());
 		    	cal.setTime(d);
 		    	t.setToDate(cal);
+		    	t.setName(o[5].toString());
+		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 	    		tasks.add(t);
 		    }
 			return tasks;
 		} catch(HibernateException he){
 			throw he;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			(Logger.getLogger(this.getClass())).error(e.getMessage());
 		}
 		return null;
 	}
 	
 	public void getAllTasksById(User user)
 	{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");  	 
 		try {
 			String query = String.format("select distinct t.* from Tasks t, Assignments a " +
 					"where t.IdUser=%d and a.startDate>=sysdate and t.IdTask=a.IdTask", user.getOid());
@@ -239,23 +235,22 @@ public class TaskMapper extends AbstractMapper{
 			    	t.setOid((new Integer(o[0].toString()).intValue()));
 			    	t.setVersion((new Integer(o[1].toString()).intValue()));
 			    	t.setName(o[2].toString());
-			    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-			    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-			    	Date date = sdf.parse(o[4].toString());
+			    	Date d = sdf.parse(o[3].toString());
 			    	GregorianCalendar cal = new GregorianCalendar();
-			    	cal.setTime(date);
+			    	cal.setTime(d);
 			    	t.setFromDate(cal);
-			    	date = sdf.parse(o[5].toString());
-			    	cal.setTime(date);
+			    	d = sdf.parse(o[4].toString());
+			    	cal.setTime(d);
 			    	t.setToDate(cal);
+			    	t.setName(o[5].toString());
+			    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 		    		tasks.add(t);
 			    }
 			user.setUserTasks(tasks);
 		} catch(HibernateException he){
 			throw he;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			(Logger.getLogger(this.getClass())).error(e.getMessage());
 		}
 	}
 	
@@ -269,27 +264,27 @@ public class TaskMapper extends AbstractMapper{
 			    Set<Task> tasks = new HashSet<Task>();
 			    for(Object[] o: tempList)
 			    {
+			    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 			    	Task t = new Task();
 			    	t.setOid((new Integer(o[0].toString()).intValue()));
 			    	t.setVersion((new Integer(o[1].toString()).intValue()));
 			    	t.setName(o[2].toString());
-			    	t.setCapacity((new Integer(o[3].toString()).intValue()));
-			    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-			    	Date date = sdf.parse(o[4].toString());
+			    	Date d = sdf.parse(o[3].toString());
 			    	GregorianCalendar cal = new GregorianCalendar();
-			    	cal.setTime(date);
+			    	cal.setTime(d);
 			    	t.setFromDate(cal);
-			    	date = sdf.parse(o[5].toString());
-			    	cal.setTime(date);
+			    	d = sdf.parse(o[4].toString());
+			    	cal.setTime(d);
 			    	t.setToDate(cal);
+			    	t.setName(o[5].toString());
+			    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 		    		tasks.add(t);
 			    }
 			user.setTasks(tasks);
 		} catch(HibernateException he){
 			throw he;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			(Logger.getLogger(this.getClass())).error(e.getMessage());
 		}
 	}
 	

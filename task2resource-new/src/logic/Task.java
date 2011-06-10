@@ -15,6 +15,7 @@ public class Task {
     
 	protected String name;
     protected int capacity;
+    protected String description;
     protected GregorianCalendar fromDate = null;
     protected GregorianCalendar toDate = null;
     
@@ -27,14 +28,15 @@ public class Task {
     protected TaskMapper taskMapper = new TaskMapper();
     
     protected boolean status= false;
-    
-    public Task() {}
+
+	public Task() {}
     
     public Task(UITask task) {   	
     	this.name = task.getName();
         this.capacity = task.getCapacity();
         this.fromDate = task.getFromDate();
         this.toDate = task.getToDate();
+        this.description = task.getDescription();
         
         calculateDates(task);
         //TODO: load all possible resources for calculated dates
@@ -50,7 +52,7 @@ public class Task {
 	 */
     public UITask getUITask()
     {
-    	return new UITask(name, capacity, fromDate, toDate);
+    	return new UITask(name, capacity, fromDate, toDate, description);
     }
     
     /**
@@ -364,7 +366,7 @@ public class Task {
     
 	@Override
 	public String toString() {
-		return "Task [oid=" + oid + ", name=" + name + "]";
+		return "Task [oid=" + oid + ", name=" + name + ", description="+ description+"]";
 	}
 	
 	
@@ -495,6 +497,14 @@ public class Task {
 
 	public void setStatus() {
 		this.status=true;
+	}
+    
+    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
 
