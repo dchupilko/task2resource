@@ -69,6 +69,8 @@ public class main {
 		UIRequest egorov = new UIRequest("Egor", "Egorov", "egoregorov", "123456", "egorov@gmail.com", "Junior Programmer");
 		UIRequest dmitriev = new UIRequest("Dmitry", "Dmitriev", "dimadmitriev", "123456", "dmitriev@gmail.com", "Analytic");
 		
+		
+		
 		UIResource conf = new UIResource("Conference room", 100);
 		UIResource cl1 = new UIResource("Class1", 20);
 		UIResource cl2 = new UIResource("Class2", 10);
@@ -79,21 +81,23 @@ public class main {
 		UIResource gym = new UIResource("Gym", 10);
 		UIResource kitchen = new UIResource("Kitchen", 5);
 		
-		/*
+		
+		
 		// Testing use case "Registration"
-		main.createUser(ivanov);
+		/*main.createUser(ivanov);
 		main.createUser(petrov);
 		main.createUser(sidorov);
 		main.createUser(egorov);
-		main.createUser(dmitriev);
-		*/
+		main.createUser(dmitriev);*/
 		
-		/*
+		
+		
 		// Testing use case "Accept Request"
-		Set<UIRequest> allRequests = main.getAllRequests();
+		/*Set<UIRequest> allRequests = main.getAllRequests();
 		for (UIRequest uir : allRequests) {
 			System.out.println(uir);
 		}
+		
 		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
 		acceptedRequests.add(ivanov);
 		acceptedRequests.add(petrov);

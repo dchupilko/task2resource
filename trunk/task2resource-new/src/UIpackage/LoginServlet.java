@@ -44,10 +44,12 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		   String login = request.getParameter("login");
 	       String password = request.getParameter("password");
+	       Main main=new Main();
+	      
 	       if ((login != null) && (password != null)) {
 	           
-	    	   
-	           if ((login.equals("user")) && (password.equals("pass"))) {
+	    	   if(main.Authorize(login, password)){
+	          // if ((login.equals("user")) && (password.equals("pass"))) {
 	        	  
 	        	   //TO DO	
 	        	  
