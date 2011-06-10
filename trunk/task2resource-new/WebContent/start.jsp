@@ -2,6 +2,8 @@
 <%@page import="logic.*"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
   
@@ -87,8 +89,16 @@
 					                								<%=uit.getName()%>		
 					                								</td>
 					                								<td id='category_td'>
-					                								<%=uit.getFromDate()%>
-					                								<%=uit.getToDate()%>
+					                								
+					                								<%
+					                								Date dateFrom = uit.getFromDate().getTime();
+					                								SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+					                							    out.println("Date from:" + sdf.format(dateFrom));
+					                							    
+					                								Date dateTo = uit.getToDate().getTime();
+					                								SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy");
+					                							    out.println(" | Date to:" + sdf2.format(dateTo));
+					                								%>
 					                								</td>
 					                								<td>
 					                							
@@ -108,7 +118,7 @@
 					                					<% if(flag==true){%>
 					                					<a href="">View task</a>
 					                					<%}%>
-					                					<div align="right">author: <%out.print("");%>
+					                					<div align="right"><%out.print("");%>
 					                					
 					                					</div></td>
 					                				</tr>

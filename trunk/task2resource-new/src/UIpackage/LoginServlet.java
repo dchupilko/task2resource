@@ -1,6 +1,9 @@
 package UIpackage;
 
 import java.io.IOException;
+
+
+
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -45,15 +48,12 @@ public class LoginServlet extends HttpServlet {
 		   String login = request.getParameter("login");
 	       String password = request.getParameter("password");
 	       Main main=new Main();
-	      
+	     // Date d=new Date();
 	       if ((login != null) && (password != null)) {
 	           
 	    	   if(main.Authorize(login, password)){
 	          // if ((login.equals("user")) && (password.equals("pass"))) {
-	        	  
-	        	   //TO DO	
-	        	  
-	        		                     	  
+	    		  // SimpleDateFormat sdf = new SimpleDateFormat();	        		                     	  
 	               HttpSession session = request.getSession(true);
 	               session.setAttribute("auth",request.getParameter("login"));
 	               request.setAttribute("message", null);
