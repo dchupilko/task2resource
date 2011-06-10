@@ -9,7 +9,7 @@
             <generator class="sequence" />
         </id>
         <version name="version" /> 
-        <property name="name" type="java.lang.String" access="field">
+        <property name="name" type="java.lang.String" access="field" not-null="true" unique="true">
             <column name="NAME" />
         </property>
         <set name="users" table="USER" inverse="false" lazy="true" access="field" cascade="none">
