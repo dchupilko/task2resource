@@ -9,18 +9,16 @@
             <generator class="sequence" />
         </id>
         <version name="version" /> 
-        <property name="startDate" type="java.util.GregorianCalendar" access="field">
+        <property name="startDate" type="java.util.GregorianCalendar" access="field" not-null="true">
             <column name="STARTDATE" />
         </property>
-        <property name="finishDate" type="java.util.GregorianCalendar" access="field">
+        <property name="finishDate" type="java.util.GregorianCalendar" access="field" not-null="true">
             <column name="FINISHDATE" />
         </property><set name="resources" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="persist,delete">
             <key>
                 <column name="IDASSIGNMENT" />
             </key>
             <many-to-many class="logic.Resource" column="IDRESOURCE" />
-        </set>
-        
-    	                                                                   
+        </set>                                                                      
     </class>
 </hibernate-mapping>

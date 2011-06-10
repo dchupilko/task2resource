@@ -9,10 +9,10 @@
             <generator class="sequence" />
         </id>
         <version name="version" /> 
-        <property name="name" type="java.lang.String" access="field">
+        <property name="name" type="java.lang.String" access="field" not-null="true" unique="true">
             <column name="NAME" />
         </property>
-        <property name="capacity" type="int" access="field">
+        <property name="capacity" type="int" access="field" not-null="true">
             <column name="CAPACITY" />
         </property>
         <set name="dates" table="RESOURCES_ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="all">

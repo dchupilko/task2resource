@@ -9,22 +9,22 @@
             <generator class="sequence" />
         </id>
         <version name="version" /> 
-        <property name="firstName" type="java.lang.String">
+        <property name="firstName" type="java.lang.String" not-null="true">
             <column name="FIRSTNAME" />
         </property>
-        <property name="lastName" type="java.lang.String">
+        <property name="lastName" type="java.lang.String" not-null="true">
             <column name="LASTNAME" />
         </property>
-        <property name="login" type="java.lang.String">
+        <property name="login" type="java.lang.String" not-null="true" unique="true">
             <column name="LOGIN" />
         </property>
-        <property name="password" type="java.lang.String">
+        <property name="password" type="java.lang.String" not-null="true" unique="true">
             <column name="PASSWORD" />
         </property>
-        <property name="email" type="java.lang.String">
+        <property name="email" type="java.lang.String" not-null="true" unique="true">
             <column name="EMAIL" />
         </property>
-        <property name="job" type="java.lang.String">
+        <property name="job" type="java.lang.String" not-null="true">
             <column name="JOB" />
         </property>
     </class>

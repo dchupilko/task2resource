@@ -8,11 +8,19 @@
             <column name="IDTASK" />
             <generator class="sequence" />
         </id>
-        <version name="version" /> 
-        <property name="name" type="java.lang.String">
-            <column name="NAME" />
-        </property>
-        <property name="capacity" type="int">
+        <natural-id mutable="true">
+        	<property name="name" type="java.lang.String">
+            	<column name="NAME" />
+        	</property>
+        	<property name="fromDate" type="java.util.GregorianCalendar" access="field">
+            	<column name="FROMDATE" />
+        	</property>
+        	<property name="toDate" type="java.util.GregorianCalendar" access="field">
+            	<column name="TODATE" />
+        	</property>
+        </natural-id>
+        <version name="version" />         
+        <property name="capacity" type="int" >
             <column name="CAPACITY" />
         </property>
         <set name="dates" table="ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="all">
@@ -21,12 +29,6 @@
             </key>
             <one-to-many class="logic.Dates"/>
         </set>
-        <property name="fromDate" type="java.util.GregorianCalendar" access="field">
-            <column name="FROMDATE" />
-        </property>
-        <property name="toDate" type="java.util.GregorianCalendar" access="field">
-            <column name="TODATE" />
-        </property>
         <set name="participants" table="PARTICIPATIONS" inverse="false" lazy="true" access="field" cascade="none">
             <key>
                 <column name="IDTASK" />
