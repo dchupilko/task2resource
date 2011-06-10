@@ -1,6 +1,7 @@
 <%@page import="uiclasses.*"%>
 <%@page import="logic.*"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
   
@@ -63,28 +64,31 @@
 					                			<table id='table_news'>
 					                			
 					                			 <%
-					                			 Main main = new Main();
-					                		
 					                			 
-					                			  //Set <UITask> tasks = main.getAllTasks();
-																	                			   
+					                			 Main main = new Main();
+					                			 List<UITask> tasks = main.getAllTasks();	
+					                			 
+					                			 															                			   
 					                			
 					                				//UITask: name, capacity, fromDate, toDate
 					                				//boolean flag = main.modifyTask(uitask);
 					                			//true - user is the owner of the task
 					                			%>
 					                			
-					                			<%for(int i=0;i<10;i++){%>
+					                			<%//for(int i=0;i<10;i++){
+					                			for (UITask uit: tasks) {
+					                			%>
 					                				<tr>
 					                					<td>
 					                						
 					                						<table id="table_news_element">
 					                							<tr>
 					                								<td id='title_td'>
-					                								<%out.print("title");%>		
+					                								<%=uit.getName()%>		
 					                								</td>
 					                								<td id='category_td'>
-					                								<%out.print("categor");%>
+					                								<%=uit.getFromDate()%>
+					                								<%=uit.getToDate()%>
 					                								</td>
 					                								<td>
 					                							
@@ -104,7 +108,9 @@
 					                					<% if(flag==true){%>
 					                					<a href="">View task</a>
 					                					<%}%>
-					                					<div align="right">author: <%out.print("author#"); %></div></td>
+					                					<div align="right">author: <%out.print("");%>
+					                					
+					                					</div></td>
 					                				</tr>
 					                				<%}%>
 					                			</table>
