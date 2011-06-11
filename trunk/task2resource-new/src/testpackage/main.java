@@ -81,8 +81,10 @@ public class main {
 		UIResource lobby = new UIResource("Lobby", 50);
 		UIResource gym = new UIResource("Gym", 10);
 		UIResource kitchen = new UIResource("Kitchen", 5);
-		
-		
+
+		//UIGroup uig=new UIGroup("managers");
+		//main.createGroup(uig);
+
 		/*
 		// Testing use case "Registration"
 		main.createUser(ivanov);
@@ -131,11 +133,11 @@ public class main {
 		
 		
 		// Testing use case "Delete resources"
-		Set<UIResource> allResources = main.getAllResources();
-		Set<UIResource> uiresources = new HashSet<UIResource>();
+		//Set<UIResource> allResources = main.getAllResources();
+		//Set<UIResource> uiresources = new HashSet<UIResource>();
 		//uiresources.add(lobby);
 		//uiresources.add(gym);
-		main.deleteResources(allResources);		
+		//main.deleteResources(allResources);		
 		
 		
 		/*
@@ -163,17 +165,17 @@ public class main {
 		main.acceptTask();
 		*/
 				
-		/*
+		
 		//Testing use case "Get task info"
-		main.Authorize("ivanivanov", "123456");
+		//main.Authorize("ivanivanov", "123456");
 		List<UITask> tasks = main.getAllTasks();
 		UITask tempTask = null;
 		for (UITask uit: tasks) {
 			System.out.println(uit);
-			System.out.println(main.modifyTask(uit));
-			tempTask = uit;
+			//System.out.println(main.modifyTask(uit));
+			//tempTask = uit;
 		}
-		Set<UIDates> taskDates = main.getTaskDates(tempTask);
+		/*Set<UIDates> taskDates = main.getTaskDates(tempTask);
 		for(UIDates uid : taskDates)
 		{
 			System.out.println(uid);

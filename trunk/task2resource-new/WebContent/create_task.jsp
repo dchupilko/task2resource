@@ -1,3 +1,6 @@
+<%@page import="uiclasses.*"%>
+<%@page import="logic.*"%>
+<%@page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -119,11 +122,15 @@
 					                							<span style="margin-left: 75px"> Groups</span>
 					                						<div  style="margin-left: 60px;">
 																<select id="groupSelectId" name="groupSelect"  multiple="multiple"  style="width: 100px" >
-																<%for(int i=0;i<1;i++){ %>
-																	<option>Value 1</option>
-																	<option>Value 2</option>
-																	<option>Value 3</option>
-																	<%} %>
+																<%
+																Main main=new Main();
+																Set<UIGroup> groups = main.getAllGroups();
+																//for (UIGroup g : groups) {
+																	//System.out.println(g);
+																//}
+																for(UIGroup g : groups){ %>
+																	<option><%=g.getName()%></option>
+																<%} %>
 																</select>
 					                						</div>
 					                						

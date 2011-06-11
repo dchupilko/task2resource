@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
   
-<html><body>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,13 +39,14 @@
                         <%if(flag){%>
                         <a href="logout.jsp">Log out</a><span> |</span>
                         <%}%>
-                        <a href="registration.jsp">Register</a></div><img id="img_main_top" src="img/top.jpg"/></td>
+                        <a href="registration.jsp">Register</a></div><img id="img_main_top" src="img/top.jpg"/>
                        <% if(flag==false){%>
                     	   <span>no session</span>
                       <% }%>
                        <% if(flag==true){%>
                     	   <span>session open</span>
                       <% }%>
+                     </td>
            		    </tr>            
            			 <tr>
            		           	 <td height="500px">
@@ -59,27 +60,28 @@
 									        	  <div>Put date to find task: </div>
 					                			  <div class="demo"><input type="text" id="datepicker" name="datepicker" value=""/></div>
 					                			  <input type="button" id="start_find_task" value="to find" />	
-									      	 </div></td>
+									      	 	  </div>
+									      	 </td>
        
-										 <td width="63%" id='child_table_center'>
-										 		<span> latest tasks ( test - 10)</span>	
-					                			<table id='table_news'>
-					                			
-					                			 <%
-					                			 
-					                			 Main main = new Main();
-					                			 List<UITask> tasks = main.getAllTasks();	
-					                			 
-					                			 															                			   
-					                			
-					                				//UITask: name, capacity, fromDate, toDate
-					                				//boolean flag = main.modifyTask(uitask);
-					                			//true - user is the owner of the task
-					                			%>
-					                			
-					                			<%//for(int i=0;i<10;i++){
-					                			for (UITask uit: tasks) {
-					                			%>
+										      <td width="63%" id='child_table_center'>
+											 		<span> latest tasks ( test - 10)</span>	
+						                			<table id='table_news'>
+						                			
+						                			 <%
+						                			 
+						                			 Main main = new Main();
+						                			 List<UITask> tasks = main.getAllTasks();	
+						                			 
+						                			 															                			   
+						                			
+						                				//UITask: name, capacity, fromDate, toDate
+						                				//boolean flag = main.modifyTask(uitask);
+						                			 //true - user is the owner of the task
+						                			%>
+						                			
+						                			<%//for(int i=0;i<10;i++){
+						                			for (UITask uit: tasks) {
+						                			%>
 					                				<tr>
 					                					<td>
 					                						
@@ -128,18 +130,18 @@
 					                			<br/>
 							                   			
 								
-					      	   			 </td>
-					      	   			 <td width="16%" valign="top" class="child_table_left">
-					      	   			 <p>
-					      	   			 	 <% if(flag==true){%>
-					      	   			 	 <div  id="div_create_task_id">
-					      	   			 	 	<a href="create_task.jsp" ><span>>></span>Create task</a>
-					      	   			 	 	<br>
-					      	   			 	 	<a href="my_tasks.jsp" ><span>>></span>My tasks</a>
-					      	   			 	</div>
-					      	   			 	 <%} %>
-					      	   			 </p>
-					      	   			 </td>       		   			             
+						      	   			 </td>
+						      	   			 <td width="16%" valign="top" class="child_table_left">
+							      	   			
+							      	   			 	 <% if(flag==true){%>
+							      	   			 	 <div  id="div_create_task_id">
+							      	   			 	 	<a href="create_task.jsp" ><span>>></span>Create task</a>
+							      	   			 	 	<br>
+							      	   			 	 	<a href="my_tasks.jsp" ><span>>></span>My tasks</a>
+							      	   			 	</div>
+							      	   			 	 <%} %>
+							      	   			 
+						      	   			 </td>       		   			             
           			 		       </tr>
           			 		       
       					 </table>
