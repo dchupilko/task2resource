@@ -5,9 +5,14 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import uiclasses.*;
 
 public class Dates {
+	
+	private static final Logger log = Logger.getLogger(Dates.class);
+	
     protected int oid;
     protected int version;
     
@@ -19,11 +24,15 @@ public class Dates {
     public Dates() {}
     
     public Dates(GregorianCalendar startDate, GregorianCalendar finishDate) {
+    	log.debug("Initilizing constructor with" + startDate.getTime() +
+    			" " + finishDate.getTime());
     	this.startDate.setTime(startDate.getTime());
         this.finishDate.setTime(finishDate.getTime());
     }
 
     public Dates(UIDates date) {
+    	log.debug("Initilizing constructor with" + date.getStartDate().getTime() +
+    			" " + date.getFinishDate().getTime());
         this.startDate.setTime(date.getStartDate().getTime());
         this.finishDate.setTime(date.getFinishDate().getTime());
     }
@@ -47,6 +56,7 @@ public class Dates {
      * @param resource	Specified resource
      */
     public void assignResource(Resource resource) {
+    	log.debug(resource.getOid() + " " + resource.getName() + "status was set to TRUE");
     	resource.setStatus(true);
     }
     
@@ -56,6 +66,7 @@ public class Dates {
      * @param resource	Specified resource
      */
     public void unassignResource(Resource resource) {
+    	log.debug(resource.getOid() + " " + resource.getName() + "status was set to FALSE");
     	resource.setStatus(false);
     }
 	
@@ -67,6 +78,7 @@ public class Dates {
 				+ ((finishDate == null) ? 0 : finishDate.hashCode());
 		result = prime * result
 				+ ((startDate == null) ? 0 : startDate.hashCode());
+		log.debug("hashCode is " + result);
 		return result;
 	}
 

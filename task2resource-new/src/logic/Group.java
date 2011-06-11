@@ -3,9 +3,14 @@ package logic;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import uiclasses.*;
 
 public class Group {
+	
+	private static final Logger log = Logger.getLogger(Group.class);
+	
 	protected int oid;
 	protected int version;
 	
@@ -37,6 +42,7 @@ public class Group {
      * @param user	User
      */
     public void addUser(User user) {
+    	log.debug("Was added user: " + user.getOid() + " " + user.getLogin());
     	users.add(user);
     }
     
@@ -45,6 +51,7 @@ public class Group {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		log.debug("Hash code " + result);
 		return result;
 	}
 
