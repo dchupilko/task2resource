@@ -6,10 +6,15 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import uiclasses.*;
 import ORM.TaskMapper;
 
 public class Task {
+	
+	private static final Logger log = Logger.getLogger(Task.class);
+	
 	protected int oid;
     protected int version;
     
@@ -61,6 +66,7 @@ public class Task {
      * @param task	Info about task
      */
     private void calculateDates(UITask task){
+    	log.debug("Trying to calculate dates");
         GregorianCalendar fromDate = task.getFromDate();
         GregorianCalendar toDate   = task.getToDate();
         int lengthInMinutes        = task.getLengthInMinutes() - 1;
@@ -70,6 +76,7 @@ public class Task {
     	tmpDate.setTime(fromDate.getTime());
         GregorianCalendar templateDateForStart = null;
         GregorianCalendar templateDateForFinish = null;
+        log.debug("Initialization complete");
         
         do {
             for (int i = 0; i < period.length; i++) {
@@ -93,6 +100,7 @@ public class Task {
         } while ((tmpDate.get(Calendar.YEAR) != toDate.get(Calendar.YEAR)) ||
        		 (tmpDate.get(Calendar.MONTH) != toDate.get(Calendar.MONTH)) || 
        		 (tmpDate.get(Calendar.DAY_OF_MONTH) != toDate.get(Calendar.DAY_OF_MONTH)));
+        log.debug("Calculating dates has been finished");
     }
     
     /**
@@ -101,6 +109,7 @@ public class Task {
      * @return	List of resources
      */
     public Set<UIResource> getAllResources() {
+    	log.debug("Trying to get all resources");
     	taskMapper.getResourcesByDate(dates);
     	//if resource has already been added into collection it won't be added again
     	for(Dates d : dates)
@@ -126,6 +135,7 @@ public class Task {
     	for (Resource r : allResources) {
     		uiResources.add(r.getUIResource());
     	}
+    	log.debug("Getting all resources finished");
     	return uiResources;
     }
     
@@ -136,6 +146,7 @@ public class Task {
      * @return			Dates of conflicts
      */
     public Set<UIDates> chooseResources(Set<UIResource> resources) {
+    	log.debug("Sterting to choose resources");
     	Set<UIDates> conflictDates = new HashSet<UIDates> ();
 		for (Resource r : allResources) 
 		{
@@ -163,6 +174,7 @@ public class Task {
 				}				
 			}
 		}    	
+		log.debug("Choosing resources has been finished");
     	return conflictDates;
     }
 
@@ -172,14 +184,16 @@ public class Task {
      * @param uiusers	List of selected users
      */
     public void assignUsers(Set<User> users) {
+    	log.debug("Trying to assign users");
     	participants.addAll(users);
+    	log.debug("Assigning users finished");
     }
     
     /**
      * Remove resources that are not assigned for resource list
      */
-    public void prepareResources () 
-    {
+    public void prepareResources () {
+    	log.debug("Preparing resources");
     	for (Dates d : dates) {
         	Set<Resource> tmpResources = new HashSet<Resource>();
     		for (Resource r : d.resources) {
@@ -190,6 +204,7 @@ public class Task {
     		}
     		d.resources.removeAll(tmpResources);
     	}
+    	log.debug("Preparing resources finished");
     }
     
 	/**
@@ -199,8 +214,8 @@ public class Task {
 	 * @param removedResources	List of removed resources
 	 * @return					Conflict dates
 	 */
-    public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources)
-    {   
+    public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources){   
+    	log.debug("Modifying resorces");
     	if(status)
     	{
     		allResources.addAll(assignedResources);
@@ -210,7 +225,7 @@ public class Task {
         		allResources.addAll(d.resources);
         	}
     	}    
-    	System.out.println("DEBUG: All possible resources:");
+    	log.debug("All possible resources are:");
     	for (Dates d : dates) {
     		for (Resource r : d.resources) 
     		{
@@ -224,6 +239,7 @@ public class Task {
     			}
     		}
     	}    	
+    	log.debug("Modifying resources finished");
     	return this.chooseResources(addedResources);    	
     }
     
@@ -234,8 +250,10 @@ public class Task {
 	 * @param removedUsers	List of removed users
 	 */
 	public void modifyUsers(Set<User> addedUsers, Set<User> removedUsers) {
+		log.debug("Modifying users");
 		participants.addAll(addedUsers);
 		participants.removeAll(removedUsers);
+		log.debug("Modifying users finished");
 	}
 	
 	/**
@@ -245,6 +263,7 @@ public class Task {
 	 * @param uitask	Task info
 	 */
 	public void modifyDates(UITask uitask) {
+		log.debug("Modifying dates");
 		removedDates.addAll(dates);
 		allResources.clear();
 		allResources.addAll(assignedResources);
@@ -268,6 +287,7 @@ public class Task {
 			}
 		}
 		allResources.addAll(assignedResources);
+		log.debug("Modifying dates finished");
 	}
 	
     /**
@@ -277,14 +297,17 @@ public class Task {
      * @return		List of resources
      */
     public Set<UIResource> getResourcesForDate(UIDates date) {
+    	log.debug("Getting resourses for date");
     	Set<UIResource> uiresources = new HashSet<UIResource>();
     	for (Dates d : dates) {
     		if (d.equals(date)) {
     			for (Resource r : d.resources) {
     				uiresources.add(r.getUIResource());
+    				log.debug(r.getUIResource().getName());
     			}
     		}
     	}
+    	log.debug("Getting resources for date finished");
     	return uiresources;
     }
     
@@ -295,6 +318,7 @@ public class Task {
      * @param date		Date
      */
     public void chooseResourcesForDate(Set<UIResource> resources, UIDates date) {
+    	log.debug("Choosing resources for dates");
     	for (Dates d : dates) {
     		if (d.equals(date)) {
 	    		for (Resource r : d.resources) {
@@ -302,11 +326,13 @@ public class Task {
 	    				if(r.equals(uir))
 	    				{
     						d.assignResource(r);
+    						log.debug("Assigned resources" + r.getOid() + r.getName());
 	    				}
 	    			}
 	    		}
     		}
     	}
+    	log.debug("Choosing resources for dates finished");
     }
     
 	/**
@@ -314,14 +340,15 @@ public class Task {
 	 * 
 	 * @return	List of dates
 	 */
-    public Set<UIDates> getTaskDates ()
-    {
+    public Set<UIDates> getTaskDates () {
+    	log.debug("Getting task dates");
     	Set<UIDates> uidates = new HashSet <UIDates> ();
     	taskMapper.getDatesByTask(this);
     	for(Dates d: dates)
     	{
     		uidates.add(d.getUIDates());
     	}
+    	log.debug("Getting task dates finished");
     	return uidates;
     }
     
@@ -330,21 +357,22 @@ public class Task {
 	 * 
 	 * @return	List of resources
 	 */
-    public Set<UIResource> getTaskResources ()
-    {
+    public Set<UIResource> getTaskResources () {
+    	log.debug("Trying to get task resources");
     	Set<UIResource> uiresources = new HashSet<UIResource> ();
     	taskMapper.getResourcesByTask(this);
-    	System.out.println("DEBUG: all task's resources:");
+    	log.debug("All task resources are");
     	for(Dates d: dates)
     	{
     		for(Resource r: d.getResources())
     		{
     			d.assignResource(r);
-    			System.out.println(r);
+    			log.debug(r.getOid() + " " + r.getName());
     			uiresources.add(r.getUIResource());
     		}
     		assignedResources.addAll(d.getResources());    		
     	}
+    	log.debug("Trying to get task resources finished");
     	return uiresources;
     }
     
@@ -353,14 +381,15 @@ public class Task {
 	 * 
 	 * @return	List of users
 	 */
-    public Set<UIUser> getTaskUsers()
-    {
+    public Set<UIUser> getTaskUsers() {
+    	log.debug("Trying to get task users");
     	Set<UIUser> uiusers = new HashSet<UIUser> ();
     	taskMapper.getUsersByTask(this);
     	for(User u: participants)
     	{
     		uiusers.add(u.getUIUser());
     	}
+    	log.debug("Trying to get task users finished");
     	return uiusers;
     }
     
@@ -385,6 +414,7 @@ public class Task {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + oid;
 		result = prime * result + ((toDate == null) ? 0 : toDate.hashCode());
+		log.debug("hashCode" + result);
 		return result;
 	}
 
