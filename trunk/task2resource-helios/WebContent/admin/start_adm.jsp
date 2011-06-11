@@ -1,13 +1,17 @@
+<%@page import="uiclasses.*"%>
+<%@page import="logic.*"%>
+<%@page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link rel="stylesheet" type="text/css"  href="css/jqueryui.css"/>
+		<link rel="stylesheet" type="text/css"  href="../css/jqueryui.css"/>
         <link rel="stylesheet" type="text/css" href="../css/style.css"/>
         
-        <script language="javascript" src="js/scripts.js"></script>
+        <script language="javascript" src="../js/scripts.js"></script>
         
 <title>start</title>
 </head>
@@ -27,23 +31,24 @@
        
 										 <td width="63%" id='child_table_center'>
 										 		<span> To view</span>	
-										 		<form method="post" action="AdminAsseptServlet">
+										 		<form method="post" action="../AdminServlet">
 					                			<table id='table_news'>
 					                			<%
-					                			//logic.Main main = new logic.Main();
-					                			//java.util.Set <uiclasses.UIRequest> requests =  main.getAllRequests();
-					                			//requests.size();
-					                			for(int i=0;i<10;i++){%>
+					                			Main main=new Main();
+					                			Set<UIRequest> allRequests = main.getAllRequests();
+					                			int counter_requests=0;
+					                			for(UIRequest uir : allRequests){%>
 					                				<tr>
 					                					<td width="80%">
 					                						
 					                						<table id="table_news_element">
 					                							<tr>
 					                								<td id='title_td'>
-					                								<%out.print("Name"+i);%>
+					                								<%out.print(uir.getLogin()+" | ");%>
 					                								</td>
 					                								<td id='category_td'>
-					                								<%out.print("job"+i);%>
+					                								<%out.print(uir.getFirstName()+
+					                										" "+uir.getLastName()+" | "+uir.getJob());%>
 					                								</td>
 					                								<td>
 					                							
@@ -56,17 +61,20 @@
 					                				</tr>
 					                				<tr>
 					                					<td  class='brbr' >
-					                						<%for(int j=0; j<20; j++){out.print("text");}%>
+					                						<%=uir.getEmail()%>
 					                					</td>
 					                					<td>
-					                						<INPUT TYPE=CHECKBOX  NAME="check_time_accept<%=i%>" VALUE="1">
+					                						<INPUT TYPE=CHECKBOX  NAME="check_time_accept<%=counter_requests%>" VALUE="1">
 					                					</td>
 					                					<td>
-					                						<INPUT TYPE=CHECKBOX  NAME="check_time_den<%=i%>" VALUE="1">
+					                						<INPUT TYPE=CHECKBOX  NAME="check_time_den<%=counter_requests%>" VALUE="1">
 					                					</td>
 					                				</tr>
 					                				
-					                				<%}%>
+					                				<%
+					                				counter_requests++;
+					                				}
+					                				%>
 					                				<tr>
 					                					<td>
 					                						<div style="margin-left: 500px">
