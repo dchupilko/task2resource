@@ -93,8 +93,8 @@ public class Main {
 	public Set <UIResource> getAllResources()
 	{
 		Set<UIResource> uiResources = new HashSet<UIResource>();
-		Set<Resource> allResources = resourceMapper.getAllResources();
-		for(Resource r: allResources)
+		resources.addAll(resourceMapper.getAllResources());
+		for(Resource r: resources)
 		{
 			uiResources.add(r.getUIResource());
 		}
@@ -107,13 +107,15 @@ public class Main {
 	 * @param uiresources	List of resources
 	 */
 	public void deleteResources(Set<UIResource> uiresources) {
+		Set<Resource> delResources = new HashSet<Resource>();
 		for (Resource r : resources) {
 			for (UIResource uir : uiresources) {
 				if (r.getName().equals(uir.getName())) {
-					resourceMapper.deleteResourceById(r);
+					delResources.add(r);
 				}
 			}
 		}
+		resourceMapper.deleteResources(delResources);
 	}
 	
 	/**
