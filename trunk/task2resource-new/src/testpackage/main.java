@@ -47,6 +47,7 @@ public class main {
 		Main main = new Main();
 		User user = new User();
 		
+		
 		int [][] period1 = {
                 {2,12,00}, //Ïí.
                 {4,12,00}, //Ñğ.
