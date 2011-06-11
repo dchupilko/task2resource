@@ -1,8 +1,13 @@
 package logic;
 
+import org.apache.log4j.Logger;
+
 import uiclasses.*;
 
 public class Request {
+	
+	private static final Logger log = Logger.getLogger(Request.class);
+	
 	protected int oid;
 	protected int version;
 	
@@ -16,6 +21,7 @@ public class Request {
 	public Request() {}
 	
 	public Request(UIRequest request) {
+		log.debug("Creating request");
 		this.firstName = request.getFirstName();
 		this.lastName = request.getLastName();
 		this.login = request.getLogin();
@@ -33,6 +39,7 @@ public class Request {
 	 * @return	UIRequest class instance
 	 */
 	public UIRequest getUIRequest() {
+		log.debug("Getting request");
 		return new UIRequest(firstName, lastName, login, password, email, job);
 	}
 	
