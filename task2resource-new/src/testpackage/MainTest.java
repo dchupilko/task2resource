@@ -45,22 +45,18 @@ public class MainTest {
 	}
 
 	
-	@Test
-	public void testGetRequests() {
-		//Get all requests
-		Main main = new Main();
-		Set<UIRequest> setBefore=main.getAllRequests();
-	}
-	
-	
+
 	@Test
 	public void testCreateGroup(){
+		
+		fail("Not yet implemented");
 		Main main = new Main();
 		UIGroup uigrp1 = new UIGroup("Management");
 		UIGroup uigrp2 = new UIGroup("Programming");
 		UIGroup uigrp3 = new UIGroup("QA");
 		UIGroup uigrp4 = new UIGroup("English");
-		UIGroup uigrp5 = new UIGroup("Programming");
+		UIGroup uigrp5 = new UIGroup("PM");
+		UIGroup uigrp55 = new UIGroup("Engineering");
 		UIGroup uigrp6 = new UIGroup("Designing");
 		UIGroup uigrp7 = new UIGroup("Others");
 		UIGroup uigrp8 = new UIGroup("Admin");
@@ -70,17 +66,18 @@ public class MainTest {
 		main.createGroup(uigrp3);
 		main.createGroup(uigrp4);
 		main.createGroup(uigrp5);
+		main.createGroup(uigrp55);
 		main.createGroup(uigrp6);
 		main.createGroup(uigrp7);
 		main.createGroup(uigrp8);
-
 	}
 	
 	
 	
 	@Test
 	public void testCreateUser() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
+		
 		Main main = new Main();
 		
 		Set<UIRequest> setBefore=main.getAllRequests();
@@ -88,13 +85,10 @@ public class MainTest {
 		
 		setBefore=main.getAllRequests();
 		
-		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
-		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
-		UIRequest sidorov = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "sidorov@gmail.com", "Cleaner");
+
+		UIRequest sidorov = new UIRequest("FN3", "SN3", "FN3SN3", "123456", "SN3@gmail.com", "Cleaner");
 		UIRequest sidorovEvilCopy = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "Evil@Hell.com", "Devil");
 		
-		main.createUser(ivanov);
-		main.createUser(petrov);
 		main.createUser(sidorov);
 		main.createUser(sidorovEvilCopy);
 		
@@ -106,22 +100,24 @@ public class MainTest {
 	
 	@Test
 	public void testAcceptRequests() {
-		fail("Not yet implemented");
-		Main main = new Main();
-		
 		// Testing use case "Accept Request"
-		Set<UIRequest> allRequests = main.getAllRequests();
-		main.denyRequests(allRequests);//Clear all requests
+		//fail("Not yet implemented");
 		
-		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
-		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
+		Main main = new Main();
+
+		int before,after;
+		
+		UIRequest ivanov = new UIRequest("FN1", "SN1", "FN1SN1", "123456", "SN1@gmail.com", "Senior Programmer");
+		UIRequest petrov = new UIRequest("FN2", "SN2", "FN2SN2", "123456", "SN2@gmail.com", "Analytic");
+		
 		main.createUser(ivanov);
 		main.createUser(petrov);
 		
 		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
-		int countRequestsBefore = acceptedRequests.size();
 		
-		allRequests = main.getAllRequests();
+		Set<UIRequest> allRequests = main.getAllRequests();
+	
+		before=allRequests.size();
 		
 		for(UIRequest uiq : allRequests){
 			acceptedRequests.add(uiq);
@@ -130,56 +126,66 @@ public class MainTest {
 		main.acceptRequests(acceptedRequests);
 		
 		allRequests = main.getAllRequests();
-		int countRequestsAfter = acceptedRequests.size();
-		
-		assertTrue(countRequestsBefore-2==countRequestsAfter);
+		after = allRequests.size();
+
+		assertTrue(after==before-2);
 		
 	}
 	
 	
 	
 	@Test
-	public void testDeleteUsers() {
-		fail("Not yet implemented");
+	public void testCreateResource() {
+		//fail("Not yet implemented");
+		// Testing use case "Create resources"
+		
+		Main main = new Main();
+		
+		UIResource conf = new UIResource("Conference room", 100);
+		UIResource cl1 = new UIResource("Class1", 20);
+		UIResource cl2 = new UIResource("Class2", 10);
+		UIResource mr1 = new UIResource("Meeting Room1", 30);
+		UIResource mr2 = new UIResource("Meeting Room2", 20);
+		UIResource mr3 = new UIResource("Meeting Room3", 50);
+		UIResource lobby = new UIResource("Lobby", 50);
+		UIResource gym = new UIResource("Gym", 10);
+		UIResource kitchen = new UIResource("Kitchen", 5);
+		
+		int before=main.getAllResources().size();
+		
+		main.createResource(conf);
+		main.createResource(cl1);
+		main.createResource(cl2);
+		main.createResource(mr1);
+		main.createResource(mr2);
+		main.createResource(mr3);		
+		main.createResource(lobby);
+		main.createResource(gym);
+		main.createResource(kitchen);
+		
+		int after=main.getAllResources().size();
+		
+		assertTrue(after==before+9);
 	}
-
+	
+	
+	
 	@Test
 	public void testAuthorize() {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testCreateResource() {
-		fail("Not yet implemented");
-	}
+	
 
-	@Test
-	public void testGetAllResources() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testDeleteResources() {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testGetAllRequests() {
-		fail("Not yet implemented");
-	}
+
 
 	
-
-	@Test
-	public void testDenyRequests() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetAllGroups() {
-		fail("Not yet implemented");
-	}
-
 	@Test
 	public void testGetAllUsersFromGroup() {
 		fail("Not yet implemented");
