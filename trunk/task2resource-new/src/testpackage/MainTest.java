@@ -76,7 +76,7 @@ public class MainTest {
 	
 	@Test
 	public void testCreateUser() {
-		//fail("Not yet implemented");
+		fail("Not yet implemented");
 		
 		Main main = new Main();
 		
@@ -100,9 +100,9 @@ public class MainTest {
 	
 	@Test
 	public void testAcceptRequests() {
+		fail("Not yet implemented");
 		// Testing use case "Accept Request"
-		//fail("Not yet implemented");
-		
+	
 		Main main = new Main();
 
 		int before,after;
@@ -136,7 +136,7 @@ public class MainTest {
 	
 	@Test
 	public void testCreateResource() {
-		//fail("Not yet implemented");
+		fail("Not yet implemented");
 		// Testing use case "Create resources"
 		
 		Main main = new Main();
@@ -167,6 +167,25 @@ public class MainTest {
 		
 		assertTrue(after==before+9);
 	}
+
+	
+	@Test
+	public void testDeleteResources() {
+		fail("Not yet implemented");
+		// Testing use case "Delete resources"
+		Main main = new Main();
+		Set<UIResource> allResources = main.getAllResources();
+		Set<UIResource> uiresources = new HashSet<UIResource>();
+		
+		UIResource lobby = new UIResource("Lobby", 50);
+		UIResource gym = new UIResource("Gym", 10);
+		
+		uiresources.add(lobby);
+		uiresources.add(gym);
+		main.deleteResources(uiresources);	
+	}
+	
+	
 	
 	
 	
@@ -178,10 +197,6 @@ public class MainTest {
 	
 
 
-	@Test
-	public void testDeleteResources() {
-		fail("Not yet implemented");
-	}
 
 
 
@@ -221,10 +236,6 @@ public class MainTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testGetAllTasks() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testGetAllTasksForDates() {
