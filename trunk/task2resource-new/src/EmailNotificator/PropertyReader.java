@@ -19,7 +19,7 @@ public class PropertyReader {
     private static final String FILEPATH =  "." + File.separator 
                                           + "PropertyFiles" + File.separator 
                                           + "EmailSenderConfig.ini";
-    private static final Logger logPropertyReader = Logger.getLogger(MessageTemplateLoader.class);
+    private static final Logger logPropertyReader = Logger.getLogger(PropertyReader.class);
     public PropertyReader() {
         try {
             pref = new IniPreferences(new Ini(new File(FILEPATH)));
