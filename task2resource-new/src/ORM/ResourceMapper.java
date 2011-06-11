@@ -19,6 +19,15 @@ public class ResourceMapper extends AbstractMapper{
 		}
 	}
 	
+	public void deleteResources(Set<Resource> resources)
+	{
+		try{
+			this.deleteObjects(new HashSet<Object>(resources));
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
 	
 	public void setResource(Resource res){
 		try{

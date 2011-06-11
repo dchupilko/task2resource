@@ -128,14 +128,14 @@ public class main {
 		main.createResource(kitchen);
 		*/
 		
-		/*
+		
 		// Testing use case "Delete resources"
 		Set<UIResource> allResources = main.getAllResources();
 		Set<UIResource> uiresources = new HashSet<UIResource>();
-		uiresources.add(lobby);
-		uiresources.add(gym);
-		main.deleteResources(uiresources);		
-		*/
+		//uiresources.add(lobby);
+		//uiresources.add(gym);
+		main.deleteResources(allResources);		
+		
 		
 		/*
 		// Testing use case "Create task"
