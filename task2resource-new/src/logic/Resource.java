@@ -3,9 +3,14 @@ package logic;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import uiclasses.*;
 
 public class Resource {
+	
+	private static final Logger log = Logger.getLogger(Resource.class);
+	
 	protected int oid;
 	protected int version;
 	
@@ -19,11 +24,13 @@ public class Resource {
     public Resource() {}
     
 	public Resource(String name, int capacity) {
+		log.debug("Constructing request " + name + " " + capacity);
         this.name = name;
         this.capacity = capacity;
 	}
 	
 	public Resource(int oid, int version, String name, int capacity) {
+		log.debug("Constructing request " + oid + " " + version + " " + name + " " + capacity);
 		this.oid = oid;
 		this.version = version;
 		this.name = name;
@@ -31,6 +38,7 @@ public class Resource {
 	}
 
 	public Resource(UIResource uiresource) {
+		log.debug("Constructing request from uiresorce");
         this.name = uiresource.getName();
         this.capacity = uiresource.getCapacity();
 	}
@@ -44,11 +52,13 @@ public class Resource {
 	 * @return	UIResource class instance
 	 */
     public UIResource getUIResource() {
+    	log.debug("Getting resource");
     	int status = 0;
     	//TODO: add check status
     	//status = checkStatus();
     	UIResource temp = new UIResource(this.name, this.capacity);
     	temp.setStatus(status);
+    	log.debug(temp.getName() + " " + temp.getCapacity() + " " + temp.getStatus());
     	return temp;
     }
     
@@ -72,6 +82,7 @@ public class Resource {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		log.debug("Hashcode" + result);
 		return result;
 	}
 
