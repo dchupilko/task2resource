@@ -159,4 +159,6 @@
 	margin-left: 110px;
 	margin-bottom: 20px;
 }
-
+.createTaskTimeDiv{
+	display: none;
+}
