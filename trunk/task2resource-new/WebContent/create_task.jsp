@@ -64,10 +64,7 @@
 						                					<input type="text" id="datepicker2" name="datepicker2" value=""/>
 						                					</div>
 						                				</td>
-						                				<td class="table_create_task_elem_td">
-						                					<span class="create_task_span_date1">Time</span>
-						                					<input type="text" name="time"/>
-						                				</td>
+						                				
 						                				<td class="table_create_task_elem_td2">
 						                					<span class="create_task_span_3">Mn</span>
 						                					<span>Tu</span>
@@ -78,16 +75,20 @@
 						                					<span>Sn</span>
 						                					<br>
 						                					<span class="create_task_span_date1"></span>
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time1" VALUE="1"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time2" VALUE="1"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time3" VALUE="1"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time4" VALUE="1"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time5" VALUE="1"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time6" VALUE="1"> 
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time7" VALUE="1"> 
-						                					
+						                					<%for(int j=0;j<7;j++){%>
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time<%=j%>" ID="check_time_id<%=j%>" VALUE="1"> 
+						                			
+						                					<%}%>
 						                					<span class="create_task_span_3"><img id="create_task_img" src="img/b_update.png"/></span>
 						                					
+						                				</td>
+						                				<td class="table_create_task_elem_td">
+						                					<%for(int i=0;i<7;i++){%>
+						                					<div class="createTaskTimeDiv" id="createTaskTimeDiv<%=i%>">
+						                						<span class="create_task_span_date1">Time</span>
+						                						<input type="text" name="time" id="createTaskTimeDivInput<%=i%>"/>
+						                					</div>	
+						                					<%}%>
 						                				</td>
 						                				<td></td>
 					                				</tr>
