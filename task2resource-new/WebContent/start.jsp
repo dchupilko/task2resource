@@ -71,11 +71,7 @@
 						                			 
 						                			 Main main = new Main();
 						                			 List<UITask> tasks = main.getAllTasks();	
-						                			 					                			 															                			   
-						                			
-						                				//UITask: name, capacity, fromDate, toDate
-						                				//boolean flag = main.modifyTask(uitask);
-						                			 //true - user is the owner of the task
+						                			 
 						                			%>
 						                			
 						                			<%//for(int i=0;i<10;i++){

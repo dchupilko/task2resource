@@ -34,12 +34,12 @@ public class UserGroupsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String group=request.getParameter("selectedGroup");
 		Main main=new Main();
-		
+		Set<UIGroup> groups = main.getAllGroups();
 		System.out.println("GROUP:"+group);
 		  if (group!= null) {
 			  
 			  	Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup(group));
-			  					
+			  				
 	            response.setContentType("text/xml");
 	            response.setHeader("Cache-Control", "no-cache");
 	            String responseStr="<root>";

@@ -297,7 +297,6 @@ $(document).ready(function(){
 		 //groups create task on_change
 		 $("#groupSelectId option").click(function(){
 			  var selectGroup=$("#groupSelectId").val();
-			  alert("option group "+selectGroup);
 			  GetUsersForGroup(selectGroup);
 		 });
 		 
@@ -323,25 +322,20 @@ $(document).ready(function(){
 		 
 		 
 		    function parseMessageAuto(resXML){  
-		        
-		      // alert(resXML);// [B]This returns OBJECT[/B]  
-		      
-		         
 		    
-		    
+		       $("#userSelectId").html("");	
 		       var responseNodes=resXML.getElementsByTagName("index")[0];   
-		       alert("response node:"+responseNodes);  
 		       var index = responseNodes.childNodes[0].nodeValue;
-		       alert("index:"+index);
-		      
-		       if (index!=0){
+		      if (index!=0){
 		    	   for (var i=0; i<index; i++) //пробегаем по элементам list
 		    	   {
 		    	   var listObj = resXML.getElementsByTagName("message")[i]; //получаем i-й узел list
-		    	   alert("message!");
+		    	   
 		    	   	if (listObj.childNodes[0]!=null){
 		    		   var result=listObj.childNodes[0].nodeValue;
-		    		   alert("result"+result);
+		    		  
+		    		   var brbr=$("#userSelectId").html();
+		    		   $("#userSelectId").html(brbr+'<option>'+result+'</option>');
 		    	   	}
 		    	   }
 		       }
