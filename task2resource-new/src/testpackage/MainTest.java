@@ -18,10 +18,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import com.sun.net.httpserver.Authenticator.Success;
 
+import uiclasses.UIDates;
 import uiclasses.UIGroup;
 import uiclasses.UIRequest;
 import uiclasses.UIResource;
 import uiclasses.UITask;
+import uiclasses.UIUser;
 
 public class MainTest {
 	
@@ -186,50 +188,43 @@ public class MainTest {
 	}
 	
 	
-	
-	
-	
-	@Test
-	public void testAuthorize() {
-		fail("Not yet implemented");
-	}
-
-	
-
-
-
-
-
-	
-	@Test
-	public void testGetAllUsersFromGroup() {
-		fail("Not yet implemented");
-	}
-
 	@Test
 	public void testCreateTask() {
 		fail("Not yet implemented");
+		// Testing use case "Create task"
+		Main main = new Main();
+		
+		
+		int [][] period1 = {
+                {2,12,00}, //Ïí.
+                {4,12,00}, //Ñð.
+                {6,12,00}, //Ïò.
+                };
+			
+		UITask uitask = new UITask("TestTask", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1, "TestTask description");
+		
+		
+		UIResource conf = new UIResource("Conference room", 100);
+		UIResource cl1 = new UIResource("Class1", 20);
+		
+		main.Authorize("FN1SN1", "123456");
+
+		Set<UIResource> choose = new HashSet<UIResource>();
+		
+		choose.add(conf);
+		choose.add(cl1);
+		
+		Set<UIDates> conflicts = new HashSet<UIDates>();
+		
+		conflicts = main.chooseResources(choose);
+
+		Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("Programming"));
+
+		main.assignUsers(users);
+		
+		main.acceptTask();
 	}
 
-	@Test
-	public void testChooseResources() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testResolveConflict() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testChooseResourcesForDate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAssignUsers() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testAcceptTask() {
@@ -237,40 +232,27 @@ public class MainTest {
 	}
 
 
+	
+	
+	
 	@Test
-	public void testGetAllTasksForDates() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testModifyTask() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testModifyResources() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testModifyUsers() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testModifyDates() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testModifyInfo() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetTaskDates() {
-		fail("Not yet implemented");
-	}
+	public void testDeleteusers(){
+		Main main = new Main();
+		
+		//Testing use case "Delete users"
+		Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("Engineering"));
+		
+		int before=users.size();
+		main.deleteUsers(users);
+		int after = main.getAllUsersFromGroup(new UIGroup("Engineering")).size();
+		
+		if(before!=0){
+			assertTrue(before != after);
+		}
+		
+	};
+	
+	
 
 	@Test
 	public void testGetTaskResources() {
@@ -281,32 +263,7 @@ public class MainTest {
 	public void testGetTaskUsers() {
 		fail("Not yet implemented");
 	}
-
-	@Test
-	public void testGetGroups() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetGroups() {
-		fail("Not yet implemented");
-	}
-
 	
 
-	@Test
-	public void testSetRequests() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetResources() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetResources() {
-		fail("Not yet implemented");
-	}
 
 }
