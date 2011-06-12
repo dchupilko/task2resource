@@ -18,6 +18,7 @@
 <title>start</title>
 </head>
 <body>
+	<%Main main=new Main();%>
 	<table id="id_main_table">
             		<tr>
                      <td id="bbbb" ><div align="right">
@@ -100,10 +101,11 @@
 					                						<div style="margin-left: 50px">Resources avaliable</div>
 					                						<div id="">
 					                						<select multiple="multiple" class="list1" id="mySelectId" name="mySelect">
-					                						<%for(int i=0;i<10;i++){ %>
-					                							<option>value1</option>
-					                							<option>value2</option>
-					                							<%} %>
+					                						<%
+					                						Set<UIResource> allResources = main.getAllResources();
+					                						for(UIResource uir: allResources){ %>
+					                							<option><%=uir.getName()%></option>
+					                						<%} %>
 					                						</select>
 					                						
 					                						
@@ -123,7 +125,7 @@
 					                						<div  style="margin-left: 60px;">
 																<select id="groupSelectId" name="groupSelect"  multiple="multiple"  style="width: 100px" >
 																<%
-																Main main=new Main();
+																
 																Set<UIGroup> groups = main.getAllGroups();
 																//for (UIGroup g : groups) {
 																	//System.out.println(g);
@@ -139,11 +141,11 @@
 					                						<span class="span_margin">Users</span>
 					                							<div class="list1">
 																<select class="list1" multiple="multiple"  id="userSelectId" name="userSelectName">
-																<%for(int i=0;i<10;i++){ %>
-																	<option>Value 1</option>
-																	<option>Value 2</option>
-																	<option>Value 3</option>
-																	<%} %>
+																<%
+																Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup(main.getSelectedGroup()));
+																for(UIUser uiu: users){ %>
+																	<option><%=uiu.getFirstName()%>|<%=uiu.getLastName()%></option>
+																<%} %>
 																</select>
 																</div>
 																<input type="button" value="+" id="create_task_button"/>
