@@ -330,6 +330,11 @@ public class Main {
 		return currentUser.getAllTasks();
 	}
 	
+	public List<UITask> getAllUserTasks() 
+	{
+		log.debug("Getting all tasks");
+		return currentUser.getAllUserTasks();
+	}
 	/**
 	 * Get list of tasks for specified dates
 	 * 

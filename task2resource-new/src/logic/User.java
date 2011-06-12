@@ -145,6 +145,21 @@ public class User {
 		return uitasks;
 	}
 	
+	public List<UITask> getAllUserTasks(){
+		log.debug("Getting all user tasks");
+		if(userTasks.size()==0)
+		{
+			allTasks = mapper.getAllTasks();
+			mapper.getAllTasksById(this);
+		}		
+		List<UITask> uitasks = new ArrayList<UITask>();
+		for(Task t: userTasks) {
+			uitasks.add(t.getUITask());
+			log.debug(t.getUITask().getName());
+		}
+		return uitasks;
+	}
+	
 	/**
 	 * Get list of tasks for specified dates
 	 * 
