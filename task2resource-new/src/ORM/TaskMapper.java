@@ -41,7 +41,7 @@ public class TaskMapper extends AbstractMapper{
 		    	d = sdf.parse(o[4].toString());
 		    	cal.setTime(d);
 		    	t.setToDate(cal);
-		    	t.setName(o[5].toString());
+		    	t.setDescription(o[5].toString());
 		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 	    		tasks.add(t);
 		    }
@@ -173,7 +173,7 @@ public class TaskMapper extends AbstractMapper{
 		    	d = sdf.parse(o[4].toString());
 		    	cal.setTime(d);
 		    	t.setToDate(cal);
-		    	t.setName(o[5].toString());
+		    	t.setDescription(o[5].toString());
 		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 	    		tasks.add(t);
 		    }
@@ -208,7 +208,7 @@ public class TaskMapper extends AbstractMapper{
 		    	d = sdf.parse(o[4].toString());
 		    	cal.setTime(d);
 		    	t.setToDate(cal);
-		    	t.setName(o[5].toString());
+		    	t.setDescription(o[5].toString());
 		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 	    		tasks.add(t);
 		    }
@@ -242,7 +242,7 @@ public class TaskMapper extends AbstractMapper{
 			    	d = sdf.parse(o[4].toString());
 			    	cal.setTime(d);
 			    	t.setToDate(cal);
-			    	t.setName(o[5].toString());
+			    	t.setDescription(o[5].toString());
 			    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 		    		tasks.add(t);
 			    }
@@ -276,7 +276,7 @@ public class TaskMapper extends AbstractMapper{
 			    	d = sdf.parse(o[4].toString());
 			    	cal.setTime(d);
 			    	t.setToDate(cal);
-			    	t.setName(o[5].toString());
+			    	t.setDescription(o[5].toString());
 			    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
 		    		tasks.add(t);
 			    }
