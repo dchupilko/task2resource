@@ -37,6 +37,7 @@ public class UserGroupsServlet extends HttpServlet {
 		
 		System.out.println("GROUP:"+group);
 		  if (group!= null) {
+			  
 			  	Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup(group));
 			  					
 	            response.setContentType("text/xml");
