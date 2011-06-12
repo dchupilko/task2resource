@@ -34,7 +34,7 @@ public class UserGroupsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String group=request.getParameter("selectedGroup");
 		Main main=new Main();
-		//main.setSelectedGroup(group);
+		
 		System.out.println("GROUP:"+group);
 		  if (group!= null) {
 			  	Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup(group));
