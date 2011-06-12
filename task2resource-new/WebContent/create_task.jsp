@@ -142,7 +142,7 @@
 					                							<div class="list1">
 																<select class="list1" multiple="multiple"  id="userSelectId" name="userSelectName">
 																<%
-																Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup(main.getSelectedGroup()));
+																Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("programming"));
 																for(UIUser uiu: users){ %>
 																	<option><%=uiu.getFirstName()%>|<%=uiu.getLastName()%></option>
 																<%} %>
