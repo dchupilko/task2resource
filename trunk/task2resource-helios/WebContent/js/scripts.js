@@ -43,7 +43,8 @@ $(document).ready(function(){
 	});
 
 	
-	//ajax  (XMLHTTP) function
+	
+	//AJAX  (XMLHTTP) function
 	
 	  function getXmlHttp(){
                var xmlhttp;
@@ -64,7 +65,7 @@ $(document).ready(function(){
                return xmlhttp;
        }
 	  
-	//is this user already exist
+	//IS SELECTED USER ALREADY EXISTS
 		$('#input_reg_user').blur(function(){
 			
 			if($('#input_reg_user').val())
@@ -90,23 +91,7 @@ $(document).ready(function(){
 								      //alert(req.responseText)
                             	   var message = req.responseXML.getElementsByTagName("message")[0];
                             	   setMessage(message.childNodes[0].nodeValue);
-                                       /*if (req.responseText=="1"){
-                                    	   alert("yes");
-										//alert(req.responseText);
-										                // document.getElementById("city").innerHTML = req.responseText;
-                                                       //getStadiumList(0, 0);
-											$("#div__reg_us").css('display', 'inherit');
-											$("#name_hid").attr('value','0');
-											
-
-                                       }
-									   else if(req.responseText=="0"){
-										   alert("no");
-										   $("#div__reg_us").css('display', 'none');
-										   $("#name_hid").attr('value','1');
-										  
-										   }*/
-									  
+                                     									  
                                }
                        }
                }
@@ -126,7 +111,7 @@ $(document).ready(function(){
 
 	      }
 	      
-	      //is valid email
+	      //IS VALID EMAIL
 	      function isValidEmail (email)
 	      {
 	        return (/^([a-z0-9_\-]+\.)*[a-z0-9_\-]+@([a-z0-9][a-z0-9\-]*[a-z0-9]\.)+[a-z]{2,4}$/i).test(email);
@@ -153,7 +138,7 @@ $(document).ready(function(){
 	  			
 	  	});
 	      
-	    //img refresh  
+	    //IMG REFRESH
 	  	$("#create_task_img").click(function(){
 			
 			var selectId=$("#mySelectId").val();
@@ -172,8 +157,8 @@ $(document).ready(function(){
 	                       	   alert("in get user200");
 	                       	   modalOpen("create_task.jsp","title",200,200);
 								      //alert(req.responseText)
-	                       	 var message = req.responseXML.getElementsByTagName("message")[0];
-	                       	 setMessage2(message.childNodes[0].nodeValue);
+	                       	   var message = req.responseXML.getElementsByTagName("message")[0];
+	                       	   setMessage2(message.childNodes[0].nodeValue);
 	                       	 
 	                          }
 	                  }
@@ -181,8 +166,7 @@ $(document).ready(function(){
 		}
 		
 		 function setMessage2(message) {
-	    	 // var mdiv = document.getElementById("name_hid");
-	    	    if (message == "invalid") {
+	    	   if (message == "invalid") {
 	    	    	alert("invalid");
 	    	    	
 	    	     
@@ -194,8 +178,8 @@ $(document).ready(function(){
 	      }
 		
 		 
-		 //modal dialogs
-		
+		 
+		 //MODAL DIALOG
 		 
 		 $(function() {
 			 var flag;
@@ -308,4 +292,60 @@ $(document).ready(function(){
 			 $(idNum).css('display', 'none');
 		 });
 		 
+		 
+		 
+		 //groups create task on_change
+		 $("#groupSelectId option").click(function(){
+			  var selectGroup=$("#groupSelectId").val();
+			  alert("option group "+selectGroup);
+			  GetUsersForGroup(selectGroup);
+		 });
+		 
+		 
+		 function GetUsersForGroup(selectGroup){
+	    	  
+			   var req = getXmlHttp();
+			   req.open('GET', 'http://localhost:8084/task2resource/UserGroupsServlet?selectedGroup='+selectGroup, true);
+	             req.send(null);
+	             req.onreadystatechange = function() {
+                     if (req.readyState == 4) {
+                  	       if(req.status == 200) {
+                          	  // alert("in get user200");
+								      //alert(req.responseText)
+                          	   //var message = req.responseXML.getElementsByTagName("message")[0];
+                          	   //setMessage(message.childNodes[0].nodeValue);
+                  	    	 parseMessageAuto(req.responseXML); 									  
+                             }
+                     }
+	             }
+	             
+	      }
+		 
+		 
+		    function parseMessageAuto(resXML){  
+		        
+		      // alert(resXML);// [B]This returns OBJECT[/B]  
+		      
+		         
+		    
+		    
+		       var responseNodes=resXML.getElementsByTagName("index")[0];   
+		       alert("response node:"+responseNodes);  
+		       var index = responseNodes.childNodes[0].nodeValue;
+		       alert("index:"+index);
+		      
+		       if (index!=0){
+		    	   for (var i=0; i<index; i++) //пробегаем по элементам list
+		    	   {
+		    	   var listObj = resXML.getElementsByTagName("message")[i]; //получаем i-й узел list
+		    	   alert("message!");
+		    	   	if (listObj.childNodes[0]!=null){
+		    		   var result=listObj.childNodes[0].nodeValue;
+		    		   alert("result"+result);
+		    	   	}
+		    	   }
+		       }
+		     
+		       }//close for parseMessages  
+		    
 });

@@ -39,14 +39,14 @@
                         <%if(flag){%>
                         <a href="logout.jsp">Log out</a><span> |</span>
                         <%}%>
-                        <a href="registration.jsp">Register</a></div><img id="img_main_top" src="img/top.jpg"/>
+                        <a href="registration.jsp">Register</a></div><img id="img_main_top" src="img/top.jpg"/></td>
                        <% if(flag==false){%>
                     	   <span>no session</span>
                       <% }%>
                        <% if(flag==true){%>
                     	   <span>session open</span>
                       <% }%>
-                     </td>
+                     
            		    </tr>            
            			 <tr>
            		           	 <td height="500px">
@@ -71,8 +71,7 @@
 						                			 
 						                			 Main main = new Main();
 						                			 List<UITask> tasks = main.getAllTasks();	
-						                			 
-						                			 															                			   
+						                			 					                			 															                			   
 						                			
 						                				//UITask: name, capacity, fromDate, toDate
 						                				//boolean flag = main.modifyTask(uitask);
@@ -81,13 +80,15 @@
 						                			
 						                			<%//for(int i=0;i<10;i++){
 						                			for (UITask uit: tasks) {
-						                			%>
+				                				    %>
 					                				<tr>
 					                					<td>
 					                						
 					                						<table id="table_news_element">
 					                							<tr>
 					                								<td id='title_td'>
+					                								<span>size:</span>
+					                								<%=tasks.size()%>
 					                								<%=uit.getName()%>		
 					                								</td>
 					                								<td id='category_td'>
