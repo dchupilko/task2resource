@@ -21,6 +21,7 @@ public class Task {
 	protected String name;
     protected int capacity;
     protected String description;
+    protected String privacy = "public";
     protected GregorianCalendar fromDate = null;
     protected GregorianCalendar toDate = null;
     
@@ -42,6 +43,7 @@ public class Task {
         this.fromDate = task.getFromDate();
         this.toDate = task.getToDate();
         this.description = task.getDescription();
+        this.privacy = task.getPrivacy();
         
         calculateDates(task);
         //TODO: load all possible resources for calculated dates
@@ -57,7 +59,7 @@ public class Task {
 	 */
     public UITask getUITask()
     {
-    	return new UITask(name, capacity, fromDate, toDate, description);
+    	return new UITask(name, capacity, fromDate, toDate, description, privacy);
     }
     
     /**
@@ -108,9 +110,9 @@ public class Task {
      * 
      * @return	List of resources
      */
-    public Set<UIResource> getAllResources() {
+    public Set<UIResource> getAllResources(int userOID) {
     	log.debug("Trying to get all resources");
-    	taskMapper.getResourcesByDate(dates);
+    	taskMapper.getResourcesByDate(dates, userOID);
     	//if resource has already been added into collection it won't be added again
     	for(Dates d : dates)
     	{
@@ -214,12 +216,12 @@ public class Task {
 	 * @param removedResources	List of removed resources
 	 * @return					Conflict dates
 	 */
-    public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources){   
+    public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources, int userOID){   
     	log.debug("Modifying resorces");
     	if(status)
     	{
     		allResources.addAll(assignedResources);
-    		taskMapper.getResourcesByDate(dates);
+    		taskMapper.getResourcesByDate(dates, userOID);
     		for(Dates d : dates)
         	{
         		allResources.addAll(d.resources);
@@ -536,5 +538,15 @@ public class Task {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String getPrivacy() {
+		return privacy;
+	}
+
+	public void setPrivacy(String privacy) {
+		this.privacy = privacy;
+	}
+	
+	
 }
 

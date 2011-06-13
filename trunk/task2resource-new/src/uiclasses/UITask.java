@@ -18,10 +18,10 @@ public class UITask {
 	protected int lengthInMinutes;
 	protected int[][] period;
 	protected String description;
-	//TODO: description
+	protected String privacy;
 	
 	public UITask(String name, int capacity, GregorianCalendar fromDate,
-			GregorianCalendar toDate, int lengthInMinutes, int[][] period, String description) {
+			GregorianCalendar toDate, int lengthInMinutes, int[][] period, String description, String privacy) {
 		super();
 		this.name = name;
 		this.capacity = capacity;
@@ -30,12 +30,12 @@ public class UITask {
 		this.lengthInMinutes = lengthInMinutes;
 		this.period = period;
 		this.description = description;
+		this.privacy = privacy;
 	}
 	
-	public UITask (String name, int capacity, GregorianCalendar fromDate, GregorianCalendar toDate, String description)
+	public UITask (String name, int capacity, GregorianCalendar fromDate, GregorianCalendar toDate, String description, String privacy)
 	{
-		//TODO: come to agreement with UI
-		this(name, capacity, fromDate, toDate, 0, null, description);
+		this(name, capacity, fromDate, toDate, 0, null, description, privacy);
 	}
 	
 	public String getName() {
@@ -83,13 +83,22 @@ public class UITask {
 		this.description = description;
 	}
 
+	public String getPrivacy() {
+		return privacy;
+	}
+
+	public void setPrivacy(String privacy) {
+		this.privacy = privacy;
+	}
+
 	@Override
 	public String toString() {
 		return "UITask [name=" + name + ", capacity=" + capacity
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate
 				+ ", lengthInMinutes=" + lengthInMinutes + ", period="
 				+ Arrays.toString(period) + ", description=" + description
-				+ "]";
+				+ ", privacy=" + privacy + "]";
 	}
+	
 	
 }

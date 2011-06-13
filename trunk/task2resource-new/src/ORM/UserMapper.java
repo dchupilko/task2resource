@@ -142,4 +142,23 @@ public class UserMapper extends AbstractMapper{
 		}
 	}
 	
+	public boolean checkUser(User user)
+	{
+		try{
+			String query=String.format("select g.name from Users u, Groups g " +
+					"where u.IdUser=%d and u.IdGroup=g.IdGroup", user.getOid());
+			List<Object[]> tempList = this.readObject(query);
+			if(tempList.size()==0)
+				return false;
+			Object o = tempList.get(0);
+		    if(o.toString().equals("Admin"))
+		       	return true;
+		    else 	
+		    	return false;
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
+	
 }

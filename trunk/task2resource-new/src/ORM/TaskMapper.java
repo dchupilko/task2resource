@@ -42,7 +42,8 @@ public class TaskMapper extends AbstractMapper{
 		    	cal.setTime(d);
 		    	t.setToDate(cal);
 		    	t.setDescription(o[5].toString());
-		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
+		    	t.setCapacity((new Integer(o[6].toString()).intValue()));	
+		    	t.setPrivacy(o[7].toString());
 	    		tasks.add(t);
 		    }
 			return tasks;
@@ -67,20 +68,7 @@ public class TaskMapper extends AbstractMapper{
 		}
 	}
 	
-	/*public Set<Resource> getResourcesByTask(Task task)
-	{
-		try{
-			String query=String.format("select r.* from Task t, Resources r, Assignments a, Resources_Assignments r_a " +
-					"where t.IdTask=a.IdTask and a.IdAssignment=r_a.IdAssignment and r.IdResource=r_a.IdResource and t.IdTask=%d", task.getOid());
-			Set<Resource> resources = new HashSet (this.readObject(query));	
-			return resources;
-		}
-		catch(HibernateException he){
-			throw he;
-		}
-	}*/
-	
-	public void getResourcesByDate(Set <Dates> dates)
+	public void getResourcesByDate(Set <Dates> dates, int userOID)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	    List<Object []> tempList = new ArrayList<Object []>();
@@ -95,8 +83,9 @@ public class TaskMapper extends AbstractMapper{
 												"from Resources r, Assignments a, Resources_Assignments r_a " +
 												"where a.IdAssignment=r_a.IdAssignment and r.IdResource=r_a.IdResource and " +
 												"(to_date('%s', 'YYYY-MM-dd HH24-MI-SS') between a.StartDate and a.FinishDate or " +
-												"to_date('%s', 'YYYY-MM-dd HH24-MI-SS') between a.StartDate and a.FinishDate))",
-												startDate, finishDate);
+												"to_date('%s', 'YYYY-MM-dd HH24-MI-SS') between a.StartDate and a.FinishDate)) " +
+												"and acl<=(select acl from users u, groups g where u.idgroup=g.idgroup and u.iduser=%d)",
+												startDate, finishDate, userOID);
 				Query query=session.createSQLQuery(strQuery);
 				tempList = (List<Object []>)query.list();
 			    Set<Resource> resources = new HashSet<Resource>();
@@ -152,11 +141,14 @@ public class TaskMapper extends AbstractMapper{
 		}
 	}
 	
-	public Set<Task> getAllTasks()
+	public Set<Task> getAllTasks(User user)
 	{
 		try {
-			String query = "select distinct t.* from Tasks t, Assignments a " +
-					"where a.startDate>=sysdate and t.IdTask=a.IdTask"; 
+			String query = String.format("select distinct t.* from " +
+					"(select t.* from tasks t where privacy='public' " +
+					"union " +
+					"select t.* from tasks t, participations p where p.idtask=t.idtask and p.iduser=%d) t, " +
+					"Assignments a where a.startDate>=sysdate and t.IdTask=a.IdTask ", user.getOid()); 
 			List<Object[]> tempList = this.readObject(query);
 		    Set<Task> tasks = new HashSet<Task>();
 		    for(Object[] o: tempList)
@@ -174,7 +166,8 @@ public class TaskMapper extends AbstractMapper{
 		    	cal.setTime(d);
 		    	t.setToDate(cal);
 		    	t.setDescription(o[5].toString());
-		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
+		    	t.setCapacity((new Integer(o[6].toString()).intValue()));	
+		    	t.setPrivacy(o[7].toString());
 	    		tasks.add(t);
 		    }
 			return tasks;
@@ -209,7 +202,8 @@ public class TaskMapper extends AbstractMapper{
 		    	cal.setTime(d);
 		    	t.setToDate(cal);
 		    	t.setDescription(o[5].toString());
-		    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
+		    	t.setCapacity((new Integer(o[6].toString()).intValue()));	
+		    	t.setPrivacy(o[7].toString());
 	    		tasks.add(t);
 		    }
 			return tasks;
@@ -243,7 +237,8 @@ public class TaskMapper extends AbstractMapper{
 			    	cal.setTime(d);
 			    	t.setToDate(cal);
 			    	t.setDescription(o[5].toString());
-			    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
+			    	t.setCapacity((new Integer(o[6].toString()).intValue()));	
+			    	t.setPrivacy(o[7].toString());
 		    		tasks.add(t);
 			    }
 			user.setUserTasks(tasks);
@@ -277,7 +272,8 @@ public class TaskMapper extends AbstractMapper{
 			    	cal.setTime(d);
 			    	t.setToDate(cal);
 			    	t.setDescription(o[5].toString());
-			    	t.setCapacity((new Integer(o[6].toString()).intValue()));			    	   	
+			    	t.setCapacity((new Integer(o[6].toString()).intValue()));	
+			    	t.setPrivacy(o[7].toString());
 		    		tasks.add(t);
 			    }
 			user.setTasks(tasks);

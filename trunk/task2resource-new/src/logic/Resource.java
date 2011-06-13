@@ -16,6 +16,7 @@ public class Resource {
 	
 	protected String name;
     protected int capacity;
+    protected int ACL = 0;
     protected boolean status = false;	// assigned or not
     
     protected Set<Dates> dates = new HashSet<Dates>();
@@ -41,6 +42,7 @@ public class Resource {
 		log.debug("Constructing request from uiresorce");
         this.name = uiresource.getName();
         this.capacity = uiresource.getCapacity();
+        this.ACL = uiresource.getAcl();
 	}
 
 	
@@ -155,5 +157,14 @@ public class Resource {
 
 	public void setDates(Set<Dates> dates) {
 		this.dates = dates;
-	}    
+	}
+
+	public int getACL() {
+		return ACL;
+	}
+
+	public void setACL(int aCL) {
+		ACL = aCL;
+	}    	
+	
 }

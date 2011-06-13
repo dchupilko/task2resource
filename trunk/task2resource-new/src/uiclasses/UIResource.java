@@ -10,11 +10,17 @@ public class UIResource {
 	protected String name;
 	protected int capacity;
 	protected int status = 0;
-	//protected int acl;
+	protected int acl = 0;
 	
 	public UIResource(String name, int capacity) {
 		this.name = name;
 		this.capacity = capacity;
+	}
+	
+	public UIResource(String name, int capacity, int ACL) {
+		this.name = name;
+		this.capacity = capacity;
+		this.acl = ACL;
 	}
 	
 	public String getName() {
@@ -44,4 +50,13 @@ public class UIResource {
 	public String toString() {
 		return this.name + "; " + this.capacity;
 	}
+
+	public int getAcl() {
+		return acl;
+	}
+
+	public void setAcl(int acl) {
+		this.acl = acl;
+	}
+		
 }

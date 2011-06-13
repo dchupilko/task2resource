@@ -20,5 +20,8 @@
             </key>
             <one-to-many class="logic.User" />
         </set>
+        <property name="ACL" type="int" access="field">
+            <column name="ACL"/>
+        </property>
     </class>
 </hibernate-mapping>
