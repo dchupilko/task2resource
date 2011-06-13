@@ -70,6 +70,12 @@ public class AdminServlet extends HttpServlet {
 	     }
 	     counter++;
 	     }
-	}
+		 for(UIRequest r: acceptedRequests)
+		 {
+			 System.out.println(r);
+		 }
+		main.acceptRequests(acceptedRequests);
+		main.denyRequests(deniedRequests);
+		}
 
 }
