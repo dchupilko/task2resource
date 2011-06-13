@@ -45,16 +45,16 @@
 					                					<td  width="33%">
 					                						<div>
 					                						<span>Title</span>
-					                						<input type="text" name="task_name"/>
+					                						<input type="text" name="task_name" id="taskCreateName"/>
 					                						</div>
 					                					</td>
 					                					<td width="32%">
 					                						<span>Count</span>
-					                						<input type="text" name="task_count"/>
+					                						<input type="text" name="task_count" id="taskCreateCount"/>
 					                					</td>
 					                					<td width="35%">
 					                						<span>Time length</span>
-					                						<input type="text" name="task_time"/>
+					                						<input type="text" name="task_time" id="taskCreateTimeLenth"/>
 					                						
 					                					</td>
 					                				</tr>
@@ -90,7 +90,8 @@
 						                					<%for(int i=0;i<7;i++){%>
 						                					<div class="createTaskTimeDiv" id="createTaskTimeDiv<%=i%>">
 						                						<span class="create_task_span_date1">Time</span>
-						                						<input type="text" name="time" id="createTaskTimeDivInput<%=i%>"/>
+						                						<input type="text" name="time<%=i%>" id="createTaskTimeDivInput<%=i%>"/>
+						                						<input type="text" name="time2<%=i%>" id="createTaskTimeDivInput2<%=i%>"/>
 						                					</div>	
 						                					<%}%>
 						                				</td>
@@ -102,10 +103,10 @@
 					                						<div id="">
 					                						<select multiple="multiple" class="list1" id="mySelectId" name="mySelect">
 					                						<%
-					                						Set<UIResource> allResources = main.getAllResources();
-					                						for(UIResource uir: allResources){ %>
-					                							<option><%=uir.getName()%></option>
-					                						<%} %>
+					                						//Set<UIResource> allResources = main.getAllResources();
+					                						//for(UIResource uir: allResources){ %>
+					                							<option><%//uir.getName()%></option>
+					                						<%//} %>
 					                						</select>
 					                						
 					                						
@@ -142,10 +143,10 @@
 					                							<div class="list1">
 																<select class="list1" multiple="multiple"  id="userSelectId" name="userSelectName">
 																<%
-																Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("design"));
-																for(UIUser uiu: users){ %>
-																	<option><%=uiu.getFirstName()%>|<%=uiu.getLastName()%></option>
-																<%} %>
+																//Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("design"));
+																//for(UIUser uiu: users){ %>
+																	<option><%//uiu.getFirstName()%>|<%//uiu.getLastName()%></option>
+																<%//} %>
 																</select>
 																</div>
 																<input type="button" value="+" id="create_task_button"/>

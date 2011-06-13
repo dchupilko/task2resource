@@ -142,30 +142,68 @@ $(document).ready(function(){
 	  	$("#create_task_img").click(function(){
 			
 			var selectId=$("#mySelectId").val();
-			alert("id"+selectId);
-			refreshResources(selectId);
+			//alert("id"+selectId);
+			refreshResources();
 			
 		});
-		function refreshResources(selectId){
-			  alert("in func");
-			  var req = getXmlHttp();
-			  req.open('GET', 'http://localhost:8084/task2resource/refreshAjaxServlet?selectRes='+selectId, true);
-	          req.send(null);
-	          req.onreadystatechange = function() {
+		function refreshResources(){
+			 alert("wait for load resources");
+			 var req = getXmlHttp();
+			 
+			 var dateStart=$("#datepicker").val(); 
+			 var dateEnd=$("#datepicker2").val();
+			 var taskName=$("#taskCreateName").val();
+			 var task_count=$("#taskCreateCount").val();
+			 var time_length=$("#taskCreateTimeLenth").val();
+			 var url = "http://localhost:8084/task2resource/refreshAjaxServlet?";
+			 var parametrs="datepicker="+dateStart+"&datepicker2="+dateEnd+"&task_name="+taskName+"&task_count="+task_count+"&task_time="+time_length;
+			 			 
+			 var arrCheck=new Array();
+			 var arrTime=new Array();
+			 var arrTime2=new Array();
+			 
+			 for(var i=0; i<7; i++){
+				 var str="#check_time_id"+i;
+				 var str2="#createTaskTimeDivInput"+i;
+				 var str3="#createTaskTimeDivInput2"+i;;
+				 var check;
+				 if($(str).is(':checked')==true){
+					 check=1;
+				 }
+				 else{
+					 check=0;
+				 }
+				 arrCheck[i]="&check_time"+i+"="+check;
+				 
+				 arrTime[i]="&time"+i+"="+$(str2).val();
+				 arrTime2[i]="&time2"+i+"="+$(str3).val();
+				 parametrs+=arrCheck[i];
+				 parametrs+=arrTime[i];
+				 parametrs+=arrTime2[i];
+			 }
+			 
+			 //alert(parametrs);	
+			 req.open('GET', url+parametrs, true);
+			 req.send(null); 
+			   
+	         req.onreadystatechange = function() {
 	        	     if (req.readyState == 4) {
 	               	       if(req.status == 200) {
-	                       	   alert("in get user200");
-	                       	   modalOpen("create_task.jsp","title",200,200);
-								      //alert(req.responseText)
+	                       	  // alert("in get user200");
+	                       	  // modalOpen("create_task.jsp","title",200,200);
+							   //alert(req.responseText);
 	                       	   var message = req.responseXML.getElementsByTagName("message")[0];
-	                       	   setMessage2(message.childNodes[0].nodeValue);
-	                       	 
+	                       	   //setMessage2(message.childNodes[0].nodeValue);
+	                       	   parseMessageAuto2(req.responseXML);
 	                          }
 	                  }
 	          	}
+	         
+	       
 		}
 		
 		 function setMessage2(message) {
+			 
 	    	   if (message == "invalid") {
 	    	    	alert("invalid");
 	    	    	
@@ -320,7 +358,7 @@ $(document).ready(function(){
 	             
 	      }
 		 
-		 
+		 	
 		    function parseMessageAuto(resXML){  
 		    
 		       $("#userSelectId").html("");	
@@ -341,5 +379,25 @@ $(document).ready(function(){
 		       }
 		     
 		       }//close for parseMessages  
+		    //PARSE FOR RESOURCES
+		    function parseMessageAuto2(resXML){  
+			    
+			       $("#mySelectId").html("");	
+			       var responseNodes=resXML.getElementsByTagName("index")[0];   
+			       var index = responseNodes.childNodes[0].nodeValue;
+			       if (index!=0){
+			    	   for (var i=0; i<index; i++) //пробегаем по элементам list
+			    	   {
+			    	   var listObj = resXML.getElementsByTagName("message")[i]; //получаем i-й узел list
+			    	   
+			    	   	if (listObj.childNodes[0]!=null){
+			    		   var result=listObj.childNodes[0].nodeValue;
+			    		   var brbr=$("#mySelectId").html();
+			    		   $("#mySelectId").html(brbr+'<option>'+result+'</option>');
+			    	   	}
+			    	   }
+			       }
+			     
+			       }//close for parseMessages  
 		    
 });

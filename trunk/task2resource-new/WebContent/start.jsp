@@ -83,8 +83,7 @@
 					                						<table id="table_news_element">
 					                							<tr>
 					                								<td id='title_td'>
-					                								<span>size:</span>
-					                								<%=tasks.size()%>
+					                								
 					                								<%=uit.getName()%>		
 					                								</td>
 					                								<td id='category_td'>
@@ -110,6 +109,7 @@
 					                				<tr>
 					                					<td  class='brbr' >
 					                						<%for(int j=0; j<20; j++){out.print("text text text text");}%>
+					                						<%=uit.getDescription()%>
 					                					</td>
 					                				</tr>
 					                				<tr>
