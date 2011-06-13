@@ -13,6 +13,7 @@ public class Group {
 	
 	protected int oid;
 	protected int version;
+	protected int ACL = 0;
 	
 	protected String name;
     
@@ -22,6 +23,7 @@ public class Group {
 
     public Group(UIGroup uigroup) {
     	this.name = uigroup.getName();
+    	this.ACL = uigroup.getACL();
     }
     
     
@@ -104,4 +106,14 @@ public class Group {
 	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
+
+	public int getACL() {
+		return ACL;
+	}
+
+	public void setACL(int aCL) {
+		ACL = aCL;
+	}
+	
+	
 }

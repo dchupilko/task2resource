@@ -143,15 +143,15 @@ public class MainTest {
 		
 		Main main = new Main();
 		
-		UIResource conf = new UIResource("Conference room", 100);
-		UIResource cl1 = new UIResource("Class1", 20);
-		UIResource cl2 = new UIResource("Class2", 10);
-		UIResource mr1 = new UIResource("Meeting Room1", 30);
-		UIResource mr2 = new UIResource("Meeting Room2", 20);
-		UIResource mr3 = new UIResource("Meeting Room3", 50);
-		UIResource lobby = new UIResource("Lobby", 50);
-		UIResource gym = new UIResource("Gym", 10);
-		UIResource kitchen = new UIResource("Kitchen", 5);
+		UIResource conf = new UIResource("Conference room", 100, 2);
+		UIResource cl1 = new UIResource("Class1", 20, 0);
+		UIResource cl2 = new UIResource("Class2", 10, 0);
+		UIResource mr1 = new UIResource("Meeting Room1", 30, 1);
+		UIResource mr2 = new UIResource("Meeting Room2", 20, 1);
+		UIResource mr3 = new UIResource("Meeting Room3", 50, 1);
+		UIResource lobby = new UIResource("Lobby", 50, 0);
+		UIResource gym = new UIResource("Gym", 10, 0);
+		UIResource kitchen = new UIResource("Kitchen", 5, 0);
 		
 		int before=main.getAllResources().size();
 		
@@ -201,7 +201,7 @@ public class MainTest {
                 {6,12,00}, //Ïò.
                 };
 			
-		UITask uitask = new UITask("TestTask", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1, "TestTask description");
+		UITask uitask = new UITask("TestTask", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1, "TestTask description", "private");
 		
 		
 		UIResource conf = new UIResource("Conference room", 100);

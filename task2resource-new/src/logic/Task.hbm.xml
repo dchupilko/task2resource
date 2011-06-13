@@ -28,6 +28,9 @@
         <property name="capacity" type="int" >
             <column name="CAPACITY" />
         </property>
+        <property name="privacy" type="java.lang.String" >
+            <column name="PRIVACY"/>
+        </property>
         <set name="dates" table="ASSIGNMENTS" inverse="false" lazy="true" access="field" cascade="all">
             <key>
                 <column name="IDTASK" />

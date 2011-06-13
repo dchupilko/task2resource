@@ -66,7 +66,7 @@ public class User {
     public Set<UIResource> createTask(UITask task) {
     	log.debug("Creating task" + task.getName());
     	this.currentTask = new Task(task);
-    	return currentTask.getAllResources();
+    	return currentTask.getAllResources(this.getOid());
     	//TODO: don't forget to add current task to userTasks when saving a task
     	//TODO: add task creator
     }
@@ -135,7 +135,7 @@ public class User {
 	 */
 	public List<UITask> getAllTasks(){
 		log.debug("Getting all tasks");
-		allTasks = mapper.getAllTasks();
+		allTasks = mapper.getAllTasks(this);
 		mapper.getAllTasksById(this);
 		List<UITask> uitasks = new ArrayList<UITask>();
 		for(Task t: allTasks) {
@@ -149,7 +149,7 @@ public class User {
 		log.debug("Getting all user tasks");
 		if(userTasks.size()==0)
 		{
-			allTasks = mapper.getAllTasks();
+			allTasks = mapper.getAllTasks(this);
 			mapper.getAllTasksById(this);
 		}		
 		List<UITask> uitasks = new ArrayList<UITask>();
@@ -212,7 +212,7 @@ public class User {
 	public Set<UIDates> modifyResources(Set<UIResource> addedResources, Set<UIResource> removedResources) 
 	{
 		log.debug("Modifying resources");
-		return currentTask.modifyResources(addedResources, removedResources);
+		return currentTask.modifyResources(addedResources, removedResources, this.getOid());
 	}
 	
 	/**
@@ -236,7 +236,7 @@ public class User {
 	{
 		log.debug("Modifyind dates by task " + uitask.getName());
 		currentTask.modifyDates(uitask);
-		return currentTask.getAllResources();
+		return currentTask.getAllResources(this.getOid());
 	}
 	
 	/**

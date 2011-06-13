@@ -60,9 +60,9 @@ public class main {
                 {6,11,00}, //Ïò.
                 };
 		
-		UITask uitask = new UITask("task2", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1, "task1 description");
-		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,5,21,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2, "task4 description");
-		UITask uitask3 = new UITask("task3", 10, new GregorianCalendar(2011,2,1,8,00), new GregorianCalendar(2011,2,8,23,00), 120, period1, "task3 description");
+		UITask uitask = new UITask("task2", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1, "task1 description", "public");
+		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,5,21,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2, "task4 description", "private");
+		UITask uitask3 = new UITask("task3", 10, new GregorianCalendar(2011,2,1,8,00), new GregorianCalendar(2011,2,8,23,00), 120, period1, "task3 description", "public");
 
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
 		UIRequest petrov = new UIRequest("Petr", "Petrov", "petrpetrov", "123456", "petrov@gmail.com", "Analytic");
@@ -72,15 +72,15 @@ public class main {
 		
 		
 		
-		UIResource conf = new UIResource("Conference room", 100);
-		UIResource cl1 = new UIResource("Class1", 20);
-		UIResource cl2 = new UIResource("Class2", 10);
-		UIResource mr1 = new UIResource("Meeting Room1", 30);
-		UIResource mr2 = new UIResource("Meeting Room2", 20);
-		UIResource mr3 = new UIResource("Meeting Room3", 50);
-		UIResource lobby = new UIResource("Lobby", 50);
-		UIResource gym = new UIResource("Gym", 10);
-		UIResource kitchen = new UIResource("Kitchen", 5);
+		UIResource conf = new UIResource("Conference room", 100, 2);
+		UIResource cl1 = new UIResource("Class1", 20, 0);
+		UIResource cl2 = new UIResource("Class2", 10, 0);
+		UIResource mr1 = new UIResource("Meeting Room1", 30, 1);
+		UIResource mr2 = new UIResource("Meeting Room2", 20, 1);
+		UIResource mr3 = new UIResource("Meeting Room3", 50, 1);
+		UIResource lobby = new UIResource("Lobby", 50, 0);
+		UIResource gym = new UIResource("Gym", 10, 0);
+		UIResource kitchen = new UIResource("Kitchen", 5, 0);
 
 		//UIGroup uig=new UIGroup("managers");
 		//main.createGroup(uig);
@@ -102,11 +102,11 @@ public class main {
 		}
 		
 		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
-		acceptedRequests.add(ivanov);
-		acceptedRequests.add(petrov);
-		acceptedRequests.add(sidorov);
-		acceptedRequests.add(egorov);
-		acceptedRequests.add(dmitriev);
+		//acceptedRequests.add(ivanov);
+		//acceptedRequests.add(petrov);
+		//acceptedRequests.add(sidorov);
+		//acceptedRequests.add(egorov);
+		//acceptedRequests.add(dmitriev);
 		main.acceptRequests(acceptedRequests);
 		*/
 		
@@ -131,19 +131,23 @@ public class main {
 		main.createResource(kitchen);
 		*/
 		
-		
+		/*
 		// Testing use case "Delete resources"
 		//Set<UIResource> allResources = main.getAllResources();
 		//Set<UIResource> uiresources = new HashSet<UIResource>();
 		//uiresources.add(lobby);
 		//uiresources.add(gym);
 		//main.deleteResources(allResources);		
+		*/
 		
 		
-		/*
 		// Testing use case "Create task"
-		main.Authorize("ivanivanov", "123456");
+		main.Authorize("jmang", "jmang");
 		Set<UIResource> resources = main.createTask(uitask);
+		for (UIResource r : resources)
+		{
+			System.out.println(r);
+		}
 		Set<UIResource> choose = new HashSet<UIResource>();
 		choose.add(conf);
 		choose.add(gym);
@@ -163,19 +167,21 @@ public class main {
 		main.assignUsers(users);
 		
 		main.acceptTask();
-		*/
-				
 		
+				
+		/*
 		//Testing use case "Get task info"
-		//main.Authorize("ivanivanov", "123456");
+		//main.Authorize("abriner", "abriner");
 		List<UITask> tasks = main.getAllTasks();
 		UITask tempTask = null;
 		for (UITask uit: tasks) {
 			System.out.println(uit);
 			//System.out.println(main.modifyTask(uit));
 			//tempTask = uit;
-		}
-		/*Set<UIDates> taskDates = main.getTaskDates(tempTask);
+		}*/
+		
+		/*
+		Set<UIDates> taskDates = main.getTaskDates(tempTask);
 		for(UIDates uid : taskDates)
 		{
 			System.out.println(uid);
@@ -190,9 +196,9 @@ public class main {
 		{			
 			System.out.println(uiu);
 		}
+		*/
 		
-		
-		
+		/*
 		//"Modify dates"
 		taskResources = main.modifyDates(uitask2);
 		for(UIResource uir : taskResources)
@@ -254,17 +260,23 @@ public class main {
 		//Testing use case "Delete task"
 		//main.deleteTask(tempTask);
 		
-		/*   
+		/* 
 		//Testing use case "Delete users"
 		Set<UIGroup> groups = main.getAllGroups();
-		Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("Engineering"));
-		main.deleteUsers(users);
+		Set<UIUser> delUsers = new HashSet<UIUser>();
+		for(UIGroup g : groups)
+		{
+			delUsers.addAll(main.getAllUsersFromGroup(g));
+		}		
+		main.deleteUsers(delUsers);
 		*/
 		
 		/*
 		//Testing use case "Authorization"
 		System.out.println(main.Authorize("ivanivanov", "123456"));
+		System.out.println(main.isAdministrator());
 		System.out.println(main.Authorize("sdf", "123456"));
+		System.out.println(main.isAdministrator());
 		*/
 	}
 }

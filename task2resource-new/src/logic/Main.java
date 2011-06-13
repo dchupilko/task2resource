@@ -22,8 +22,6 @@ public class Main {
 	protected ResourceMapper resourceMapper = new ResourceMapper();
 	protected GroupMapper groupMapper = new GroupMapper();
 	
-	
-	
 	protected User currentUser = new User();
 	
 	
@@ -77,7 +75,10 @@ public class Main {
 		return true;
 	}
 	
-	
+	public boolean isAdministrator()
+	{
+		return userMapper.checkUser(currentUser);
+	}
 	
 	/**
 	 * Create new group
@@ -332,7 +333,7 @@ public class Main {
 	
 	public List<UITask> getAllUserTasks() 
 	{
-		log.debug("Getting all tasks");
+		log.debug("Getting all user tasks");
 		return currentUser.getAllUserTasks();
 	}
 	/**
