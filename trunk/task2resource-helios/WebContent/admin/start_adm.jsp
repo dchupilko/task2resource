@@ -19,11 +19,19 @@
 	<table id="id_main_table">
             		<tr>
                      <td id="bbbb" >
-                       <div align="right"><a href="">Log out</a></div>
-                       <img id="img_main_top" src="../img/top.jpg"/></td>
+                        <img id="img_main_top" src="../img/top.jpg"/></td>
            		    </tr>          
            			 <tr>
            		           	 <td height="500px">
+           		           	 <%int flag=0;
+           		           	 if(flag==0){%>
+           		           		<div>
+           		           			<input type="text" id="testLogin"></input>	
+           		           			<input type="text" id="testPass"></input>
+           		           		</div> 
+           		           	 <%}
+           		           	 %>
+           		           	 
            		      			 <table width="100%" border="0" class="child_table">
 					      			<tr>
 					      				

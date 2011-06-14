@@ -2,11 +2,13 @@
 
 $(document).ready(function(){
 	
-	//$('#Datepicker1').css('background','aqua');
+
+	//CONSTANTS AND GLOBAL VARIABLES
+	var multiArray=new Array();
+	var selectedUsersToFunc=new Array();
 	
-	//$('#bbbb').css('background','aqua');
+	//--------------------------------
 	
-	//$('[id$=Datepicker1]').css('color','#f0f');
 	
 	$('[id$=Datepicker1]').click(function(e){
 		//var left=e.pageX;
@@ -33,17 +35,96 @@ $(document).ready(function(){
 	
 
 	
+	//ADD USERS FROM SELECTED GROUP
+	
+	
+	function isInMultiArray(selectedUsersToFunc){
+		//get groups multiArrayarr	 	
+	}
+	
+	
 	
 	$("#create_task_button").click(function(){
-		alert("test_button");
+		
 		var selectGroup=$("#groupSelectId").val();
-		alert("group"+selectGroup);
-		var select=$("#userSelectId").val();
-		alert("users:"+select);
+		
+		//alert(selectGroup[0]);
+		var str="";	//string to get request
+		var select2=$("#userSelectId").val();//<select> val
+		
+		
+		
+		selectedUsersToFunc[0]=selectGroup[0];
+		for(var variab=0;variab<select2.length;variab++){
+			selectedUsersToFunc[variab+1]=select2[variab];
+		}
+		isInMultiArray(selectedUsersToFunc);
+		//alert(select2);
+		var  strstrs =new Array();  
+		
+		//alert($("#userSelectId option").length);
+		for(var q=0;q<$("#userSelectId option").length;q++){ //all <option>
+			var forjq="#userSelectId option[value='"+q+"']"; //get <option> string
+			strstrs[q]=$(forjq).text();//get text of <option>
+			for(var len=0;len<select2.length; len++){// all selected <option>
+				if(select2[len]==q){
+					 str=str+"user"+len+"="+strstrs[q]+"&";
+				}
+			}
+			
+		}
+		
+		str=str+"count="+select2.length;
+		//alert(str);
+		addUsersFromGroup(str);
 	});
 
+	 function addUsersFromGroup(select){
+   	  
+		   var req = getXmlHttp();
+		   
+		   //alert(select);
+		   req.open('GET', 'http://localhost:8084/task2resource/SetUsersFromGroupAjaxServlet?'+select, true);
+           req.send(null);
+           req.onreadystatechange = function() {
+                 if (req.readyState == 4) {
+              	       if(req.status == 200) {
+              	    	   
+              	    	 //todo
+              	    	 toSetUsersColor();
+              	    	
+                      	  // alert("in get user200");
+							      //alert(req.responseText)
+                      	   //var message = req.responseXML.getElementsByTagName("message")[0];
+                      	  // setMessage(message.childNodes[0].nodeValue);
+                               									  
+                         }
+                 }
+         }
+    }
 	
-	
+	 function toSetUsersColor(){
+		   // alert("toSetUsersColor!");
+			var selectGroup=$("#groupSelectId").val();
+			var select=$("#userSelectId").val();
+			var allSelect=$("#userSelectId option");
+			//alert("length:"+allSelect);
+			//alert("lengthSelect:"+select.length);
+			var i=0;
+			for (;i<select.length;i++) {
+			        for(var q=0;q<allSelect.length; q++){
+				    var optionStr="#userSelectId option[value='"+q+"']";
+					    if($(optionStr).val()==select[i]){
+					    	//alert("URA:"+$(optionStr).val());
+					    	var htmlOption=$(optionStr).val;
+					    	//alert("value:"+htmlOption);
+					    	$(optionStr).css('color','blue');
+					    	//$(optionStr).addClass("forUserColor");
+					    }
+				    }
+			}
+	 }
+	 
 	//AJAX  (XMLHTTP) function
 	
 	  function getXmlHttp(){
@@ -362,8 +443,17 @@ $(document).ready(function(){
 		    function parseMessageAuto(resXML){  
 		    
 		       $("#userSelectId").html("");	
+		       //alert($("#groupSelectId").val());
+		       var grSel=$("#groupSelectId").val();
+		       /*if(selectedUsersToFunc!=null){
+		    	   alert(selectedUsersToFunc[0]);
+		    	   
+		       }*/
+		       
 		       var responseNodes=resXML.getElementsByTagName("index")[0];   
 		       var index = responseNodes.childNodes[0].nodeValue;
+		       
+		       
 		      if (index!=0){
 		    	   for (var i=0; i<index; i++) //пробегаем по элементам list
 		    	   {
@@ -373,7 +463,25 @@ $(document).ready(function(){
 		    		   var result=listObj.childNodes[0].nodeValue;
 		    		  
 		    		   var brbr=$("#userSelectId").html();
-		    		   $("#userSelectId").html(brbr+'<option>'+result+'</option>');
+		    		   if(selectedUsersToFunc!=null){
+		    			   
+		    			   $("#userSelectId").html(brbr+'<option value='+i+'>'+result+'</option>');
+		    			  
+		    			   if(grSel==selectedUsersToFunc[0]){
+		    				   
+				    		   for(var counteri=0;counteri<selectedUsersToFunc.length;counteri++){
+				    			   if(selectedUsersToFunc[counteri+1]==i){
+				    				   
+				    				   $("#userSelectId").html(brbr+'<option value='+i+' style="color:blue">'+result+'</option>');
+				    			   }
+				      		   }
+		    			   }
+			    		   //
+			    		   
+		    		   }
+		    		   else{
+		    		   $("#userSelectId").html(brbr+'<option value='+i+'>'+result+'</option>');
+		    		   }
 		    	   	}
 		    	   }
 		       }
@@ -393,6 +501,7 @@ $(document).ready(function(){
 			    	   	if (listObj.childNodes[0]!=null){
 			    		   var result=listObj.childNodes[0].nodeValue;
 			    		   var brbr=$("#mySelectId").html();
+			    		   
 			    		   $("#mySelectId").html(brbr+'<option>'+result+'</option>');
 			    	   	}
 			    	   }

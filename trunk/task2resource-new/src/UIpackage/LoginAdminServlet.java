@@ -46,7 +46,7 @@ public class LoginAdminServlet extends HttpServlet {
 	          if ((login.equals("admin")) && (password.equals("12345"))) {
 	    		       		                     	  
 	               HttpSession session = request.getSession(true);
-	               session.setAttribute("auth",request.getParameter("login"));
+	               session.setAttribute("admin",request.getParameter("login"));
 	               request.setAttribute("message", null);
 	               outputPage("admin/start_adm.jsp", request, response);
 	           } else {

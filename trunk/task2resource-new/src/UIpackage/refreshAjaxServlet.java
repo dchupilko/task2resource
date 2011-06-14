@@ -99,7 +99,7 @@ public class refreshAjaxServlet extends HttpServlet {
 			calendar2.setTime(date);
 			System.out.println("Date:"+calendar);
 			System.out.println("Date2:"+calendar2);
-			UITask uitask = new UITask(task_name, 10, calendar, calendar2, task_time, period, "task1 description");
+			UITask uitask = new UITask(task_name, 10, calendar, calendar2, task_time, period, "task1 description","public");
 		    Set<UIResource> resources = main.createTask(uitask);
 		    response.setContentType("text/xml");
 	        response.setHeader("Cache-Control", "no-cache");
