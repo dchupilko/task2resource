@@ -35,7 +35,7 @@ public class UserGroupsServlet extends HttpServlet {
 		String group=request.getParameter("selectedGroup");
 		Main main=new Main();
 		Set<UIGroup> groups = main.getAllGroups();
-		System.out.println("GROUP:"+group);
+		//System.out.println("GROUP:"+group);
 		  if (group!= null) {
 			  
 			  	Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup(group));
@@ -44,7 +44,7 @@ public class UserGroupsServlet extends HttpServlet {
 	            response.setHeader("Cache-Control", "no-cache");
 	            String responseStr="<root>";
 	            responseStr+="<index>"+users.size()+"</index>";
-	            System.out.println("USERS SIZE:"+users.size());
+	           // System.out.println("USERS SIZE:"+users.size());
 	            for(UIUser uiu:users){
 	            	responseStr=responseStr+"<message>"+uiu.getFirstName()+" "+uiu.getLastName()+
 	            	"</message>";

@@ -145,7 +145,7 @@
 																<%
 																//Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("design"));
 																//for(UIUser uiu: users){ %>
-																	<option><%//uiu.getFirstName()%>|<%//uiu.getLastName()%></option>
+																	<option><%//uiu.getFirstName()%><%//uiu.getLastName()%></option>
 																<%//} %>
 																</select>
 																</div>

@@ -108,7 +108,7 @@
 					                				</tr>
 					                				<tr>
 					                					<td  class='brbr' >
-					                						<%for(int j=0; j<20; j++){out.print("text text text text");}%>
+					                						
 					                						<%=uit.getDescription()%>
 					                					</td>
 					                				</tr>
