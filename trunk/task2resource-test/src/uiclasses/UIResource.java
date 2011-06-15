@@ -53,8 +53,10 @@ public class UIResource {
 		this.status = status;
 	}
 	
+	@Override
 	public String toString() {
-		return this.name + "; " + this.capacity;
+		return "UIResource [name=" + name + ", capacity=" + capacity
+				+ ", status=" + status + "]";
 	}
 
 	public int getAcl() {

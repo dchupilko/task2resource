@@ -1,6 +1,7 @@
 package testpackage;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
@@ -60,8 +61,8 @@ public class main {
                 {6,11,00}, //Ïò.
                 };
 		
-		UITask uitask = new UITask("task2", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1, "task1 description", "public");
-		UITask uitask2 = new UITask("task4", 20, new GregorianCalendar(2011,5,21,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period2, "task4 description", "private");
+		UITask uitask = new UITask("task17", 10, new GregorianCalendar(2011,9,1,8,00), new GregorianCalendar(2011,9,8,23,00), 120, period1, "task1 description", "public");
+		UITask uitask2 = new UITask("task23", 10, new GregorianCalendar(2011,9,21,8,00), new GregorianCalendar(2011,9,30,23,00), 120, period2, "task4 description", "private");
 		UITask uitask3 = new UITask("task3", 10, new GregorianCalendar(2011,2,1,8,00), new GregorianCalendar(2011,2,8,23,00), 120, period1, "task3 description", "public");
 
 		UIRequest ivanov = new UIRequest("Ivan", "Ivanov", "ivanivanov", "123456", "ivanov@gmail.com", "Senior Programmer");
@@ -70,14 +71,12 @@ public class main {
 		UIRequest egorov = new UIRequest("Egor", "Egorov", "egoregorov", "123456", "egorov@gmail.com", "Junior Programmer");
 		UIRequest dmitriev = new UIRequest("Dmitry", "Dmitriev", "dimadmitriev", "123456", "dmitriev@gmail.com", "Analytic");
 		
-		
-		
-		UIResource conf = new UIResource("Conference room", 100, 2);
-		UIResource cl1 = new UIResource("Class1", 20, 0);
-		UIResource cl2 = new UIResource("Class2", 10, 0);
-		UIResource mr1 = new UIResource("Meeting Room1", 30, 1);
-		UIResource mr2 = new UIResource("Meeting Room2", 20, 1);
-		UIResource mr3 = new UIResource("Meeting Room3", 50, 1);
+		UIResource conf = new UIResource("Conference Room", 100, 2);
+		UIResource cl1 = new UIResource("Class Room 1", 20, 0);
+		UIResource cl2 = new UIResource("Class Room 2", 10, 0);
+		UIResource mr1 = new UIResource("Meeting Room 1", 30, 1);
+		UIResource mr2 = new UIResource("Meeting Room 2", 20, 1);
+		UIResource mr3 = new UIResource("Meeting Room 3", 50, 1);
 		UIResource lobby = new UIResource("Lobby", 50, 0);
 		UIResource gym = new UIResource("Gym", 10, 0);
 		UIResource kitchen = new UIResource("Kitchen", 5, 0);
@@ -142,20 +141,38 @@ public class main {
 		
 		/*
 		// Testing use case "Create task"
-		main.Authorize("jmang", "jmang");
-		Set<UIResource> resources = main.createTask(uitask);
+		main.Authorize("abriner", "abriner");
+		main.createTask();
+		main.setTaskInfo(uitask);
+		Set<UIResource> resources = main.getAllTaskResources();
 		for (UIResource r : resources)
 		{
 			System.out.println(r);
 		}
 		Set<UIResource> choose = new HashSet<UIResource>();
-		choose.add(conf);
-		choose.add(gym);
+		choose.add(mr2);
+		choose.add(mr1);
 		Set<UIDates> conflicts = new HashSet<UIDates>();
 		conflicts = main.chooseResources(choose);
 		for (UIDates uid : conflicts) {
 			System.out.println(uid);
 		}
+		
+		main.setTaskInfo(uitask2);
+		resources = main.getAllTaskResources();
+		for (UIResource r : resources)
+		{
+			System.out.println(r);
+		}
+		choose.clear();
+		choose.add(mr2);
+		choose.add(mr1);
+		conflicts.clear();
+		conflicts = main.chooseResources(choose);
+		for (UIDates uid : conflicts) {
+			System.out.println(uid);
+		}
+		
 		Set<UIGroup> groups = main.getAllGroups();
 		//for (UIGroup g : groups) {
 			//System.out.println(g);
@@ -164,34 +181,89 @@ public class main {
 		for (UIUser u : users) {
 			System.out.println(u);
 		}
-		main.assignUsers(users);
-		
+		main.chooseUsers(users, new UIGroup("Programming"));
+		users.clear();
+		users = main.getAllUsersFromGroup(new UIGroup("Engineering"));
+		for (UIUser u : users) {
+			System.out.println(u);
+		}
+		main.chooseUsers(users, new UIGroup("Engineering"));
+		users.clear();
+		users = main.getAllUsersFromGroup(new UIGroup("Programming"));
+		Set<UIUser> users2 = new HashSet<UIUser>();
+		users2.add(users.iterator().next());
+		main.chooseUsers(users2, new UIGroup("Programming"));
 		main.acceptTask();
 		*/
 				
-		/*
+		
 		//Testing use case "Get task info"
-		//main.Authorize("abriner", "abriner");
+		main.Authorize("tphilips", "tphilips");
 		List<UITask> tasks = main.getAllTasks();
 		UITask tempTask = null;
 		for (UITask uit: tasks) {
 			System.out.println(uit);
-			//System.out.println(main.modifyTask(uit));
-			//tempTask = uit;
-		}*/
-		
-		/*
+			if (uit.getName().equals("English course")) {
+				System.out.println(main.modifyTask(uit));
+				tempTask = uit;	
+			}
+		}
 		Set<UIDates> taskDates = main.getTaskDates(tempTask);
-		for(UIDates uid : taskDates)
+		/*for(UIDates uid : taskDates)
 		{
 			System.out.println(uid);
-		}
+		}*/
 		Set<UIResource> taskResources = main.getTaskResources(tempTask);
-		for(UIResource uir : taskResources)
+		/*for(UIResource uir : taskResources)
 		{
 			System.out.println(uir);
-		}
+		}*/
+		Set<UIGroup> groups = main.getAllGroups(); 
 		Set<UIUser> taskUsers = main.getTaskUsers(tempTask);
+		/*for(UIUser uiu : taskUsers)
+		{			
+			System.out.println(uiu);
+		}
+		Set<UIResource> choose = new HashSet<UIResource>();
+		choose.add(mr2);
+		choose.add(mr3);
+		Set<UIDates> conflicts = new HashSet<UIDates>();
+		conflicts = main.chooseResources(choose);
+		for (UIDates uid : conflicts) {
+			System.out.println(uid);
+		}*/
+		main.setTaskInfo(uitask2);
+		Set<UIResource> resources = main.getAllTaskResources();
+		/*for (UIResource r : resources)
+		{
+			System.out.println(r);
+		}*/
+		Set<UIResource> choose = new HashSet<UIResource>();
+		choose.add(cl1);
+		choose.add(lobby);
+		Set<UIDates> conflicts = new HashSet<UIDates>();
+		conflicts = main.chooseResources(choose);
+		System.out.println("CONFLICTS");
+		for (UIDates uid : conflicts) {
+			System.out.println(uid);
+		}		
+		//for (UIGroup g : groups) {
+			//System.out.println(g);
+		//}
+		Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("Designing"));
+		/*for (UIUser u : users) {
+			System.out.println(u);
+		}*/
+		main.chooseUsers(users, new UIGroup("Designing"));
+		main.acceptTask();
+				
+		/*
+		Set<UIUser> users2 = new HashSet<UIUser>();
+		users2.add(new UIUser("Luke", "Stewart"));
+		main.chooseUsers(users2, new UIGroup("Engineering"));
+		main.acceptTask();
+		
+		taskUsers = main.getTaskUsers(tempTask);
 		for(UIUser uiu : taskUsers)
 		{			
 			System.out.println(uiu);

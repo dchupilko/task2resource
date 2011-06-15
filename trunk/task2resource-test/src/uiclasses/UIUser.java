@@ -59,6 +59,8 @@ public class UIUser {
 	@Override
 	public String toString() {
 		return "UIUser [firstName=" + firstName + ", lastName=" + lastName
-				+ "]";
+				+ ", assignment=" + assignment + "]";
 	}
+
+
 }

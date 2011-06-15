@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class Main {
     protected Set<Group> groups = new HashSet<Group>();
 	protected Set<Request> requests = new HashSet<Request>();
     protected Set<Resource> resources = new HashSet<Resource>();
+    protected Set<User> removedUsers = new HashSet<User>();
     
 	protected UserMapper userMapper = new UserMapper();
 	protected RequestMapper requestMapper = new RequestMapper();
@@ -33,6 +35,16 @@ public class Main {
 		log.debug("Creating user from uirequest" + uirequest.getLogin());
 		Request request = new Request(uirequest);
 		requestMapper.setRequest(request);
+	}
+	
+	public boolean checkLogin(String login)
+	{
+		return userMapper.checkLogin(login);
+	}
+	
+	public boolean checkEmail(String email)
+	{
+		return userMapper.checkEmail(email);
 	}
 	
 	/**
@@ -62,7 +74,7 @@ public class Main {
 	 * 
 	 * @return	true if access granted
 	 */
-	public boolean Authorize (String login, String password) {
+	public boolean Authorize(String login, String password) {
 		log.debug("Trying to authorize");
 		currentUser = userMapper.getUser(login, password);
 		if(currentUser.getLogin()==null && currentUser.getPassword()==null)
@@ -74,6 +86,11 @@ public class Main {
 		return true;
 	}
 	
+	/**
+	 * Check if current user is administrator
+	 * 
+	 * @return	true if user is administrator
+	 */
 	public boolean isAdministrator()
 	{
 		return userMapper.checkUser(currentUser);
@@ -89,7 +106,6 @@ public class Main {
 		Group grp = new Group(uigrp);
 		groupMapper.setGroup(grp);
 	}
-	
 
 	/**
 	 * Create new resource
@@ -140,9 +156,9 @@ public class Main {
 	 * 
 	 * @return	List of requests
 	 */
-	public Set<UIRequest> getAllRequests() {
+	public List<UIRequest> getAllRequests() {
 		log.debug("Getting all requests");
-		Set<UIRequest> uirequests = new HashSet<UIRequest>();
+		List<UIRequest> uirequests = new ArrayList<UIRequest>();
 		requests = requestMapper.getAllRequests();
 		
 		for (Request r : requests) {
@@ -158,7 +174,7 @@ public class Main {
 	 * 
 	 * @param uirequests	List of requests
 	 */
-	public void acceptRequests(Set<UIRequest> uirequests){
+	public void acceptRequests(List<UIRequest> uirequests){
 		log.debug("Accepting requests");
 		groups = userMapper.getGroups();
 		for (Group g : groups) {
@@ -166,7 +182,6 @@ public class Main {
 		}
 		Group group;
 		for (UIRequest uirequest : uirequests) {
-			//TODO: Make some user checking
 			if(true){
 				group = userMapper.getGroupByJob(uirequest.getJob());
 				for (Group g : groups) {
@@ -194,7 +209,7 @@ public class Main {
 	 * 
 	 * @param uirequests	List of requests
 	 */
-	public void denyRequests(Set<UIRequest> uirequests){
+	public void denyRequests(List<UIRequest> uirequests){
 		log.debug("Deny requests");
 		Set<Request> deniedRequests = new HashSet<Request>();
 		for (Request r : requests) {
@@ -307,47 +322,58 @@ public class Main {
      * @param uiusers	List of selected users
      */
 	
-	public void chooseUsers(Set<UIUser> uiusers)
+	public void chooseUsers(Set<UIUser> uiusers, UIGroup uigroup)
 	{
 		Set<User> users = new HashSet<User>();
 		Set<User> assignedUsers = new HashSet<User>();
 		for (Group g : groups) {
-    		for (User u : g.users) {
-    			if(g.isModified())
-    			{
-    				if(u.isAssigned())
-        			{
-        				assignedUsers.add(u);
-        			}
-    			}    			
-    			for (UIUser ui : uiusers) {
-	    			if (u.getFirstName().equals(ui.getFirstName())&&u.getLastName().equals(ui.getLastName())) {
-	    				u.setAssigned(true);
-	    				if(g.isModified())
+			if (g.getName().equals(uigroup.getName()))
+			{
+				boolean isModified = false;
+	    		for (User u : g.users) {
+	    			if(g.isModified())
+	    			{
+	    				if(u.isAssigned())
 	        			{
-	    					users.add(u);	    					
-	        			}	  
-	    				g.setModified(true);
+	        				assignedUsers.add(u);
+	        			}
+	    			}    			
+	    			for (UIUser ui : uiusers) {
+		    			if (u.getFirstName().equals(ui.getFirstName())&&u.getLastName().equals(ui.getLastName())) {
+		    				u.setAssigned(true);
+		    				removedUsers.remove(u);
+		    				if(g.isModified())
+		        			{
+		    					users.add(u);	    					
+		        			}	  
+		    				isModified = true;
+		    			}
 	    			}
-    			}
-    		}
-    		if(g.isModified())
-    		{
-    			for (User u : assignedUsers)
-        		{
-        			if(!users.contains(u))
-        			{
-        				for(User all : g.users)
-        				{
-        					if(all.equals(u))
-        					{
-        						//TODO: send email for removed users
-        						all.setAssigned(false);
-        					}
-        				}
-        			}
-        		}
-    		}    		
+	    			System.out.println(u);
+	    		}
+	    		if(g.isModified())
+	    		{
+	    			for (User u : assignedUsers)
+	        		{
+	        			if(!users.contains(u))
+	        			{
+	        				for(User all : g.users)
+	        				{
+	        					if(all.equals(u))
+	        					{
+	        						removedUsers.add(all);
+	        						all.setAssigned(false);
+	        					}
+	        				}
+	        			}
+	        		}
+	    		} 
+	    		if(isModified)
+	    		{
+	    			g.setModified(true);
+	    		}
+			}
+			
     	}
 	}
 	
@@ -362,7 +388,7 @@ public class Main {
     			}
     		}
     	}
-    	currentUser.assignUsers(users);
+    	currentUser.assignUsers(users, removedUsers);
     }
     
     /**
@@ -445,9 +471,11 @@ public class Main {
 	{
 		log.debug("Getting task users");
 		Set <User> participants = currentUser.getTaskUsers(uitask); 
+		Set <UIUser> uiusers = new HashSet<UIUser>();
 		if(currentUser.getCurrentTask() != null)
 		{
-			userMapper.getGroups();
+			Set <User> allUsers = new HashSet<User>();
+			//groups = userMapper.getGroups();
 			for(Group g : groups)
 			{
 				userMapper.getUsersByGroup(g, currentUser);
@@ -458,12 +486,18 @@ public class Main {
 						if(p.equals(u))
 						{
 							u.setAssigned(true);
+							g.setModified(true);
 						}
 					}
 				}
+				allUsers.addAll(g.users);
 			}
-		}
-		Set <UIUser> uiusers = new HashSet<UIUser>(); 
+			for(User u : allUsers)
+			{
+				uiusers.add(u.getUIUser());
+			}
+			return uiusers;
+		} 
 		for(User p : participants)
 		{
 			uiusers.add(p.getUIUser());
