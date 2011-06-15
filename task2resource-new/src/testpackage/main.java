@@ -47,7 +47,7 @@ public class main {
 		Main main = new Main();
 		User user = new User();
 		
-		/*
+		
 		int [][] period1 = {
                 {2,12,00}, //Ïí.
                 {4,12,00}, //Ñð.
@@ -70,7 +70,11 @@ public class main {
 		UIRequest egorov = new UIRequest("Egor", "Egorov", "egoregorov", "123456", "egorov@gmail.com", "Junior Programmer");
 		UIRequest dmitriev = new UIRequest("Dmitry", "Dmitriev", "dimadmitriev", "123456", "dmitriev@gmail.com", "Analytic");
 		
-		
+		/*
+		 * OOOOeeeee ^_^ Sender works
+		 */
+		//UIRequest ipetrov = new UIRequest("Igor", "Petrov", "igorpetrov", "000111", "petrov.igor.od@gmail.com", "Student");
+		//main.createUser(ipetrov);
 		
 		UIResource conf = new UIResource("Conference room", 100, 2);
 		UIResource cl1 = new UIResource("Class1", 20, 0);
@@ -81,7 +85,7 @@ public class main {
 		UIResource lobby = new UIResource("Lobby", 50, 0);
 		UIResource gym = new UIResource("Gym", 10, 0);
 		UIResource kitchen = new UIResource("Kitchen", 5, 0);
-		*/
+		
 		//UIGroup uig=new UIGroup("managers");
 		//main.createGroup(uig);
 
