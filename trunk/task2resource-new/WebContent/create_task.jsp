@@ -109,10 +109,13 @@
 						                				<td class="table_create_task_elem_td">
 						                					<%for(int i=0;i<7;i++){%>
 						                					<div class="createTaskTimeDiv" id="createTaskTimeDiv<%=i%>">
-						                						<span class="create_task_span_date1">Time</span>
-						                						<input type="text" name="time<%=i%>" id="createTaskTimeDivInput<%=i%>"/>
-						                						<input type="text" name="time2<%=i%>" id="createTaskTimeDivInput2<%=i%>"/>
+						                						<span class="create_task_span_date1">time:</span>
+						                						
+						                						<input type="text" name="time<%=i%>" id="createTaskTimeDivInput<%=i%>" size="2%" />
+						                						<span style="font-weight:bold">:</span>
+						                						<input type="text" name="time2<%=i%>" id="createTaskTimeDivInputb<%=i%>" size="2%"/>
 						                					</div>	
+						                					<br>
 						                					<%}%>
 						                				</td>
 						                				<td></td>

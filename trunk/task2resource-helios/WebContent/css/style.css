@@ -26,6 +26,7 @@
     .reg_for_div div{
         font-size:0px;
         margin-top: 6px;
+         
     }
     .reg_for_div{
         width: 40%; 
@@ -168,7 +169,7 @@
 #create-user{
 	position: absolute;
 	bottom: 150px;
-	left: 250px;
+	left: 450px;
 	
 }
 #descript_id{

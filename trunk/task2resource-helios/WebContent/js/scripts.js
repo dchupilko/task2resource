@@ -246,7 +246,7 @@ $(document).ready(function(){
 			 for(var i=0; i<7; i++){
 				 var str="#check_time_id"+i;
 				 var str2="#createTaskTimeDivInput"+i;
-				 var str3="#createTaskTimeDivInput2"+i;;
+				 var str3="#createTaskTimeDivInputb"+i;;
 				 var check;
 				 if($(str).is(':checked')==true){
 					 check=1;
@@ -447,10 +447,10 @@ $(document).ready(function(){
 		 });
 		
 		 //time input onBlur
-		 $('[id^=createTaskTimeDivInput]').blur(function(){
-			 
+		 $('[id^=createTaskTimeDivInputb]').blur(function(){
+			
 			 var varId=this.id;
-			 var idNum="#createTaskTimeDiv"+varId.charAt(22);
+			 var idNum="#createTaskTimeDiv"+varId.charAt(23);
 			 $(idNum).css('display', 'none');
 		 });
 		 
