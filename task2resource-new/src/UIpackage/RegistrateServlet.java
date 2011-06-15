@@ -45,7 +45,8 @@ public class RegistrateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		//form parameters
-		 
+		 Main main = (Main)getServletContext().getAttribute("main"); 
+		 System.out.println(main.getAllGroups());
 		
 		 String login = request.getParameter("user_name");
 	     String password = request.getParameter("password");
@@ -64,7 +65,7 @@ public class RegistrateServlet extends HttpServlet {
 	     //create user
 		 if(sendFlag){
 			 UIRequest uirequest = new UIRequest(firstName, lastName, login, password, email,job);
-			 Main main = new Main();
+			 //Main main = new Main();
 			 main.createUser(uirequest);
 			 outputPage("start.jsp", request, response);
 		 }
