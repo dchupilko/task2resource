@@ -6,7 +6,7 @@
     <body>
   
     
-    	<jsp:forward page="login.jsp" />
+    	<jsp:forward page="start_adm.jsp" />
        
         
     </body>
