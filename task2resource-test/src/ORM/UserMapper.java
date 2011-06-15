@@ -161,4 +161,33 @@ public class UserMapper extends AbstractMapper{
 		}
 	}
 	
+	public boolean checkLogin(String login)
+	{
+		try{
+			String query=String.format("select * from Users where login = '%s'", login);
+			List<Object[]> tempList = this.readObject(query);
+			if(tempList.size()==0)
+				return true;
+		    else 	
+		    	return false;
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
+	
+	public boolean checkEmail(String email)
+	{
+		try{
+			String query=String.format("select * from Users where email = '%s'", email);
+			List<Object[]> tempList = this.readObject(query);
+			if(tempList.size()==0)
+				return true;
+		    else 	
+		    	return false;
+		}
+		catch(HibernateException he){
+			throw he;
+		}
+	}
 }

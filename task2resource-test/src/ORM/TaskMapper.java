@@ -145,10 +145,10 @@ public class TaskMapper extends AbstractMapper{
 	{
 		try {
 			String query = String.format("select distinct t.* from " +
-					"(select t.* from tasks t where privacy='public' " +
+					"(select t.* from tasks t where privacy='public' or t.iduser=%d " +
 					"union " +
 					"select t.* from tasks t, participations p where p.idtask=t.idtask and p.iduser=%d) t, " +
-					"Assignments a where a.startDate>=sysdate and t.IdTask=a.IdTask ", user.getOid()); 
+					"Assignments a where a.startDate>=sysdate and t.IdTask=a.IdTask ", user.getOid(), user.getOid()); 
 			List<Object[]> tempList = this.readObject(query);
 		    Set<Task> tasks = new HashSet<Task>();
 		    for(Object[] o: tempList)
@@ -220,7 +220,7 @@ public class TaskMapper extends AbstractMapper{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");  	 
 		try {
 			String query = String.format("select distinct t.* from Tasks t, Assignments a " +
-					"where t.IdUser=%d and a.startDate>=sysdate and t.IdTask=a.IdTask", user.getOid());
+					"where t.IdUser=%d and t.IdTask=a.IdTask", user.getOid());
 			 List<Object[]> tempList = this.readObject(query);
 			    Set<Task> tasks = new HashSet<Task>();
 			    for(Object[] o: tempList)

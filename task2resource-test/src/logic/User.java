@@ -121,9 +121,9 @@ public class User {
      * 
      * @param users	List of selected users
      */
-    public void assignUsers(Set<User> users) {
+    public void assignUsers(Set<User> users, Set<User> removedUsers) {
     	log.debug("Assigning set of users");
-    	currentTask.assignUsers(users);
+    	currentTask.assignUsers(users, removedUsers);
     }
 	
     /**
@@ -222,19 +222,21 @@ public class User {
 	public Set<UIDates> getTaskDates(UITask uitask)
 	{
 		log.debug("Getting task dates with " + uitask.getName());
-		if(currentTask == null) 
+		if(currentTask != null)
 		{
-			for(Task t : allTasks)
+			if (currentTask.getName().equals(uitask.getName()) &&
+					currentTask.getFromDate().equals(uitask.getFromDate()) &&
+					currentTask.getToDate().equals(uitask.getToDate()))
 			{
-				if(t.getName().equals(uitask.getName()))
-				{
-					return t.getTaskDates();
-				}
+				return currentTask.getTaskDates();
 			}
 		}
-		else
+		for(Task t : allTasks)
 		{
-			return currentTask.getTaskDates();
+			if(t.getName().equals(uitask.getName()))
+			{
+				return t.getTaskDates();
+			}
 		}
 		return null;		
 	}
@@ -247,21 +249,23 @@ public class User {
 	public Set<UIResource> getTaskResources(UITask uitask)
 	{
 		log.debug("Getting task resources " + uitask.getName());
-		if(currentTask == null)
+		if(currentTask != null)
 		{
-			for(Task t : allTasks)
+			if (currentTask.getName().equals(uitask.getName()) &&
+					currentTask.getFromDate().equals(uitask.getFromDate()) &&
+					currentTask.getToDate().equals(uitask.getToDate()))
 			{
-				if(t.getName().equals(uitask.getName()))
-				{
-					log.debug("Got " + t.getTaskResources().size());
-					return t.getTaskResources();
-				}
+				return currentTask.getAllResources(this.oid);	
 			}
 		}
-		else
+		for(Task t : allTasks)
 		{
-			return currentTask.getAllResources(this.oid);
-		}		
+			if(t.getName().equals(uitask.getName()))
+			{
+				log.debug("Got " + t.getTaskResources().size());
+				return t.getTaskResources();
+			}
+		}
 		return null;		
 	}
 	
@@ -273,23 +277,23 @@ public class User {
 	public Set<User> getTaskUsers(UITask uitask)
 	{
 		log.debug("Getting task users " + uitask.getName());
-		if(currentTask == null)
+		if(currentTask != null)
 		{
-			for(Task t : allTasks)
+			if (currentTask.getName().equals(uitask.getName()) &&
+					currentTask.getFromDate().equals(uitask.getFromDate()) &&
+					currentTask.getToDate().equals(uitask.getToDate()))
 			{
-				if(t.getName().equals(uitask.getName()))
-				{
-					log.debug("Return size " + t.getTaskUsers().size());
-					return t.getTaskUsers();
-				}
+				return currentTask.getTaskUsers();
 			}
 		}
-		else
+		for(Task t : allTasks)
 		{
-			log.debug("Size of current task is " + currentTask.getTaskUsers().size());
-			return currentTask.getTaskUsers();
+			if(t.getName().equals(uitask.getName()))
+			{
+				log.debug("Return size " + t.getTaskUsers().size());
+				return t.getTaskUsers();
+			}
 		}
-		log.debug("Nothing to return");
 		return null;		
 	}
 	
@@ -339,13 +343,13 @@ public class User {
 			return false;
 		return true;
 	}
-	/*
+	
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", login=" + login + ", password="
-				+ password + "]";
-	}*/
+				+ password + ", status=" + assigned + "]";
+	}
 	
 	// A C C E S S O R S
 	

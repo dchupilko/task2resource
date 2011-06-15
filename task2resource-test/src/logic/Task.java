@@ -68,13 +68,11 @@ public class Task {
     		{
     			for(Dates remd: removedDates)
     			{
-    				if((d.getStartDate().compareTo(remd.getStartDate())>=0 ||
-    						d.getStartDate().compareTo(remd.getFinishDate())<=0) && 
-    					(d.getFinishDate().compareTo(remd.getStartDate())>=0 ||
-    						d.getFinishDate().compareTo(remd.getFinishDate())<=0))
+    				if(!(d.getFinishDate().compareTo(remd.getStartDate())<=0 || 
+    						d.getStartDate().compareTo(remd.getFinishDate())>=0))
     				{
     					d.getResources().addAll(remd.getResources());
-    					assignedResources.addAll(remd.getResources());
+						assignedResources.addAll(remd.getResources());					
     				}
     			}
     		}
@@ -152,6 +150,7 @@ public class Task {
     			for (Resource r : d.resources)
     			{
     				d.assignResource(r);
+    				assignedResources.add(r);
     			}
     		}
     	}    
@@ -195,12 +194,13 @@ public class Task {
     		{
     			if(!resources.contains(r))
     			{
-    				for (Dates d : dates) {
+    				for (Dates d : dates) 
+    				{
     	        		for (Resource res : d.resources) 
     	        		{
     	        			if(res.equals(r))
     	        			{
-    	        				d.unassignResource(r);
+    	        				d.unassignResource(res);
     	        			}	        				
     	        		}
     	        	}    
@@ -218,6 +218,7 @@ public class Task {
 						if(r.equals(res))
 						{
 							d.assignResource(res);
+							assignedResources.add(res);
 						}
 					}							
 				}
@@ -237,9 +238,10 @@ public class Task {
      * 
      * @param uiusers	List of selected users
      */
-    public void assignUsers(Set<User> users) {
+    public void assignUsers(Set<User> users, Set<User> removedUsers) {
     	log.debug("Trying to assign users");
-    	participants.retainAll(users);
+    	participants.removeAll(removedUsers);
+    	participants.addAll(users);
     	log.debug("Assigning users finished");
     }
     
