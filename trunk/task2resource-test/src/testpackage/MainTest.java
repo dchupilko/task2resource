@@ -2,8 +2,10 @@ package testpackage;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -78,25 +80,27 @@ public class MainTest {
 	
 	@Test
 	public void testCreateUser() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 		
 		Main main = new Main();
 		
-		Set<UIRequest> setBefore=main.getAllRequests();
-		main.denyRequests(setBefore);//Clear all requests
+		RequestMapper rqm1 = new RequestMapper();
 		
-		setBefore=main.getAllRequests();
+		Set<Request> setBefore=rqm1.getAllRequests();
+		rqm1.deleteRequests(setBefore);//Clear all requests
 		
-
+		
 		UIRequest sidorov = new UIRequest("FN3", "SN3", "FN3SN3", "123456", "SN3@gmail.com", "Cleaner");
 		UIRequest sidorovEvilCopy = new UIRequest("Alex", "Sidorov", "alexsidorov", "123456", "Evil@Hell.com", "Devil");
 		
+		
 		main.createUser(sidorov);
 		main.createUser(sidorovEvilCopy);
+
 		
-		Set<UIRequest> setAfter=main.getAllRequests();
+		Set<Request> setAfter=rqm1.getAllRequests();
 		
-		assertTrue(setBefore.size()+4==setAfter.size());
+		assertTrue(setBefore.size()+2==setAfter.size());
 	}
 
 	
@@ -109,29 +113,28 @@ public class MainTest {
 
 		int before,after;
 		
+		
 		UIRequest ivanov = new UIRequest("FN1", "SN1", "FN1SN1", "123456", "SN1@gmail.com", "Senior Programmer");
 		UIRequest petrov = new UIRequest("FN2", "SN2", "FN2SN2", "123456", "SN2@gmail.com", "Analytic");
 		
 		main.createUser(ivanov);
 		main.createUser(petrov);
 		
-		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
 		
-		Set<UIRequest> allRequests = main.getAllRequests();
-	
-		before=allRequests.size();
+		RequestMapper rqm1 = new RequestMapper();
+		before=rqm1.getAllRequests().size();
 		
-		for(UIRequest uiq : allRequests){
-			acceptedRequests.add(uiq);
-		}
+		
+		List<UIRequest> acceptedRequests = new ArrayList<UIRequest>();
+		acceptedRequests.add(ivanov);
+		acceptedRequests.add(petrov);
 		
 		main.acceptRequests(acceptedRequests);
 		
-		allRequests = main.getAllRequests();
-		after = allRequests.size();
+
+		after = rqm1.getAllRequests().size();
 
 		assertTrue(after==before-2);
-		
 	}
 	
 	
