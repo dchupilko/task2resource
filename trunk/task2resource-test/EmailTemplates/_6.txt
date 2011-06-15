@@ -1,5 +1,7 @@
-Your registration has been finished.
-Congratulations!
+Dear, %username%!
+Your request have been denied!
+We are  sorry.
+For more information contact us.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 =  ADMINISTRATION %PhoneNumberHere% =
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

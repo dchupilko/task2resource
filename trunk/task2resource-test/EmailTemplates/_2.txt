@@ -1,6 +1,7 @@
 Hello, %username%!
-We are sorry but our administrator did not approved your status.
-Try again later or contact us.
+We are glad to tell you that we have got your request.
+Administrator will soon look through it and approve or not approve.
+For more detail call us.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 =  ADMINISTRATION %PhoneNumberHere% =
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import EmailNotificator.SendNotification;
+
 import org.apache.log4j.Logger;
 
 import ORM.TaskMapper;
@@ -15,6 +17,8 @@ import uiclasses.*;
 public class User {
 	
 	private static final Logger log = Logger.getLogger(User.class);
+	
+	private SendNotification send = null;
 	
 	protected int oid;
 	protected int version;
@@ -124,6 +128,10 @@ public class User {
     public void assignUsers(Set<User> users, Set<User> removedUsers) {
     	log.debug("Assigning set of users");
     	currentTask.assignUsers(users, removedUsers);
+    	for(User u:users){
+    		send = new SendNotification(u.getEmail(), "You were assigned", 3);
+    	}
+    	send = null;
     }
 	
     /**

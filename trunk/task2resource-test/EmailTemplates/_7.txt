@@ -1,5 +1,6 @@
-Your registration has been finished.
-Congratulations!
+Dear, User!
+The task was modyfied. See more details on your home page.
+Best regards.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 =  ADMINISTRATION %PhoneNumberHere% =
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
