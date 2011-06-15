@@ -57,12 +57,10 @@
 									        	 
 									        	  <a href="start.jsp"><span>>></span>Start page</a><br/>
 									        	  
-									        	  <form method="post" action="ToFindServlet">
 									        	  <div>Put date to find task: </div>
 					                			  <div class="demo"><input type="text" id="datepicker" name="datepicker" value=""/></div>
 					                			  <input type="button" id="start_find_task" value="to find" />	
 									      	 	  </div>
-									      	 	  </form>
 									      	 </td>
        
 										      <td width="63%" id='child_table_center'>
@@ -73,6 +71,7 @@
 						                			 
 						                			 Main main = new Main();
 						                			 List<UITask> tasks = main.getAllTasks();	
+						                			 //getTasksByDayts
 						                			 
 						                			%>
 						                			

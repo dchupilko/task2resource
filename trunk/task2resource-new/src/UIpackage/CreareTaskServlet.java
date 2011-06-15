@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
@@ -48,8 +49,13 @@ public class CreareTaskServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		 
 		 Main main=new Main();
+			Set<UIResource> choose = new HashSet<UIResource>();
+			//choose.add(conf);
+			//choose.add(gym);
+			//Set<UIDates> conflicts = new HashSet<UIDates>();
+			main.chooseResources(choose);
 		// main.acceptTask();
 		
 	}

@@ -24,6 +24,7 @@
             		<tr>
                      <td id="bbbb" ><div align="right">
                      <span> <%
+                     //GetTask
                         boolean flag;
                         if(session.getAttribute("auth")==null){
                         	flag=false;
@@ -46,10 +47,12 @@
                        <% if(flag==true){%>
                     	   <span>session open</span>
                       <% }%>
-                     
+                    
            		    </tr>            
            			 <tr>
            		           	 <td height="500px">
+           		           	  <%String targetId = request.getParameter("taskName");%>
+                              <h1><%=targetId%></h1>
            		      			 <table width="100%" border="0" class="child_table">
 					      			<tr>
 					      				
@@ -57,81 +60,44 @@
 									        	 
 									        	  <a href="start.jsp"><span>>></span>Start page</a><br/>
 									        	  
-									        	  <form method="post" action="ToFindServlet">
 									        	  <div>Put date to find task: </div>
 					                			  <div class="demo"><input type="text" id="datepicker" name="datepicker" value=""/></div>
 					                			  <input type="button" id="start_find_task" value="to find" />	
 									      	 	  </div>
-									      	 	  </form>
 									      	 </td>
-       
-										      <td width="63%" id='child_table_center'>
-											 		<span> latest tasks ( test - 10)</span>	
-						                			<table id='table_news'>
-						                			
-						                			 <%
-						                			 
-						                			 Main main = new Main();
-						                			 List<UITask> tasks = main.getAllTasks();	
-						                			 
-						                			%>
-						                			
-						                			<%//for(int i=0;i<10;i++){
-						                			for (UITask uit: tasks) {
-				                				    %>
-					                				<tr>
-					                					<td>
-					                						
-					                						<table id="table_news_element">
-					                							<tr>
-					                								<td id='title_td'>
-					                								
-					                								<%=uit.getName()%>		
-					                								</td>
-					                								<td id='category_td'>
-					                								
-					                								<%
-					                								Date dateFrom = uit.getFromDate().getTime();
-					                								SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-					                							    out.println("Date from:" + sdf.format(dateFrom));
-					                							    
-					                								Date dateTo = uit.getToDate().getTime();
-					                								SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy");
-					                							    out.println(" | Date to:" + sdf2.format(dateTo));
-					                								%>
-					                								</td>
-					                								<td>
-					                							
-					                								</td>
-					                							</tr>
-					                						</table>
-					                						
-					                					</td>
-					                				</tr>
-					                				<tr>
-					                					<td  class='brbr' >
-					                						
-					                						<%=uit.getDescription()%>
-					                					</td>
-					                				</tr>
-					                				<tr>
-					                					<td>
-					                					<%
-					                					String taskTimeName="brbr";
-					                					if(flag==true){%>
-					                					<a href="view.jsp?taskName=<%=taskTimeName%>">View task</a>
-					                					<%}%>
-					                					<div align="right"><%out.print("");%>
-					                					
-					                					</div></td>
-					                				</tr>
-					                				<%}%>
-					                			</table>
-					                			<br/>
-					                			<br/>
-							                   			
-								
-						      	   			 </td>
+       								
+										     <td width="63%" id='child_table_center'>
+														<table id="table_news_element">
+					                						<tr>
+					                							<td id='title_td' >
+					                								Name:<%//Name%>		
+					                							</td>
+					                							<td id='category_td'>
+					                								DateFrom|DateTo
+					                							</td>
+					                						</tr>
+					                						<tr>
+							                					<td>
+							                						<select>
+							                							<option>resurces</option>
+							                						</select>
+							                					</td>
+							                					<td>
+							                						<select>
+							                							<option>users</option>
+							                						</select>
+							                					</td>
+							                				 </tr>
+							                				  <tr>
+							                					<td  class='brbr' >
+							                						<textarea rows="1" cols="1" id="descript_id">description</textarea>
+							                					</td>
+							                				 </tr>
+							                			</table>
+							                						
+							                			
+								 	   		  </td>
+						      	   			 
 						      	   			 <td width="16%" valign="top" class="child_table_left">
 							      	   			
 							      	   			 	 <% if(flag==true){%>

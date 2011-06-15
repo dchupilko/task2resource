@@ -18,12 +18,32 @@
 <title>start</title>
 </head>
 <body>
+	<%  
+	boolean flag;
+    if(session.getAttribute("auth")==null){
+      	flag=false;
+     	}
+     else{    
+    	 flag=true;
+         }
+    %>
 	<%Main main=new Main();%>
 	<table id="id_main_table">
             		<tr>
                      <td id="bbbb" ><div align="right">
+                        <%if(flag==false){%>
                         <a href="login.jsp">Login</a><span> |</span>
+                        <%}%>
+                        <%if(flag){%>
+                        <a href="logout.jsp">Log out</a><span> |</span>
+                        <%}%>
                         <a href="registration.jsp">Register</a></div><img id="img_main_top" src="img/top.jpg"/></td>
+                       <% if(flag==false){%>
+                    	   <span>no session</span>
+                      <% }%>
+                       <% if(flag==true){%>
+                    	   <span>session open</span>
+                      <% }%>
            		    </tr>            
            			 <tr>
            		           	 <td height="500px">
@@ -181,11 +201,7 @@
 														<div style="margin-left: 50px">Resources avaliable</div>
 					                						<div>
 					                						<select multiple="multiple" class="list1" id="mySelectId" name="mySelect">
-					                						<%//for date
-					                						for(int i=0;i<10;i++){ %>
-					                							<option>value1</option>
-					                							<option>value2</option>
-					                							<%} %>
+					                										                						
 					                						</select>
 					                									                						
 					                         			</div>

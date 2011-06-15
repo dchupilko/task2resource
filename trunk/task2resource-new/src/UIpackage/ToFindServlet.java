@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class registrationAjaxServlet
+ * Servlet implementation class ToFindServlet
  */
-@WebServlet("/registrationAjaxServlet")
-public class registrationAjaxServlet extends HttpServlet {
+@WebServlet("/ToFindServlet")
+public class ToFindServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registrationAjaxServlet() {
+    public ToFindServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,19 +27,6 @@ public class registrationAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String targetId = request.getParameter("user_name");
-		
-		//isLoginExist
-		
-        if (targetId != null) {
-            response.setContentType("text/xml");
-          //  response.setHeader("Cache-Control", "no-cache");
-            response.getWriter().write("<message>valid</message>"); 
-        } else {
-            response.setContentType("text/xml");
-            //response.setHeader("Cache-Control", "no-cache");
-            response.getWriter().write("<message>invalid</message>"); 
-        }
 	}
 
 	/**
