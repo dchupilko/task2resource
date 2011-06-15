@@ -27,7 +27,9 @@
     	 flag=true;
          }
     %>
-	<%Main main=new Main();
+	<%
+	Main main=new Main();
+	//main.modifyTask(new UITask());
 	//GetTask();
 	%>
 	<table id="id_main_table">

@@ -35,9 +35,17 @@ public class SetUsersFromGroupAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//int count = Integer.parseInt(request.getParameter("count"));
+		Main main=(Main)request.getSession().getAttribute("main");
+		int count = Integer.parseInt(request.getParameter("count"));
+		String group=request.getParameter("group");
 		
-		/*String [][] usersStr=new String[count][];
+		UIGroup uigroup = new UIGroup(group);
+		
+		
+		Set<UIUser> uiusers=new HashSet<UIUser>();
+		
+		//request.getParametrs: FirstName,LastName -> addUser(FirstName,LastName)
+		String [][] usersStr=new String[count][];
 		String name=new String();
 		for(int i=0; i<count; i++){
 			usersStr[i]=new String[2];
@@ -47,32 +55,13 @@ public class SetUsersFromGroupAjaxServlet extends HttpServlet {
 			for(int j=0;j<usersStr[i].length;j++){
 				System.out.println(usersStr[i][j]);
 			}
-		}*/
-		Main main=new Main();
-		main.Authorize("hthomas", "hthomas");
-		
-		
-		//Set<UIResource> resources = main.createTask(uitask);
-		/*for (UIResource r : resources)
-		{
-			System.out.println(r);
-		}*/
-		/*Set<UIResource> choose = new HashSet<UIResource>();
-		choose.add(conf);
-		choose.add(gym);
-		Set<UIDates> conflicts = new HashSet<UIDates>();
-		*/
-		
-		Set<UIGroup> groups = main.getAllGroups();
-		//for (UIGroup g : groups) {
-			//System.out.println(g);
-		//}*/
-		Set<UIUser> users = main.getAllUsersFromGroup(new UIGroup("Programming"));
-		for (UIUser u : users) {
-			System.out.println(u);
+			uiusers.add(new UIUser(usersStr[i][0],usersStr[i][1]));
 		}
-		main.assignUsers(users);
 		
+		
+		
+		main.chooseUsers(uiusers, uigroup);
+	
 				
 	}
 

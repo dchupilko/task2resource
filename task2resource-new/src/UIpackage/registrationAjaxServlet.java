@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logic.Main;
+
 /**
  * Servlet implementation class registrationAjaxServlet
  */
@@ -30,6 +32,8 @@ public class registrationAjaxServlet extends HttpServlet {
 		String targetId = request.getParameter("user_name");
 		
 		//isLoginExist
+		Main main=new Main();
+		main.checkLogin(targetId);
 		
         if (targetId != null) {
             response.setContentType("text/xml");

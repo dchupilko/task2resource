@@ -40,8 +40,9 @@ public class refreshAjaxServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	    
-		Main main=new Main();
-		main.Authorize("hthomas", "hthomas");
+		//Main main=new Main();
+		Main main=(Main)request.getSession().getAttribute("main");
+		
 		String task_name = request.getParameter("task_name");
 	    int task_count = Integer.parseInt(request.getParameter("task_count"));
 	    int task_time = Integer.parseInt(request.getParameter("task_time"));
@@ -101,8 +102,13 @@ public class refreshAjaxServlet extends HttpServlet {
 			calendar2.setTime(date);
 			System.out.println("Date:"+calendar);
 			System.out.println("Date2:"+calendar2);
+			
+			
 			UITask uitask = new UITask(task_name, 10, calendar, calendar2, task_time, period, "task1 description","public");
-		    Set<UIResource> resources = main.createTask(uitask);
+		    main.setTaskInfo(uitask);
+			Set<UIResource> resources = main.getAllTaskResources();
+		    
+		    
 		    response.setContentType("text/xml");
 	        response.setHeader("Cache-Control", "no-cache");
 	        String responseStr="<root>";

@@ -1,6 +1,6 @@
 <%@page import="uiclasses.*"%>
 <%@page import="logic.*"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -59,7 +59,7 @@
 					                			<table id='table_news'>
 					                			<%
 							                			
-							                			Set<UIRequest> allRequests = main.getAllRequests();
+							                			List<UIRequest> allRequests = main.getAllRequests();
 							                			int counter_requests=0;
 							                			for(UIRequest uir : allRequests){%>
 							                				<tr>

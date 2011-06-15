@@ -45,7 +45,9 @@
                       <% }%>
                        <% if(flag==true){%>
                     	   <span>session open</span>
-                      <% }%>
+                      <% }
+                       
+                      %>
                      
            		    </tr>            
            			 <tr>
@@ -70,7 +72,7 @@
 						                			 <%
 						                			 
 						                			 Main main = new Main();
-						                			 List<UITask> tasks = main.getAllTasks();	
+						                			 //main.getAllTasksForDates(new UIDates(,));
 						                			 //getTasksByDayts
 						                			 
 						                			%>
