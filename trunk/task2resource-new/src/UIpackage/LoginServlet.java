@@ -56,6 +56,7 @@ public class LoginServlet extends HttpServlet {
 	    		  // SimpleDateFormat sdf = new SimpleDateFormat();	        		                     	  
 	               HttpSession session = request.getSession(true);
 	               session.setAttribute("auth",request.getParameter("login"));
+	               session.setAttribute("main",main);
 	               request.setAttribute("message", null);
 	               outputPage("start.jsp", request, response);
 	           } else {

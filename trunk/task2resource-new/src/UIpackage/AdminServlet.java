@@ -1,7 +1,9 @@
 package UIpackage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -42,9 +44,9 @@ public class AdminServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Main main=new Main();
-		Set<UIRequest> allRequests = main.getAllRequests();
-		Set<UIRequest> acceptedRequests = new HashSet<UIRequest>();
-		Set<UIRequest> deniedRequests = new HashSet<UIRequest>();
+		List<UIRequest> allRequests = main.getAllRequests();
+		List<UIRequest> acceptedRequests = new ArrayList<UIRequest>();
+		List<UIRequest> deniedRequests = new ArrayList<UIRequest>();
 		
 		 int counter=0;
 		 for(UIRequest uir: allRequests){

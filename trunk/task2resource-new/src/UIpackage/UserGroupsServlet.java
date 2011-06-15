@@ -33,6 +33,8 @@ public class UserGroupsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String group=request.getParameter("selectedGroup");
+		
+		//test
 		Main main=new Main();
 		Set<UIGroup> groups = main.getAllGroups();
 		//System.out.println("GROUP:"+group);

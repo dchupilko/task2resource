@@ -38,43 +38,26 @@ public class GetResourcesDataConflictServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Main main=new Main();
-		
-		main.Authorize("hthomas", "hthomas");
-		
+		Main main=(Main)request.getSession().getAttribute("main");
 		
 		int count = Integer.parseInt(request.getParameter("count"));
 		
 		String [] resourcevalue=new String[count];
 		
+		Set<UIResource> uiresources = new HashSet<UIResource>();
 		for(int i=0; i<count; i++){
 			String resourceName="resource"+i;
-			resourcevalue[i]=request.getParameter(resourceName);
-			System.out.println(resourcevalue[i]);
 			
+			resourcevalue[i]=request.getParameter(resourceName);
+			uiresources.add(new UIResource(resourcevalue[i]));
+			
+			System.out.println(resourcevalue[i]);
 		}
 		
-		//+!!Get resources by Name
-		System.out.println("IN!"); 
-		UIResource conf = new UIResource("Conference room", 100, 2);
-		UIResource cl1 = new UIResource("Class1", 20, 0);
-		UIResource cl2 = new UIResource("Class2", 10, 0);
-		UIResource mr1 = new UIResource("Meeting Room1", 30, 1);
+	
 		
-		
-		int [][] period1 = {
-                {2,12,00}, //Ïí.
-                {4,12,00}, //Ñð.
-                {6,12,00}, //Ïò.
-                };
-		UITask uitask = new UITask("task2", 10, new GregorianCalendar(2011,6,1,8,00), new GregorianCalendar(2011,6,8,23,00), 120, period1, "task1 description", "public");
-		Set<UIResource> resources = main.createTask(uitask);
-		Set<UIResource> choose = new HashSet<UIResource>();
-		choose.add(conf);
-		choose.add(mr1);
-		Set<UIDates> conflicts = new HashSet<UIDates>();
-		
-		conflicts = main.chooseResources(choose);
+		Set<UIDates> conflicts = new HashSet<UIDates>();		
+		conflicts = main.chooseResources(uiresources);
 			
 		
 	   	

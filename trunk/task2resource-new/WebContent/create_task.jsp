@@ -27,7 +27,10 @@
     	 flag=true;
          }
     %>
-	<%Main main=new Main();%>
+	<%
+	
+	Main main=(Main)session.getAttribute("main");
+	main.createTask();%>
 	<table id="id_main_table">
             		<tr>
                      <td id="bbbb" ><div align="right">

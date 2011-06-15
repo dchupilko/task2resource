@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
 	
 
@@ -10,17 +8,13 @@ $(document).ready(function(){
 	//--------------------------------
 	
 	
+	
 	$('[id$=Datepicker1]').click(function(e){
-		//var left=e.pageX;
-		//var top= e.pageY;
-		
-		//alert(e.pageX+"|"+e.pageY);
 		var value1=$("#date1").val;
-		//alert(value1);
 	});
 	
 	
-	//--------------
+	
 	//datepicker
 	$( "#datepicker,#datepicker2,#datepicker3" ).datepicker(
 				{
@@ -38,18 +32,14 @@ $(document).ready(function(){
 	//ADD USERS FROM SELECTED GROUP
 	
 	
-	function isInMultiArray(selectedUsersToFunc){
-		//get groups multiArrayarr	 	
-	}
-	
 	
 	
 	$("#create_task_button").click(function(){
 		
 		var selectGroup=$("#groupSelectId").val();
-		
 		//alert(selectGroup[0]);
-		var str="";	//string to get request
+		//alert(selectGroup[0]);
+		var str="group="+selectGroup[0]+"&";	//string to get request
 		var select2=$("#userSelectId").val();//<select> val
 		
 		
@@ -498,9 +488,9 @@ $(document).ready(function(){
 		       
 		       
 		      if (index!=0){
-		    	   for (var i=0; i<index; i++) //пробегаем по элементам list
+		    	   for (var i=0; i<index; i++) //Ð¿Ñ€Ð¾Ð±ÐµÐ³Ð°ÐµÐ¼ Ð¿Ð¾ Ñ�Ð»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼ list
 		    	   {
-		    	   var listObj = resXML.getElementsByTagName("message")[i]; //получаем i-й узел list
+		    	   var listObj = resXML.getElementsByTagName("message")[i]; //Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ i-Ð¹ ÑƒÐ·ÐµÐ» list
 		    	   
 		    	   	if (listObj.childNodes[0]!=null){
 		    		   var result=listObj.childNodes[0].nodeValue;
@@ -537,9 +527,9 @@ $(document).ready(function(){
 			       var responseNodes=resXML.getElementsByTagName("index")[0];   
 			       var index = responseNodes.childNodes[0].nodeValue;
 			       if (index!=0){
-			    	   for (var i=0; i<index; i++) //пробегаем по элементам list
+			    	   for (var i=0; i<index; i++) //Ð¿Ñ€Ð¾Ð±ÐµÐ³Ð°ÐµÐ¼ Ð¿Ð¾ Ñ�Ð»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼ list
 			    	   {
-			    	   var listObj = resXML.getElementsByTagName("message")[i]; //получаем i-й узел list
+			    	   var listObj = resXML.getElementsByTagName("message")[i]; //Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ i-Ð¹ ÑƒÐ·ÐµÐ» list
 			    	   
 			    	   	if (listObj.childNodes[0]!=null){
 			    		   var result=listObj.childNodes[0].nodeValue;

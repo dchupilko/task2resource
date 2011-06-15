@@ -50,13 +50,10 @@ public class CreareTaskServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		 
-		 Main main=new Main();
-			Set<UIResource> choose = new HashSet<UIResource>();
-			//choose.add(conf);
-			//choose.add(gym);
-			//Set<UIDates> conflicts = new HashSet<UIDates>();
-			main.chooseResources(choose);
-		// main.acceptTask();
+		Main main=(Main)request.getSession().getAttribute("main");
+		main.acceptTask();
+		 
+		 
 		
 	}
 

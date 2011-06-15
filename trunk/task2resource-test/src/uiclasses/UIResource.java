@@ -18,6 +18,10 @@ public class UIResource {
 		this.status = status;
 	}
 	
+	public UIResource(String name) {
+		this(name, 0, false);
+	}
+	
 	public UIResource(String name, int capacity) {
 		this.name = name;
 		this.capacity = capacity;
