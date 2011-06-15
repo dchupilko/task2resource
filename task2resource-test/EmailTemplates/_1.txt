@@ -1,6 +1,5 @@
 Dear, %username%!
-We are glad to congratulate you with a successful registration.
-Be like at home! :)
+You were added to a group. Congratulations!
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 =  ADMINISTRATION %PhoneNumberHere% =
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

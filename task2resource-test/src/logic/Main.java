@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import EmailNotificator.SendNotification;
+
 import org.apache.log4j.Logger;
 
 import uiclasses.*;
@@ -13,6 +15,8 @@ import ORM.*;
 public class Main {
 	
 	private static final Logger log = Logger.getLogger(Main.class);
+	
+	private SendNotification send = null;
 	
     protected Set<Group> groups = new HashSet<Group>();
 	protected Set<Request> requests = new HashSet<Request>();
@@ -35,6 +39,7 @@ public class Main {
 		log.debug("Creating user from uirequest" + uirequest.getLogin());
 		Request request = new Request(uirequest);
 		requestMapper.setRequest(request);
+		send = new SendNotification(uirequest.getEmail(), "You were applied", 4);
 	}
 	
 	public boolean checkLogin(String login)
@@ -62,6 +67,8 @@ public class Main {
 						//TODO: delete cascade
 						//TODO: do this in one transaction
 						userMapper.deleteUserById(u);
+						send = new SendNotification(u.getEmail(), "You were deleted", 5);
+						send = null;
 						log.debug("Deleting by user ID " + u.getOid() + " " + u.getLogin());
 					}
 				}
@@ -191,6 +198,8 @@ public class Main {
 						log.debug("Trying to add user" + user.getLogin() + " " +
 								g.getName());
 						userMapper.setUser(user);
+						send = new SendNotification(user.getEmail(), "Your request has been accepted", 4);
+						send = null;
 						for (Request r : requests) {
 							if (r.getLogin().equals(uirequest.getLogin())) {
 								userMapper.deleteRequest(r);
@@ -216,6 +225,7 @@ public class Main {
 			for (UIRequest uir : uirequests) {
 				if (r.getLogin().equals(uir.getLogin())) {
 					deniedRequests.add(r);
+					send = new SendNotification(r.getEmail(), "You were denied", 6);
 					log.debug("Going to deny: " + r.getLogin());
 				}
 			}
