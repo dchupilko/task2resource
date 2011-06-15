@@ -1,0 +1,6 @@
+Hello, %username%!
+We are sorry but our administrator did not approved your status.
+Try again later or contact us.
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+=  ADMINISTRATION %PhoneNumberHere% =
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
