@@ -381,15 +381,58 @@ $(document).ready(function(){
 				});
 				
 
-				$( "#create-user" )
-					.button()
-					.click(function() {
-						
-						flag=0;	
-						$( "#dialog-form" ).dialog( "open" );
-						
-					});
-			});
+					$( "#create-user" )
+						.button()
+						.click(function() {
+							flag=0;
+							var isDataconflicts=0;
+							getResourcesFromList();
+							if(isDataconflicts==1){
+							$( "#dialog-form" ).dialog( "open" );
+							}
+						});
+				});
+		 
+		 function parsResList(){
+			    var str="";	//string to get request
+				var select2=$("#mySelectId").val();//<select> val
+				
+				var  strstrs =new Array();  
+				var lengthSelect=$("#mySelectId option").length;
+				for(var q=0;q<lengthSelect;q++){ //all <option>
+					var forjq="#mySelectId option[value='"+q+"']"; //get <option> string
+					strstrs[q]=$(forjq).text();//get text of <option>
+					for(var len=0;len<select2.length; len++){// all selected <option>
+						if(select2[len]==q){
+							 str=str+"resource"+len+"="+strstrs[q]+"&";
+						}
+					}
+					
+				}
+				
+				str=str+"count="+select2.length;
+				//alert(str);
+				return str;
+		 }
+		 function getResourcesFromList(){
+			 	 var str=parsResList();
+			     var req = getXmlHttp();
+			     var url='http://localhost:8084/task2resource/GetResourcesDataConflictServlet?';
+			     alert(url+str);
+			     req.open('GET', url+str, true);
+	             req.send(null);
+	             req.onreadystatechange = function() {
+	            	 if (req.readyState == 4) {
+                	   alert("in ready4");
+                	       if(req.status == 200) {
+                	    	   alert("in ready 200");
+                	    	   parseMessageAutoResourcesConflicts(req.responseXML);						  
+                           }
+                   }
+	             }
+	             
+		 }
+		 
 		 
 		 
 		 
@@ -502,11 +545,38 @@ $(document).ready(function(){
 			    		   var result=listObj.childNodes[0].nodeValue;
 			    		   var brbr=$("#mySelectId").html();
 			    		   
-			    		   $("#mySelectId").html(brbr+'<option>'+result+'</option>');
+			    		   $("#mySelectId").html(brbr+'<option value="'+i+'">'+result+'</option>');
 			    	   	}
 			    	   }
 			       }
 			     
 			       }//close for parseMessages  
 		    
-});
+		     function parseMessageAutoResourcesConflicts(resXML){
+		    	 alert("in parse");
+		    	 var isInvalid=resXML.getElementsByTagName("message")[0];
+		    	 if(isInvalid.childNodes[0].nodeValue=="invalid"){
+		    		 alert("invalid");
+		    		 }
+		    	 else{
+			    	 var responseNodes=resXML.getElementsByTagName("index")[0];   
+				     var index = responseNodes.childNodes[0].nodeValue;
+				       if (index!=0){
+				    	   alert("there are some date conflicts");
+				    	   for (var i=0; i<index; i++) 
+				    	   {
+				    	   var listObj = resXML.getElementsByTagName("message")[i]; 
+				    	   
+				    	   	if (listObj.childNodes[0]!=null){
+				    		   var result=listObj.childNodes[0].nodeValue;
+				    		   alert(result);
+				    	   	}
+				    	   }
+				       }
+				       
+		    	 }
+		     }
+		    
+		     
+		     
+});//END READY

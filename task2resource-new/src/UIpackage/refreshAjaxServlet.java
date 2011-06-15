@@ -39,8 +39,9 @@ public class refreshAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
+	    
 		Main main=new Main();
+		main.Authorize("hthomas", "hthomas");
 		String task_name = request.getParameter("task_name");
 	    int task_count = Integer.parseInt(request.getParameter("task_count"));
 	    int task_time = Integer.parseInt(request.getParameter("task_time"));
@@ -65,18 +66,18 @@ public class refreshAjaxServlet extends HttpServlet {
 	    	 period[i][0]=i;
 	     }
 	     else{
-	    	 period[i][0]=0;
+	    	 period[i][0]=-1;
 	     }
 	     timeDay[i]=request.getParameter(toGetTime);
 	     if(timeDay[i].equals("")){
-	    	 period[i][1]=0;
+	    	 period[i][1]=-1;
 	     }
 	     else{
 	    	 period[i][1]=Integer.parseInt(timeDay[i]);
 	     }
 	     timeDay[i]=request.getParameter(toGetTime2);
 	     if(timeDay[i].equals("")){
-	    	 period[i][2]=0;
+	    	 period[i][2]=-1;
 	     
 	     }
 	     else{
@@ -84,6 +85,7 @@ public class refreshAjaxServlet extends HttpServlet {
 	     }
 	     System.out.println("check: "+checkDay[i]);
 	     System.out.println("time: "+timeDay[i]);
+	     System.out.println("period: "+period);
 	     }	 
 	     
 	     SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
@@ -105,7 +107,9 @@ public class refreshAjaxServlet extends HttpServlet {
 	        response.setHeader("Cache-Control", "no-cache");
 	        String responseStr="<root>";
 	        responseStr+="<index>"+resources.size()+"</index>";
+	        System.out.println("SIZE resources:"+resources.size());
 	        for(UIResource uir: resources){
+	        	System.out.println("UIR"+uir);
 	        	responseStr=responseStr+"<message>"+uir.getName()+"</message>";
 	        	System.out.println(uir.getName());
 	        }

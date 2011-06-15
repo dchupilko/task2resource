@@ -54,7 +54,7 @@ public class AdminServlet extends HttpServlet {
 	     String checkDeny = request.getParameter(denyString);
 	     
 	     if (checkAccept != null) {
-	    	 System.out.println("accept true");
+	    	 System.out.println("accept true"+counter);
 	    	 acceptedRequests.add(uir);
 	    	 
 	     }
@@ -62,7 +62,7 @@ public class AdminServlet extends HttpServlet {
 	    	 System.out.println("accept fail");
 	     }
 	     if(checkDeny!=null){
-	    	 System.out.println("deny true");
+	    	 System.out.println("deny true"+counter);
 	    	 deniedRequests.add(uir);
 	     }
 	     else{
@@ -72,7 +72,7 @@ public class AdminServlet extends HttpServlet {
 	     }
 		 for(UIRequest r: acceptedRequests)
 		 {
-			 System.out.println(r);
+			 System.out.println("--------------------"+r);
 		 }
 		main.acceptRequests(acceptedRequests);
 		main.denyRequests(deniedRequests);
