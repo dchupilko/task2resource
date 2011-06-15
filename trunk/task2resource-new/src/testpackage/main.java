@@ -47,7 +47,7 @@ public class main {
 		Main main = new Main();
 		User user = new User();
 		
-		
+		/*
 		int [][] period1 = {
                 {2,12,00}, //Ïí.
                 {4,12,00}, //Ñð.
@@ -81,12 +81,13 @@ public class main {
 		UIResource lobby = new UIResource("Lobby", 50, 0);
 		UIResource gym = new UIResource("Gym", 10, 0);
 		UIResource kitchen = new UIResource("Kitchen", 5, 0);
-
+		*/
 		//UIGroup uig=new UIGroup("managers");
 		//main.createGroup(uig);
 
-		/*
+		
 		// Testing use case "Registration"
+		/*
 		main.createUser(ivanov);
 		main.createUser(petrov);
 		main.createUser(sidorov);
@@ -142,6 +143,7 @@ public class main {
 		
 		
 		// Testing use case "Create task"
+		/*
 		main.Authorize("jmang", "jmang");
 		Set<UIResource> resources = main.createTask(uitask);
 		for (UIResource r : resources)
@@ -167,7 +169,7 @@ public class main {
 		main.assignUsers(users);
 		
 		main.acceptTask();
-		
+		*/
 				
 		/*
 		//Testing use case "Get task info"
