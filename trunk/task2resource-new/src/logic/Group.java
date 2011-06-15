@@ -2,6 +2,7 @@ package logic;
 
 import java.util.HashSet;
 import java.util.Set;
+import EmailNotificator.SendNotification;
 
 import org.apache.log4j.Logger;
 
@@ -10,6 +11,8 @@ import uiclasses.*;
 public class Group {
 	
 	private static final Logger log = Logger.getLogger(Group.class);
+	
+	private SendNotification send = null;
 	
 	protected int oid;
 	protected int version;
@@ -46,6 +49,8 @@ public class Group {
     public void addUser(User user) {
     	log.debug("Was added user: " + user.getOid() + " " + user.getLogin());
     	users.add(user);
+    	send = new SendNotification(user.getEmail(), "You were added to group", 1);
+    	send = null;
     }
     
 	@Override

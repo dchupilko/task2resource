@@ -1,12 +1,14 @@
 package logic;
 
 import org.apache.log4j.Logger;
-
+import EmailNotificator.SendNotification;
 import uiclasses.*;
 
 public class Request {
 	
 	private static final Logger log = Logger.getLogger(Request.class);
+	
+	private SendNotification send = null;
 	
 	protected int oid;
 	protected int version;
@@ -28,6 +30,8 @@ public class Request {
 		this.password = request.getPassword();
 		this.email = request.getEmail();
 		this.job = request.getJob();
+		send = new SendNotification(this.email, "You have added a request", 2);
+		send = null;
 	}
 
 	

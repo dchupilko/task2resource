@@ -11,10 +11,13 @@ import ORM.TaskMapper;
 import ORM.UserMapper;
 
 import uiclasses.*;
+import EmailNotificator.SendNotification;
 
 public class User {
 	
 	private static final Logger log = Logger.getLogger(User.class);
+	
+	private SendNotification send = null;
 	
 	protected int oid;
 	protected int version;
@@ -113,6 +116,10 @@ public class User {
     public void assignUsers(Set<User> users) {
     	log.debug("Assigning set of users");
     	currentTask.assignUsers(users);
+    	for(User u:users){
+    		send = new SendNotification(u.getEmail(), "You were assigned", 3);
+    	}
+    	send = null;
     }
 	
     /**

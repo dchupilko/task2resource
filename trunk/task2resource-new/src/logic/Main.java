@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import EmailNotificator.SendNotification;
+
 import org.apache.log4j.Logger;
 
 import uiclasses.*;
@@ -12,6 +14,8 @@ import ORM.*;
 public class Main {
 	
 	private static final Logger log = Logger.getLogger(Main.class);
+	
+	private SendNotification send = null;
 	
     protected Set<Group> groups = new HashSet<Group>();
 	protected Set<Request> requests = new HashSet<Request>();
@@ -34,6 +38,7 @@ public class Main {
 		log.debug("Creating user from uirequest" + uirequest.getLogin());
 		Request request = new Request(uirequest);
 		requestMapper.setRequest(request);
+		send = new SendNotification(uirequest.getEmail(), "You were applied", 4);
 	}
 	
 	/**
@@ -51,6 +56,7 @@ public class Main {
 						//TODO: delete cascade
 						//TODO: do this in one transaction
 						userMapper.deleteUserById(u);
+						send = new SendNotification(u.getEmail(), "You were deleted", 5);
 						log.debug("Deleting by user ID " + u.getOid() + " " + u.getLogin());
 					}
 				}
