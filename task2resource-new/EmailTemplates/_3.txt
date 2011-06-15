@@ -1,5 +1,5 @@
-TemporaryTemplate.
-It's going to be filled in some time.
+Dear, %username%!
+You were assigned!
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 =  ADMINISTRATION %PhoneNumberHere% =
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

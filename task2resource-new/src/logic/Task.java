@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
+import EmailNotificator.SendNotification;
 
 import org.apache.log4j.Logger;
 
@@ -14,6 +15,8 @@ import ORM.TaskMapper;
 public class Task {
 	
 	private static final Logger log = Logger.getLogger(Task.class);
+	
+	private SendNotification send = null;
 	
 	protected int oid;
     protected int version;
@@ -188,6 +191,10 @@ public class Task {
     public void assignUsers(Set<User> users) {
     	log.debug("Trying to assign users");
     	participants.addAll(users);
+    	for(User u:users){
+    		send = new SendNotification(u.getEmail(), "You were assigned", 3);
+    	}
+    	send = null;
     	log.debug("Assigning users finished");
     }
     
