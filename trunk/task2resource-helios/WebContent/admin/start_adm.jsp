@@ -16,21 +16,37 @@
 <title>start</title>
 </head>
 <body>
-	<table id="id_main_table">
+ 					<%
+                        Main main=new Main();
+                     
+                        boolean flag;
+                        if(session.getAttribute("auth")==null){
+                        	flag=false;
+                        	}
+                        else{
+                        	flag=true;
+                        }
+                        
+                        
+                        if(flag==false){
+                        	System.out.println("no login");
+                     %>
+                        	<span>Error: acess denied</span>
+                     <%}
+	                    if(flag){
+	                        	System.out.println("IS ADMIN"+main.isAdministrator());
+	                        	%>
+                <table id="id_main_table">
             		<tr>
-                     <td id="bbbb" >
+                     <td id="bbbb" >                 	
+                     
+                       
                         <img id="img_main_top" src="../img/top.jpg"/></td>
            		    </tr>          
            			 <tr>
            		           	 <td height="500px">
-           		           	 <%int flag=0;
-           		           	 if(flag==0){%>
-           		           		<div>
-           		           			<input type="text" id="testLogin"></input>	
-           		           			<input type="text" id="testPass"></input>
-           		           		</div> 
-           		           	 <%}
-           		           	 %>
+           		           	
+           		           	
            		           	 
            		      			 <table width="100%" border="0" class="child_table">
 					      			<tr>
@@ -42,80 +58,76 @@
 										 		<form method="post" action="../AdminServlet">
 					                			<table id='table_news'>
 					                			<%
-					                			Main main=new Main();
-					                			Set<UIRequest> allRequests = main.getAllRequests();
-					                			int counter_requests=0;
-					                			for(UIRequest uir : allRequests){%>
-					                				<tr>
-					                					<td width="80%">
-					                						
-					                						<table id="table_news_element">
-					                							<tr>
-					                								<td id='title_td'>
-					                								<%out.print(uir.getLogin()+" | ");%>
-					                								</td>
-					                								<td id='category_td'>
-					                								<%out.print(uir.getFirstName()+
-					                										" "+uir.getLastName()+" | "+uir.getJob());%>
-					                								</td>
-					                								<td>
-					                							
-					                								</td>
-					                							</tr>
-					                						</table>
-					                						
-					                					</td>
-					                					<td></td>
-					                				</tr>
-					                				<tr>
-					                					<td  class='brbr' >
-					                						<%=uir.getEmail()%>
-					                					</td>
-					                					<td>
-					                						<INPUT TYPE=CHECKBOX  NAME="check_time_accept<%=counter_requests%>" VALUE="1">
-					                					</td>
-					                					<td>
-					                						<INPUT TYPE=CHECKBOX  NAME="check_time_den<%=counter_requests%>" VALUE="1">
-					                					</td>
-					                				</tr>
-					                				
-					                				<%
-					                				counter_requests++;
-					                				}
-					                				%>
-					                				<tr>
-					                					<td>
-					                						<div style="margin-left: 500px">
-					                							<input type="submit" value="save" name="admin_submit" />
-					                						</div>
-					                					</td>
-					                				</tr>
+							                			
+							                			Set<UIRequest> allRequests = main.getAllRequests();
+							                			int counter_requests=0;
+							                			for(UIRequest uir : allRequests){%>
+							                				<tr>
+							                					<td width="80%">
+							                						
+							                						<table id="table_news_element">
+							                							<tr>
+							                								<td id='title_td'>
+							                								<%out.print(uir.getLogin()+" | ");%>
+							                								</td>
+							                								<td id='category_td'>
+							                								<%out.print(uir.getFirstName()+
+							                										" "+uir.getLastName()+" | "+uir.getJob());%>
+							                								</td>
+							                								<td>
+							                							
+							                								</td>
+							                							</tr>
+							                						</table>
+							                						
+							                					</td>
+							                					
+							                				</tr>
+							                			    <tr>
+							                					<td  class='brbr' >
+							                						<%=uir.getEmail()%>
+							                					</td>
+							                					<td>
+							                						<INPUT TYPE=CHECKBOX  NAME="check_time_accept<%=counter_requests%>" VALUE="1">
+							                					</td>
+							                					<td>
+							                						<INPUT TYPE=CHECKBOX  NAME="check_time_den<%=counter_requests%>" VALUE="1">
+							                					</td>
+							                				</tr>
+							                				
+							                				<%
+							                				counter_requests++;
+							                				}
+							                				%>
+							                				<tr>
+							                					<td>
+							                						<div style="margin-left: 500px">
+							                							<input type="submit" value="save" name="admin_submit" />
+							                						</div>
+							                					</td>
+							                				</tr>
 					                			</table>
 					                			</form>
-					                			<br/>
-					                			<br/>
-							                   			
-								
-					      	   			 </td>
-					      	   			 
-					      	   			       		   			             
-          			 		       </tr>
-          			 		       
-      					 </table>
-           		      			
-				
-								
-     					 
-				
-             			    </td>
-            		</tr>
-           			 <tr>
-			                <td>
-			                    <img id="img_main_footer" src="../img/footer.jpg"/>
-			                   
-			                </td>
-           			 </tr>
-       		 </table>
+					                	  </td>
+					      	   		  </tr>
+          			 		       </table>
+           		      		
+		             			 </td>
+		            	</tr>
+		           		<tr>
+					            <td>
+					                 <img id="img_main_footer" src="../img/footer.jpg"/>
+					                   
+					             </td>
+		           		</tr>
+       		 		</table>
+                        		<%
+	                        	if(main.isAdministrator()==true){
+	                        		
+	                        	}
+	                        }
+                      %>
+	
 	
 </body>
 </html>
