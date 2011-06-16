@@ -20,7 +20,7 @@
         <property name="login" type="java.lang.String" not-null="true" unique="true">
             <column name="LOGIN" />
         </property>
-        <property name="password" type="java.lang.String" not-null="true" unique="true">
+        <property name="password" type="java.lang.String" not-null="true">
             <column name="PASSWORD" />
         </property>
         <property name="email" type="java.lang.String" not-null="true" unique="true">
