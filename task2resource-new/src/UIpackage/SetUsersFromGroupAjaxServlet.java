@@ -58,7 +58,7 @@ public class SetUsersFromGroupAjaxServlet extends HttpServlet {
 			}
 			UIUser uiu=new UIUser(usersStr[i][0],usersStr[i][1]);
 			//uiusers.add(new UIUser(usersStr[i][0],usersStr[i][1]));
-			uiu.setAssignment(true);
+			//uiu.setAssignment(true);
 			uiusers.add(uiu);
 		}
 		

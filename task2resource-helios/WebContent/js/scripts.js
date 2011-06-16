@@ -37,14 +37,12 @@ $(document).ready(function(){
 	$("#create_task_button").click(function(){
 		
 		var selectGroup=$("#groupSelectId").val();
-		//alert(selectGroup[0]);
+		
 		alert(selectGroup[0]);
 		var str="";
 		str=str+"group="+selectGroup[0]+"&";
-		//alert(str);//string to get request
+		
 		var select2=$("#userSelectId").val();//<select> val
-		
-		
 		
 		/*selectedUsersToFunc[0]=selectGroup[0];
 		for(var variab=0;variab<select2.length;variab++){
@@ -65,7 +63,7 @@ $(document).ready(function(){
 			}
 			
 		}
-		//alert(str);
+		
 		str=str+"count="+select2.length;
 		//alert(str);
 		addUsersFromGroup(str);
@@ -76,17 +74,17 @@ $(document).ready(function(){
 		   var req = getXmlHttp();
 		   
 		   alert(select);
-		   req.open('GET', 'http://localhost:8084/task2resource/SetUsersFromGroupAjaxServlet?'+select, true);
+		   req.open('GET', 'http://localhost:8088/task2resource/SetUsersFromGroupAjaxServlet?'+select, true);
            req.send(null);
            req.onreadystatechange = function() {
                  if (req.readyState == 4) {
               	       if(req.status == 200) {
-              	    	 alert("br");  
+              	    	// alert("br");  
               	    	 //todo
-              	    	 toSetUsersColor();
+              	    	// toSetUsersColor();
               	    	
                       	  // alert("in get user200");
-							      //alert(req.responseText)
+						 //alert(req.responseText)
                       	   //var message = req.responseXML.getElementsByTagName("message")[0];
                       	  // setMessage(message.childNodes[0].nodeValue);
                                									  
@@ -149,13 +147,15 @@ $(document).ready(function(){
 		
 		
 		});
+		// hide error user div
 		$('#input_reg_user').focus(function(){
 			$("#div__reg_us").css('display', 'none');
 		});
+		
 	      function getUser(user_reg){
 	    	  
 			   var req = getXmlHttp();
-			   req.open('GET', 'http://localhost:8084/task2resource/registrationAjaxServlet?user_name='+user_reg, true);
+			   req.open('GET', 'http://localhost:8088/task2resource/registrationAjaxServlet?user_name='+user_reg, true);
                req.send(null);
                req.onreadystatechange = function() {
                        if (req.readyState == 4) {
@@ -225,8 +225,9 @@ $(document).ready(function(){
 			 var taskName=$("#taskCreateName").val();
 			 var task_count=$("#taskCreateCount").val();
 			 var time_length=$("#taskCreateTimeLenth").val();
-			 var url = "http://localhost:8084/task2resource/refreshAjaxServlet?";
-			 var parametrs="datepicker="+dateStart+"&datepicker2="+dateEnd+"&task_name="+taskName+"&task_count="+task_count+"&task_time="+time_length;
+			 var isCreate=$("#hiddenCreateOrView").val();
+			 var url = "http://localhost:8088/task2resource/refreshAjaxServlet?";
+			 var parametrs="isCreate="+isCreate+"&datepicker="+dateStart+"&datepicker2="+dateEnd+"&task_name="+taskName+"&task_count="+task_count+"&task_time="+time_length;
 			 			 
 			 var arrCheck=new Array();
 			 var arrTime=new Array();
@@ -406,7 +407,7 @@ $(document).ready(function(){
 		 function getResourcesFromList(){
 			 	 var str=parsResList();
 			     var req = getXmlHttp();
-			     var url='http://localhost:8084/task2resource/GetResourcesDataConflictServlet?';
+			     var url='http://localhost:8088/task2resource/GetResourcesDataConflictServlet?';
 			     alert(url+str);
 			     req.open('GET', url+str, true);
 	             req.send(null);
@@ -455,7 +456,7 @@ $(document).ready(function(){
 		 function GetUsersForGroup(selectGroup){
 	    	  
 			   var req = getXmlHttp();
-			   req.open('GET', 'http://localhost:8084/task2resource/UserGroupsServlet?selectedGroup='+selectGroup, true);
+			   req.open('GET', 'http://localhost:8088/task2resource/UserGroupsServlet?selectedGroup='+selectGroup, true);
 	             req.send(null);
 	             req.onreadystatechange = function() {
                      if (req.readyState == 4) {

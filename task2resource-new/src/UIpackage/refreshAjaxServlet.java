@@ -40,8 +40,10 @@ public class refreshAjaxServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	    
-		//Main main=new Main();
+		
 		Main main=(Main)request.getSession().getAttribute("main");
+		
+		
 		
 		String task_name = request.getParameter("task_name");
 	    int task_count = Integer.parseInt(request.getParameter("task_count"));
@@ -49,7 +51,7 @@ public class refreshAjaxServlet extends HttpServlet {
 	    String datepicker = request.getParameter("datepicker");
 	    String datepicker2 = request.getParameter("datepicker2");
 	    System.out.println("Datepicker"+datepicker);
-	     //String time = request.getParameter("time");
+	   
 	    
 	         	     
 	     
@@ -89,10 +91,12 @@ public class refreshAjaxServlet extends HttpServlet {
 	     System.out.println("period: "+period);
 	     }	 
 	     
+	   
+	     
 	     SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 	     Date date;
 		try {
-			System.out.println("IN TRY");
+			
 			date = format.parse(datepicker);
 			System.out.println("date"+date);
 		    GregorianCalendar calendar = new GregorianCalendar();
@@ -106,7 +110,7 @@ public class refreshAjaxServlet extends HttpServlet {
 			
 			UITask uitask = new UITask(task_name, 10, calendar, calendar2, task_time, period, "task1 description","public");
 		    main.setTaskInfo(uitask);
-			Set<UIResource> resources = main.getAllTaskResources();
+		    Set<UIResource> resources = main.getAllTaskResources();
 		    
 		    
 		    response.setContentType("text/xml");
