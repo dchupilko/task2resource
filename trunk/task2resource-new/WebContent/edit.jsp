@@ -63,7 +63,7 @@
 					      				
 									        <td width="15%" class="child_table_left" valign="top"><div valign="top">
 									        	 
-									        	  <a href="start.jsp"><span>>></span>Edit task</a><br/>
+									        	  <a href="start.jsp"><span>>></span>Create task</a><br/>
 									        	
 									        	  
 									      	 </div></td>
@@ -86,7 +86,7 @@
 					                					<td width="35%">
 					                						<span>Time length</span>
 					                						<input type="text" name="task_time" id="taskCreateTimeLenth" value="<%=task.getLengthInMinutes()%>"/>
-					                						
+					                						<input type="hidden" id="hiddenCreateOrView" value="view">
 					                					</td>
 					                				</tr>
 					                				<tr  height="20%" >

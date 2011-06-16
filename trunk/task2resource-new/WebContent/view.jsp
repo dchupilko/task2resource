@@ -133,6 +133,7 @@
 							                				 </tr>
 							                				  <%%>
 							          			 		       <tr>
+							          			 		       
 							          			 		       			<td>
 							          			 		       				<span class="ViewEditSpan"><a href="edit.jsp?taskName=<%=strNameView%>"><input type="button" value="Edit"/></a></span>
 							          			 		       			</td>

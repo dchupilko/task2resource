@@ -69,6 +69,7 @@
 					                						<div>
 					                						<span>Title</span>
 					                						<input type="text" name="task_name" id="taskCreateName"/>
+					                						<input type="hidden" id="hiddenCreateOrView" value="create">
 					                						</div>
 					                					</td>
 					                					<td width="32%">
