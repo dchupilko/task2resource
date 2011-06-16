@@ -408,12 +408,12 @@ $(document).ready(function(){
 			 	 var str=parsResList();
 			     var req = getXmlHttp();
 			     var url='http://localhost:8088/task2resource/GetResourcesDataConflictServlet?';
-			     alert(url+str);
+			    // alert(url+str);
 			     req.open('GET', url+str, true);
 	             req.send(null);
 	             req.onreadystatechange = function() {
 	            	 if (req.readyState == 4) {
-                	   alert("in ready4");
+                	  // alert("in ready4");
                 	       if(req.status == 200) {
                 	    	   alert("in ready 200");
                 	    	   parseMessageAutoResourcesConflicts(req.responseXML);						  
@@ -496,7 +496,7 @@ $(document).ready(function(){
 		    		   var result=listObj.childNodes[0].nodeValue;
 		    		   var isAssigned=resXML.getElementsByTagName("mesIsAssign")[i];
 		    		   var isAssign=isAssigned.childNodes[0].nodeValue;
-		    		   alert("isAssign"+isAssign);
+		    		   //alert("isAssign"+isAssign);
 		    		   var brbr=$("#userSelectId").html();
 		    		   if(selectedUsersToFunc!=null){
 		    			   
@@ -547,7 +547,7 @@ $(document).ready(function(){
 			       }//close for parseMessages  
 		    
 		     function parseMessageAutoResourcesConflicts(resXML){
-		    	 alert("in parse");
+		    	 //alert("in parse");
 		    	 var isInvalid=resXML.getElementsByTagName("message")[0];
 		    	 if(isInvalid.childNodes[0].nodeValue=="invalid"){
 		    		 alert("invalid");
