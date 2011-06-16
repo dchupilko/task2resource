@@ -131,7 +131,9 @@
 							                					</td>
 							                					
 							                				 </tr>
-							                				  <%%>
+							                				  <%
+							                				  boolean isCurUser=main.modifyTask(task);
+							                				  if(isCurUser==true){%>
 							          			 		       <tr>
 							          			 		       
 							          			 		       			<td>
@@ -144,7 +146,7 @@
 							          			 		       				</form>
 							          			 		       			</td>
 							          			 		       </tr>
-							          			 		       <%%>
+							          			 		       <%}%>
 							                			</table>
 							                						
 							                			
