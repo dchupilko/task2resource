@@ -141,6 +141,7 @@ public class User {
 		log.debug("Accepting task");
 		currentTask.prepareResources();
 		mapper.getAllTasksById(this);
+		mapper.getAllParticipationsById(this);
 		userTasks.add(currentTask);
 		mapper.setTask(currentTask);	
 		log.debug(currentTask.getName() + " " + currentTask.getDescription());

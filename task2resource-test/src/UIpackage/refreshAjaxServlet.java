@@ -102,7 +102,7 @@ public class refreshAjaxServlet extends HttpServlet {
 			System.out.println("Date:"+calendar);
 			System.out.println("Date2:"+calendar2);
 			UITask uitask = new UITask(task_name, 10, calendar, calendar2, task_time, period, "task1 description","public");
-		    Set<UIResource> resources = main.createTask(uitask);
+		    /*Set<UIResource> resources = main.createTask(uitask);
 		    response.setContentType("text/xml");
 	        response.setHeader("Cache-Control", "no-cache");
 	        String responseStr="<root>";
@@ -112,7 +112,7 @@ public class refreshAjaxServlet extends HttpServlet {
 	        	System.out.println("UIR"+uir);
 	        	responseStr=responseStr+"<message>"+uir.getName()+"</message>";
 	        	System.out.println(uir.getName());
-	        }
+	        }*/
 	        responseStr=responseStr+"</root>";
 	        response.getWriter().write(responseStr); 
 		} catch (ParseException e) {
