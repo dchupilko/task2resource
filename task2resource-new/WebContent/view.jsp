@@ -4,6 +4,10 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Locale"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
   
@@ -51,48 +55,95 @@
            		    </tr>            
            			 <tr>
            		           	 <td height="500px">
-           		           	  <%String targetId = request.getParameter("taskName");%>
-                              <h1><%=targetId%></h1>
+           		           	  <%
+           		              Main main=(Main)session.getAttribute("main");
+           		           	  String nameView = request.getParameter("tname");
+           		           	 
+           		           	  String strNameView="uitask"+nameView;
+           		           	  UITask task=(UITask)session.getAttribute(strNameView);
+           		           	  
+           		           	  %>
+                             
            		      			 <table width="100%" border="0" class="child_table">
 					      			<tr>
 					      				
 									        <td width="15%" class="child_table_left" valign="top"><div valign="top">
 									        	 
-									        	  <a href="start.jsp"><span>>></span>Start page</a><br/>
-									        	  
-									        	  <div>Put date to find task: </div>
+									        	  <a href="start.jsp"><span>>></span>View task</a><br/>
+									        	  									        	  <div>Put date to find task: </div>
 					                			  <div class="demo"><input type="text" id="datepicker" name="datepicker" value=""/></div>
 					                			  <input type="button" id="start_find_task" value="to find" />	
 									      	 	  </div>
 									      	 </td>
        								
 										     <td width="63%" id='child_table_center'>
-														<table id="table_news_element">
+														<table id="table_news_element" width="100%">
 					                						<tr>
-					                							<td id='title_td' >
-					                								Name:<%//Name%>		
-					                							</td>
-					                							<td id='category_td'>
-					                								DateFrom|DateTo
+					                							<td id='title_td'  colspan="2">
+					                								Name:<%=task.getName()%>		
+					                							<span class="categoryClass">
+					                								<%
+					                								Date dateFrom = task.getFromDate().getTime();
+					                								
+					                								SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+					                							    out.println("Date from:" + sdf.format(dateFrom));
+					                							    
+					                								Date dateTo = task.getToDate().getTime();
+					                								SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy");
+					                							    out.println(" | Date to:" + sdf2.format(dateTo));
+					                								%> | 
+					                								Length:<%=task.getLengthInMinutes()%> |
+					                								Capacity: <%=task.getCapacity()%> |
+					                								Privacy:<%=task.getPrivacy()%>
+					                								
+					                							</span>	
+					                							
 					                							</td>
 					                						</tr>
 					                						<tr>
-							                					<td>
-							                						<select>
-							                							<option>resurces</option>
-							                						</select>
+							                					<td class='brbr'>
+							                					  <div id="ViewResDiv">
+							                						<%
+							                						//Set<UIResource> res=main.getTaskResources(task);%>
+							                							<select multiple="multiple" class="list1">
+							                							<%//for(UIResource uir: res){%>
+							                								<option><%//uir.getName()%></option>
+							                							<%//}%>
+							                							</select>
+							                						</div>
 							                					</td>
-							                					<td>
-							                						<select>
-							                							<option>users</option>
-							                						</select>
+							                					<td class='brbr' width="50%">
+							                						<div id="ViewUsersDiv">
+							                						<%//Set<UIUser> uiusers=main.getTaskUsers(task);%>
+								                						<select class="list1" multiple="multiple" >
+								                						<%//for(UIUser uiu: uiusers){%>
+								                							<option><%//uiu.getFirstName();%> <%//uiu.getLastName()%></option>
+								                						<%//}%>
+								                						</select>
+							                						</div>
 							                					</td>
 							                				 </tr>
 							                				  <tr>
-							                					<td  class='brbr' >
-							                						<textarea rows="1" cols="1" id="descript_id">description</textarea>
+							                					<td  colspan="2" >
+							                						<div id="textAreaDiv">
+							                							<textarea rows="1" cols="1" id="descript_id"><%=task.getDescription()%></textarea>
+							                						</div>
 							                					</td>
+							                					
 							                				 </tr>
+							                				  <%%>
+							          			 		       <tr>
+							          			 		       			<td>
+							          			 		       				<span class="ViewEditSpan"><a href="edit.jsp?taskName=<%=strNameView%>"><input type="button" value="Edit"/></a></span>
+							          			 		       			</td>
+							          			 		       			<td>
+							          			 		       				<form method="post" action="DeleteTaskServlet">
+							          			 		       				<input type="hidden" value="<%=strNameView%>" name="hidView"/>
+							          			 		       				<input type="submit" value="Delete" />
+							          			 		       				</form>
+							          			 		       			</td>
+							          			 		       </tr>
+							          			 		       <%%>
 							                			</table>
 							                						
 							                			
@@ -102,7 +153,7 @@
 							      	   			
 							      	   			 	 <% if(flag==true){%>
 							      	   			 	 <div  id="div_create_task_id">
-							      	   			 	 	<a href="create_task.jsp" ><span>>></span>Create task</a>
+							      	   			 	 	<a href="create_task.jsp" ><span>>></span>Edit</a>
 							      	   			 	 	<br>
 							      	   			 	 	<a href="my_tasks.jsp" ><span>>></span>My tasks</a>
 							      	   			 	</div>
@@ -110,6 +161,7 @@
 							      	   			 
 						      	   			 </td>       		   			             
           			 		       </tr>
+          			 		      
           			 		       
       					 </table>
            		      			

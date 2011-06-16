@@ -173,6 +173,33 @@
 	
 }
 #descript_id{
-	width: 300px;
+	
+	width:90%;
 	height: 100px;
 }
+#textAreaDiv{
+	margin-top: 40px;
+	margin-left: 60px;
+	margin-bottom: 20px;
+}
+#ViewResDiv{
+	margin-top: 20px;
+	margin-left: 90px;
+	margin-bottom: 20px;
+}
+#ViewUsersDiv{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+}
+.categoryClass{
+	
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#669;
+	
+	}
+.ViewEditSpan{
+	margin-left: 250px;
+	}

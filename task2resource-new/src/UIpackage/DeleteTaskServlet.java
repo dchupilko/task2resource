@@ -7,19 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import uiclasses.UITask;
+
 import logic.Main;
 
 /**
- * Servlet implementation class registrationAjaxServlet
+ * Servlet implementation class DeleteTaskServlet
  */
-@WebServlet("/registrationAjaxServlet")
-public class registrationAjaxServlet extends HttpServlet {
+@WebServlet("/DeleteTaskServlet")
+public class DeleteTaskServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registrationAjaxServlet() {
+    public DeleteTaskServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,21 +31,6 @@ public class registrationAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String targetId = request.getParameter("user_name");
-		
-		//isLoginExist
-		Main main=new Main();
-		boolean flag=main.checkLogin(targetId);
-		
-        if (flag==false) {
-            response.setContentType("text/xml");
-          //  response.setHeader("Cache-Control", "no-cache");
-            response.getWriter().write("<message>valid</message>"); 
-        } else {
-            response.setContentType("text/xml");
-            //response.setHeader("Cache-Control", "no-cache");
-            response.getWriter().write("<message>invalid</message>"); 
-        }
 	}
 
 	/**
@@ -51,6 +38,10 @@ public class registrationAjaxServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Main main=(Main)request.getSession().getAttribute("main");
+		String strNameView=request.getParameter("hidView");
+        UITask task=(UITask)request.getSession().getAttribute(strNameView);
+		main.deleteTask(task);
 	}
 
 }

@@ -32,14 +32,14 @@
                             <tr>
                               	<td id="table_reg_1td">
                                   	<div>Login<span>*</span></div>
-                                        <div>control code<span>*</span></div>
+                                        
                                 </td>
                                     <td  class="reg_for_div">
                                     	<div><input type="text"  size="45%" name="user_name" id="input_reg_user"></div>
                                         <input type="hidden" name="name_hidden" id="name_hid">
                                          <p id="div__reg_us"><snap>User with this login is already exists</snap></p>
                                         <div><img  /></div>
-                                        <div><input type="text" size="7%" name="code_img"></div>
+                                        
                                     </td>
                                     <td  >
                                     	<div>Login must have 3 literals min. There are must be numbers or literals</div>
