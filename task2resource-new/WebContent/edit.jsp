@@ -34,6 +34,8 @@
     %>
 	<%
 	Main main=(Main)session.getAttribute("main");
+	//Main main=new Main();
+	
 	String nameView = request.getParameter("taskName");
     UITask task=(UITask)session.getAttribute(nameView);
 	main.modifyTask(task);
@@ -63,7 +65,7 @@
 					      				
 									        <td width="15%" class="child_table_left" valign="top"><div valign="top">
 									        	 
-									        	  <a href="start.jsp"><span>>></span>Create task</a><br/>
+									        	  <a href="start.jsp"><span>>></span>Start page</a><br/>
 									        	
 									        	  
 									      	 </div></td>
@@ -216,7 +218,7 @@
 					                					<td>				                						
 					                					</td>
 					                					<td>
-					                						<span id="create_task_submit_div"><input type="submit" value="Create task" /></span>
+					                						<span id="create_task_submit_div"><input type="submit" value="Modify task" /></span>
 					                						
 					                					
 					                						

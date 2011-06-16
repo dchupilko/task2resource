@@ -563,7 +563,8 @@ $(document).ready(function(){
 				    	   
 				    	   	if (listObj.childNodes[0]!=null){
 				    		   var result=listObj.childNodes[0].nodeValue;
-				    		   alert(result);
+				    		   //alert(result);
+				    		   $( "#dialog-form" ).dialog( "open" );
 				    	   	}
 				    	   }
 				       }
