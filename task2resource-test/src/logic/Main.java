@@ -64,8 +64,6 @@ public class Main {
 			for (User u : g.users) {
 				for (UIUser ui : uiusers) {
 					if (u.getFirstName().equals(ui.getFirstName()) && u.getLastName().equals(ui.getLastName())) {
-						//TODO: delete cascade
-						//TODO: do this in one transaction
 						userMapper.deleteUserById(u);
 						send = new SendNotification(u.getEmail(), "You were deleted", 5);
 						send = null;
