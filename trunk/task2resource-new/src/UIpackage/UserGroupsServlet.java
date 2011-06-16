@@ -34,9 +34,9 @@ public class UserGroupsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String group=request.getParameter("selectedGroup");
 		
-		//test
-		Main main=new Main();
-		Set<UIGroup> groups = main.getAllGroups();
+		
+		Main main=(Main)request.getSession().getAttribute("main");
+	//	Set<UIGroup> groups = main.getAllGroups();
 		//System.out.println("GROUP:"+group);
 		  if (group!= null) {
 			  
@@ -48,8 +48,18 @@ public class UserGroupsServlet extends HttpServlet {
 	            responseStr+="<index>"+users.size()+"</index>";
 	           // System.out.println("USERS SIZE:"+users.size());
 	            for(UIUser uiu:users){
+	            	System.out.println(uiu.isAssigned());
+	            	if(uiu.isAssigned()==true){
+	            		responseStr=responseStr+"<message>"+uiu.getFirstName()+" "+uiu.getLastName()+
+		            	"</message>";
+	            		responseStr=responseStr+"<mesIsAssign>1</mesIsAssign>";
+	            		System.out.println("ASSIGNED");
+	            	}
+	            	else{
 	            	responseStr=responseStr+"<message>"+uiu.getFirstName()+" "+uiu.getLastName()+
 	            	"</message>";
+	            	responseStr=responseStr+"<mesIsAssign>0</mesIsAssign>";
+	            	}
 	            }
 	            responseStr=responseStr+"</root>";
 	            response.getWriter().write(responseStr); 

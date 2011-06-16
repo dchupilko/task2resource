@@ -1,5 +1,13 @@
 <%@page import="uiclasses.*"%>
 <%@page import="logic.*"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Locale"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
   
@@ -42,8 +50,9 @@
                        <% if(flag==true){%>
                     	   <span>session open</span>
                       <% }
-                      Main main =new Main();
-                      main.getAllUserTasks();%>
+                      Main main=(Main)session.getAttribute("main");
+                     
+                      List<UITask>tasks=main.getAllUserTasks();%>
            		    </tr>            
            			 <tr>
            		           	 <td height="500px">
@@ -61,17 +70,26 @@
        
 										 <td width="63%" id='child_table_center'>
 										 		<table id='table_news'>
-					                			<%for(int i=0;i<10;i++){%>
+					                			<%for(UITask uit:tasks){%>
 					                				<tr>
 					                					<td>
 					                						
 					                						<table id="table_news_element">
 					                							<tr>
 					                								<td id='title_td'>
-					                								<%out.print("title"+i);%>
+					                								<%=uit.getName()%>
 					                								</td>
 					                								<td id='category_td'>
-					                								<%out.print("categor"+i);%>
+					                								
+					                								<%
+					                								Date dateFrom = uit.getFromDate().getTime();
+					                								SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+					                							    out.println("Date from:" + sdf.format(dateFrom));
+					                							    
+					                								Date dateTo = uit.getToDate().getTime();
+					                								SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy");
+					                							    out.println(" | Date to:" + sdf2.format(dateTo));
+					                								%>
 					                								</td>
 					                								<td>
 					                							
@@ -83,15 +101,22 @@
 					                				</tr>
 					                				<tr>
 					                					<td  class='brbr' >
-					                						<%for(int j=0; j<20; j++){out.print("text text text text");}%>
+					                						<%=uit.getDescription()%>
 					                					</td>
 					                				</tr>
 					                				<tr>
 					                					<td>
-					                					<% if(flag==true){%>
-					                					<a href="">Edit task</a>
-					                					<%}%>
-					                					<div align="right">author: <%out.print("author#"+i); %></div></td>
+					                					<%
+					                					
+					                					if(flag==true){%>
+					                					<a href="view.jsp?tname=<%=uit.getName()%>">View task</a>
+					                					<%}
+					                					String strViewName="uitask"+uit.getName();
+					                					session.setAttribute(strViewName,uit);%>
+					                					<div align="right">
+					                					
+					                					</div>
+					                					</td>
 					                				</tr>
 					                				<%}%>
 					                			</table>

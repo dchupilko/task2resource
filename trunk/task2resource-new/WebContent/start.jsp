@@ -60,7 +60,8 @@
 									        	  <form method="post" action="ToFindServlet">
 									        	  <div>Put date to find task: </div>
 					                			  <div class="demo"><input type="text" id="datepicker" name="datepicker" value=""/></div>
-					                			  <input type="button" id="start_find_task" value="to find" />	
+					                			 
+					                			  <input type="submit" id="start_find_task" value="to find" />
 									      	 	  </div>
 									      	 	  </form>
 									      	 </td>
@@ -117,11 +118,13 @@
 					                				<tr>
 					                					<td>
 					                					<%
-					                					String taskTimeName="brbr";
+					                					
 					                					if(flag==true){%>
-					                					<a href="view.jsp?taskName=<%=taskTimeName%>">View task</a>
-					                					<%}%>
-					                					<div align="right"><%out.print("");%>
+					                					<a href="view.jsp?tname=<%=uit.getName()%>">View task</a>
+					                					<%}
+					                					String strViewName="uitask"+uit.getName();
+					                					session.setAttribute(strViewName,uit);%>
+					                					<div align="right">
 					                					
 					                					</div></td>
 					                				</tr>

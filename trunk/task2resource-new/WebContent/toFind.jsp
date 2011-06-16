@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
   
@@ -20,6 +21,9 @@
 <title>start</title>
 </head>
 <body>
+	<%
+	Main main = new Main();
+	request.getAttribute("getstr");%>
 	<table id="id_main_table">
             		<tr>
                      <td id="bbbb" ><div align="right">
@@ -71,9 +75,9 @@
 						                			
 						                			 <%
 						                			 
-						                			 Main main = new Main();
-						                			 //main.getAllTasksForDates(new UIDates(,));
-						                			 //getTasksByDayts
+						                			
+						                			 Set<UITask> tasks=main.getAllTasksForDates(new UIDates( new GregorianCalendar(2011,9,1,8,00), new GregorianCalendar(2011,9,8,23,00)));
+						                			 
 						                			 
 						                			%>
 						                			

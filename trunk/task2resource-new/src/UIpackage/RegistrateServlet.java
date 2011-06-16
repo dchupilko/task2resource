@@ -45,8 +45,9 @@ public class RegistrateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		//form parameters
-		 Main main = (Main)getServletContext().getAttribute("main"); 
-		 System.out.println(main.getAllGroups());
+		 //Main main = (Main)getServletContext().getAttribute("main"); 
+		Main main=new Main();
+		 //System.out.println(main.getAllGroups());
 		
 		 String login = request.getParameter("user_name");
 	     String password = request.getParameter("password");

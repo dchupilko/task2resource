@@ -35,10 +35,11 @@ public class SetUsersFromGroupAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("IN SET USERS SERVLET");
 		Main main=(Main)request.getSession().getAttribute("main");
 		int count = Integer.parseInt(request.getParameter("count"));
 		String group=request.getParameter("group");
-		
+		System.out.println("GROUP:"+group);
 		UIGroup uigroup = new UIGroup(group);
 		
 		
@@ -55,7 +56,10 @@ public class SetUsersFromGroupAjaxServlet extends HttpServlet {
 			for(int j=0;j<usersStr[i].length;j++){
 				System.out.println(usersStr[i][j]);
 			}
-			uiusers.add(new UIUser(usersStr[i][0],usersStr[i][1]));
+			UIUser uiu=new UIUser(usersStr[i][0],usersStr[i][1]);
+			//uiusers.add(new UIUser(usersStr[i][0],usersStr[i][1]));
+			uiu.setAssignment(true);
+			uiusers.add(uiu);
 		}
 		
 		

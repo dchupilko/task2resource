@@ -38,17 +38,19 @@ $(document).ready(function(){
 		
 		var selectGroup=$("#groupSelectId").val();
 		//alert(selectGroup[0]);
-		//alert(selectGroup[0]);
-		var str="group="+selectGroup[0]+"&";	//string to get request
+		alert(selectGroup[0]);
+		var str="";
+		str=str+"group="+selectGroup[0]+"&";
+		//alert(str);//string to get request
 		var select2=$("#userSelectId").val();//<select> val
 		
 		
 		
-		selectedUsersToFunc[0]=selectGroup[0];
+		/*selectedUsersToFunc[0]=selectGroup[0];
 		for(var variab=0;variab<select2.length;variab++){
 			selectedUsersToFunc[variab+1]=select2[variab];
 		}
-		isInMultiArray(selectedUsersToFunc);
+		isInMultiArray(selectedUsersToFunc);*/
 		//alert(select2);
 		var  strstrs =new Array();  
 		
@@ -63,7 +65,7 @@ $(document).ready(function(){
 			}
 			
 		}
-		
+		//alert(str);
 		str=str+"count="+select2.length;
 		//alert(str);
 		addUsersFromGroup(str);
@@ -73,13 +75,13 @@ $(document).ready(function(){
    	  
 		   var req = getXmlHttp();
 		   
-		   //alert(select);
+		   alert(select);
 		   req.open('GET', 'http://localhost:8084/task2resource/SetUsersFromGroupAjaxServlet?'+select, true);
            req.send(null);
            req.onreadystatechange = function() {
                  if (req.readyState == 4) {
               	       if(req.status == 200) {
-              	    	   
+              	    	 alert("br");  
               	    	 //todo
               	    	 toSetUsersColor();
               	    	
@@ -141,15 +143,15 @@ $(document).ready(function(){
 			
 			if($('#input_reg_user').val())
 			{
-				
 				var user_reg = $('#input_reg_user').val();
-			//	alert("in function");
 				getUser(user_reg);
 			}
 		
 		
 		});
-	   
+		$('#input_reg_user').focus(function(){
+			$("#div__reg_us").css('display', 'none');
+		});
 	      function getUser(user_reg){
 	    	  
 			   var req = getXmlHttp();
@@ -158,8 +160,6 @@ $(document).ready(function(){
                req.onreadystatechange = function() {
                        if (req.readyState == 4) {
                     	       if(req.status == 200) {
-                            	  // alert("in get user200");
-								      //alert(req.responseText)
                             	   var message = req.responseXML.getElementsByTagName("message")[0];
                             	   setMessage(message.childNodes[0].nodeValue);
                                      									  
@@ -169,15 +169,14 @@ $(document).ready(function(){
 	      }
 
 	      function setMessage(message) {
-	    	  var mdiv = document.getElementById("name_hid");
+	    	    var mdiv = document.getElementById("name_hid");
 	    	    if (message == "invalid") {
-	    	    	alert("invalid");
-	    	    	
-	    	      // mdiv.innerHTML = "<div style=\"color:red\">Invalid User Id</ div>";
+	    	    	//alert("invalid");
+	    	    
 	    	    } else {
-	    	    	alert("valid");
+	    	    	//alert("valid");
 	    	    	$("#div__reg_us").css('display', 'inherit');
-	    	      // mdiv.innerHTML = "<div style=\"color:green\">Valid User Id</ div>";
+	    	    
 	    	    }
 
 	      }
@@ -494,13 +493,17 @@ $(document).ready(function(){
 		    	   
 		    	   	if (listObj.childNodes[0]!=null){
 		    		   var result=listObj.childNodes[0].nodeValue;
-		    		  
+		    		   var isAssigned=resXML.getElementsByTagName("mesIsAssign")[i];
+		    		   var isAssign=isAssigned.childNodes[0].nodeValue;
+		    		   alert("isAssign"+isAssign);
 		    		   var brbr=$("#userSelectId").html();
 		    		   if(selectedUsersToFunc!=null){
 		    			   
 		    			   $("#userSelectId").html(brbr+'<option value='+i+'>'+result+'</option>');
-		    			  
-		    			   if(grSel==selectedUsersToFunc[0]){
+		    			   if(isAssign=="1"){
+		    				   alert("assign!");
+		    			   }
+		    			  /* if(grSel==selectedUsersToFunc[0]){
 		    				   
 				    		   for(var counteri=0;counteri<selectedUsersToFunc.length;counteri++){
 				    			   if(selectedUsersToFunc[counteri+1]==i){
@@ -508,13 +511,13 @@ $(document).ready(function(){
 				    				   $("#userSelectId").html(brbr+'<option value='+i+' style="color:blue">'+result+'</option>');
 				    			   }
 				      		   }
-		    			   }
+		    			   }*/
 			    		   //
 			    		   
 		    		   }
-		    		   else{
+		    		  // else{
 		    		   $("#userSelectId").html(brbr+'<option value='+i+'>'+result+'</option>');
-		    		   }
+		    		   //}
 		    	   	}
 		    	   }
 		       }

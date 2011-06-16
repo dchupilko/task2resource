@@ -1,6 +1,11 @@
 <%@page import="uiclasses.*"%>
 <%@page import="logic.*"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Locale"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,9 +33,11 @@
          }
     %>
 	<%
-	Main main=new Main();
-	//main.modifyTask(new UITask());
-	//GetTask();
+	Main main=(Main)session.getAttribute("main");
+	String nameView = request.getParameter("taskName");
+    UITask task=(UITask)session.getAttribute(nameView);
+	main.modifyTask(task);
+	
 	%>
 	<table id="id_main_table">
             		<tr>
@@ -56,7 +63,7 @@
 					      				
 									        <td width="15%" class="child_table_left" valign="top"><div valign="top">
 									        	 
-									        	  <a href="start.jsp"><span>>></span>Start page</a><br/>
+									        	  <a href="start.jsp"><span>>></span>Edit task</a><br/>
 									        	
 									        	  
 									      	 </div></td>
@@ -69,27 +76,34 @@
 					                					<td  width="33%">
 					                						<div>
 					                						<span>Title</span>
-					                						<input type="text" name="task_name" id="taskCreateName"/>
+					                						<input type="text" name="task_name" id="taskCreateName" value="<%=task.getName()%>"/>
 					                						</div>
 					                					</td>
 					                					<td width="32%">
 					                						<span>Count</span>
-					                						<input type="text" name="task_count" id="taskCreateCount"/>
+					                						<input type="text" name="task_count" id="taskCreateCount" value="<%=task.getCapacity()%>"/>
 					                					</td>
 					                					<td width="35%">
 					                						<span>Time length</span>
-					                						<input type="text" name="task_time" id="taskCreateTimeLenth"/>
+					                						<input type="text" name="task_time" id="taskCreateTimeLenth" value="<%=task.getLengthInMinutes()%>"/>
 					                						
 					                					</td>
 					                				</tr>
 					                				<tr  height="20%" >
 					                	  				<td class="table_create_task_elem_td">
 						                					<div><span class="create_task_span_date1">Date start</span>
-						                					<input type="text" id="datepicker" name="datepicker" value=""/>
+						                					<%
+						                					 SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+						                					 String formattedDate = formatter.format(task.getFromDate().getTime());
+						                					%>
+						                					<input type="text" id="datepicker" name="datepicker" value="<%=formattedDate%>"/>
 						                					</div>
 						                					<div>
 						                					<span id="create_task_span_date2">Date end</span>
-						                					<input type="text" id="datepicker2" name="datepicker2" value=""/>
+						                					<%
+						                					  formattedDate = formatter.format(task.getToDate().getTime());
+						                					%>
+						                					<input type="text" id="datepicker2" name="datepicker2" value="<%=formattedDate%>"/>
 						                					</div>
 						                				</td>
 						                				
@@ -103,10 +117,23 @@
 						                					<span>Sn</span>
 						                					<br>
 						                					<span class="create_task_span_date1"></span>
-						                					<%for(int j=0;j<7;j++){%>
-						                					<INPUT TYPE=CHECKBOX  NAME="check_time<%=j%>" ID="check_time_id<%=j%>" VALUE="1"> 
+						                					<%
+						                					//int period[][]=task.getPeriod();
+						                					
+						                					for(int j=0;j<7;j++){
+						                						
+						                						%>
+						                						<span><%//period[j][0]%><span>
+						                						<%
+						                						//if(period[j][0]>=0){
+						                					%>
+						                					<!-- <INPUT TYPE=CHECKBOX  NAME="check_time<%=j%>" ID="check_time_id<%=j%>" VALUE="1" checked="checked">--> 
 						                			
-						                					<%}%>
+						                					<%//}
+						                					//else{%>
+						                					<INPUT TYPE=CHECKBOX  NAME="check_time<%=j%>" ID="check_time_id<%=j%>" VALUE="1"> 
+						                					<%//}
+						                					}%>
 						                					<span class="create_task_span_3"><img id="create_task_img" src="img/b_update.png"/></span>
 						                					
 						                				</td>
@@ -124,13 +151,22 @@
 					                				<tr >
 					                					<td>
 					                						<div style="margin-left: 50px">Resources avaliable</div>
+					                						
 					                						<div id="">
 					                						<select multiple="multiple" class="list1" id="mySelectId" name="mySelect">
 					                						<%
-					                						//Set<UIResource> allResources = main.getAllResources();
-					                						//for(UIResource uir: allResources){ %>
-					                							<option><%//uir.getName()%></option>
-					                						<%//} %>
+					                						Set<UIResource> allResources = main.getAllResources();
+					                						for(UIResource uir: allResources){ 
+					                							if(uir.isStatus()==true){
+					                								%>
+					                								<option style="color:blue"><%=uir.getName()%></option>
+					                								<%
+					                							}
+					                							else{
+					                							%>
+					                							<option ><%=uir.getName()%></option>
+					                						<%	}
+					                						} %>
 					                						</select>
 					                						
 					                						
