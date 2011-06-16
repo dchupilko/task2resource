@@ -21,7 +21,7 @@
         <script language="javascript" src="js/jquery.js"></script>
         <script language="javascript" src="js/scripts.js"></script>
         <script language="javascript" src="js/jqueryui.js"></script>
-<title>start</title>
+<title>view</title>
 </head>
 <body>
 	<table id="id_main_table">
@@ -156,7 +156,7 @@
 							      	   			
 							      	   			 	 <% if(flag==true){%>
 							      	   			 	 <div  id="div_create_task_id">
-							      	   			 	 	<a href="create_task.jsp" ><span>>></span>Edit</a>
+							      	   			 	 	<a href="create_task.jsp" ><span>>></span>Create task</a>
 							      	   			 	 	<br>
 							      	   			 	 	<a href="my_tasks.jsp" ><span>>></span>My tasks</a>
 							      	   			 	</div>
