@@ -252,9 +252,10 @@ public class TaskMapper extends AbstractMapper{
 	public void getAllParticipationsById(User user)
 	{
 		try {
-			String query = String.format("select t.* from Tasks t, Participations p, Users u " +
-					"where u.IdUser=%d and " +
-					"p.IdUser=u.idUser and t.idTask=p.idTask", user.getOid());
+			 String query=String.format("select t.* " +
+					"from Tasks t, Participations p " +
+					"where t.IdTask=p.IdTask " +
+					"and p.idUser=%d", user.getOid());
 			 List<Object[]> tempList = this.readObject(query);
 			    Set<Task> tasks = new HashSet<Task>();
 			    for(Object[] o: tempList)
@@ -367,5 +368,4 @@ public class TaskMapper extends AbstractMapper{
             session.close();
         }
 	}
-	
 }

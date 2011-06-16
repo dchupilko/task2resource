@@ -53,6 +53,7 @@ public class UserMapper extends AbstractMapper{
 		    	g.setOid((new Integer(o[0].toString()).intValue()));
 		    	g.setVersion((new Integer(o[1].toString()).intValue()));
 		    	g.setName(o[2].toString());
+		    	g.setACL((new Integer(o[3].toString()).intValue()));
 	    		groups.add(g);
 		    }	
 			return groups;
